@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lenape Mad Libs Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .title h1 {
+            font-size: 40px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .title h2 {
+            font-size: 24px;
+            color: #666;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .madlib-section {
+            width: 45%;
+            margin: 0 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        .example-section {
+            width: 30%;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+        }
+        .input-group {
+            margin: 15px 0;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .example-button {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .story-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Lenape Mad Libs Generator</h1>
+        <h2>How to Play Lenape Mad Libs Generator:</h2>
+        <h3>
+            <ul>
+                <li><b>Pick a Story</b>: Choose one of the Mad Libs stories to complete.</li>
+                <li><b>Fill in the Blanks</b>: Enter a Lenape word into each text box based on the specified category (e.g., body part, number color).</li>
+                <li><b>Need Help?</b> If you're unsure of a Lenape word to use, click <b>Lenape Word Examples</b> on the right for suggestions</li>
+                <li><b>Generate Your Story</b>: Click <b>Generate Story</b> to see your creation!</li>
+            </ul>
+        </h3>
+    </div>
+
+    <div class="container">
+        <div class="madlib-section" id="madlib1">
+            <h2>The Bicycle Crash</h2>
+            <div id="madlib1-inputs"></div>
+            <button id="generate1" class="example-button">Generate Story!</button>
+            <div id="story1-output" class="story-output"></div>
+        </div>
+        
+        <div class="madlib-section" id="madlib2">
+            <h2>Two to Tango</h2>
+            <div id="madlib2-inputs"></div>
+            <button id="generate2" class="example-button">Generate Story!</button>
+            <div id="story2-output" class="story-output"></div>
+        </div>
+
+        <div class="example-section" id="example-section">
+            <h3>Lenape Word Examples</h3>
+        </div>
+    </div>
+
+    <!-- Add jQuery for AJAX support (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Add your JavaScript file -->
+    <script src="madlibs.js"></script>
+</body>
+</html>
