@@ -1,81 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lenape Mad Libs Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        .title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .title h1 {
-            font-size: 40px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .title h2 {
-            font-size: 24px;
-            color: #666;
-        }
-        .container {
-            display: flex;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .madlib-section {
-            width: 45%;
-            margin: 0 10px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-        }
-        .example-section {
-            width: 30%;
-            padding: 20px;
-            background-color: #f5f5f5;
-            border-radius: 10px;
-        }
-        .input-group {
-            margin: 15px 0;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .example-button {
-            width: 100%;
-            margin: 5px 0;
-            padding: 10px;
-            font-size: 16px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .story-output {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-    </style>
+    <title>Lenape Language Games - Mad Libs</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="nav-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="madlibs.html" class="nav-link">Mad Libs</a>
+        <a href="crossword.html" class="nav-link">Crossword</a>
+        <a href="cardflip.html" class="nav-link">Card Flip</a>
+    </div>
+
     <div class="title">
         <h1>Lenape Mad Libs Generator</h1>
         <h2>How to Play Lenape Mad Libs Generator:</h2>
@@ -109,10 +45,7 @@
         </div>
     </div>
 
-    <!-- Add jQuery for AJAX support (if needed) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- Add your JavaScript file -->
-    <script src="madlibs.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
