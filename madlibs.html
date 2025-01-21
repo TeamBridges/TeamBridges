@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>Lenape Language Games - Mad Libs</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="nav-bar">
@@ -16,34 +16,49 @@
 
     <div class="title">
         <h1>Lenape Mad Libs Generator</h1>
-        <h2>How to Play Lenape Mad Libs Generator:</h2>
-        <h3>
-            <ul>
-                <li><b>Pick a Story</b>: Choose one of the Mad Libs stories to complete.</li>
-                <li><b>Fill in the Blanks</b>: Enter a Lenape word into each text box based on the specified category (e.g., body part, number color).</li>
-                <li><b>Need Help?</b> If you're unsure of a Lenape word to use, click <b>Lenape Word Examples</b> on the right for suggestions</li>
-                <li><b>Generate Your Story</b>: Click <b>Generate Story</b> to see your creation!</li>
-            </ul>
-        </h3>
+        <h2>Create Fun Stories with Lenape Words!</h2>
     </div>
 
     <div class="container">
-        <div class="madlib-section" id="madlib1">
-            <h2>The Bicycle Crash</h2>
-            <div id="madlib1-inputs"></div>
-            <button id="generate1" class="example-button">Generate Story!</button>
-            <div id="story1-output" class="story-output"></div>
-        </div>
-        
-        <div class="madlib-section" id="madlib2">
-            <h2>Two to Tango</h2>
-            <div id="madlib2-inputs"></div>
-            <button id="generate2" class="example-button">Generate Story!</button>
-            <div id="story2-output" class="story-output"></div>
+        <div class="stories-section">
+            <!-- Story Card 1 -->
+            <div class="story-card">
+                <div class="story-card-inner">
+                    <div class="story-card-front">
+                        <h2>The Bicycle Crash</h2>
+                        <div class="input-form" id="madlib1-inputs"></div>
+                        <button class="generate-button" onclick="flipAndGenerateStory(1)">Generate Story!</button>
+                    </div>
+                    <div class="story-card-back">
+                        <h2>Your Story</h2>
+                        <div id="story1-output" class="story-output"></div>
+                        <button class="reset-button" onclick="resetStoryCard(1)">Create Another</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Card 2 -->
+            <div class="story-card">
+                <div class="story-card-inner">
+                    <div class="story-card-front">
+                        <h2>Two to Tango</h2>
+                        <div class="input-form" id="madlib2-inputs"></div>
+                        <button class="generate-button" onclick="flipAndGenerateStory(2)">Generate Story!</button>
+                    </div>
+                    <div class="story-card-back">
+                        <h2>Your Story</h2>
+                        <div id="story2-output" class="story-output"></div>
+                        <button class="reset-button" onclick="resetStoryCard(2)">Create Another</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="example-section" id="example-section">
-            <h3>Lenape Word Examples</h3>
+        <div class="glossary-section">
+            <h2>Lenape Word Examples</h2>
+            <div class="glossary-cards" id="example-section">
+                <!-- Glossary cards will be added here by JavaScript -->
+            </div>
         </div>
     </div>
 
