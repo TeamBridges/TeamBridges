@@ -15,34 +15,30 @@ const lenapeExamples = {
     nishash = seven
     xash = eight
     peshkunk = nine
-    telen = ten
-    nishinxke = twenty
-    xinxke = thirty
-    neinxke = forty
+    telen = ten`,
     
-    Making larger numbers:
-    telen ok kweti = 11 (ten and one)
-    nishinxke ok nisha = 22 (twenty and two)`,
+    colors: `Colors in Lenape:
+    seke (suhk-ay) = black
+    ope = white
+    machke = red
+    wisawe = yellow
+    askaske = green
+    wape = grey`,
     
-    animate_words: `Living (Animate) Words:
-    ahas (ah-hahs) = crow
-    ahasak (ah-hah-suhk) = crows`,
+    body_parts: `Body Parts in Lenape:
+    wixkwan = nose
+    witun = mouth
+    wihle = head
+    wiske = eyes
+    wikat = leg
+    wichkwan = knee`,
     
-    inanimate_words: `Non-Living (Inanimate) Words:
-    hempes (hem-buhs) = shirt
-    hempsa (hemb-sah) = shirts`,
-    
-    colors_animate: `Colors for Living Things:
-    seksu = he/she is black
-    seksuwak = they are black
-    opsu = he/she white
-    opsuwak = they are white`,
-    
-    colors_inanimate: `Colors for Objects:
-    seke (suhk-ay) = it is black
-    sekeyo = they are black
-    ope = it is white
-    opeyo = they are white`
+    emotions: `Emotions in Lenape:
+    nulhatam = happy
+    kwitey = angry
+    wawitam = sad
+    wisachgihhele = excited
+    kwishele = afraid`
 };
 
 // Setup functions
@@ -50,32 +46,33 @@ document.addEventListener('DOMContentLoaded', function() {
     setupExamples();
     setupMadlib1();
     setupMadlib2();
-    setupEventListeners();
 });
 
 function setupExamples() {
     const exampleSection = document.getElementById('example-section');
     
     for (const [category, text] of Object.entries(lenapeExamples)) {
-        // Create button
-        const button = document.createElement('button');
-        button.textContent = category.replace('_', ' ').charAt(0).toUpperCase() + 
-                           category.slice(1) + ' Examples';
-        button.className = 'example-button';
-        button.onclick = () => toggleExample(category);
+        const card = document.createElement('div');
+        card.className = 'glossary-card';
         
-        // Create content div
-        const exampleDiv = document.createElement('div');
-        exampleDiv.id = `example-${category}`;
-        exampleDiv.style.display = 'none';
-        exampleDiv.innerHTML = text.replace(/\n/g, '<br>');
-        exampleDiv.style.padding = '10px';
-        exampleDiv.style.marginBottom = '10px';
-        exampleDiv.style.backgroundColor = '#fff';
-        exampleDiv.style.borderRadius = '4px';
+        card.innerHTML = `
+            <div class="glossary-card-inner">
+                <div class="glossary-card-front">
+                    <h3>${category.replace('_', ' ').toUpperCase()}</h3>
+                </div>
+                <div class="glossary-card-back">
+                    <div class="glossary-content">
+                        ${text.replace(/\n/g, '<br>')}
+                    </div>
+                </div>
+            </div>
+        `;
         
-        exampleSection.appendChild(button);
-        exampleSection.appendChild(exampleDiv);
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+        
+        exampleSection.appendChild(card);
     }
 }
 
@@ -88,6 +85,7 @@ function createInputField(container, labelText, inputId) {
     
     const input = document.createElement('input');
     input.id = inputId;
+    input.required = true;
     
     div.appendChild(label);
     div.appendChild(input);
@@ -102,8 +100,7 @@ function setupMadlib1() {
         ['Enter a number:', 'input1-number'],
         ['Enter a color:', 'input1-color'],
         ['Enter an emotion:', 'input1-emotion'],
-        ['Enter a different number:', 'input1-number2'],
-        ['Enter an activity:', 'input1-activity']
+        ['Enter a different number:', 'input1-number2']
     ];
     
     fields.forEach(([label, inputId]) => {
@@ -118,9 +115,7 @@ function setupMadlib2() {
         ['Enter a friend\'s name:', 'input2-friend'],
         ['Enter a body part:', 'input2-bodypart'],
         ['Enter another body part:', 'input2-bodypart2'],
-        ['Enter a color:', 'input2-color'],
-        ['Enter a fruit:', 'input2-fruit'],
-        ['Enter a plural body part:', 'input2-bodyparts']
+        ['Enter a color:', 'input2-color']
     ];
     
     fields.forEach(([label, inputId]) => {
@@ -128,14 +123,25 @@ function setupMadlib2() {
     });
 }
 
-function setupEventListeners() {
-    document.getElementById('generate1').addEventListener('click', generateStory1);
-    document.getElementById('generate2').addEventListener('click', generateStory2);
+function flipAndGenerateStory(storyNumber) {
+    const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
+    if (storyNumber === 1) {
+        generateStory1();
+    } else {
+        generateStory2();
+    }
+    card.classList.add('flipped');
 }
 
-function toggleExample(category) {
-    const exampleDiv = document.getElementById(`example-${category}`);
-    exampleDiv.style.display = exampleDiv.style.display === 'none' ? 'block' : 'none';
+function resetStoryCard(storyNumber) {
+    const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
+    card.classList.remove('flipped');
+    // Clear inputs
+    document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
+        input.value = '';
+    });
+    // Clear story
+    document.querySelector(`#story${storyNumber}-output`).innerHTML = '';
 }
 
 function generateStory1() {
@@ -145,36 +151,5 @@ function generateStory1() {
         number: document.getElementById('input1-number').value,
         color: document.getElementById('input1-color').value,
         emotion: document.getElementById('input1-emotion').value,
-        number2: document.getElementById('input1-number2').value,
-        activity: document.getElementById('input1-activity').value
+        number2: document.getElementById('input1-number2').value
     };
-    
-    const story = `I was riding my bike, but I crashed! I scraped my ${inputs.bodypart} 
-                   and broke my ${inputs.bodypart2}. I had to wear a cast for ${inputs.number} weeks. 
-                   The weirdest part was that my ${inputs.bodypart} turned ${inputs.color}. 
-                   I wasn't expecting that! It made me feel ${inputs.emotion}. 
-                   I probably won't be able to ride my bike again for ${inputs.number2} days. 
-                   Next time, I'll try something safer, like ${inputs.activity}!`;
-    
-    document.getElementById('story1-output').innerHTML = story;
-}
-
-function generateStory2() {
-    const inputs = {
-        number: document.getElementById('input2-number').value,
-        friend: document.getElementById('input2-friend').value,
-        bodypart: document.getElementById('input2-bodypart').value,
-        bodypart2: document.getElementById('input2-bodypart2').value,
-        color: document.getElementById('input2-color').value,
-        fruit: document.getElementById('input2-fruit').value,
-        bodyparts: document.getElementById('input2-bodyparts').value
-    };
-    
-    const story = `${inputs.number} weeks ago, I was dancing with my friend ${inputs.friend}. 
-                   They stepped on my ${inputs.bodypart} and hurt my ${inputs.bodypart2}. 
-                   My ${inputs.bodypart} turned ${inputs.color}, 
-                   and my ${inputs.bodypart2} looked more like a ${inputs.fruit}. 
-                   I guess you can say ${inputs.friend} has two left ${inputs.bodyparts}!`;
-    
-    document.getElementById('story2-output').innerHTML = story;
-}
