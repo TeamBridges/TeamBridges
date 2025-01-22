@@ -1,182 +1,255 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    setupGlossary();
-    initializeStoryCards();
-});
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-const lenapeExamples = {
-    greetings: `Greetings in Lenape:
-    He! (hay) = Hello!
-    Kulamalsi hech? (kule-ah-mahl-see huch) = How are you?
-    Nulamalsi (nule-ah-mahl-see) = I am well.`,
-    numbers: `Numbers in Lenape:
-    kweti (kwuh-tee) = one
-    nisha = two
-    naxa = three
-    newa = four
-    palenaxk = five`,
-    colors: `Colors in Lenape:
-    seke (suhk-ay) = black
-    ope = white
-    machke = red
-    wisawe = yellow
-    askaske = green`,
-    body_parts: `Body Parts in Lenape:
-    wixkwan = nose
-    witun = mouth
-    wihle = head
-    wiske = eyes
-    wikat = leg`,
-    emotions: `Emotions in Lenape:
-    nulhatam = happy
-    kwitey = angry
-    wawitam = sad
-    wisachgihhele = excited
-    kwishele = afraid`
-};
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
 
-function initializeStoryCards() {
-    const storyGrid = document.querySelector('.story-grid');
-    if (!storyGrid) {
-        console.error('Story grid not found');
-        return;
+.nav-bar {
+    background-color: white;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-link.active {
+    background-color: #1e3c72;
+    color: white;
+}
+
+.title {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    margin-bottom: 30px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.main-content h2 {
+    color: #1e3c72;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+/* Story Choice Buttons */
+.story-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.story-choice {
+    background: white;
+    border: 2px solid #1e3c72;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-choice h3 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.story-choice p {
+    color: #666;
+    font-size: 14px;
+}
+
+.story-choice:hover {
+    background: #f0f4f8;
+    transform: translateY(-2px);
+}
+
+.story-choice.active {
+    background: #1e3c72;
+}
+
+.story-choice.active h3,
+.story-choice.active p {
+    color: white;
+}
+
+/* Story Card */
+.story-card {
+    background: transparent;
+    perspective: 1000px;
+    height: 500px;
+}
+
+.story-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.story-card-front,
+.story-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.story-card-back {
+    transform: rotateY(180deg);
+}
+
+.story-card.flipped .story-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Input Form */
+.input-group {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.input-group input:focus {
+    border-color: #1e3c72;
+    outline: none;
+}
+
+/* Buttons */
+.generate-button,
+.reset-button {
+    background: #1e3c72;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.generate-button:hover,
+.reset-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Story Output */
+.story-output {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.8;
+}
+
+.user-input {
+    color: #1e3c72;
+    font-weight: bold;
+}
+
+/* Glossary Section */
+.glossary-section {
+    margin-top: 40px;
+}
+
+.glossary-card {
+    height: 200px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.glossary-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.glossary-card.flipped .glossary-card-inner {
+    transform: rotateY(180deg);
+}
+
+.glossary-card-front,
+.glossary-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.glossary-card-back {
+    transform: rotateY(180deg);
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
     }
-
-    // Clear existing content
-    storyGrid.innerHTML = '';
-
-    // Create two story cards
-    for (let i = 1; i <= 2; i++) {
-        const card = document.createElement('div');
-        card.className = 'story-card';
-        card.innerHTML = `
-            <h3>Your Story</h3>
-            <div class="story-content"></div>
-            <button class="create-button" onclick="startNewStory(${i})">Create Another</button>
-        `;
-        storyGrid.appendChild(card);
+    
+    .story-buttons {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 20px;
     }
-}
-
-function startNewStory(storyNumber) {
-    const card = document.querySelector(`#story${storyNumber}`);
-    if (!card) return;
-
-    const inputs = storyNumber === 1 ? [
-        ['Enter a body part:', 'bodypart'],
-        ['Enter another body part:', 'bodypart2'],
-        ['Enter a number:', 'number'],
-        ['Enter a color:', 'color'],
-        ['Enter an emotion:', 'emotion']
-    ] : [
-        ['Enter a number:', 'number'],
-        ['Enter a friend\'s name:', 'friend'],
-        ['Enter a body part:', 'bodypart'],
-        ['Enter a color:', 'color']
-    ];
-
-    setupInputFields(storyNumber, inputs);
-}
-
-function setupInputFields(storyNumber, fields) {
-    const card = document.querySelector(`#story${storyNumber}`);
-    if (!card) return;
-
-    const inputSection = document.createElement('div');
-    inputSection.className = 'input-section';
-
-    fields.forEach(([label, id]) => {
-        const div = document.createElement('div');
-        div.className = 'input-group';
-        div.innerHTML = `
-            <label>${label}</label>
-            <input type="text" id="input${storyNumber}-${id}">
-        `;
-        inputSection.appendChild(div);
-    });
-
-    const generateButton = document.createElement('button');
-    generateButton.className = 'generate-button';
-    generateButton.textContent = 'Generate Story';
-    generateButton.onclick = () => generateStory(storyNumber);
-    inputSection.appendChild(generateButton);
-
-    card.innerHTML = '';
-    card.appendChild(inputSection);
-}
-
-function generateStory(storyNumber) {
-    const inputs = {};
-    const card = document.querySelector(`#story${storyNumber}`);
-    if (!card) return;
-
-    const allInputs = card.querySelectorAll('input');
-    let allFilled = true;
-
-    allInputs.forEach(input => {
-        const value = input.value.trim();
-        if (!value) allFilled = false;
-        inputs[input.id.split('-')[1]] = value;
-    });
-
-    if (!allFilled) {
-        alert('Please fill in all fields!');
-        return;
-    }
-
-    const story = createStoryText(storyNumber, inputs);
-    displayStory(storyNumber, story);
-}
-
-function createStoryText(storyNumber, inputs) {
-    if (storyNumber === 1) {
-        return `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
-                on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
-                It took ${inputs.number} days to heal. My bruise turned ${inputs.color}. 
-                Now I feel ${inputs.emotion} when I ride my bike.`;
-    } else {
-        return `${inputs.number} days ago, my friend ${inputs.friend} and I went dancing. 
-                We danced until our ${inputs.bodypart} hurt! 
-                We wore matching ${inputs.color} shoes.`;
-    }
-}
-
-function displayStory(storyNumber, story) {
-    const card = document.querySelector(`#story${storyNumber}`);
-    if (!card) return;
-
-    card.innerHTML = `
-        <h3>Your Story</h3>
-        <div class="story-content">${story}</div>
-        <button class="create-button" onclick="startNewStory(${storyNumber})">Create Another</button>
-    `;
-}
-
-function setupGlossary() {
-    const exampleSection = document.getElementById('example-section');
-    if (!exampleSection) return;
-
-    for (const [category, text] of Object.entries(lenapeExamples)) {
-        const card = document.createElement('div');
-        card.className = 'glossary-card';
-        
-        card.innerHTML = `
-            <div class="glossary-card-inner">
-                <div class="glossary-card-front">
-                    <h3>${category.replace('_', ' ').toUpperCase()}</h3>
-                </div>
-                <div class="glossary-card-back">
-                    <div class="glossary-content">
-                        ${text.replace(/\n/g, '<br>')}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
-        
-        exampleSection.appendChild(card);
+    
+    .story-choice {
+        min-width: 250px;
     }
 }
