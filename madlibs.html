@@ -1,26 +1,35 @@
+It seems like the styling isn't being applied properly. Let's check the HTML structure and make sure all the necessary classes are in place. Here's the corrected madlibs.html:
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Lenape Language Games - Mad Libs</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="nav-bar">
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="madlibs.html" class="nav-link active">Mad Libs</a>
         <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="cardflip.html" class="nav-link">Card Flip</a>
-    </div>
+    </nav>
 
-    <div class="title">
+    <!-- Title Section -->
+    <header class="title">
         <h1>Lenape Mad Libs Generator</h1>
         <h2>Create Fun Stories with Lenape Words!</h2>
-    </div>
+    </header>
 
-    <div class="container">
-        <div class="stories-section">
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Stories Section -->
+        <section class="stories-section">
             <h2>Choose Your Story</h2>
+            
+            <!-- Story Selection Buttons -->
             <div class="story-buttons">
                 <button class="story-choice" onclick="showStoryForm(1)">The Bicycle Adventure</button>
                 <button class="story-choice" onclick="showStoryForm(2)">Dancing with Friends</button>
@@ -41,9 +50,10 @@
                 <button class="generate-button" onclick="generateStory(2)">Generate Story</button>
                 <div id="story2-output" class="story-output hidden"></div>
             </div>
-        </div>
+        </section>
 
-        <div class="glossary-section">
+        <!-- Glossary Section -->
+        <aside class="glossary-section">
             <h2>Lenape Word Examples</h2>
             <div class="glossary-buttons">
                 <button class="glossary-button" onclick="toggleGlossary('greetings')">Greetings</button>
@@ -53,9 +63,10 @@
                 <button class="glossary-button" onclick="toggleGlossary('emotions')">Emotions</button>
             </div>
             <div id="glossary-content" class="glossary-content hidden"></div>
-        </div>
-    </div>
+        </aside>
+    </main>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
