@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +8,10 @@
 
 body {
     background-color: #f5f7fa;
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
 }
 
-/* Navigation Styles */
+/* Navigation */
 .nav-bar {
     background-color: white;
     padding: 15px;
@@ -41,7 +40,7 @@ body {
     color: white;
 }
 
-/* Title Section */
+/* Title section */
 .title {
     text-align: center;
     padding: 40px 20px;
@@ -60,55 +59,71 @@ body {
     opacity: 0.9;
 }
 
-/* Container and Layout */
+/* Main container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     gap: 30px;
 }
 
-/* Story Card Styles */
-.story-card {
-    background-color: transparent;
-    width: 100%;
-    min-height: 400px;
-    perspective: 1000px;
-    margin-bottom: 30px;
-}
-
-.story-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: left;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.story-card.flipped .story-card-inner {
-    transform: rotateY(180deg);
-}
-
-.story-card-front, .story-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+/* Stories section */
+.stories-section {
     background: white;
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.story-card-back {
-    transform: rotateY(180deg);
+.stories-section h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
 }
 
-/* Input Form Styles */
-.input-form {
+/* Story buttons */
+.story-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.story-choice {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border: 2px solid #1e3c72;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #1e3c72;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-choice:hover {
+    background: #1e3c72;
+    color: white;
+}
+
+/* Story form */
+.story-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.story-form h3 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     margin: 20px 0;
 }
 
@@ -118,14 +133,14 @@ body {
 
 .input-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #333;
     font-weight: 500;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
@@ -137,101 +152,99 @@ body {
     outline: none;
 }
 
-/* Button Styles */
-.generate-button, .reset-button {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+/* Buttons */
+.generate-button {
+    background: #1e3c72;
     color: white;
     border: none;
     padding: 12px 25px;
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
-    transition: transform 0.2s ease;
-    margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
-.generate-button:hover, .reset-button:hover {
+.generate-button:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(30, 60, 114, 0.2);
 }
 
-/* Story Output Styles */
+/* Story output */
 .story-output {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
     margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
     line-height: 1.6;
-    min-height: 200px;
+    border: 2px solid #1e3c72;
 }
 
-/* Glossary Section Styles */
+/* Glossary section */
 .glossary-section {
-    flex: 1;
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.glossary-card {
-    background-color: transparent;
-    width: 100%;
-    height: 150px;
-    perspective: 1000px;
+.glossary-section h2 {
+    color: #1e3c72;
     margin-bottom: 20px;
-    cursor: pointer;
 }
 
-.glossary-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.glossary-card.flipped .glossary-card-inner {
-    transform: rotateY(180deg);
-}
-
-.glossary-card-front, .glossary-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.glossary-card-front {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
+.glossary-buttons {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.glossary-card-back {
-    background: white;
-    transform: rotateY(180deg);
+.glossary-button {
+    padding: 12px 20px;
+    background: #f8f9fa;
     border: 2px solid #1e3c72;
-    overflow-y: auto;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #1e3c72;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* Responsive Design */
+.glossary-button:hover {
+    background: #1e3c72;
+    color: white;
+}
+
+.glossary-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    line-height: 1.6;
+    border: 2px solid #1e3c72;
+}
+
+/* Utility classes */
+.hidden {
+    display: none;
+}
+
+/* Responsive design */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
-    
-    .title h1 {
-        font-size: 2em;
-    }
-    
+
     .nav-link {
         padding: 8px 15px;
         margin: 0 5px;
+        font-size: 14px;
+    }
+
+    .title h1 {
+        font-size: 2em;
+    }
+
+    .title h2 {
+        font-size: 1.2em;
     }
 }
