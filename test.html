@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Internal CSS to test if styles work at all */
+        .test-box {
+            background-color: #1e3c72;
+            color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="test-box">
+        If you see this with a blue background and white text, basic CSS is working.
+    </div>
+
+    <!-- Test the card flip functionality -->
+    <div class="story-card">
+        <div class="story-card-inner">
+            <div class="story-card-front">
+                <h2>Test Card Front</h2>
+            </div>
+            <div class="story-card-back">
+                <h2>Test Card Back</h2>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test if JavaScript can access the DOM
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            // Check if CSS file is loaded
+            const styles = document.styleSheets;
+            console.log('Number of stylesheets:', styles.length);
+            for(let i = 0; i < styles.length; i++) {
+                console.log('Stylesheet', i, ':', styles[i].href);
+            }
+        });
+    </script>
+</body>
+</html>
