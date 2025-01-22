@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +7,7 @@
 
 body {
     background-color: #f5f7fa;
+    min-height: 100vh;
 }
 
 .nav-bar {
@@ -47,86 +47,165 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 30px;
 }
 
 .main-content h2 {
     color: #1e3c72;
-    font-size: 32px;
     margin-bottom: 30px;
+    font-size: 32px;
 }
 
-.story-grid {
+.content-wrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 300px 1fr;
     gap: 30px;
 }
 
+/* Story Choice Buttons */
+.story-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.story-choice {
+    background: white;
+    border: 2px solid #1e3c72;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-choice h3 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.story-choice p {
+    color: #666;
+    font-size: 14px;
+}
+
+.story-choice:hover {
+    background: #f0f4f8;
+    transform: translateY(-2px);
+}
+
+.story-choice.active {
+    background: #1e3c72;
+}
+
+.story-choice.active h3,
+.story-choice.active p {
+    color: white;
+}
+
+/* Story Card */
 .story-card {
+    background: transparent;
+    perspective: 1000px;
+    height: 500px;
+}
+
+.story-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.story-card-front,
+.story-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
     background: white;
     border-radius: 20px;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    min-height: 400px;
 }
 
-.story-card h3 {
-    color: #1e3c72;
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
+.story-card-back {
+    transform: rotateY(180deg);
 }
 
-.story-content {
-    flex-grow: 1;
-    margin-bottom: 20px;
-    min-height: 200px;
+.story-card.flipped .story-card-inner {
+    transform: rotateY(180deg);
 }
 
-.create-button {
+/* Input Form */
+.input-group {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.input-group input:focus {
+    border-color: #1e3c72;
+    outline: none;
+}
+
+/* Buttons */
+.generate-button,
+.reset-button {
     background: #1e3c72;
     color: white;
     border: none;
-    padding: 15px 30px;
+    padding: 12px 30px;
     border-radius: 25px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: transform 0.2s ease;
-    align-self: center;
+    margin-top: 20px;
 }
 
-.create-button:hover {
+.generate-button:hover,
+.reset-button:hover {
     transform: translateY(-2px);
+}
+
+/* Story Output */
+.story-output {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    text-align: left;
+    line-height: 1.8;
+}
+
+.user-input {
+    color: #1e3c72;
+    font-weight: bold;
 }
 
 /* Glossary Section */
 .glossary-section {
-    background: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.glossary-section h2 {
-    color: #1e3c72;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.glossary-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    margin-top: 40px;
 }
 
 .glossary-card {
-    height: 150px;
+    height: 200px;
     perspective: 1000px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .glossary-card-inner {
@@ -149,105 +228,28 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    border-radius: 10px;
-    padding: 15px;
-}
-
-.glossary-card-front {
-    background: #1e3c72;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .glossary-card-back {
-    background: white;
-    border: 2px solid #1e3c72;
     transform: rotateY(180deg);
-    overflow-y: auto;
 }
 
-@media (max-width: 1200px) {
-    .container {
+@media (max-width: 768px) {
+    .content-wrapper {
         grid-template-columns: 1fr;
     }
     
-    .story-grid {
-        grid-template-columns: 1fr;
+    .story-buttons {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 20px;
     }
-}
-
-.hidden {
-    display: none;
-}
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    setupGlossary();
-});
-
-const lenapeExamples = {
-    greetings: `Greetings in Lenape:
-    He! (hay) = Hello!
-    Kulamalsi hech? (kule-ah-mahl-see huch) = How are you?
-    Nulamalsi (nule-ah-mahl-see) = I am well.`,
-    numbers: `Numbers in Lenape:
-    kweti (kwuh-tee) = one
-    nisha = two
-    naxa = three
-    newa = four
-    palenaxk = five`,
-    colors: `Colors in Lenape:
-    seke (suhk-ay) = black
-    ope = white
-    machke = red
-    wisawe = yellow
-    askaske = green`,
-    body_parts: `Body Parts in Lenape:
-    wixkwan = nose
-    witun = mouth
-    wihle = head
-    wiske = eyes
-    wikat = leg`,
-    emotions: `Emotions in Lenape:
-    nulhatam = happy
-    kwitey = angry
-    wawitam = sad
-    wisachgihhele = excited
-    kwishele = afraid`
-};
-
-function setupGlossary() {
-    const exampleSection = document.getElementById('example-section');
-    if (!exampleSection) return;
-
-    for (const [category, text] of Object.entries(lenapeExamples)) {
-        const card = document.createElement('div');
-        card.className = 'glossary-card';
-        
-        card.innerHTML = `
-            <div class="glossary-card-inner">
-                <div class="glossary-card-front">
-                    <h3>${category.replace('_', ' ').toUpperCase()}</h3>
-                </div>
-                <div class="glossary-card-back">
-                    <div class="glossary-content">
-                        ${text.replace(/\n/g, '<br>')}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
-        
-        exampleSection.appendChild(card);
+    
+    .story-choice {
+        min-width: 250px;
     }
-}
-
-function startNewStory(storyNumber) {
-    // Add your story creation logic here
-    console.log(`Starting new story ${storyNumber}`);
 }
