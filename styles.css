@@ -57,14 +57,11 @@ body {
 }
 
 .container {
-    max-width: 1600px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-}
-
-.content-wrapper {
     display: grid;
-    grid-template-columns: 300px 1fr 300px;
+    grid-template-columns: 250px 1fr 300px;
     gap: 30px;
     align-items: start;
 }
@@ -116,7 +113,7 @@ body {
 .story-card {
     background: transparent;
     perspective: 1000px;
-    min-height: 600px;
+    min-height: 500px;
 }
 
 .story-card-inner {
@@ -221,10 +218,16 @@ body {
     color: #1e3c72;
 }
 
+.glossary-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .glossary-card {
-    height: 300px;
+    height: 200px;
     perspective: 1000px;
-    margin-bottom: 20px;
+    width: 100%;
 }
 
 .glossary-card-inner {
@@ -249,7 +252,7 @@ body {
     backface-visibility: hidden;
     background: white;
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
@@ -257,11 +260,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
 }
 
 .glossary-card-back {
     transform: rotateY(180deg);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
     overflow-y: auto;
 }
@@ -271,16 +276,12 @@ body {
 }
 
 @media (max-width: 1200px) {
-    .content-wrapper {
+    .container {
         grid-template-columns: 1fr;
     }
     
-    .story-buttons,
-    .glossary-section {
-        position: static;
-    }
-    
     .story-buttons {
+        position: static;
         flex-direction: row;
         overflow-x: auto;
         padding-bottom: 20px;
@@ -288,5 +289,16 @@ body {
     
     .story-choice {
         min-width: 250px;
+    }
+    
+    .glossary-section {
+        position: static;
+        max-height: none;
+    }
+    
+    .glossary-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
 }
