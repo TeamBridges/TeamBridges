@@ -153,3 +153,29 @@ function generateStory1() {
         emotion: document.getElementById('input1-emotion').value,
         number2: document.getElementById('input1-number2').value
     };
+    
+    const story = `I was riding my bike, but I crashed! I scraped my ${inputs.bodypart} 
+                   and broke my ${inputs.bodypart2}. I had to wear a cast for ${inputs.number} weeks. 
+                   The weirdest part was that my ${inputs.bodypart} turned ${inputs.color}. 
+                   I wasn't expecting that! It made me feel ${inputs.emotion}. 
+                   I probably won't be able to ride my bike again for ${inputs.number2} days.`;
+    
+    document.getElementById('story1-output').innerHTML = story;
+}
+
+function generateStory2() {
+    const inputs = {
+        number: document.getElementById('input2-number').value,
+        friend: document.getElementById('input2-friend').value,
+        bodypart: document.getElementById('input2-bodypart').value,
+        bodypart2: document.getElementById('input2-bodypart2').value,
+        color: document.getElementById('input2-color').value
+    };
+    
+    const story = `${inputs.number} weeks ago, I was dancing with my friend ${inputs.friend}. 
+                   They stepped on my ${inputs.bodypart} and hurt my ${inputs.bodypart2}. 
+                   My ${inputs.bodypart} turned ${inputs.color}! 
+                   I guess you can say ${inputs.friend} has two left feet!`;
+    
+    document.getElementById('story2-output').innerHTML = story;
+}
