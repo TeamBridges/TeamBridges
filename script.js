@@ -10,28 +10,21 @@ const lenapeExamples = {
     nisha = two
     naxa = three
     newa = four
-    palenaxk = five
-    kwetash = six
-    nishash = seven
-    xash = eight
-    peshkunk = nine
-    telen = ten`,
+    palenaxk = five`,
     
     colors: `Colors in Lenape:
     seke (suhk-ay) = black
     ope = white
     machke = red
     wisawe = yellow
-    askaske = green
-    wape = grey`,
+    askaske = green`,
     
     body_parts: `Body Parts in Lenape:
     wixkwan = nose
     witun = mouth
     wihle = head
     wiske = eyes
-    wikat = leg
-    wichkwan = knee`,
+    wikat = leg`,
     
     emotions: `Emotions in Lenape:
     nulhatam = happy
@@ -43,6 +36,12 @@ const lenapeExamples = {
 
 // Initialize when document is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    setupMadLibs();
+    setupGlossary();
+});
+
+function setupMadLibs() {
+    // Setup Story 1 inputs
     setupInputFields(1, [
         ['Enter a body part:', 'bodypart'],
         ['Enter another body part:', 'bodypart2'],
@@ -51,62 +50,51 @@ document.addEventListener('DOMContentLoaded', function() {
         ['Enter an emotion:', 'emotion']
     ]);
     
+    // Setup Story 2 inputs
     setupInputFields(2, [
         ['Enter a number:', 'number'],
         ['Enter a friend\'s name:', 'friend'],
         ['Enter a body part:', 'bodypart'],
         ['Enter a color:', 'color']
     ]);
-});
-
-// Show story form
-function showStoryForm(storyNumber) {
-    // Hide all story forms first
-    document.querySelectorAll('.story-form').forEach(form => {
-        form.classList.add('hidden');
-    });
-    
-    // Show selected story form
-    const selectedForm = document.getElementById(`story-form-${storyNumber}`);
-    selectedForm.classList.remove('hidden');
-    
-    // Clear any previous inputs and output
-    clearStoryForm(storyNumber);
 }
 
-// Clear story form
-function clearStoryForm(storyNumber) {
-    // Clear inputs
-    document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
-        input.value = '';
-    });
+function setupGlossary() {
+    const exampleSection = document.getElementById('example-section');
     
-    // Hide output
-    const output = document.getElementById(`story${storyNumber}-output`);
-    output.classList.add('hidden');
-    output.textContent = '';
-}
-
-// Toggle glossary content
-function toggleGlossary(category) {
-    const content = document.getElementById('glossary-content');
-    
-    if (content.dataset.currentCategory === category && !content.classList.contains('hidden')) {
-        // If clicking the same category and content is visible, hide it
-        content.classList.add('hidden');
-    } else {
-        // Show content for the selected category
-        content.innerHTML = lenapeExamples[category].replace(/\n/g, '<br>');
-        content.dataset.currentCategory = category;
-        content.classList.remove('hidden');
+    for (const [category, text] of Object.entries(lenapeExamples)) {
+        const card = createGlossaryCard(category, text);
+        exampleSection.appendChild(card);
     }
 }
 
-// Setup input fields
+function createGlossaryCard(category, text) {
+    const card = document.createElement('div');
+    card.className = 'glossary-card';
+    
+    card.innerHTML = `
+        <div class="glossary-card-inner">
+            <div class="glossary-card-front">
+                <h3>${category.replace('_', ' ').toUpperCase()}</h3>
+            </div>
+            <div class="glossary-card-back">
+                <div class="glossary-content">
+                    ${text.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+    });
+    
+    return card;
+}
+
 function setupInputFields(storyNumber, fields) {
     const container = document.getElementById(`madlib${storyNumber}-inputs`);
-    if (!container) return;
-
+    
     fields.forEach(([label, id]) => {
         const div = document.createElement('div');
         div.className = 'input-group';
@@ -124,23 +112,33 @@ function setupInputFields(storyNumber, fields) {
     });
 }
 
-// Generate story
-function generateStory(storyNumber) {
-    // Validate inputs
+function flipAndGenerateStory(storyNumber) {
     const inputs = getStoryInputs(storyNumber);
     if (!validateInputs(inputs)) {
         alert('Please fill in all fields!');
         return;
     }
     
-    // Generate and display story
     const story = createStory(storyNumber, inputs);
-    const outputElement = document.getElementById(`story${storyNumber}-output`);
-    outputElement.textContent = story;
-    outputElement.classList.remove('hidden');
+    document.getElementById(`story${storyNumber}-output`).textContent = story;
+    
+    const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
+    card.classList.add('flipped');
 }
 
-// Get story inputs
+function resetStoryCard(storyNumber) {
+    const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
+    card.classList.remove('flipped');
+    
+    // Clear inputs
+    document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
+        input.value = '';
+    });
+    
+    // Clear story
+    document.getElementById(`story${storyNumber}-output`).textContent = '';
+}
+
 function getStoryInputs(storyNumber) {
     const inputs = {};
     document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
@@ -149,21 +147,17 @@ function getStoryInputs(storyNumber) {
     return inputs;
 }
 
-// Validate inputs
 function validateInputs(inputs) {
     return Object.values(inputs).every(value => value !== '');
 }
 
-// Create story text
 function createStory(storyNumber, inputs) {
     if (storyNumber === 1) {
-        return `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
-                on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
-                It took ${inputs.number} days to heal. My bruise turned ${inputs.color}. 
-                Now I feel ${inputs.emotion} when I ride my bike.`;
+        return `One day, I was riding my bicycle when I hit my ${inputs.bodypart} on a tree branch. 
+                I fell and hurt my ${inputs.bodypart2}. It took ${inputs.number} days to heal. 
+                My bruise turned ${inputs.color}. Now I feel ${inputs.emotion} when I ride my bike.`;
     } else {
         return `${inputs.number} days ago, my friend ${inputs.friend} and I went dancing. 
-                We danced until our ${inputs.bodypart} hurt! 
-                We wore matching ${inputs.color} shoes.`;
+                We danced until our ${inputs.bodypart} hurt! We wore matching ${inputs.color} shoes.`;
     }
 }
