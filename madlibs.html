@@ -3,67 +3,64 @@
 <head>
     <title>Lenape Language Games - Mad Libs</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
+    <div class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="madlibs.html" class="nav-link active">Mad Libs</a>
         <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="cardflip.html" class="nav-link">Card Flip</a>
-    </nav>
+    </div>
 
-    <!-- Title Section -->
-    <header class="title">
+    <div class="title">
         <h1>Lenape Mad Libs Generator</h1>
         <h2>Create Fun Stories with Lenape Words!</h2>
-    </header>
+    </div>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Stories Section -->
-        <section class="stories-section">
-            <h2>Choose Your Story</h2>
-            
-            <!-- Story Selection Buttons -->
-            <div class="story-buttons">
-                <button class="story-choice" onclick="showStoryForm(1)">The Bicycle Adventure</button>
-                <button class="story-choice" onclick="showStoryForm(2)">Dancing with Friends</button>
+    <div class="container">
+        <div class="stories-section">
+            <!-- Story Card 1 -->
+            <div class="story-card">
+                <div class="story-card-inner">
+                    <div class="story-card-front">
+                        <h2>The Bicycle Adventure</h2>
+                        <div class="input-form" id="madlib1-inputs"></div>
+                        <button class="generate-button" onclick="flipAndGenerateStory(1)">Generate Story!</button>
+                    </div>
+                    <div class="story-card-back">
+                        <h2>Your Story</h2>
+                        <div id="story1-output" class="story-output"></div>
+                        <button class="reset-button" onclick="resetStoryCard(1)">Create Another</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Story Form 1 -->
-            <div id="story-form-1" class="story-form hidden">
-                <h3>The Bicycle Adventure</h3>
-                <div id="madlib1-inputs" class="input-section"></div>
-                <button class="generate-button" onclick="generateStory(1)">Generate Story</button>
-                <div id="story1-output" class="story-output hidden"></div>
+            <!-- Story Card 2 -->
+            <div class="story-card">
+                <div class="story-card-inner">
+                    <div class="story-card-front">
+                        <h2>Dancing with Friends</h2>
+                        <div class="input-form" id="madlib2-inputs"></div>
+                        <button class="generate-button" onclick="flipAndGenerateStory(2)">Generate Story!</button>
+                    </div>
+                    <div class="story-card-back">
+                        <h2>Your Story</h2>
+                        <div id="story2-output" class="story-output"></div>
+                        <button class="reset-button" onclick="resetStoryCard(2)">Create Another</button>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <!-- Story Form 2 -->
-            <div id="story-form-2" class="story-form hidden">
-                <h3>Dancing with Friends</h3>
-                <div id="madlib2-inputs" class="input-section"></div>
-                <button class="generate-button" onclick="generateStory(2)">Generate Story</button>
-                <div id="story2-output" class="story-output hidden"></div>
-            </div>
-        </section>
-
-        <!-- Glossary Section -->
-        <aside class="glossary-section">
+        <div class="glossary-section">
             <h2>Lenape Word Examples</h2>
-            <div class="glossary-buttons">
-                <button class="glossary-button" onclick="toggleGlossary('greetings')">Greetings</button>
-                <button class="glossary-button" onclick="toggleGlossary('numbers')">Numbers</button>
-                <button class="glossary-button" onclick="toggleGlossary('colors')">Colors</button>
-                <button class="glossary-button" onclick="toggleGlossary('body_parts')">Body Parts</button>
-                <button class="glossary-button" onclick="toggleGlossary('emotions')">Emotions</button>
+            <div class="glossary-cards" id="example-section">
+                <!-- Glossary cards will be added here by JavaScript -->
             </div>
-            <div id="glossary-content" class="glossary-content hidden"></div>
-        </aside>
-    </main>
+        </div>
+    </div>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
