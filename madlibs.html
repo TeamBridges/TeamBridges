@@ -19,41 +19,37 @@
     </div>
 
     <div class="container">
-        <div class="main-content">
-            <h2>Choose Your Story</h2>
-            <div class="content-wrapper">
-                <!-- Story Selection Buttons -->
-                <div class="story-buttons">
-                    <button class="story-choice" onclick="selectStory(1)">
-                        <h3>The Bicycle Adventure</h3>
-                        <p>A thrilling tale of a bicycle ride gone wrong!</p>
-                    </button>
-                    <button class="story-choice" onclick="selectStory(2)">
-                        <h3>Dancing with Friends</h3>
-                        <p>A fun story about dancing and friendship!</p>
-                    </button>
-                </div>
+        <!-- Story Selection Buttons -->
+        <div class="story-buttons">
+            <button class="story-choice" onclick="selectStory(1)">
+                <h3>The Bicycle Adventure</h3>
+                <p>A thrilling tale of a bicycle ride gone wrong!</p>
+            </button>
+            <button class="story-choice" onclick="selectStory(2)">
+                <h3>Dancing with Friends</h3>
+                <p>A fun story about dancing and friendship!</p>
+            </button>
+        </div>
 
-                <!-- Story Creation Card -->
-                <div class="story-card" id="story-card">
-                    <div class="story-card-inner">
-                        <!-- Front: Input Form -->
-                        <div class="story-card-front">
-                            <h3 id="story-form-title">Select a Story</h3>
-                            <div id="story-inputs"></div>
-                            <button class="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
-                        </div>
-                        <!-- Back: Generated Story -->
-                        <div class="story-card-back">
-                            <h3>Your Story</h3>
-                            <div id="story-output"></div>
-                            <button class="reset-button" onclick="resetCard()">Create Another</button>
-                        </div>
-                    </div>
+        <!-- Story Creation Card -->
+        <div class="story-card" id="story-card">
+            <div class="story-card-inner">
+                <!-- Front: Input Form -->
+                <div class="story-card-front">
+                    <h3 id="story-form-title">Select a Story</h3>
+                    <div id="story-inputs"></div>
+                    <button class="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
+                </div>
+                <!-- Back: Generated Story -->
+                <div class="story-card-back">
+                    <h3>Your Story</h3>
+                    <div id="story-output"></div>
+                    <button class="reset-button" onclick="resetCard()">Create Another</button>
                 </div>
             </div>
         </div>
 
+        <!-- Glossary Section -->
         <div class="glossary-section">
             <h2>Lenape Word Examples</h2>
             <div class="glossary-cards" id="example-section"></div>
