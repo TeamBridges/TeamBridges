@@ -15,6 +15,7 @@ body {
     color: white;
     text-align: center;
     padding: 30px 20px;
+    margin-bottom: 20px;
 }
 
 .header h1 {
@@ -33,6 +34,9 @@ body {
     padding: 15px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-link {
@@ -56,7 +60,7 @@ body {
 /* Main Container */
 .container {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 0 20px;
     display: grid;
     grid-template-columns: 250px 1fr 300px;
@@ -71,6 +75,7 @@ body {
 .story-selection h3 {
     margin-bottom: 20px;
     color: #333;
+    font-size: 24px;
 }
 
 .story-choice {
@@ -78,7 +83,7 @@ body {
     padding: 15px;
     margin-bottom: 15px;
     background: white;
-    border: 1px solid #e0e0e0;
+    border: 2px solid #2B4170;
     border-radius: 8px;
     cursor: pointer;
     text-align: left;
@@ -86,18 +91,22 @@ body {
 }
 
 .story-choice:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+}
+
+.story-choice.active {
+    background-color: #2B4170;
+    color: white;
 }
 
 .story-choice h4 {
-    color: #2B4170;
     margin-bottom: 5px;
+    font-size: 18px;
 }
 
 .story-choice p {
     font-size: 14px;
-    color: #666;
+    opacity: 0.8;
 }
 
 /* Story Form */
@@ -116,11 +125,12 @@ body {
     display: block;
     margin-bottom: 8px;
     color: #333;
+    font-size: 16px;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
     font-size: 16px;
@@ -133,18 +143,33 @@ body {
 
 .generate-button {
     width: 100%;
-    padding: 12px;
+    padding: 12px 20px;
     background: #2B4170;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     transition: background 0.3s ease;
 }
 
 .generate-button:hover {
     background: #3a5795;
+}
+
+/* Story Output */
+.story-output {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 24px;
+    line-height: 1.6;
+}
+
+.user-input {
+    color: #2B4170;
+    font-weight: bold;
 }
 
 /* Word Examples */
@@ -155,22 +180,22 @@ body {
 .word-examples h3 {
     margin-bottom: 20px;
     color: #333;
+    font-size: 24px;
 }
 
-/* Flip Card Styles */
 .flip-card {
     background-color: transparent;
     margin-bottom: 20px;
     perspective: 1000px;
     cursor: pointer;
-    height: 150px;
+    height: 250px;
 }
 
 .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    text-align: right;
+    text-align: left;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
@@ -184,25 +209,27 @@ body {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    padding: 15px;
     background: white;
-    border: 1px solid #e0e0e0;
     border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .flip-card-back {
     transform: rotateY(180deg);
+    overflow-y: auto;
 }
 
 .flip-card h4 {
     color: #2B4170;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 18px;
 }
 
 .example-list {
     font-size: 14px;
+    line-height: 1.8;
     color: #666;
-    line-height: 1.6;
 }
 
 .hidden {
@@ -215,24 +242,20 @@ body {
         grid-template-columns: 1fr;
         max-width: 800px;
     }
-    
-    .flip-card-inner {
-        text-align: left;
-    }
 }
 
 @media (max-width: 600px) {
-    .nav-link {
-        padding: 8px 15px;
-        margin: 0 5px;
-        font-size: 14px;
-    }
-    
     .header h1 {
         font-size: 24px;
     }
     
     .header p {
         font-size: 16px;
+    }
+    
+    .nav-link {
+        padding: 8px 15px;
+        margin: 0 5px;
+        font-size: 14px;
     }
 }
