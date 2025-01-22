@@ -22,32 +22,32 @@ function setupGlossary() {
             'Milì në luwàntewëlu = I am well'
         ],
         'Numbers in Lenape': [
-            'Lënuwe = one',
-            'Nisha = two',
-            'Nash = three',
-            'Newa = four',
-            'Palenaxk = five'
+            'Lënuwe = One',
+            'Nisha = Two',
+            'Nash = Three',
+            'Newa = Four',
+            'Palenaxk = Five'
         ],
         'Colors in Lenape': [
-            'Sàpe = black',
-            'Wapá = white',
-            'Mòtànk = red',
-            'Wëski = yellow',
-            'Oxkàshe = green'
+            'Sàpe = Black',
+            'Wapá = White',
+            'Mòtànk = Red',
+            'Wëski = Yellow',
+            'Oxkàshe = Green'
         ],
         'Body Parts in Lenape': [
-            'Wikèhèn = head',
-            'Wikèhs = mouth',
-            'Wikuwàkane = nose',
-            'Wikuwe = eyes',
-            'Wikèk = leg'
+            'Wikèhèn = Head',
+            'Wikèhs = Mouth',
+            'Wikuwàkane = Nose',
+            'Wikuwe = Eyes',
+            'Wikèk = Leg'
         ],
         'Emotions in Lenape': [
-            'Nulitùn = happy',
-            'Wsìkwàk = angry',
-            'Wichin = sad',
-            'Wètëlaohake = excited',
-            'Wjánte = afraid'
+            'Nulitùn = Happy',
+            'Wsìkwàk = Angry',
+            'Wichin = Sad',
+            'Wètëlaohake = Excited',
+            'Wjánte = Afraid'
         ]
     };
 
@@ -87,7 +87,7 @@ function selectStory(storyNumber) {
         button.classList.remove('active');
     });
     
-    const selectedButton = document.querySelector(`.story-choice:nth-child(${storyNumber})`);
+    const selectedButton = document.querySelector(`.story-choice[onclick="selectStory(${storyNumber})"]`);
     if (selectedButton) {
         selectedButton.classList.add('active');
     }
@@ -97,9 +97,10 @@ function selectStory(storyNumber) {
 }
 
 function clearForm() {
-    document.querySelectorAll('#madlib-form input').forEach(input => {
-        input.value = '';
-    });
+    const form = document.getElementById('madlib-form');
+    if (form) {
+        form.reset();
+    }
     
     const storyOutput = document.getElementById('story-output');
     if (storyOutput) {
@@ -126,15 +127,17 @@ function generateStory() {
     
     let story = '';
     if (currentStory === 1) {
-        story = `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
-                on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
-                It took ${inputs.number} days to heal. My bruise turned ${inputs.color}. 
-                Now I feel ${inputs.emotion} when I ride my bike.`;
+        story = `One day, I was riding my bicycle when I hit my <span class="user-input">${inputs.bodypart}</span> 
+                on a tree branch. I fell and hurt my <span class="user-input">${inputs.bodypart2}</span>. 
+                It took <span class="user-input">${inputs.number}</span> days to heal. 
+                My bruise turned <span class="user-input">${inputs.color}</span>. 
+                Now I feel <span class="user-input">${inputs.emotion}</span> when I ride my bike.`;
     } else {
-        story = `${inputs.number} days ago, I went dancing with friends. 
-                I accidentally stepped on my ${inputs.bodypart} and hurt my ${inputs.bodypart2}! 
-                My ${inputs.bodypart} turned ${inputs.color}. 
-                I felt so ${inputs.emotion} about the whole thing.`;
+        story = `<span class="user-input">${inputs.number}</span> days ago, I went dancing with friends. 
+                I accidentally stepped on my <span class="user-input">${inputs.bodypart}</span> and 
+                hurt my <span class="user-input">${inputs.bodypart2}</span>! 
+                My <span class="user-input">${inputs.bodypart}</span> turned <span class="user-input">${inputs.color}</span>. 
+                I felt so <span class="user-input">${inputs.emotion}</span> about the whole thing.`;
     }
     
     const storyOutput = document.getElementById('story-output');
