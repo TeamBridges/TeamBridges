@@ -1,4 +1,3 @@
-/* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,18 +7,13 @@
 
 body {
     background-color: #f5f7fa;
-    min-height: 100vh;
 }
 
-/* Navigation */
 .nav-bar {
     background-color: white;
     padding: 15px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 .nav-link {
@@ -40,7 +34,6 @@ body {
     color: white;
 }
 
-/* Title section */
 .title {
     text-align: center;
     padding: 40px 20px;
@@ -49,212 +42,107 @@ body {
     margin-bottom: 30px;
 }
 
-.title h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.title h2 {
-    font-size: 1.5em;
-    opacity: 0.9;
-}
-
-/* Main container */
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-}
-
-/* Stories section */
-.stories-section {
     padding: 20px;
 }
 
 .stories-section h2 {
     color: #1e3c72;
-    font-size: 32px;
     margin-bottom: 30px;
+    font-size: 32px;
 }
 
-/* Story cards grid */
-.story-cards {
+.story-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+    margin-bottom: 40px;
 }
 
-/* Story card styles */
 .story-card {
     background: white;
     border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    height: 400px;
-    perspective: 1000px;
-}
-
-.story-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-/* Card faces */
-.story-card-front,
-.story-card-middle,
-.story-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
     padding: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-height: 400px;
 }
 
-.story-card-front {
-    background: linear-gradient(145deg, #1e3c72, #2a5298);
-    color: white;
-}
-
-.story-card-middle {
-    background: white;
-    transform: rotateY(180deg);
-}
-
-.story-card-back {
-    background: white;
-    transform: rotateY(360deg);
-}
-
-/* Story preview */
 .story-preview {
     text-align: center;
-    padding: 20px;
 }
 
-.story-preview h2 {
-    color: white;
-    font-size: 28px;
-    margin-bottom: 20px;
+.story-preview h3 {
+    color: #1e3c72;
+    font-size: 24px;
+    margin-bottom: 15px;
 }
 
 .story-preview p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 18px;
+    color: #666;
     margin-bottom: 30px;
 }
 
-/* Buttons */
-.start-button,
-.generate-button,
-.reset-button {
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.start-button {
-    background: white;
-    color: #1e3c72;
-}
-
-.generate-button,
-.reset-button {
+.start-button, .generate-button, .reset-button {
     background: #1e3c72;
     color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
-.start-button:hover,
-.generate-button:hover,
-.reset-button:hover {
+.start-button:hover, .generate-button:hover, .reset-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Input form */
-.input-form {
+.input-section {
     margin: 20px 0;
 }
 
 .input-group {
-    margin: 15px 0;
-    text-align: left;
+    margin-bottom: 15px;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 8px;
     color: #333;
-    font-weight: 500;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 16px;
-    transition: border-color 0.3s ease;
 }
 
-.input-group input:focus {
-    border-color: #1e3c72;
-    outline: none;
-}
-
-/* Story output */
 .story-output {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 15px;
     margin: 20px 0;
-    text-align: left;
-    line-height: 1.8;
-    font-size: 18px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    line-height: 1.6;
 }
 
-/* Card flip states */
-.story-card.to-entries .story-card-inner {
-    transform: rotateY(180deg);
+.hidden {
+    display: none;
 }
 
-.story-card.to-story .story-card-inner {
-    transform: rotateY(360deg);
-}
-
-/* User input highlighting */
-.user-input {
-    color: #1e3c72;
-    font-weight: bold;
-}
-
-/* Glossary section */
+/* Glossary Section */
 .glossary-section {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.glossary-section h2 {
-    color: #1e3c72;
-    margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 .glossary-card {
     background-color: transparent;
     perspective: 1000px;
-    height: 200px;
     margin-bottom: 20px;
+    height: 200px;
 }
 
 .glossary-card-inner {
@@ -271,48 +159,17 @@ body {
     transform: rotateY(180deg);
 }
 
-.glossary-card-front,
-.glossary-card-back {
+.glossary-card-front, .glossary-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: #f8f9fa;
+    background: white;
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .glossary-card-back {
     transform: rotateY(180deg);
-    background: white;
-    overflow-y: auto;
-}
-
-/* Responsive design */
-@media (max-width: 1200px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-link {
-        padding: 8px 15px;
-        margin: 0 5px;
-        font-size: 14px;
-    }
-    
-    .story-card {
-        height: 450px;
-    }
-    
-    .story-preview h2 {
-        font-size: 24px;
-    }
-}
-
-/* Utility classes */
-.hidden {
-    display: none;
 }
