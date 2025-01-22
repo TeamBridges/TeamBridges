@@ -15,6 +15,9 @@ body {
     padding: 15px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-link {
@@ -43,22 +46,27 @@ body {
     margin-bottom: 30px;
 }
 
+.title h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.title h2 {
+    font-size: 24px;
+    opacity: 0.9;
+}
+
 .container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.main-content h2 {
-    color: #1e3c72;
-    margin-bottom: 30px;
-    font-size: 32px;
-}
-
 .content-wrapper {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 300px 1fr 300px;
     gap: 30px;
+    align-items: start;
 }
 
 /* Story Choice Buttons */
@@ -66,6 +74,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: sticky;
+    top: 100px;
 }
 
 .story-choice {
@@ -106,7 +116,7 @@ body {
 .story-card {
     background: transparent;
     perspective: 1000px;
-    height: 500px;
+    min-height: 600px;
 }
 
 .story-card-inner {
@@ -190,6 +200,7 @@ body {
     border-radius: 15px;
     text-align: left;
     line-height: 1.8;
+    font-size: 16px;
 }
 
 .user-input {
@@ -199,11 +210,19 @@ body {
 
 /* Glossary Section */
 .glossary-section {
-    margin-top: 40px;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.glossary-section h2 {
+    margin-bottom: 20px;
+    color: #1e3c72;
 }
 
 .glossary-card {
-    height: 200px;
+    height: 300px;
     perspective: 1000px;
     margin-bottom: 20px;
 }
@@ -230,17 +249,35 @@ body {
     backface-visibility: hidden;
     background: white;
     border-radius: 15px;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.glossary-card-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .glossary-card-back {
     transform: rotateY(180deg);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-y: auto;
 }
 
-@media (max-width: 768px) {
+.glossary-content {
+    text-align: left;
+}
+
+@media (max-width: 1200px) {
     .content-wrapper {
         grid-template-columns: 1fr;
+    }
+    
+    .story-buttons,
+    .glossary-section {
+        position: static;
     }
     
     .story-buttons {
