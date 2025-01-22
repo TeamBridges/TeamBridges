@@ -1,6 +1,7 @@
 let currentStory = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
     setupGlossary();
 });
 
@@ -9,24 +10,28 @@ const lenapeExamples = {
     He! (hay) = Hello!
     Kulamalsi hech? (kule-ah-mahl-see huch) = How are you?
     Nulamalsi (nule-ah-mahl-see) = I am well.`,
+    
     numbers: `Numbers in Lenape:
     kweti (kwuh-tee) = one
     nisha = two
     naxa = three
     newa = four
     palenaxk = five`,
+    
     colors: `Colors in Lenape:
     seke (suhk-ay) = black
     ope = white
     machke = red
     wisawe = yellow
     askaske = green`,
+    
     body_parts: `Body Parts in Lenape:
     wixkwan = nose
     witun = mouth
     wihle = head
     wiske = eyes
     wikat = leg`,
+    
     emotions: `Emotions in Lenape:
     nulhatam = happy
     kwitey = angry
@@ -36,6 +41,7 @@ const lenapeExamples = {
 };
 
 function selectStory(storyNumber) {
+    console.log(`Selecting story ${storyNumber}`);
     currentStory = storyNumber;
     
     // Update active button state
@@ -57,6 +63,7 @@ function selectStory(storyNumber) {
 }
 
 function setupInputFields(storyNumber) {
+    console.log(`Setting up input fields for story ${storyNumber}`);
     const fields = storyNumber === 1 ? [
         ['Enter a body part:', 'bodypart'],
         ['Enter another body part:', 'bodypart2'],
@@ -79,9 +86,12 @@ function setupInputFields(storyNumber) {
         
         const labelElement = document.createElement('label');
         labelElement.textContent = label;
+        labelElement.htmlFor = `input-${id}`;
         
         const input = document.createElement('input');
         input.id = `input-${id}`;
+        input.type = 'text';
+        input.required = true;
         
         div.appendChild(labelElement);
         div.appendChild(input);
@@ -90,7 +100,11 @@ function setupInputFields(storyNumber) {
 }
 
 function generateStory() {
-    if (!currentStory) return;
+    console.log('Generating story');
+    if (!currentStory) {
+        console.error('No story selected');
+        return;
+    }
     
     const inputs = {};
     const allFilled = Array.from(document.querySelectorAll('#story-inputs input')).every(input => {
@@ -132,24 +146,34 @@ function createStory(storyNumber, inputs) {
 }
 
 function resetCard() {
+    console.log('Resetting card');
     const card = document.getElementById('story-card');
     card.classList.remove('flipped');
     
+    // Clear inputs
     document.querySelectorAll('#story-inputs input').forEach(input => {
         input.value = '';
     });
     
+    // Reset story selection
     currentStory = null;
     document.getElementById('story-form-title').textContent = 'Select a Story';
     document.querySelector('.generate-button').style.display = 'none';
     
+    // Reset active button state
     document.querySelectorAll('.story-choice').forEach(btn => {
         btn.classList.remove('active');
     });
 }
 
 function setupGlossary() {
+    console.log('Setting up glossary');
     const exampleSection = document.getElementById('example-section');
+    
+    if (!exampleSection) {
+        console.error('Glossary section not found');
+        return;
+    }
     
     for (const [category, text] of Object.entries(lenapeExamples)) {
         const card = createGlossaryCard(category, text);
@@ -168,3 +192,18 @@ function createGlossaryCard(category, text) {
             </div>
             <div class="glossary-card-back">
                 <div class="glossary-content">
+                    ${text.replace(/\n/g, '<br>')}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+    });
+    
+    return card;
+}
+
+// Add console log to confirm script loaded
+console.log('Script loaded completely');
