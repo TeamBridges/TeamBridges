@@ -1,4 +1,4 @@
-// Lenape Word Examples Data
+// Lenape examples data
 const lenapeExamples = {
     greetings: `Greetings in Lenape:
     He! (hay) = Hello!
@@ -43,149 +43,127 @@ const lenapeExamples = {
 
 // Initialize when document is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    setupExamples();
-    setupMadlib1();
-    setupMadlib2();
-    setupCardFlips();
+    setupInputFields(1, [
+        ['Enter a body part:', 'bodypart'],
+        ['Enter another body part:', 'bodypart2'],
+        ['Enter a number:', 'number'],
+        ['Enter a color:', 'color'],
+        ['Enter an emotion:', 'emotion']
+    ]);
+    
+    setupInputFields(2, [
+        ['Enter a number:', 'number'],
+        ['Enter a friend\'s name:', 'friend'],
+        ['Enter a body part:', 'bodypart'],
+        ['Enter a color:', 'color']
+    ]);
 });
 
-// Setup flip card functionality
-function setupCardFlips() {
-    document.querySelectorAll('.story-card').forEach(card => {
-        const generateButton = card.querySelector('.generate-button');
-        const resetButton = card.querySelector('.reset-button');
-        
-        if (generateButton) {
-            generateButton.addEventListener('click', () => {
-                card.classList.add('flipped');
-            });
-        }
-        
-        if (resetButton) {
-            resetButton.addEventListener('click', () => {
-                card.classList.remove('flipped');
-            });
-        }
+// Show story form
+function showStoryForm(storyNumber) {
+    // Hide all story forms first
+    document.querySelectorAll('.story-form').forEach(form => {
+        form.classList.add('hidden');
     });
-
-    document.querySelectorAll('.glossary-card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.classList.toggle('flipped');
-        });
-    });
+    
+    // Show selected story form
+    const selectedForm = document.getElementById(`story-form-${storyNumber}`);
+    selectedForm.classList.remove('hidden');
+    
+    // Clear any previous inputs and output
+    clearStoryForm(storyNumber);
 }
 
-// Setup example cards
-function setupExamples() {
-    const exampleSection = document.getElementById('example-section');
+// Clear story form
+function clearStoryForm(storyNumber) {
+    // Clear inputs
+    document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
+        input.value = '';
+    });
     
-    for (const [category, text] of Object.entries(lenapeExamples)) {
-        const card = document.createElement('div');
-        card.className = 'glossary-card';
-        
-        card.innerHTML = `
-            <div class="glossary-card-inner">
-                <div class="glossary-card-front">
-                    <h3>${category.replace('_', ' ').toUpperCase()}</h3>
-                </div>
-                <div class="glossary-card-back">
-                    <div class="glossary-content">
-                        ${text.replace(/\n/g, '<br>')}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        exampleSection.appendChild(card);
+    // Hide output
+    const output = document.getElementById(`story${storyNumber}-output`);
+    output.classList.add('hidden');
+    output.textContent = '';
+}
+
+// Toggle glossary content
+function toggleGlossary(category) {
+    const content = document.getElementById('glossary-content');
+    
+    if (content.dataset.currentCategory === category && !content.classList.contains('hidden')) {
+        // If clicking the same category and content is visible, hide it
+        content.classList.add('hidden');
+    } else {
+        // Show content for the selected category
+        content.innerHTML = lenapeExamples[category].replace(/\n/g, '<br>');
+        content.dataset.currentCategory = category;
+        content.classList.remove('hidden');
     }
 }
 
-// Setup input fields for madlibs
-function createInputField(container, labelText, inputId) {
-    const div = document.createElement('div');
-    div.className = 'input-group';
-    
-    const label = document.createElement('label');
-    label.textContent = labelText;
-    
-    const input = document.createElement('input');
-    input.id = inputId;
-    input.required = true;
-    
-    div.appendChild(label);
-    div.appendChild(input);
-    container.appendChild(div);
-}
-
-function setupMadlib1() {
-    const container = document.getElementById('madlib1-inputs');
+// Setup input fields
+function setupInputFields(storyNumber, fields) {
+    const container = document.getElementById(`madlib${storyNumber}-inputs`);
     if (!container) return;
 
-    const fields = [
-        ['Enter a body part:', 'input1-bodypart'],
-        ['Enter another body part:', 'input1-bodypart2'],
-        ['Enter a number:', 'input1-number'],
-        ['Enter a color:', 'input1-color'],
-        ['Enter an emotion:', 'input1-emotion']
-    ];
+    fields.forEach(([label, id]) => {
+        const div = document.createElement('div');
+        div.className = 'input-group';
+        
+        const labelElement = document.createElement('label');
+        labelElement.textContent = label;
+        
+        const input = document.createElement('input');
+        input.id = `input${storyNumber}-${id}`;
+        input.required = true;
+        
+        div.appendChild(labelElement);
+        div.appendChild(input);
+        container.appendChild(div);
+    });
+}
+
+// Generate story
+function generateStory(storyNumber) {
+    // Validate inputs
+    const inputs = getStoryInputs(storyNumber);
+    if (!validateInputs(inputs)) {
+        alert('Please fill in all fields!');
+        return;
+    }
     
-    fields.forEach(([label, id]) => createInputField(container, label, id));
+    // Generate and display story
+    const story = createStory(storyNumber, inputs);
+    const outputElement = document.getElementById(`story${storyNumber}-output`);
+    outputElement.textContent = story;
+    outputElement.classList.remove('hidden');
 }
 
-function setupMadlib2() {
-    const container = document.getElementById('madlib2-inputs');
-    if (!container) return;
-
-    const fields = [
-        ['Enter a number:', 'input2-number'],
-        ['Enter a friend\'s name:', 'input2-friend'],
-        ['Enter a body part:', 'input2-bodypart'],
-        ['Enter a color:', 'input2-color']
-    ];
-    
-    fields.forEach(([label, id]) => createInputField(container, label, id));
+// Get story inputs
+function getStoryInputs(storyNumber) {
+    const inputs = {};
+    document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
+        inputs[input.id.split('-')[1]] = input.value.trim();
+    });
+    return inputs;
 }
 
-// Generate story functions
-function generateStory1() {
-    const inputs = {
-        bodypart: document.getElementById('input1-bodypart').value,
-        bodypart2: document.getElementById('input1-bodypart2').value,
-        number: document.getElementById('input1-number').value,
-        color: document.getElementById('input1-color').value,
-        emotion: document.getElementById('input1-emotion').value
-    };
-    
-    const story = `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
-                   on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
-                   It took ${inputs.number} days to heal. My bruise turned ${inputs.color}. 
-                   Now I feel ${inputs.emotion} when I ride my bike.`;
-                   
-    document.getElementById('story1-output').textContent = story;
+// Validate inputs
+function validateInputs(inputs) {
+    return Object.values(inputs).every(value => value !== '');
 }
 
-function generateStory2() {
-    const inputs = {
-        number: document.getElementById('input2-number').value,
-        friend: document.getElementById('input2-friend').value,
-        bodypart: document.getElementById('input2-bodypart').value,
-        color: document.getElementById('input2-color').value
-    };
-    
-    const story = `${inputs.number} days ago, my friend ${inputs.friend} and I went dancing. 
-                   We danced until our ${inputs.bodypart} hurt! 
-                   We wore matching ${inputs.color} shoes.`;
-                   
-    document.getElementById('story2-output').textContent = story;
-}
-
-// Flip card functions
-function flipCard(button) {
-    const card = button.closest('.story-card');
-    card.classList.add('flipped');
-}
-
-function unflipCard(button) {
-    const card = button.closest('.story-card');
-    card.classList.remove('flipped');
+// Create story text
+function createStory(storyNumber, inputs) {
+    if (storyNumber === 1) {
+        return `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
+                on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
+                It took ${inputs.number} days to heal. My bruise turned ${inputs.color}. 
+                Now I feel ${inputs.emotion} when I ride my bike.`;
+    } else {
+        return `${inputs.number} days ago, my friend ${inputs.friend} and I went dancing. 
+                We danced until our ${inputs.bodypart} hurt! 
+                We wore matching ${inputs.color} shoes.`;
+    }
 }
