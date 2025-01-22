@@ -1,4 +1,3 @@
-// Lenape examples data
 const lenapeExamples = {
     greetings: `Greetings in Lenape:
     He! (hay) = Hello!
@@ -34,14 +33,12 @@ const lenapeExamples = {
     kwishele = afraid`
 };
 
-// Initialize when document is loaded
 document.addEventListener('DOMContentLoaded', function() {
     setupMadLibs();
     setupGlossary();
 });
 
 function setupMadLibs() {
-    // Setup Story 1 inputs
     setupInputFields(1, [
         ['Enter a body part:', 'bodypart'],
         ['Enter another body part:', 'bodypart2'],
@@ -50,7 +47,6 @@ function setupMadLibs() {
         ['Enter an emotion:', 'emotion']
     ]);
     
-    // Setup Story 2 inputs
     setupInputFields(2, [
         ['Enter a number:', 'number'],
         ['Enter a friend\'s name:', 'friend'],
@@ -112,7 +108,12 @@ function setupInputFields(storyNumber, fields) {
     });
 }
 
-function flipAndGenerateStory(storyNumber) {
+function flipToEntries(storyNumber) {
+    const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
+    card.classList.add('to-entries');
+}
+
+function flipToStory(storyNumber) {
     const inputs = getStoryInputs(storyNumber);
     if (!validateInputs(inputs)) {
         alert('Please fill in all fields!');
@@ -120,15 +121,16 @@ function flipAndGenerateStory(storyNumber) {
     }
     
     const story = createStory(storyNumber, inputs);
-    document.getElementById(`story${storyNumber}-output`).textContent = story;
+    const outputElement = document.getElementById(`story${storyNumber}-output`);
+    outputElement.innerHTML = highlightUserInputs(story, inputs);
     
     const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
-    card.classList.add('flipped');
+    card.classList.add('to-story');
 }
 
 function resetStoryCard(storyNumber) {
     const card = document.querySelector(`#madlib${storyNumber}-inputs`).closest('.story-card');
-    card.classList.remove('flipped');
+    card.classList.remove('to-entries', 'to-story');
     
     // Clear inputs
     document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
@@ -136,19 +138,29 @@ function resetStoryCard(storyNumber) {
     });
     
     // Clear story
-    document.getElementById(`story${storyNumber}-output`).textContent = '';
+    document.getElementById(`story${storyNumber}-output`).innerHTML = '';
 }
 
 function getStoryInputs(storyNumber) {
     const inputs = {};
     document.querySelectorAll(`#madlib${storyNumber}-inputs input`).forEach(input => {
-        inputs[input.id.split('-')[1]] = input.value.trim();
+        const id = input.id.split('-')[1];
+        inputs[id] = input.value.trim();
     });
     return inputs;
 }
 
 function validateInputs(inputs) {
     return Object.values(inputs).every(value => value !== '');
+}
+
+function highlightUserInputs(story, inputs) {
+    let highlightedStory = story;
+    Object.values(inputs).forEach(input => {
+        const regex = new RegExp(input, 'g');
+        highlightedStory = highlightedStory.replace(regex, `<span class="user-input">${input}</span>`);
+    });
+    return highlightedStory;
 }
 
 function createStory(storyNumber, inputs) {
