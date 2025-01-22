@@ -16,21 +16,28 @@ const lenapeExamples = {
     nisha = two
     naxa = three
     newa = four
-    palenaxk = five`,
+    palenaxk = five
+    kwetash = six
+    nishash = seven
+    xash = eight
+    peshkunk = nine
+    telen = ten`,
     
     colors: `Colors in Lenape:
     seke (suhk-ay) = black
     ope = white
     machke = red
     wisawe = yellow
-    askaske = green`,
+    askaske = green
+    wape = grey`,
     
     body_parts: `Body Parts in Lenape:
     wixkwan = nose
     witun = mouth
     wihle = head
     wiske = eyes
-    wikat = leg`,
+    wikat = leg
+    wichkwan = knee`,
     
     emotions: `Emotions in Lenape:
     nulhatam = happy
@@ -65,16 +72,16 @@ function selectStory(storyNumber) {
 function setupInputFields(storyNumber) {
     console.log(`Setting up input fields for story ${storyNumber}`);
     const fields = storyNumber === 1 ? [
-        ['Enter a body part:', 'bodypart'],
-        ['Enter another body part:', 'bodypart2'],
-        ['Enter a number:', 'number'],
-        ['Enter a color:', 'color'],
-        ['Enter an emotion:', 'emotion']
+        ['Enter a body part (e.g., wixkwan):', 'bodypart'],
+        ['Enter another body part (e.g., wikat):', 'bodypart2'],
+        ['Enter a number (e.g., naxa):', 'number'],
+        ['Enter a color (e.g., machke):', 'color'],
+        ['Enter an emotion (e.g., nulhatam):', 'emotion']
     ] : [
-        ['Enter a number:', 'number'],
+        ['Enter a number (e.g., nisha):', 'number'],
         ['Enter a friend\'s name:', 'friend'],
-        ['Enter a body part:', 'bodypart'],
-        ['Enter a color:', 'color']
+        ['Enter a body part (e.g., wikat):', 'bodypart'],
+        ['Enter a color (e.g., wisawe):', 'color']
     ];
 
     const container = document.getElementById('story-inputs');
@@ -192,7 +199,7 @@ function createGlossaryCard(category, text) {
             </div>
             <div class="glossary-card-back">
                 <div class="glossary-content">
-                    ${text.replace(/\n/g, '<br>')}
+                    ${text.split('\n').join('<br>')}
                 </div>
             </div>
         </div>
