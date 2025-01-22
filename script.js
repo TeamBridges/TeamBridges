@@ -1,8 +1,7 @@
-let currentStory = null;
-
+// script.js
 document.addEventListener('DOMContentLoaded', function() {
-    setupStoryButtons();
     setupGlossary();
+    initializeStoryCards();
 });
 
 const lenapeExamples = {
@@ -10,28 +9,24 @@ const lenapeExamples = {
     He! (hay) = Hello!
     Kulamalsi hech? (kule-ah-mahl-see huch) = How are you?
     Nulamalsi (nule-ah-mahl-see) = I am well.`,
-    
     numbers: `Numbers in Lenape:
     kweti (kwuh-tee) = one
     nisha = two
     naxa = three
     newa = four
     palenaxk = five`,
-    
     colors: `Colors in Lenape:
     seke (suhk-ay) = black
     ope = white
     machke = red
     wisawe = yellow
     askaske = green`,
-    
     body_parts: `Body Parts in Lenape:
     wixkwan = nose
     witun = mouth
     wihle = head
     wiske = eyes
     wikat = leg`,
-    
     emotions: `Emotions in Lenape:
     nulhatam = happy
     kwitey = angry
@@ -40,59 +35,34 @@ const lenapeExamples = {
     kwishele = afraid`
 };
 
-function setupStoryButtons() {
-    const storyButtons = [
-        {
-            title: 'The Bicycle Adventure',
-            description: 'A thrilling tale of a bicycle ride gone wrong!'
-        },
-        {
-            title: 'Dancing with Friends',
-            description: 'A fun story about dancing and friendship!'
-        }
-    ];
+function initializeStoryCards() {
+    const storyGrid = document.querySelector('.story-grid');
+    if (!storyGrid) {
+        console.error('Story grid not found');
+        return;
+    }
 
-    const buttonContainer = document.createElement('div');
-    buttonContainer.className = 'story-buttons';
-    
-    storyButtons.forEach((story, index) => {
-        const button = document.createElement('button');
-        button.className = 'story-choice';
-        button.innerHTML = `
-            <h3>${story.title}</h3>
-            <p>${story.description}</p>
+    // Clear existing content
+    storyGrid.innerHTML = '';
+
+    // Create two story cards
+    for (let i = 1; i <= 2; i++) {
+        const card = document.createElement('div');
+        card.className = 'story-card';
+        card.innerHTML = `
+            <h3>Your Story</h3>
+            <div class="story-content"></div>
+            <button class="create-button" onclick="startNewStory(${i})">Create Another</button>
         `;
-        button.onclick = () => selectStory(index + 1);
-        buttonContainer.appendChild(button);
-    });
-
-    document.querySelector('.stories-section').insertBefore(
-        buttonContainer,
-        document.querySelector('.story-card')
-    );
+        storyGrid.appendChild(card);
+    }
 }
 
-function selectStory(storyNumber) {
-    currentStory = storyNumber;
-    
-    // Update active button state
-    document.querySelectorAll('.story-choice').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`.story-choice:nth-child(${storyNumber})`).classList.add('active');
-    
-    // Reset card if it was flipped
-    const card = document.getElementById('story-card');
-    card.classList.remove('flipped');
-    
-    // Show input form
-    setupInputFields(storyNumber);
-    document.querySelector('.story-card-front').style.display = 'block';
-    document.querySelector('.story-card-back').style.display = 'none';
-}
+function startNewStory(storyNumber) {
+    const card = document.querySelector(`#story${storyNumber}`);
+    if (!card) return;
 
-function setupInputFields(storyNumber) {
-    const fields = storyNumber === 1 ? [
+    const inputs = storyNumber === 1 ? [
         ['Enter a body part:', 'bodypart'],
         ['Enter another body part:', 'bodypart2'],
         ['Enter a number:', 'number'],
@@ -105,62 +75,60 @@ function setupInputFields(storyNumber) {
         ['Enter a color:', 'color']
     ];
 
-    const container = document.getElementById('story-inputs');
-    container.innerHTML = '';
-    
+    setupInputFields(storyNumber, inputs);
+}
+
+function setupInputFields(storyNumber, fields) {
+    const card = document.querySelector(`#story${storyNumber}`);
+    if (!card) return;
+
+    const inputSection = document.createElement('div');
+    inputSection.className = 'input-section';
+
     fields.forEach(([label, id]) => {
         const div = document.createElement('div');
         div.className = 'input-group';
-        
-        const labelElement = document.createElement('label');
-        labelElement.textContent = label;
-        
-        const input = document.createElement('input');
-        input.id = `input-${id}`;
-        input.required = true;
-        
-        div.appendChild(labelElement);
-        div.appendChild(input);
-        container.appendChild(div);
+        div.innerHTML = `
+            <label>${label}</label>
+            <input type="text" id="input${storyNumber}-${id}">
+        `;
+        inputSection.appendChild(div);
     });
 
-    // Show generate button
-    document.querySelector('.generate-button').style.display = 'block';
+    const generateButton = document.createElement('button');
+    generateButton.className = 'generate-button';
+    generateButton.textContent = 'Generate Story';
+    generateButton.onclick = () => generateStory(storyNumber);
+    inputSection.appendChild(generateButton);
+
+    card.innerHTML = '';
+    card.appendChild(inputSection);
 }
 
-function generateStory() {
-    if (!currentStory) return;
-    
+function generateStory(storyNumber) {
     const inputs = {};
-    const allFilled = Array.from(document.querySelectorAll('#story-inputs input')).every(input => {
-        inputs[input.id.split('-')[1]] = input.value.trim();
-        return input.value.trim() !== '';
+    const card = document.querySelector(`#story${storyNumber}`);
+    if (!card) return;
+
+    const allInputs = card.querySelectorAll('input');
+    let allFilled = true;
+
+    allInputs.forEach(input => {
+        const value = input.value.trim();
+        if (!value) allFilled = false;
+        inputs[input.id.split('-')[1]] = value;
     });
-    
+
     if (!allFilled) {
         alert('Please fill in all fields!');
         return;
     }
-    
-    const story = createStory(currentStory, inputs);
-    document.getElementById('story-output').innerHTML = highlightUserInputs(story, inputs);
-    
-    // Show story
-    document.querySelector('.story-card-front').style.display = 'none';
-    document.querySelector('.story-card-back').style.display = 'block';
+
+    const story = createStoryText(storyNumber, inputs);
+    displayStory(storyNumber, story);
 }
 
-function highlightUserInputs(story, inputs) {
-    let highlightedStory = story;
-    Object.values(inputs).forEach(input => {
-        const regex = new RegExp(input, 'g');
-        highlightedStory = highlightedStory.replace(regex, 
-            `<span class="user-input">${input}</span>`);
-    });
-    return highlightedStory;
-}
-
-function createStory(storyNumber, inputs) {
+function createStoryText(storyNumber, inputs) {
     if (storyNumber === 1) {
         return `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
                 on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
@@ -173,53 +141,42 @@ function createStory(storyNumber, inputs) {
     }
 }
 
-function resetStory() {
-    // Clear inputs
-    document.querySelectorAll('#story-inputs input').forEach(input => {
-        input.value = '';
-    });
-    
-    // Reset story selection
-    currentStory = null;
-    document.querySelectorAll('.story-choice').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    
-    // Show initial view
-    document.querySelector('.story-card-front').style.display = 'none';
-    document.querySelector('.story-card-back').style.display = 'none';
-    document.querySelector('.generate-button').style.display = 'none';
+function displayStory(storyNumber, story) {
+    const card = document.querySelector(`#story${storyNumber}`);
+    if (!card) return;
+
+    card.innerHTML = `
+        <h3>Your Story</h3>
+        <div class="story-content">${story}</div>
+        <button class="create-button" onclick="startNewStory(${storyNumber})">Create Another</button>
+    `;
 }
 
 function setupGlossary() {
     const exampleSection = document.getElementById('example-section');
-    
-    for (const [category, text] of Object.entries(lenapeExamples)) {
-        const card = createGlossaryCard(category, text);
-        exampleSection.appendChild(card);
-    }
-}
+    if (!exampleSection) return;
 
-function createGlossaryCard(category, text) {
-    const card = document.createElement('div');
-    card.className = 'glossary-card';
-    
-    card.innerHTML = `
-        <div class="glossary-card-inner">
-            <div class="glossary-card-front">
-                <h3>${category.replace('_', ' ').toUpperCase()}</h3>
-            </div>
-            <div class="glossary-card-back">
-                <div class="glossary-content">
-                    ${text.replace(/\n/g, '<br>')}
+    for (const [category, text] of Object.entries(lenapeExamples)) {
+        const card = document.createElement('div');
+        card.className = 'glossary-card';
+        
+        card.innerHTML = `
+            <div class="glossary-card-inner">
+                <div class="glossary-card-front">
+                    <h3>${category.replace('_', ' ').toUpperCase()}</h3>
+                </div>
+                <div class="glossary-card-back">
+                    <div class="glossary-content">
+                        ${text.replace(/\n/g, '<br>')}
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
-    
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-    });
-    
-    return card;
+        `;
+        
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+        
+        exampleSection.appendChild(card);
+    }
 }
