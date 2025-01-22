@@ -1,255 +1,170 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+let currentStory = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    setupGlossary();
+});
+
+const lenapeExamples = {
+    greetings: `Greetings in Lenape:
+    He! (hay) = Hello!
+    Kulamalsi hech? (kule-ah-mahl-see huch) = How are you?
+    Nulamalsi (nule-ah-mahl-see) = I am well.`,
+    numbers: `Numbers in Lenape:
+    kweti (kwuh-tee) = one
+    nisha = two
+    naxa = three
+    newa = four
+    palenaxk = five`,
+    colors: `Colors in Lenape:
+    seke (suhk-ay) = black
+    ope = white
+    machke = red
+    wisawe = yellow
+    askaske = green`,
+    body_parts: `Body Parts in Lenape:
+    wixkwan = nose
+    witun = mouth
+    wihle = head
+    wiske = eyes
+    wikat = leg`,
+    emotions: `Emotions in Lenape:
+    nulhatam = happy
+    kwitey = angry
+    wawitam = sad
+    wisachgihhele = excited
+    kwishele = afraid`
+};
+
+function selectStory(storyNumber) {
+    currentStory = storyNumber;
+    
+    // Update active button state
+    document.querySelectorAll('.story-choice').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`.story-choice:nth-child(${storyNumber})`).classList.add('active');
+    
+    // Reset card if it was flipped
+    const card = document.getElementById('story-card');
+    card.classList.remove('flipped');
+    
+    // Update form title and show generate button
+    document.getElementById('story-form-title').textContent = 
+        storyNumber === 1 ? 'The Bicycle Adventure' : 'Dancing with Friends';
+    document.querySelector('.generate-button').style.display = 'block';
+    
+    setupInputFields(storyNumber);
 }
 
-body {
-    background-color: #f5f7fa;
-    min-height: 100vh;
+function setupInputFields(storyNumber) {
+    const fields = storyNumber === 1 ? [
+        ['Enter a body part:', 'bodypart'],
+        ['Enter another body part:', 'bodypart2'],
+        ['Enter a number:', 'number'],
+        ['Enter a color:', 'color'],
+        ['Enter an emotion:', 'emotion']
+    ] : [
+        ['Enter a number:', 'number'],
+        ['Enter a friend\'s name:', 'friend'],
+        ['Enter a body part:', 'bodypart'],
+        ['Enter a color:', 'color']
+    ];
+
+    const container = document.getElementById('story-inputs');
+    container.innerHTML = '';
+    
+    fields.forEach(([label, id]) => {
+        const div = document.createElement('div');
+        div.className = 'input-group';
+        
+        const labelElement = document.createElement('label');
+        labelElement.textContent = label;
+        
+        const input = document.createElement('input');
+        input.id = `input-${id}`;
+        
+        div.appendChild(labelElement);
+        div.appendChild(input);
+        container.appendChild(div);
+    });
 }
 
-.nav-bar {
-    background-color: white;
-    padding: 15px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.nav-link {
-    color: #333;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: #f0f0f0;
-}
-
-.nav-link.active {
-    background-color: #1e3c72;
-    color: white;
-}
-
-.title {
-    text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
-    margin-bottom: 30px;
-}
-
-.container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.main-content h2 {
-    color: #1e3c72;
-    margin-bottom: 30px;
-    font-size: 32px;
-}
-
-.content-wrapper {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 30px;
-}
-
-/* Story Choice Buttons */
-.story-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.story-choice {
-    background: white;
-    border: 2px solid #1e3c72;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.story-choice h3 {
-    color: #1e3c72;
-    margin-bottom: 10px;
-}
-
-.story-choice p {
-    color: #666;
-    font-size: 14px;
-}
-
-.story-choice:hover {
-    background: #f0f4f8;
-    transform: translateY(-2px);
-}
-
-.story-choice.active {
-    background: #1e3c72;
-}
-
-.story-choice.active h3,
-.story-choice.active p {
-    color: white;
-}
-
-/* Story Card */
-.story-card {
-    background: transparent;
-    perspective: 1000px;
-    height: 500px;
-}
-
-.story-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.story-card-front,
-.story-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.story-card-back {
-    transform: rotateY(180deg);
-}
-
-.story-card.flipped .story-card-inner {
-    transform: rotateY(180deg);
-}
-
-/* Input Form */
-.input-group {
-    margin: 15px 0;
-    text-align: left;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-.input-group input:focus {
-    border-color: #1e3c72;
-    outline: none;
-}
-
-/* Buttons */
-.generate-button,
-.reset-button {
-    background: #1e3c72;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    margin-top: 20px;
-}
-
-.generate-button:hover,
-.reset-button:hover {
-    transform: translateY(-2px);
-}
-
-/* Story Output */
-.story-output {
-    margin: 20px 0;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 15px;
-    text-align: left;
-    line-height: 1.8;
-}
-
-.user-input {
-    color: #1e3c72;
-    font-weight: bold;
-}
-
-/* Glossary Section */
-.glossary-section {
-    margin-top: 40px;
-}
-
-.glossary-card {
-    height: 200px;
-    perspective: 1000px;
-    margin-bottom: 20px;
-}
-
-.glossary-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-}
-
-.glossary-card.flipped .glossary-card-inner {
-    transform: rotateY(180deg);
-}
-
-.glossary-card-front,
-.glossary-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    background: white;
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.glossary-card-back {
-    transform: rotateY(180deg);
-}
-
-@media (max-width: 768px) {
-    .content-wrapper {
-        grid-template-columns: 1fr;
+function generateStory() {
+    if (!currentStory) return;
+    
+    const inputs = {};
+    const allFilled = Array.from(document.querySelectorAll('#story-inputs input')).every(input => {
+        inputs[input.id.split('-')[1]] = input.value.trim();
+        return input.value.trim() !== '';
+    });
+    
+    if (!allFilled) {
+        alert('Please fill in all fields!');
+        return;
     }
     
-    .story-buttons {
-        flex-direction: row;
-        overflow-x: auto;
-        padding-bottom: 20px;
-    }
-    
-    .story-choice {
-        min-width: 250px;
+    const story = createStory(currentStory, inputs);
+    document.getElementById('story-output').innerHTML = highlightUserInputs(story, inputs);
+    document.getElementById('story-card').classList.add('flipped');
+}
+
+function highlightUserInputs(story, inputs) {
+    let highlightedStory = story;
+    Object.values(inputs).forEach(input => {
+        const regex = new RegExp(input, 'g');
+        highlightedStory = highlightedStory.replace(regex, 
+            `<span class="user-input">${input}</span>`);
+    });
+    return highlightedStory;
+}
+
+function createStory(storyNumber, inputs) {
+    if (storyNumber === 1) {
+        return `One day, I was riding my bicycle when I hit my ${inputs.bodypart} 
+                on a tree branch. I fell and hurt my ${inputs.bodypart2}. 
+                It took ${inputs.number} days to heal. My bruise turned ${inputs.color}. 
+                Now I feel ${inputs.emotion} when I ride my bike.`;
+    } else {
+        return `${inputs.number} days ago, my friend ${inputs.friend} and I went dancing. 
+                We danced until our ${inputs.bodypart} hurt! 
+                We wore matching ${inputs.color} shoes.`;
     }
 }
+
+function resetCard() {
+    const card = document.getElementById('story-card');
+    card.classList.remove('flipped');
+    
+    document.querySelectorAll('#story-inputs input').forEach(input => {
+        input.value = '';
+    });
+    
+    currentStory = null;
+    document.getElementById('story-form-title').textContent = 'Select a Story';
+    document.querySelector('.generate-button').style.display = 'none';
+    
+    document.querySelectorAll('.story-choice').forEach(btn => {
+        btn.classList.remove('active');
+    });
+}
+
+function setupGlossary() {
+    const exampleSection = document.getElementById('example-section');
+    
+    for (const [category, text] of Object.entries(lenapeExamples)) {
+        const card = createGlossaryCard(category, text);
+        exampleSection.appendChild(card);
+    }
+}
+
+function createGlossaryCard(category, text) {
+    const card = document.createElement('div');
+    card.className = 'glossary-card';
+    
+    card.innerHTML = `
+        <div class="glossary-card-inner">
+            <div class="glossary-card-front">
+                <h3>${category.replace('_', ' ').toUpperCase()}</h3>
+            </div>
+            <div class="glossary-card-back">
+                <div class="glossary-content">
