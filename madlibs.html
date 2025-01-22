@@ -1,58 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Lenape Language Games - Mad Libs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenape Mad Libs Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="nav-bar">
+    <!-- Header -->
+    <div class="header">
+        <h1>Lenape Mad Libs Generator</h1>
+        <p>Create Fun Stories with Lenape Words!</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="madlibs.html" class="nav-link active">Mad Libs</a>
         <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="cardflip.html" class="nav-link">Card Flip</a>
-    </div>
+    </nav>
 
-    <div class="title">
-        <h1>Lenape Mad Libs Generator</h1>
-        <h2>Create Fun Stories with Lenape Words!</h2>
-    </div>
-
+    <!-- Main Container -->
     <div class="container">
-        <!-- Story Selection Buttons -->
-        <div class="story-buttons">
+        <!-- Story Selection -->
+        <div class="story-selection">
+            <h3>Choose Your Story</h3>
             <button class="story-choice" onclick="selectStory(1)">
-                <h3>The Bicycle Adventure</h3>
-                <p>A thrilling tale of a bicycle ride gone wrong!</p>
+                <h4>The Bicycle Adventure</h4>
+                <p>A thrilling tale about a bicycle ride gone wrong!</p>
             </button>
             <button class="story-choice" onclick="selectStory(2)">
-                <h3>Dancing with Friends</h3>
+                <h4>Dancing with Friends</h4>
                 <p>A fun story about dancing and friendship!</p>
             </button>
         </div>
 
-        <!-- Story Creation Card -->
-        <div class="story-card" id="story-card">
-            <div class="story-card-inner">
-                <!-- Front: Input Form -->
-                <div class="story-card-front">
-                    <h3 id="story-form-title">Select a Story</h3>
-                    <div id="story-inputs"></div>
-                    <button class="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
+        <!-- Story Form -->
+        <div class="story-form">
+            <form id="madlib-form">
+                <div class="input-group">
+                    <label for="bodypart">Enter a body part:</label>
+                    <input type="text" id="bodypart" placeholder="e.g., wikèhèn (head)">
                 </div>
-                <!-- Back: Generated Story -->
-                <div class="story-card-back">
-                    <h3>Your Story</h3>
-                    <div id="story-output"></div>
-                    <button class="reset-button" onclick="resetCard()">Create Another</button>
+                <div class="input-group">
+                    <label for="bodypart2">Enter another body part:</label>
+                    <input type="text" id="bodypart2" placeholder="e.g., wikèk (leg)">
                 </div>
-            </div>
+                <div class="input-group">
+                    <label for="number">Enter a number:</label>
+                    <input type="text" id="number" placeholder="e.g., nisha (two)">
+                </div>
+                <div class="input-group">
+                    <label for="color">Enter a color:</label>
+                    <input type="text" id="color" placeholder="e.g., mòtànk (red)">
+                </div>
+                <div class="input-group">
+                    <label for="emotion">Enter an emotion:</label>
+                    <input type="text" id="emotion" placeholder="e.g., nulitùn (happy)">
+                </div>
+                <button type="button" class="generate-button" onclick="generateStory()">Generate Story</button>
+            </form>
+            <div id="story-output" class="story-output hidden"></div>
         </div>
 
-        <!-- Glossary Section -->
-        <div class="glossary-section">
-            <h2>Lenape Word Examples</h2>
-            <div class="glossary-cards" id="example-section"></div>
+        <!-- Word Examples -->
+        <div class="word-examples">
+            <h3>Lenape Word Examples</h3>
+            <div class="example-card">
+                <h4>Greetings in Lenape:</h4>
+                <div class="example-list">
+                    Halì = Hello<br>
+                    Kulamàlsi = How are you?<br>
+                    Milì në luwàntewëlu = I am well
+                </div>
+            </div>
+            <div class="example-card">
+                <h4>Numbers in Lenape:</h4>
+                <div class="example-list">
+                    Lënuwe = one<br>
+                    Nisha = two<br>
+                    Nash = three<br>
+                    Newa = four<br>
+                    Palenaxk = five
+                </div>
+            </div>
+            <div class="example-card">
+                <h4>Colors in Lenape:</h4>
+                <div class="example-list">
+                    Sàpe = black<br>
+                    Wapá = white<br>
+                    Mòtànk = red<br>
+                    Wëski = yellow<br>
+                    Oxkàshe = green
+                </div>
+            </div>
+            <div class="example-card">
+                <h4>Body Parts in Lenape:</h4>
+                <div class="example-list">
+                    Wikèhèn = head<br>
+                    Wikèhs = mouth<br>
+                    Wikuwàkane = nose<br>
+                    Wikuwe = eyes<br>
+                    Wikèk = leg
+                </div>
+            </div>
+            <div class="example-card">
+                <h4>Emotions in Lenape:</h4>
+                <div class="example-list">
+                    Nulitùn = happy<br>
+                    Wsìkwàk = angry<br>
+                    Wichin = sad<br>
+                    Wètëlaohake = excited<br>
+                    Wjánte = afraid
+                </div>
+            </div>
         </div>
     </div>
 
