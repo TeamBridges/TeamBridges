@@ -1,151 +1,176 @@
-// Debug logging
-console.log('Script starting to load');
+// Story Templates
+const stories = {
+    1: {
+        title: "The Bicycle Adventure",
+        description: "A thrilling tale about a bicycle ride!",
+        inputs: [
+            { label: "Enter a body part:", id: "bodyPart1", type: "text" },
+            { label: "Enter another body part:", id: "bodyPart2", type: "text" },
+            { label: "Enter a number:", id: "number1", type: "text" },
+            { label: "Enter a color:", id: "color1", type: "text" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text" }
+        ],
+        template: "I was riding my bike when I hit my {bodyPart1} on a tree branch. I fell and hurt my {bodyPart2}. It took {number1} days to heal. My bruise turned {color1}. Now I feel {emotion1} when I ride my bike."
+    },
+    2: {
+        title: "Dancing with Friends",
+        description: "A fun story about dancing and friendship!",
+        inputs: [
+            { label: "Enter a number:", id: "number1", type: "text" },
+            { label: "Enter a body part:", id: "bodyPart1", type: "text" },
+            { label: "Enter another body part:", id: "bodyPart2", type: "text" },
+            { label: "Enter a color:", id: "color1", type: "text" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text" }
+        ],
+        template: "I was dancing with {number1} friends when I moved my {bodyPart1} too fast. I accidentally hit my {bodyPart2}! My {color1} outfit got wrinkled. Even though I got hurt, I felt {emotion1}."
+    }
+};
 
-// Track current story
-let currentStory = 1;
+// Word Examples
+const wordExamples = {
+    bodyParts: {
+        singular: {
+            "Wikèhèn": "Head",
+            "Wikèhs": "Mouth",
+            "Wikuwàkane": "Nose",
+            "Wikuwe": "Eyes",
+            "Wikèk": "Leg"
+        }
+    },
+    numbers: {
+        "Lënuwe": "One",
+        "Nisha": "Two",
+        "Nash": "Three",
+        "Newa": "Four",
+        "Palenaxk": "Five"
+    },
+    colors: {
+        "Sàpe": "Black",
+        "Wapá": "White",
+        "Mòtànk": "Red",
+        "Wëski": "Yellow",
+        "Oxkàshe": "Green"
+    },
+    emotions: {
+        "Nulitùn": "Happy",
+        "Wsìkwàk": "Angry",
+        "Wichin": "Sad",
+        "Wètëlaohake": "Excited",
+        "Wjánte": "Afraid"
+    }
+};
 
-// Initialize when document is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded');
-    setupGlossary();
-    selectStory(1); // Default to first story
-});
+let currentStory = null;
 
-function setupGlossary() {
-    console.log('Setting up glossary');
-    const wordExamples = document.querySelector('.word-examples');
+// Function to select a story
+function selectStory(storyId) {
+    currentStory = stories[storyId];
     
-    const glossaryData = {
-        'Greetings in Lenape': [
-            'Halì = Hello',
-            'Kulamàlsi = How are you?',
-            'Milì në luwàntewëlu = I am well'
-        ],
-        'Numbers in Lenape': [
-            'Lënuwe = One',
-            'Nisha = Two',
-            'Nash = Three',
-            'Newa = Four',
-            'Palenaxk = Five'
-        ],
-        'Colors in Lenape': [
-            'Sàpe = Black',
-            'Wapá = White',
-            'Mòtànk = Red',
-            'Wëski = Yellow',
-            'Oxkàshe = Green'
-        ],
-        'Body Parts in Lenape': [
-            'Wikèhèn = Head',
-            'Wikèhs = Mouth',
-            'Wikuwàkane = Nose',
-            'Wikuwe = Eyes',
-            'Wikèk = Leg'
-        ],
-        'Emotions in Lenape': [
-            'Nulitùn = Happy',
-            'Wsìkwàk = Angry',
-            'Wichin = Sad',
-            'Wètëlaohake = Excited',
-            'Wjánte = Afraid'
-        ]
-    };
-
-    Object.entries(glossaryData).forEach(([category, words]) => {
-        const card = document.createElement('div');
-        card.className = 'flip-card';
-        
-        card.innerHTML = `
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <h4>${category}</h4>
-                    <p>Click to see translations</p>
-                </div>
-                <div class="flip-card-back">
-                    <h4>${category}</h4>
-                    <div class="example-list">
-                        ${words.join('<br>')}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        card.addEventListener('click', function() {
-            this.classList.toggle('flipped');
-        });
-        
-        wordExamples.appendChild(card);
-    });
-}
-
-function selectStory(storyNumber) {
-    console.log(`Selecting story ${storyNumber}`);
-    currentStory = storyNumber;
-    
-    // Update story choice buttons
+    // Reset any previously active story choices
     document.querySelectorAll('.story-choice').forEach(button => {
         button.classList.remove('active');
     });
     
-    const selectedButton = document.querySelector(`.story-choice[onclick="selectStory(${storyNumber})"]`);
-    if (selectedButton) {
-        selectedButton.classList.add('active');
-    }
+    // Highlight the selected story
+    event.currentTarget.classList.add('active');
     
-    // Clear previous inputs and story
-    clearForm();
+    // Clear previous inputs
+    const inputsContainer = document.getElementById('story-inputs');
+    inputsContainer.innerHTML = '';
+    
+    // Create input fields for the selected story
+    currentStory.inputs.forEach(input => {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+        
+        const label = document.createElement('label');
+        label.textContent = input.label;
+        
+        const inputField = document.createElement('input');
+        inputField.type = input.type;
+        inputField.id = input.id;
+        
+        inputGroup.appendChild(label);
+        inputGroup.appendChild(inputField);
+        inputsContainer.appendChild(inputGroup);
+    });
+    
+    // Show the generate button
+    document.getElementById('generate-button').style.display = 'block';
 }
 
-function clearForm() {
-    const form = document.getElementById('madlib-form');
-    if (form) {
-        form.reset();
-    }
-    
-    const storyOutput = document.getElementById('story-output');
-    if (storyOutput) {
-        storyOutput.innerHTML = '';
-        storyOutput.classList.add('hidden');
-    }
-}
-
+// Function to generate the story
 function generateStory() {
-    console.log('Generating story');
-    const inputs = {
-        bodypart: document.getElementById('bodypart').value,
-        bodypart2: document.getElementById('bodypart2').value,
-        number: document.getElementById('number').value,
-        color: document.getElementById('color').value,
-        emotion: document.getElementById('emotion').value
-    };
+    if (!currentStory) return;
     
-    // Validate inputs
-    if (Object.values(inputs).some(value => !value.trim())) {
-        alert('Please fill in all fields!');
+    let storyText = currentStory.template;
+    const inputs = {};
+    
+    // Collect all input values
+    currentStory.inputs.forEach(input => {
+        inputs[input.id] = document.getElementById(input.id).value;
+    });
+    
+    // Replace placeholders with input values
+    for (let key in inputs) {
+        storyText = storyText.replace(`{${key}}`, inputs[key]);
+    }
+    
+    // Display the generated story
+    const storyCard = document.querySelector('.story-card');
+    document.getElementById('story-output').innerHTML = storyText;
+    storyCard.classList.add('flipped');
+}
+
+// Function to reset the card
+function resetCard() {
+    const storyCard = document.querySelector('.story-card');
+    storyCard.classList.remove('flipped');
+    currentStory = null;
+    
+    // Reset story choices
+    document.querySelectorAll('.story-choice').forEach(button => {
+        button.classList.remove('active');
+    });
+    
+    // Clear inputs
+    document.getElementById('story-inputs').innerHTML = '';
+    document.getElementById('generate-button').style.display = 'none';
+}
+
+// Function to handle example card flips
+document.addEventListener('DOMContentLoaded', function() {
+    const exampleCards = document.querySelectorAll('.example-card');
+    exampleCards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
+});
+
+// Function to validate inputs before generating story
+function validateInputs() {
+    let isValid = true;
+    const inputs = document.querySelectorAll('.input-group input');
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+    
+    return isValid;
+}
+
+// Add input validation to generate button
+document.getElementById('generate-button').addEventListener('click', function(e) {
+    if (!validateInputs()) {
+        e.preventDefault();
+        alert('Please fill in all fields before generating the story.');
         return;
     }
-    
-    let story = '';
-    if (currentStory === 1) {
-        story = `One day, I was riding my bicycle when I hit my <span class="user-input">${inputs.bodypart}</span> 
-                on a tree branch. I fell and hurt my <span class="user-input">${inputs.bodypart2}</span>. 
-                It took <span class="user-input">${inputs.number}</span> days to heal. 
-                My bruise turned <span class="user-input">${inputs.color}</span>. 
-                Now I feel <span class="user-input">${inputs.emotion}</span> when I ride my bike.`;
-    } else {
-        story = `<span class="user-input">${inputs.number}</span> days ago, I went dancing with friends. 
-                I accidentally stepped on my <span class="user-input">${inputs.bodypart}</span> and 
-                hurt my <span class="user-input">${inputs.bodypart2}</span>! 
-                My <span class="user-input">${inputs.bodypart}</span> turned <span class="user-input">${inputs.color}</span>. 
-                I felt so <span class="user-input">${inputs.emotion}</span> about the whole thing.`;
-    }
-    
-    const storyOutput = document.getElementById('story-output');
-    if (storyOutput) {
-        storyOutput.innerHTML = story;
-        storyOutput.classList.remove('hidden');
-    }
-}
-
-// Add console log to confirm script loaded
-console.log('Script loaded completely');
+    generateStory();
+});
