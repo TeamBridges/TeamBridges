@@ -1,52 +1,7 @@
-// Lenape word database
-const lenapeWords = {
-    bodyParts: {
-        title: "Body Parts",
-        words: {
-            "Wikèhèn": "Head",
-            "Wikèhs": "Mouth",
-            "Wikuwàkane": "Nose",
-            "Wikuwe": "Eyes",
-            "Wikèk": "Leg"
-        }
-    },
-    colors: {
-        title: "Colors",
-        words: {
-            "Sàpe": "Black",
-            "Wapá": "White",
-            "Mòtànk": "Red",
-            "Wëski": "Yellow",
-            "Oxkàshe": "Green"
-        }
-    },
-    numbers: {
-        title: "Numbers",
-        words: {
-            "Lënuwe": "One",
-            "Nisha": "Two",
-            "Nash": "Three",
-            "Newa": "Four",
-            "Palenaxk": "Five"
-        }
-    },
-    emotions: {
-        title: "Emotions",
-        words: {
-            "Nulitùn": "Happy",
-            "Wsìkwàk": "Angry",
-            "Wichin": "Sad",
-            "Wètëlaohake": "Excited",
-            "Wjánte": "Afraid"
-        }
-    }
-};
-
-// Story templates
+// Story templates and data
 const stories = {
-    bicycleAdventure: {
+    bicycle: {
         title: "The Bicycle Adventure",
-        description: "A thrilling tale about a bicycle ride!",
         inputs: [
             { label: "Enter a body part:", type: "bodyPart", placeholder: "e.g., Wikèhèn (head)" },
             { label: "Enter another body part:", type: "bodyPart", placeholder: "e.g., Wikèk (leg)" },
@@ -56,9 +11,8 @@ const stories = {
         ],
         template: "I was riding my bike when I hit my {0} on a tree branch. I fell and hurt my {1}. It took {2} days to heal. My bruise turned {3}! I felt {4} when I got back on my bike."
     },
-    dancingFriends: {
+    dancing: {
         title: "Dancing with Friends",
-        description: "A fun story about dancing and friendship!",
         inputs: [
             { label: "Enter a number:", type: "number", placeholder: "e.g., Nash (three)" },
             { label: "Enter a body part:", type: "bodyPart", placeholder: "e.g., Wikèk (leg)" },
@@ -67,9 +21,8 @@ const stories = {
         ],
         template: "{0} friends came to dance with me. We danced until our {1} hurt! We wore {2} shoes and felt {3}!"
     },
-    dayAtSchool: {
+    school: {
         title: "A Day at School",
-        description: "Learning and playing with friends!",
         inputs: [
             { label: "Enter a number:", type: "number", placeholder: "e.g., Palenaxk (five)" },
             { label: "Enter a color:", type: "color", placeholder: "e.g., Wëski (yellow)" },
@@ -78,9 +31,8 @@ const stories = {
         ],
         template: "Today at school, {0} friends and I wore {1} shirts. We read until our {2} were tired. We felt {3} learning new Lenape words!"
     },
-    weatherToday: {
+    weather: {
         title: "The Weather Today",
-        description: "An adventure in different weather!",
         inputs: [
             { label: "Enter a color:", type: "color", placeholder: "e.g., Sàpe (black)" },
             { label: "Enter a body part:", type: "bodyPart", placeholder: "e.g., Wikuwàkane (nose)" },
@@ -89,9 +41,8 @@ const stories = {
         ],
         template: "The sky turned {0} today! The rain hit my {1} as I counted {2} thunder claps. I felt {3} during the storm."
     },
-    playingGames: {
+    games: {
         title: "Playing Games",
-        description: "Fun and games with Lenape words!",
         inputs: [
             { label: "Enter a number:", type: "number", placeholder: "e.g., Newa (four)" },
             { label: "Enter a body part:", type: "bodyPart", placeholder: "e.g., Wikèk (leg)" },
@@ -100,9 +51,8 @@ const stories = {
         ],
         template: "We played games for {0} hours! My {1} got tired from jumping. I won the {2} prize and felt {3}!"
     },
-    gettingReady: {
+    ready: {
         title: "Getting Ready",
-        description: "Morning routine adventure!",
         inputs: [
             { label: "Enter a body part:", type: "bodyPart", placeholder: "e.g., Wikèhèn (head)" },
             { label: "Enter a color:", type: "color", placeholder: "e.g., Mòtànk (red)" },
@@ -117,79 +67,70 @@ let currentStory = null;
 
 // Initialize when document loads
 document.addEventListener('DOMContentLoaded', function() {
-    initializeStoryCards();
-    initializeWordExamples();
     setupEventListeners();
 });
 
-function initializeStoryCards() {
-    const storyGrid = document.querySelector('.story-grid');
-    Object.entries(stories).forEach(([key, story]) => {
-        const card = createStoryCard(key, story);
-        storyGrid.appendChild(card);
+function setupEventListeners() {
+    // Add click listeners for story buttons
+    document.querySelectorAll('.story-choice').forEach(button => {
+        button.addEventListener('click', function() {
+            const storyId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+            selectStory(storyId);
+        });
     });
+
+    // Generate and Reset button listeners
+    document.getElementById('generate-button').addEventListener('click', generateStory);
+    document.getElementById('reset-button').addEventListener('click', resetStory);
 }
 
-function createStoryCard(key, story) {
-    const card = document.createElement('div');
-    card.className = 'story-card';
-    card.setAttribute('data-story', key);
+function selectStory(storyId) {
+    // Reset any previously active stories
+    document.querySelectorAll('.story-choice').forEach(btn => btn.classList.remove('active'));
     
-    card.innerHTML = `
-        <h3>${story.title}</h3>
-        <p>${story.description}</p>
-    `;
-    
-    card.addEventListener('click', () => selectStory(key));
-    return card;
-}
-
-function selectStory(storyKey) {
-    currentStory = stories[storyKey];
-    updateUI(storyKey);
-    createInputFields();
-}
-
-function updateUI(storyKey) {
-    // Update selected story styling
-    document.querySelectorAll('.story-card').forEach(card => {
-        card.classList.remove('selected');
-        if(card.getAttribute('data-story') === storyKey) {
-            card.classList.add('selected');
-        }
-    });
+    // Set current story and update UI
+    currentStory = stories[storyId];
     
     // Update story title
-    const titleElement = document.getElementById('selected-story-title');
-    if(titleElement) {
-        titleElement.textContent = currentStory.title;
-    }
+    document.getElementById('selected-story-title').textContent = currentStory.title;
+    
+    // Mark selected story button as active
+    const selectedButton = document.querySelector(`[onclick*="${storyId}"]`);
+    if (selectedButton) selectedButton.classList.add('active');
+    
+    // Create input fields
+    createInputFields();
+    
+    // Show generate button
+    document.getElementById('generate-button').classList.remove('hidden');
+    
+    // Hide output and reset button
+    document.getElementById('story-output').classList.add('hidden');
+    document.getElementById('reset-button').classList.add('hidden');
 }
 
 function createInputFields() {
-    const inputContainer = document.getElementById('input-container');
-    inputContainer.innerHTML = '';
+    const container = document.getElementById('input-container');
+    container.innerHTML = ''; // Clear existing inputs
     
     currentStory.inputs.forEach((input, index) => {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
         
-        inputGroup.innerHTML = `
-            <label for="input-${index}">${input.label}</label>
-            <input 
-                type="text" 
-                id="input-${index}" 
-                placeholder="${input.placeholder}"
-                data-type="${input.type}"
-                required
-            >
-        `;
+        const label = document.createElement('label');
+        label.textContent = input.label;
+        label.setAttribute('for', `input-${index}`);
         
-        inputContainer.appendChild(inputGroup);
+        const inputElement = document.createElement('input');
+        inputElement.type = 'text';
+        inputElement.id = `input-${index}`;
+        inputElement.placeholder = input.placeholder;
+        inputElement.setAttribute('data-type', input.type);
+        
+        inputGroup.appendChild(label);
+        inputGroup.appendChild(inputElement);
+        container.appendChild(inputGroup);
     });
-    
-    // Show generate button
-    document.getElementById('generate-button').style.display = 'block';
 }
 
 function generateStory() {
@@ -218,66 +159,39 @@ function generateStory() {
     // Generate story text
     let storyText = currentStory.template;
     inputs.forEach((input, index) => {
-        storyText = storyText.replace(`{${index}}`, input);
+        storyText = storyText.replace(`{${index}}`, `<span class="user-input">${input}</span>`);
     });
     
     // Display story
     const outputElement = document.getElementById('story-output');
     outputElement.innerHTML = storyText;
-    outputElement.style.display = 'block';
+    outputElement.classList.remove('hidden');
     
-    // Show reset button
-    document.getElementById('reset-button').style.display = 'block';
+    // Show reset button and hide generate button
+    document.getElementById('reset-button').classList.remove('hidden');
+    document.getElementById('generate-button').classList.add('hidden');
 }
 
 function resetStory() {
     currentStory = null;
+    
+    // Clear and hide story elements
     document.getElementById('input-container').innerHTML = '';
     document.getElementById('story-output').innerHTML = '';
-    document.getElementById('story-output').style.display = 'none';
-    document.getElementById('reset-button').style.display = 'none';
-    document.getElementById('generate-button').style.display = 'none';
+    document.getElementById('story-output').classList.add('hidden');
+    document.getElementById('selected-story-title').textContent = 'Select a Story';
     
-    document.querySelectorAll('.story-card').forEach(card => {
-        card.classList.remove('selected');
-    });
+    // Hide buttons
+    document.getElementById('reset-button').classList.add('hidden');
+    document.getElementById('generate-button').classList.add('hidden');
+    
+    // Remove active class from story buttons
+    document.querySelectorAll('.story-choice').forEach(btn => btn.classList.remove('active'));
 }
 
-function initializeWordExamples() {
-    const exampleContainer = document.querySelector('.word-examples');
-    Object.entries(lenapeWords).forEach(([category, data]) => {
-        const section = createWordExampleSection(data);
-        exampleContainer.appendChild(section);
+// Initialize example cards
+document.querySelectorAll('.example-card').forEach(card => {
+    card.addEventListener('click', function() {
+        this.classList.toggle('flipped');
     });
-}
-
-function createWordExampleSection(data) {
-    const section = document.createElement('div');
-    section.className = 'example-card';
-    
-    let wordList = '';
-    Object.entries(data.words).forEach(([lenape, english]) => {
-        wordList += `<p>${lenape} = ${english}</p>`;
-    });
-    
-    section.innerHTML = `
-        <h3>${data.title}</h3>
-        <div class="word-list">
-            ${wordList}
-        </div>
-    `;
-    
-    section.addEventListener('click', () => {
-        section.classList.toggle('active');
-    });
-    
-    return section;
-}
-
-function setupEventListeners() {
-    document.getElementById('generate-button')?.addEventListener('click', generateStory);
-    document.getElementById('reset-button')?.addEventListener('click', resetStory);
-}
-
-// Add console log to confirm script loaded
-console.log('Lenape Mad Libs Generator initialized successfully');
+});
