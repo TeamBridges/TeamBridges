@@ -21,50 +21,53 @@
     </nav>
 
     <main class="container">
+        <!-- Left Column: Story Selection -->
         <section class="story-selection">
             <h2>Choose Your Story</h2>
-            <div class="story-grid">
-                <div class="story-card" onclick="selectStory(1)">
+            <div class="story-cards">
+                <div class="story-card" data-story="bicycle">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
                 </div>
-                <div class="story-card" onclick="selectStory(2)">
+                <div class="story-card" data-story="dancing">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
                 </div>
-                <div class="story-card" onclick="selectStory(3)">
+                <div class="story-card" data-story="school">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
                 </div>
-                <div class="story-card" onclick="selectStory(4)">
+                <div class="story-card" data-story="weather">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
                 </div>
-                <div class="story-card" onclick="selectStory(5)">
+                <div class="story-card" data-story="games">
                     <h3>Playing Games</h3>
                     <p>Fun and games with Lenape words!</p>
                 </div>
-                <div class="story-card" onclick="selectStory(6)">
+                <div class="story-card" data-story="ready">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
                 </div>
             </div>
         </section>
 
-        <section id="story-form" class="story-form">
+        <!-- Middle Column: Story Input/Output -->
+        <section class="story-creation">
             <h2 id="selected-story-title">Select a Story</h2>
-            <div id="input-container" class="input-container"></div>
-            <button id="generate-button" class="generate-button" style="display: none;">Generate Story</button>
-            <div id="story-output" class="story-output"></div>
-            <button id="reset-button" class="reset-button" onclick="resetStory()">Create Another Story</button>
+            <div id="input-container" class="input-form"></div>
+            <button id="generate-button" class="hidden">Generate Story</button>
+            <div id="story-output" class="story-output hidden"></div>
+            <button id="reset-button" class="hidden">Create Another Story</button>
         </section>
 
+        <!-- Right Column: Word Examples -->
         <section class="word-examples">
             <h2>Lenape Word Examples</h2>
-            <div class="example-grid">
-                <div class="example-card">
+            <div class="example-cards">
+                <div class="example-card" data-category="bodyParts">
                     <h3>Body Parts</h3>
-                    <div class="word-list">
+                    <div class="word-list hidden">
                         <p>Wikèhèn = Head</p>
                         <p>Wikèhs = Mouth</p>
                         <p>Wikuwàkane = Nose</p>
@@ -72,10 +75,9 @@
                         <p>Wikèk = Leg</p>
                     </div>
                 </div>
-
-                <div class="example-card">
+                <div class="example-card" data-category="colors">
                     <h3>Colors</h3>
-                    <div class="word-list">
+                    <div class="word-list hidden">
                         <p>Sàpe = Black</p>
                         <p>Wapá = White</p>
                         <p>Mòtànk = Red</p>
@@ -83,10 +85,9 @@
                         <p>Oxkàshe = Green</p>
                     </div>
                 </div>
-
-                <div class="example-card">
+                <div class="example-card" data-category="numbers">
                     <h3>Numbers</h3>
-                    <div class="word-list">
+                    <div class="word-list hidden">
                         <p>Lënuwe = One</p>
                         <p>Nisha = Two</p>
                         <p>Nash = Three</p>
@@ -94,10 +95,9 @@
                         <p>Palenaxk = Five</p>
                     </div>
                 </div>
-
-                <div class="example-card">
+                <div class="example-card" data-category="emotions">
                     <h3>Emotions</h3>
-                    <div class="word-list">
+                    <div class="word-list hidden">
                         <p>Nulitùn = Happy</p>
                         <p>Wsìkwàk = Angry</p>
                         <p>Wichin = Sad</p>
