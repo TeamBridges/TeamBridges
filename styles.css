@@ -1,4 +1,4 @@
-/* Global Styles */
+/* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +8,12 @@
 
 body {
     background-color: #f5f7fa;
+    min-height: 100vh;
 }
 
-/* Header Styles */
+/* Header styles */
 .header {
-    background: #2b4162;
+    background-color: #2b4162;
     color: white;
     text-align: center;
     padding: 2rem;
@@ -28,15 +29,12 @@ body {
     opacity: 0.9;
 }
 
-/* Navigation Bar */
+/* Navigation */
 .nav-bar {
     background-color: white;
     padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 .nav-link {
@@ -45,11 +43,7 @@ body {
     padding: 0.5rem 1rem;
     margin: 0 0.5rem;
     border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-    background-color: #f0f0f0;
+    transition: background-color 0.3s;
 }
 
 .nav-link.active {
@@ -57,34 +51,35 @@ body {
     color: white;
 }
 
-/* Container Layout */
+/* Container and grid layout */
 .container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
-/* Story Selection */
-.story-buttons {
+.story-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
+/* Story choice cards */
 .story-choice {
     background: white;
-    border: none;
     border-radius: 10px;
     padding: 1.5rem;
-    text-align: left;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    text-align: left;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .story-choice:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .story-choice h3 {
@@ -94,20 +89,19 @@ body {
 
 .story-choice p {
     color: #666;
-    font-size: 0.9rem;
 }
 
-/* Story Card */
-.story-card {
+/* Input section */
+.story-input-section {
     background: white;
     border-radius: 10px;
     padding: 2rem;
-    margin-top: 2rem;
+    margin-bottom: 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .input-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .input-group label {
@@ -125,36 +119,37 @@ body {
 }
 
 /* Buttons */
-.generate-button, .reset-button {
-    background: #2b4162;
+button {
+    background-color: #2b4162;
     color: white;
+    padding: 0.8rem 1.5rem;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 25px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: transform 0.2s ease;
+    transition: background-color 0.3s;
 }
 
-.generate-button:hover, .reset-button:hover {
-    transform: scale(1.05);
+button:hover {
+    background-color: #1a2a3f;
 }
 
-/* Word Examples Section */
-.word-examples {
+/* Glossary section */
+.glossary-section {
     margin-top: 3rem;
 }
 
-.example-cards {
+.glossary-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
     margin-top: 1rem;
 }
 
-.example-card {
+.glossary-card {
+    height: 200px;
     perspective: 1000px;
-    height: 250px;
+    cursor: pointer;
 }
 
 .card-inner {
@@ -162,12 +157,11 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.6s;
     transform-style: preserve-3d;
-    cursor: pointer;
 }
 
-.example-card.flipped .card-inner {
+.glossary-card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
@@ -181,7 +175,7 @@ body {
 }
 
 .card-front {
-    background: #2b4162;
+    background-color: #2b4162;
     color: white;
     display: flex;
     align-items: center;
@@ -189,43 +183,28 @@ body {
 }
 
 .card-back {
-    background: white;
+    background-color: white;
     transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .card-back p {
-    color: #2b4162;
     margin: 0.5rem 0;
+    color: #2b4162;
 }
 
-/* Responsive Design */
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .header h1 {
         font-size: 2rem;
     }
     
-    .story-buttons {
+    .story-grid {
         grid-template-columns: 1fr;
     }
     
-    .example-cards {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .glossary-cards {
+        grid-template-columns: 1fr;
     }
-}
-
-/* Story Output Styling */
-.story-output {
-    background: #f5f7fa;
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin: 1rem 0;
-    line-height: 1.6;
-}
-
-/* Hidden Class */
-.hidden {
-    display: none;
 }
