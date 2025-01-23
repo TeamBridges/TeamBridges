@@ -1,59 +1,53 @@
-/* Global Styles */
-:root {
-    --primary-color: #2B3856;
-    --secondary-color: #3A4B77;
-    --text-color: #333;
-    --light-bg: #f5f7fa;
-    --white: #ffffff;
-    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --border-radius: 8px;
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--light-bg);
-    color: var(--text-color);
+    background-color: #f5f7fa;
 }
 
-/* Header Styles */
-header {
-    background-color: var(--primary-color);
-    color: var(--white);
+/* Header */
+.header {
+    background-color: #2B3856;
+    color: white;
     text-align: center;
-    padding: 2rem 0;
+    padding: 2rem;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+.header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-header p {
-    margin: 0.5rem 0 0;
-    font-size: 1.2rem;
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
-/* Navigation Bar */
+/* Navigation */
 .nav-bar {
-    background-color: var(--secondary-color);
-    padding: 1rem 0;
+    background-color: white;
+    padding: 1rem;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav-bar a {
-    color: var(--white);
+    color: #333;
     text-decoration: none;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     margin: 0 0.5rem;
-    border-radius: var(--border-radius);
-    transition: background-color 0.3s ease;
+    border-radius: 4px;
 }
 
-.nav-bar a.active,
-.nav-bar a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.nav-bar a.active {
+    background-color: #2B3856;
+    color: white;
 }
 
 /* Main Container */
@@ -63,103 +57,117 @@ header p {
     padding: 0 1rem;
 }
 
-/* Story Selection Grid */
+/* Story Selection */
+.choose-story h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
 .story-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
     margin-bottom: 2rem;
 }
 
 .story-card {
-    background-color: var(--white);
+    background: white;
     padding: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .story-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .story-card h3 {
-    color: var(--primary-color);
-    margin: 0 0 0.5rem 0;
+    color: #2B3856;
+    margin-bottom: 0.5rem;
 }
 
 .story-card p {
-    margin: 0;
     color: #666;
+    font-size: 0.9rem;
 }
 
-/* Story Creation Section */
-.story-creation {
-    background-color: var(--white);
+.story-card.selected {
+    background-color: #2B3856;
+    color: white;
+}
+
+.story-card.selected h3,
+.story-card.selected p {
+    color: white;
+}
+
+/* Input Form */
+.story-form {
+    background: white;
     padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     margin-bottom: 2rem;
 }
 
-.input-container {
-    display: grid;
-    gap: 1rem;
-    margin: 1.5rem 0;
-}
-
 .input-group {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .input-group label {
+    display: block;
     margin-bottom: 0.5rem;
-    color: var(--primary-color);
-    font-weight: 500;
+    color: #333;
 }
 
 .input-group input {
+    width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
-    border-radius: var(--border-radius);
+    border-radius: 4px;
     font-size: 1rem;
 }
 
 /* Buttons */
-.generate-button,
-.reset-button {
-    background-color: var(--primary-color);
-    color: var(--white);
+.create-button,
+.generate-button {
+    background-color: #2B3856;
+    color: white;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: var(--border-radius);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
-.generate-button:hover,
-.reset-button:hover {
-    background-color: var(--secondary-color);
+/* Word Examples */
+.word-examples {
+    margin-top: 2rem;
 }
 
-/* Word Examples Section */
+.word-examples h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
 .example-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .example-card {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background: #2B3856;
+    color: white;
     padding: 1.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    border-radius: 8px;
+    text-align: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
 }
 
 .example-card:hover {
@@ -167,42 +175,25 @@ header p {
 }
 
 .example-card h3 {
-    margin: 0 0 1rem 0;
-    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .word-list {
     display: none;
-    background-color: var(--white);
-    color: var(--text-color);
+    background: white;
+    color: #333;
     padding: 1rem;
-    border-radius: var(--border-radius);
+    border-radius: 4px;
     margin-top: 1rem;
+    text-align: left;
 }
 
 .example-card.active .word-list {
     display: block;
 }
 
-/* Story Output */
-.story-output {
-    background-color: var(--light-bg);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    margin-top: 1.5rem;
-    display: none;
-}
-
-.story-output.visible {
-    display: block;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 0.5rem;
-    }
-    
     .story-grid {
         grid-template-columns: 1fr;
     }
@@ -211,8 +202,16 @@ header p {
         grid-template-columns: 1fr;
     }
     
-    .nav-bar a {
-        display: block;
-        margin: 0.5rem 0;
+    .header h1 {
+        font-size: 1.8rem;
     }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
