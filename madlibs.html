@@ -16,120 +16,127 @@
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="madlibs.html" class="nav-link active">Mad Libs</a>
-        <a href="crosswords.html" class="nav-link">Crosswords</a>
+        <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="cardflip.html" class="nav-link">Card Flip</a>
     </nav>
 
     <div class="container">
-        <div class="story-container">
-            <!-- Story Selection Buttons -->
+        <div class="stories-section">
+            <h2>Choose Your Story</h2>
             <div class="story-buttons">
-                <button class="story-choice" onclick="selectStory(1)">
+                <button class="story-choice" data-story-id="1">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(2)">
+
+                <button class="story-choice" data-story-id="2">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(3)">
+
+                <button class="story-choice" data-story-id="3">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(4)">
+
+                <button class="story-choice" data-story-id="4">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(5)">
+
+                <button class="story-choice" data-story-id="5">
                     <h3>Playing Games</h3>
                     <p>Fun and games with Lenape words!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(6)">
+
+                <button class="story-choice" data-story-id="6">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
                 </button>
             </div>
 
-            <!-- Story Card -->
             <div class="story-card">
                 <div class="story-card-inner">
                     <div class="story-card-front">
                         <h3 id="story-form-title">Select a Story</h3>
-                        <div id="story-inputs"></div>
-                        <button id="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
+                        <div id="story-inputs" class="input-form"></div>
+                        <button id="generate-button" class="generate-button" style="display: none;">Generate Story</button>
                     </div>
                     <div class="story-card-back">
                         <h3>Your Story</h3>
-                        <div id="story-output"></div>
+                        <div id="story-output" class="story-output"></div>
                         <button class="reset-button" onclick="resetCard()">Create Another Story</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Lenape Word Examples -->
         <div class="word-examples">
             <h2>Lenape Word Examples</h2>
             <div class="example-cards">
-                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                <div class="example-card" data-category="bodyParts">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Body Parts</h3>
                         </div>
                         <div class="card-back">
-                            <p>Wikèhèn (Head)</p>
-                            <p>Wikèhs (Mouth)</p>
-                            <p>Wikuwàkane (Nose)</p>
-                            <p>Wikuwe (Eyes)</p>
-                            <p>Wikèk (Leg)</p>
+                            <p>Wikèhèn = Head</p>
+                            <p>Wikèhs = Mouth</p>
+                            <p>Wikuwàkane = Nose</p>
+                            <p>Wikuwe = Eyes</p>
+                            <p>Wikèk = Leg</p>
                         </div>
                     </div>
                 </div>
-                <div class="example-card" onclick="this.classList.toggle('flipped')">
+
+                <div class="example-card" data-category="colors">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Colors</h3>
                         </div>
                         <div class="card-back">
-                            <p>Sàpe (Black)</p>
-                            <p>Wapá (White)</p>
-                            <p>Mòtànk (Red)</p>
-                            <p>Wëski (Yellow)</p>
-                            <p>Oxkàshe (Green)</p>
+                            <p>Sàpe = Black</p>
+                            <p>Wapá = White</p>
+                            <p>Mòtànk = Red</p>
+                            <p>Wëski = Yellow</p>
+                            <p>Oxkàshe = Green</p>
                         </div>
                     </div>
                 </div>
-                <div class="example-card" onclick="this.classList.toggle('flipped')">
+
+                <div class="example-card" data-category="numbers">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Numbers</h3>
                         </div>
                         <div class="card-back">
-                            <p>Lënuwe (One)</p>
-                            <p>Nisha (Two)</p>
-                            <p>Nash (Three)</p>
-                            <p>Newa (Four)</p>
-                            <p>Palenaxk (Five)</p>
+                            <p>Lënuwe = One</p>
+                            <p>Nisha = Two</p>
+                            <p>Nash = Three</p>
+                            <p>Newa = Four</p>
+                            <p>Palenaxk = Five</p>
                         </div>
                     </div>
                 </div>
-                <div class="example-card" onclick="this.classList.toggle('flipped')">
+
+                <div class="example-card" data-category="emotions">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Emotions</h3>
                         </div>
                         <div class="card-back">
-                            <p>Nulitùn (Happy)</p>
-                            <p>Wsìkwàk (Angry)</p>
-                            <p>Wichin (Sad)</p>
-                            <p>Wètëlaohake (Excited)</p>
-                            <p>Wjánte (Afraid)</p>
+                            <p>Nulitùn = Happy</p>
+                            <p>Wsìkwàk = Angry</p>
+                            <p>Wichin = Sad</p>
+                            <p>Wètëlaohake = Excited</p>
+                            <p>Wjánte = Afraid</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
