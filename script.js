@@ -1,3 +1,6 @@
+// Debug logging
+console.log('Script starting to load');
+
 // Story templates and data
 const stories = {
     bicycle: {
@@ -67,66 +70,112 @@ let currentStory = null;
 
 // Initialize when document loads
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded');
     setupEventListeners();
 });
 
 function setupEventListeners() {
-    // Add click listeners for story buttons
+    console.log('Setting up event listeners');
+    
+    // Story choice buttons
     document.querySelectorAll('.story-choice').forEach(button => {
         button.addEventListener('click', function() {
-            const storyId = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-            selectStory(storyId);
+            const storyType = this.getAttribute('data-story');
+            if (storyType) {
+                selectStory(storyType);
+            }
         });
     });
 
-    // Generate and Reset button listeners
-    document.getElementById('generate-button').addEventListener('click', generateStory);
-    document.getElementById('reset-button').addEventListener('click', resetStory);
+    // Generate button
+    const generateButton = document.getElementById('generate-button');
+    if (generateButton) {
+        generateButton.addEventListener('click', generateStory);
+    }
+
+    // Reset button
+    const resetButton = document.getElementById('reset-button');
+    if (resetButton) {
+        resetButton.addEventListener('click', resetStory);
+    }
+
+    // Example cards
+    document.querySelectorAll('.example-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
 }
 
-function selectStory(storyId) {
-    // Reset any previously active stories
-    document.querySelectorAll('.story-choice').forEach(btn => btn.classList.remove('active'));
+function selectStory(storyType) {
+    console.log(`Selecting story: ${storyType}`);
     
-    // Set current story and update UI
-    currentStory = stories[storyId];
-    
-    // Update story title
-    document.getElementById('selected-story-title').textContent = currentStory.title;
-    
-    // Mark selected story button as active
-    const selectedButton = document.querySelector(`[onclick*="${storyId}"]`);
-    if (selectedButton) selectedButton.classList.add('active');
-    
+    // Reset previous selections
+    document.querySelectorAll('.story-choice').forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Get the story data
+    currentStory = stories[storyType];
+    if (!currentStory) {
+        console.error(`Story type ${storyType} not found`);
+        return;
+    }
+
+    // Update UI
+    const selectedButton = document.querySelector(`[data-story="${storyType}"]`);
+    if (selectedButton) {
+        selectedButton.classList.add('active');
+    }
+
+    // Update title
+    const titleElement = document.getElementById('selected-story-title');
+    if (titleElement) {
+        titleElement.textContent = currentStory.title;
+    }
+
     // Create input fields
     createInputFields();
-    
+
     // Show generate button
-    document.getElementById('generate-button').classList.remove('hidden');
+    const generateButton = document.getElementById('generate-button');
+    if (generateButton) {
+        generateButton.classList.remove('hidden');
+    }
+
+    // Hide story output and reset button
+    const storyOutput = document.getElementById('story-output');
+    const resetButton = document.getElementById('reset-button');
     
-    // Hide output and reset button
-    document.getElementById('story-output').classList.add('hidden');
-    document.getElementById('reset-button').classList.add('hidden');
+    if (storyOutput) storyOutput.classList.add('hidden');
+    if (resetButton) resetButton.classList.add('hidden');
 }
 
 function createInputFields() {
-    const container = document.getElementById('input-container');
-    container.innerHTML = ''; // Clear existing inputs
+    console.log('Creating input fields');
     
+    const container = document.getElementById('input-container');
+    if (!container) {
+        console.error('Input container not found');
+        return;
+    }
+
+    container.innerHTML = ''; // Clear existing inputs
+
     currentStory.inputs.forEach((input, index) => {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
-        
+
         const label = document.createElement('label');
         label.textContent = input.label;
-        label.setAttribute('for', `input-${index}`);
-        
+        label.htmlFor = `input-${index}`;
+
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.id = `input-${index}`;
         inputElement.placeholder = input.placeholder;
         inputElement.setAttribute('data-type', input.type);
-        
+
         inputGroup.appendChild(label);
         inputGroup.appendChild(inputElement);
         container.appendChild(inputGroup);
@@ -134,64 +183,82 @@ function createInputFields() {
 }
 
 function generateStory() {
-    if (!currentStory) return;
+    console.log('Generating story');
     
+    if (!currentStory) {
+        console.error('No story selected');
+        return;
+    }
+
     const inputs = [];
-    const inputFields = document.querySelectorAll('#input-container input');
-    
-    // Validate inputs
     let allFilled = true;
-    inputFields.forEach(input => {
-        if (!input.value.trim()) {
+
+    // Collect and validate inputs
+    document.querySelectorAll('#input-container input').forEach(input => {
+        const value = input.value.trim();
+        if (!value) {
             allFilled = false;
             input.classList.add('error');
         } else {
             input.classList.remove('error');
-            inputs.push(input.value.trim());
+            inputs.push(value);
         }
     });
-    
+
     if (!allFilled) {
         alert('Please fill in all fields!');
         return;
     }
-    
+
     // Generate story text
     let storyText = currentStory.template;
     inputs.forEach((input, index) => {
         storyText = storyText.replace(`{${index}}`, `<span class="user-input">${input}</span>`);
     });
-    
-    // Display story
+
+    // Update UI
     const outputElement = document.getElementById('story-output');
-    outputElement.innerHTML = storyText;
-    outputElement.classList.remove('hidden');
-    
-    // Show reset button and hide generate button
-    document.getElementById('reset-button').classList.remove('hidden');
-    document.getElementById('generate-button').classList.add('hidden');
+    const generateButton = document.getElementById('generate-button');
+    const resetButton = document.getElementById('reset-button');
+
+    if (outputElement) {
+        outputElement.innerHTML = storyText;
+        outputElement.classList.remove('hidden');
+    }
+
+    if (generateButton) generateButton.classList.add('hidden');
+    if (resetButton) resetButton.classList.remove('hidden');
 }
 
 function resetStory() {
+    console.log('Resetting story');
+    
     currentStory = null;
-    
-    // Clear and hide story elements
-    document.getElementById('input-container').innerHTML = '';
-    document.getElementById('story-output').innerHTML = '';
-    document.getElementById('story-output').classList.add('hidden');
-    document.getElementById('selected-story-title').textContent = 'Select a Story';
-    
-    // Hide buttons
-    document.getElementById('reset-button').classList.add('hidden');
-    document.getElementById('generate-button').classList.add('hidden');
-    
+
+    // Reset UI elements
+    const elements = {
+        inputContainer: document.getElementById('input-container'),
+        storyOutput: document.getElementById('story-output'),
+        storyTitle: document.getElementById('selected-story-title'),
+        generateButton: document.getElementById('generate-button'),
+        resetButton: document.getElementById('reset-button')
+    };
+
+    // Clear and hide elements
+    if (elements.inputContainer) elements.inputContainer.innerHTML = '';
+    if (elements.storyOutput) {
+        elements.storyOutput.innerHTML = '';
+        elements.storyOutput.classList.add('hidden');
+    }
+    if (elements.storyTitle) elements.storyTitle.textContent = 'Select a Story';
+    if (elements.generateButton) elements.generateButton.classList.add('hidden');
+    if (elements.resetButton) elements.resetButton.classList.add('hidden');
+
     // Remove active class from story buttons
-    document.querySelectorAll('.story-choice').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.story-choice').forEach(btn => {
+        btn.classList.remove('active');
+    });
 }
 
-// Initialize example cards
-document.querySelectorAll('.example-card').forEach(card => {
-    card.addEventListener('click', function() {
-        this.classList.toggle('flipped');
-    });
-});
+// Add console log to confirm script loaded
+console.log('Script loaded completely');
