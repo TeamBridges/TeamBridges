@@ -1,3 +1,4 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,27 +12,26 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: #2B4170;
+    background: #2b4162;
     color: white;
     text-align: center;
-    padding: 30px 20px;
-    margin-bottom: 20px;
+    padding: 2rem;
 }
 
 .header h1 {
-    font-size: 32px;
-    margin-bottom: 10px;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .header p {
-    font-size: 18px;
+    font-size: 1.2rem;
     opacity: 0.9;
 }
 
 /* Navigation Bar */
 .nav-bar {
     background-color: white;
-    padding: 15px;
+    padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: sticky;
@@ -40,11 +40,11 @@ body {
 }
 
 .nav-link {
-    color: #333;
+    color: #2b4162;
     text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 5px;
     transition: all 0.3s ease;
 }
 
@@ -53,209 +53,179 @@ body {
 }
 
 .nav-link.active {
-    background-color: #2B4170;
+    background-color: #2b4162;
     color: white;
 }
 
-/* Main Container */
+/* Container Layout */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: 250px 1fr 300px;
-    gap: 30px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 /* Story Selection */
-.story-selection {
-    padding: 20px;
-}
-
-.story-selection h3 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
+.story-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .story-choice {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
     background: white;
-    border: 2px solid #2B4170;
-    border-radius: 8px;
-    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 1.5rem;
     text-align: left;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .story-choice:hover {
-    background-color: #f8f9fa;
+    transform: translateY(-5px);
 }
 
-.story-choice.active {
-    background-color: #2B4170;
-    color: white;
-}
-
-.story-choice h4 {
-    margin-bottom: 5px;
-    font-size: 18px;
+.story-choice h3 {
+    color: #2b4162;
+    margin-bottom: 0.5rem;
 }
 
 .story-choice p {
-    font-size: 14px;
-    opacity: 0.8;
+    color: #666;
+    font-size: 0.9rem;
 }
 
-/* Story Form */
-.story-form {
+/* Story Card */
+.story-card {
     background: white;
-    padding: 30px;
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-top: 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-size: 16px;
+    margin-bottom: 0.5rem;
+    color: #2b4162;
 }
 
 .input-group input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
-.input-group input:focus {
-    outline: none;
-    border-color: #2B4170;
-}
-
-.generate-button {
-    width: 100%;
-    padding: 12px 20px;
-    background: #2B4170;
+/* Buttons */
+.generate-button, .reset-button {
+    background: #2b4162;
     color: white;
     border: none;
-    border-radius: 4px;
+    padding: 1rem 2rem;
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 18px;
-    transition: background 0.3s ease;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
 }
 
-.generate-button:hover {
-    background: #3a5795;
+.generate-button:hover, .reset-button:hover {
+    transform: scale(1.05);
 }
 
-/* Story Output */
-.story-output {
-    margin-top: 20px;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    font-size: 24px;
-    line-height: 1.6;
-}
-
-.user-input {
-    color: #2B4170;
-    font-weight: bold;
-}
-
-/* Word Examples */
+/* Word Examples Section */
 .word-examples {
-    padding: 20px;
+    margin-top: 3rem;
 }
 
-.word-examples h3 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
+.example-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.flip-card {
-    background-color: transparent;
-    margin-bottom: 20px;
+.example-card {
     perspective: 1000px;
-    cursor: pointer;
     height: 250px;
 }
 
-.flip-card-inner {
+.card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    text-align: left;
-    transition: transform 0.6s;
+    text-align: center;
+    transition: transform 0.8s;
     transform-style: preserve-3d;
+    cursor: pointer;
 }
 
-.flip-card.flipped .flip-card-inner {
+.example-card.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.card-front, .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.card-front {
+    background: #2b4162;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-back {
     background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.flip-card-back {
     transform: rotateY(180deg);
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.flip-card h4 {
-    color: #2B4170;
-    margin-bottom: 15px;
-    font-size: 18px;
-}
-
-.example-list {
-    font-size: 14px;
-    line-height: 1.8;
-    color: #666;
-}
-
-.hidden {
-    display: none;
+.card-back p {
+    color: #2b4162;
+    margin: 0.5rem 0;
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-    .container {
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .story-buttons {
         grid-template-columns: 1fr;
-        max-width: 800px;
+    }
+    
+    .example-cards {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
 
-@media (max-width: 600px) {
-    .header h1 {
-        font-size: 24px;
-    }
-    
-    .header p {
-        font-size: 16px;
-    }
-    
-    .nav-link {
-        padding: 8px 15px;
-        margin: 0 5px;
-        font-size: 14px;
-    }
+/* Story Output Styling */
+.story-output {
+    background: #f5f7fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    line-height: 1.6;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
 }
