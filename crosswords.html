@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Crossword Puzzles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Lenape Language Games - Crosswords</title>
     <style>
         * {
             margin: 0;
@@ -25,8 +24,7 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .nav-bar {
@@ -37,16 +35,11 @@
         }
 
         .nav-link {
-            color: #2b4162;
+            color: #333;
             text-decoration: none;
             padding: 0.5rem 1rem;
             margin: 0 0.5rem;
             border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-link:hover {
-            background-color: #f0f0f0;
         }
 
         .nav-link.active {
@@ -60,66 +53,40 @@
             padding: 0 1rem;
         }
 
-        .instructions {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .instructions h2 {
-            color: #2b4162;
-            margin-bottom: 1rem;
-        }
-
-        .instructions ul {
-            list-style-type: none;
-            padding-left: 1rem;
-        }
-
-        .instructions li {
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .instructions li:before {
-            content: "•";
-            color: #2b4162;
-            position: absolute;
-            left: 0;
-        }
-
-        .crossword-buttons {
+        .puzzle-selection {
             display: flex;
             gap: 1rem;
-            justify-content: center;
             margin-bottom: 2rem;
+            justify-content: center;
         }
 
-        .crossword-button {
-            background-color: #2b4162;
-            color: white;
-            border: none;
+        .puzzle-button {
+            background-color: white;
+            border: 1px solid #ddd;
             padding: 1rem 2rem;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .crossword-button:hover {
-            background-color: #1a2a3f;
+        .puzzle-button:hover {
+            background-color: #f0f0f0;
+        }
+
+        .puzzle-button.active {
+            background-color: #2b4162;
+            color: white;
         }
 
         .crossword-frame {
             width: 100%;
-            height: 700px;
+            height: 900px;
             border: none;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             display: none;
+            overflow: hidden;
         }
 
         .crossword-frame.active {
@@ -129,58 +96,46 @@
 </head>
 <body>
     <div class="header">
-        <h1>Lenape Crossword Puzzles</h1>
+        <h1>Lenape Language Crosswords</h1>
         <p>Test your knowledge of Lenape words!</p>
     </div>
 
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="madlibs.html" class="nav-link">Mad Libs</a>
-        <a href="crossword.html" class="nav-link active">Crosswords</a>
+        <a href="crosswords.html" class="nav-link active">Crosswords</a>
         <a href="cardflip.html" class="nav-link">Card Flip</a>
     </nav>
 
     <div class="container">
-        <div class="instructions">
-            <h2>How to Play:</h2>
-            <ul>
-                <li>Select a crossword puzzle type below</li>
-                <li>Read the clues carefully - they will be in Lenape</li>
-                <li>Enter the English translation as your answer</li>
-                <li>All answers should be lowercase</li>
-                <li>Use only letters (no spaces or special characters)</li>
-            </ul>
+        <div class="puzzle-selection">
+            <button class="puzzle-button active" onclick="showPuzzle('puzzle1')">Puzzle 1</button>
+            <button class="puzzle-button" onclick="showPuzzle('puzzle2')">Puzzle 2</button>
+            <button class="puzzle-button" onclick="showPuzzle('puzzle3')">Puzzle 3</button>
         </div>
 
-        <div class="crossword-buttons">
-            <button class="crossword-button" onclick="loadCrossword('singular')">Body Parts (Singular)</button>
-            <button class="crossword-button" onclick="loadCrossword('plural')">Body Parts (Plural)</button>
-        </div>
-
-        <iframe id="crossword-singular" class="crossword-frame" src="https://crosswordlabs.com/embed/lenape-body-parts-singular"></iframe>
-        <iframe id="crossword-plural" class="crossword-frame" src="https://crosswordlabs.com/embed/lenape-body-parts-plural"></iframe>
+        <iframe id="puzzle1" src="https://crosswordlabs.com/embed/lenape-language-practice" class="crossword-frame active"></iframe>
+        <iframe id="puzzle2" src="https://crosswordlabs.com/embed/lenape-language-practice-2" class="crossword-frame"></iframe>
+        <iframe id="puzzle3" src="https://crosswordlabs.com/embed/lenape-language-practice-3" class="crossword-frame"></iframe>
     </div>
 
     <script>
-        function loadCrossword(type) {
-            // Hide all crossword frames
+        function showPuzzle(puzzleId) {
+            // Hide all puzzles
             document.querySelectorAll('.crossword-frame').forEach(frame => {
                 frame.classList.remove('active');
             });
-
-            // Show selected crossword
-            document.getElementById('crossword-' + type).classList.add('active');
-
-            // Update button styles
-            document.querySelectorAll('.crossword-button').forEach(button => {
-                button.style.backgroundColor = '#2b4162';
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.puzzle-button').forEach(button => {
+                button.classList.remove('active');
             });
-            event.target.style.backgroundColor = '#1a2a3f';
-        }
-
-        // Load singular crossword by default
-        window.onload = function() {
-            loadCrossword('singular');
+            
+            // Show selected puzzle
+            document.getElementById(puzzleId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
         }
     </script>
 </body>
