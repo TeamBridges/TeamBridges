@@ -23,58 +23,55 @@
     <div class="container">
         <div class="stories-section">
             <h2>Choose Your Story</h2>
-            <div class="story-buttons">
-                <button class="story-choice" data-story-id="1">
+            <div class="story-grid">
+                <div class="story-choice" onclick="selectStory(1)">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
-                </button>
+                </div>
 
-                <button class="story-choice" data-story-id="2">
+                <div class="story-choice" onclick="selectStory(2)">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
-                </button>
+                </div>
 
-                <button class="story-choice" data-story-id="3">
+                <div class="story-choice" onclick="selectStory(3)">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
-                </button>
+                </div>
 
-                <button class="story-choice" data-story-id="4">
+                <div class="story-choice" onclick="selectStory(4)">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
-                </button>
+                </div>
 
-                <button class="story-choice" data-story-id="5">
+                <div class="story-choice" onclick="selectStory(5)">
                     <h3>Playing Games</h3>
                     <p>Fun and games with Lenape words!</p>
-                </button>
+                </div>
 
-                <button class="story-choice" data-story-id="6">
+                <div class="story-choice" onclick="selectStory(6)">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
-                </button>
+                </div>
             </div>
 
-            <div class="story-card">
-                <div class="story-card-inner">
-                    <div class="story-card-front">
-                        <h3 id="story-form-title">Select a Story</h3>
-                        <div id="story-inputs" class="input-form"></div>
-                        <button id="generate-button" class="generate-button" style="display: none;">Generate Story</button>
-                    </div>
-                    <div class="story-card-back">
-                        <h3>Your Story</h3>
-                        <div id="story-output" class="story-output"></div>
-                        <button class="reset-button" onclick="resetCard()">Create Another Story</button>
-                    </div>
-                </div>
+            <div class="story-input-section">
+                <h3 id="selected-story-title">Select a Story</h3>
+                <div id="input-fields"></div>
+                <button id="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
+            </div>
+
+            <div class="story-output-section">
+                <h3>Your Story</h3>
+                <div id="story-output"></div>
+                <button onclick="resetStory()" class="reset-button">Create Another Story</button>
             </div>
         </div>
 
-        <div class="word-examples">
+        <div class="glossary-section">
             <h2>Lenape Word Examples</h2>
-            <div class="example-cards">
-                <div class="example-card" data-category="bodyParts">
+            <div class="glossary-cards">
+                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Body Parts</h3>
@@ -89,7 +86,7 @@
                     </div>
                 </div>
 
-                <div class="example-card" data-category="colors">
+                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Colors</h3>
@@ -104,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="example-card" data-category="numbers">
+                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Numbers</h3>
@@ -119,7 +116,7 @@
                     </div>
                 </div>
 
-                <div class="example-card" data-category="emotions">
+                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
                     <div class="card-inner">
                         <div class="card-front">
                             <h3>Emotions</h3>
