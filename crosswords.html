@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -239,6 +240,252 @@
                     <div class="clue-item">10. tankkat</div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <script>
+        function showPuzzle(type) {
+            const frames = document.querySelectorAll('.crossword-frame');
+            const buttons = document.querySelectorAll('.puzzle-button');
+            
+            frames.forEach(frame => {
+                frame.classList.remove('active');
+            });
+            
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(type).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
+Key changes made:
+
+    Removed the right-side section
+    Enlarged the crossword puzzle iframe (800px height)
+    Made clues section full-width with two columns
+    Increased font sizes for better readability
+    Added more padding and spacing
+    Improved mobile responsiveness
+    Maintained consistent styling with the rest of the site
+
+Would you like me to:
+
+    Adjust the puzzle height further?
+    Modify the clues layout?
+    Change any of the styling?
+    Make any other improvements?
+
+RoleBot Code Generation Assistant
+
+2 minutes ago
+Natalie Pierson
+@role-codegenerationassistant
+
+Remove the extra section of clues. It's repetitive. Full code correction.
+
+I'll provide the updated code with the redundant clues section removed, since the crossword puzzle itself contains the clues:
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenape Language Games - Crosswords</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-bar {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.active {
+            background-color: #1e3c72;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .instructions {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .instructions h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .instructions ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .instructions li {
+            margin-bottom: 0.8rem;
+        }
+
+        .puzzle-selection {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .puzzle-button {
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .puzzle-button:hover {
+            background-color: #2a5298;
+            transform: translateY(-2px);
+        }
+
+        .puzzle-button.active {
+            background-color: #2a5298;
+        }
+
+        .puzzle-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .crossword-frame {
+            width: 100%;
+            height: 800px;
+            border: none;
+            display: none;
+        }
+
+        .crossword-frame.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .puzzle-selection {
+                flex-direction: column;
+            }
+
+            .puzzle-button {
+                width: 100%;
+            }
+
+            .crossword-frame {
+                height: 600px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-link {
+                padding: 8px 15px;
+                margin: 0 5px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Lenape Language Crosswords</h1>
+        <p>Test your knowledge of Lenape words!</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="madlibs.html" class="nav-link">Mad Libs</a>
+        <a href="crosswords.html" class="nav-link active">Crosswords</a>
+        <a href="cardflip.html" class="nav-link">Card Flip</a>
+    </nav>
+
+    <div class="container">
+        <div class="instructions">
+            <h2>How to Play:</h2>
+            <ul>
+                <li>The clues are given in Lenape</li>
+                <li>Enter the English translations as your answers</li>
+                <li>All answers should be in lowercase letters</li>
+                <li>Use TAB to move between clues</li>
+                <li>Press ENTER to switch between across and down clues</li>
+            </ul>
+        </div>
+
+        <div class="puzzle-selection">
+            <button class="puzzle-button active" onclick="showPuzzle('singular')">Body Parts (Singular)</button>
+            <button class="puzzle-button" onclick="showPuzzle('plural')">Body Parts (Plural)</button>
+        </div>
+
+        <div class="puzzle-container">
+            <iframe id="singular" src="https://crosswordlabs.com/embed/lenape-body-parts-singular" class="crossword-frame active"></iframe>
+            <iframe id="plural" src="https://crosswordlabs.com/embed/lenape-body-parts-plural" class="crossword-frame"></iframe>
         </div>
     </div>
 
