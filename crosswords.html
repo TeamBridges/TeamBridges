@@ -27,6 +27,7 @@
         }
 
         .header h1 {
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
 
@@ -35,14 +36,18 @@
             padding: 1rem;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav-link {
             color: #333;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             margin: 0 0.5rem;
             border-radius: 5px;
+            font-size: 1.1rem;
         }
 
         .nav-link.active {
@@ -51,25 +56,40 @@
         }
 
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
             flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .instructions {
             background-color: white;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 10px;
             margin-bottom: 2rem;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        .instructions h2 {
+            color: #2b4162;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .instructions ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .instructions li {
+            margin-bottom: 0.8rem;
+        }
+
         .puzzle-selection {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 2rem;
             justify-content: center;
         }
@@ -81,62 +101,117 @@
             padding: 1rem 2rem;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
         }
 
         .puzzle-button:hover {
             background-color: #1a2a3f;
+            transform: translateY(-2px);
         }
 
         .puzzle-button.active {
             background-color: #1a2a3f;
         }
 
-        .crossword-container {
+        .crossword-section {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .puzzle-container {
+            flex: 2;
             background: white;
-            padding: 1rem;
+            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-height: 600px;
+        }
+
+        .clues-container {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .clues-section {
             margin-bottom: 2rem;
-            flex-grow: 1;
-            overflow: auto;
         }
 
-        .crossword-frame {
-            width: 100%;
-            height: 700px;
-            border: none;
-            display: none;
+        .clues-section h3 {
+            color: #2b4162;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #2b4162;
+            padding-bottom: 0.5rem;
         }
 
-        .crossword-frame.active {
-            display: block;
+        .clue-list {
+            font-size: 1.2rem;
+            line-height: 1.8;
         }
 
-        /* Custom scrollbar styling */
-        .crossword-container::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
+        .clue-item {
+            margin-bottom: 0.8rem;
         }
 
-        .crossword-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
+        @media (max-width: 1024px) {
+            .crossword-section {
+                flex-direction: column;
+            }
+
+            .puzzle-container, .clues-container {
+                width: 100%;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .instructions ul {
+                font-size: 1.1rem;
+            }
         }
 
-        .crossword-container::-webkit-scrollbar-thumb {
-            background: #2b4162;
-            border-radius: 10px;
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .puzzle-selection {
+                flex-direction: column;
+            }
+
+            .puzzle-button {
+                width: 100%;
+            }
+
+            .nav-link {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+                margin: 0 0.2rem;
+            }
+
+            .clue-list {
+                font-size: 1.1rem;
+            }
         }
 
-        .crossword-container::-webkit-scrollbar-thumb:hover {
-            background: #1a2a3f;
-        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
 
-        /* Footer space */
-        .footer-space {
-            height: 2rem;
+            .instructions ul {
+                font-size: 1rem;
+            }
+
+            .puzzle-container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
@@ -156,7 +231,14 @@
     <div class="container">
         <div class="instructions">
             <h2>How to Play:</h2>
-            <p>The clues will be in Lenape, and you'll need to enter the English translation as your answer.</p>
+            <ul>
+                <li>Select a puzzle type using the buttons below</li>
+                <li>Read the clues in Lenape</li>
+                <li>Enter the English translations as your answers</li>
+                <li>All answers should be in lowercase letters</li>
+                <li>Use TAB to move between clues</li>
+                <li>Press ENTER to switch between across and down clues</li>
+            </ul>
         </div>
 
         <div class="puzzle-selection">
@@ -164,32 +246,61 @@
             <button class="puzzle-button" onclick="showPuzzle('plural')">Body Parts (Plural)</button>
         </div>
 
-        <div class="crossword-container">
-            <iframe id="singular" src="https://crosswordlabs.com/embed/lenape-body-parts-singular" class="crossword-frame active"></iframe>
-            <iframe id="plural" src="https://crosswordlabs.com/embed/lenape-body-parts-plural" class="crossword-frame"></iframe>
-        </div>
+        <div class="crossword-section">
+            <div class="puzzle-container">
+                <iframe id="singular" src="https://crosswordlabs.com/embed/lenape-body-parts-singular" style="width: 100%; height: 100%; min-height: 600px; border: none;" class="active"></iframe>
+                <iframe id="plural" src="https://crosswordlabs.com/embed/lenape-body-parts-plural" style="width: 100%; height: 100%; min-height: 600px; border: none; display: none;"></iframe>
+            </div>
 
-        <div class="footer-space"></div>
+            <div class="clues-container">
+                <div class="clues-section">
+                    <h3>Across</h3>
+                    <div class="clue-list">
+                        <div class="clue-item">2. hwikwi</div>
+                        <div class="clue-item">4. shetun</div>
+                        <div class="clue-item">6. weshkinkw</div>
+                        <div class="clue-item">7. hopikon</div>
+                        <div class="clue-item">9. wil</div>
+                        <div class="clue-item">10. naolk</div>
+                    </div>
+                </div>
+
+                <div class="clues-section">
+                    <h3>Down</h3>
+                    <div class="clue-list">
+                        <div class="clue-item">1. welench</div>
+                        <div class="clue-item">3. naxk</div>
+                        <div class="clue-item">4. hwikat</div>
+                        <div class="clue-item">5. wananu</div>
+                        <div class="clue-item">8. hwitaok</div>
+                        <div class="clue-item">10. tankkat</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        function showPuzzle(puzzleType) {
-            // Hide all puzzles
-            document.querySelectorAll('.crossword-frame').forEach(frame => {
-                frame.classList.remove('active');
+        function showPuzzle(type) {
+            const frames = document.querySelectorAll('iframe');
+            const buttons = document.querySelectorAll('.puzzle-button');
+            
+            frames.forEach(frame => {
+                frame.style.display = 'none';
             });
             
-            // Remove active class from all buttons
-            document.querySelectorAll('.puzzle-button').forEach(button => {
+            buttons.forEach(button => {
                 button.classList.remove('active');
             });
             
-            // Show selected puzzle
-            document.getElementById(puzzleType).classList.add('active');
-            
-            // Add active class to clicked button
+            document.getElementById(type).style.display = 'block';
             event.target.classList.add('active');
         }
+
+        // Initialize first puzzle
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('singular').style.display = 'block';
+        });
     </script>
 </body>
 </html>
