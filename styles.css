@@ -1,63 +1,69 @@
-/* Base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+/* Global Styles */
+:root {
+    --primary-color: #2B3856;
+    --secondary-color: #3A4B77;
+    --text-color: #333;
+    --light-bg: #f5f7fa;
+    --white: #ffffff;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
 }
 
 body {
-    background-color: #f5f7fa;
-    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-color);
 }
 
-/* Header styles */
-.header {
-    background-color: #2b4162;
-    color: white;
+/* Header Styles */
+header {
+    background-color: var(--primary-color);
+    color: var(--white);
     text-align: center;
-    padding: 2rem;
+    padding: 2rem 0;
 }
 
-.header h1 {
+header h1 {
+    margin: 0;
     font-size: 2.5rem;
-    margin-bottom: 0.5rem;
 }
 
-.header p {
+header p {
+    margin: 0.5rem 0 0;
     font-size: 1.2rem;
-    opacity: 0.9;
 }
 
-/* Navigation */
+/* Navigation Bar */
 .nav-bar {
-    background-color: white;
-    padding: 1rem;
+    background-color: var(--secondary-color);
+    padding: 1rem 0;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.nav-link {
-    color: #2b4162;
+.nav-bar a {
+    color: var(--white);
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     margin: 0 0.5rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease;
 }
 
-.nav-link.active {
-    background-color: #2b4162;
-    color: white;
+.nav-bar a.active,
+.nav-bar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Container and grid layout */
+/* Main Container */
 .container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
 
+/* Story Selection Grid */
 .story-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -65,146 +71,148 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Story choice cards */
-.story-choice {
-    background: white;
-    border-radius: 10px;
+.story-card {
+    background-color: var(--white);
     padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: none;
-    text-align: left;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-.story-choice:hover {
+.story-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.story-choice h3 {
-    color: #2b4162;
-    margin-bottom: 0.5rem;
+.story-card h3 {
+    color: var(--primary-color);
+    margin: 0 0 0.5rem 0;
 }
 
-.story-choice p {
+.story-card p {
+    margin: 0;
     color: #666;
 }
 
-/* Input section */
-.story-input-section {
-    background: white;
-    border-radius: 10px;
+/* Story Creation Section */
+.story-creation {
+    background-color: var(--white);
     padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
     margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-container {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
 }
 
 .input-group {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group label {
-    display: block;
     margin-bottom: 0.5rem;
-    color: #2b4162;
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 .input-group input {
-    width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     font-size: 1rem;
 }
 
 /* Buttons */
-button {
-    background-color: #2b4162;
-    color: white;
-    padding: 0.8rem 1.5rem;
+.generate-button,
+.reset-button {
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
-    border-radius: 5px;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #1a2a3f;
+.generate-button:hover,
+.reset-button:hover {
+    background-color: var(--secondary-color);
 }
 
-/* Glossary section */
-.glossary-section {
-    margin-top: 3rem;
-}
-
-.glossary-cards {
+/* Word Examples Section */
+.example-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+}
+
+.example-card {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.example-card:hover {
+    transform: scale(1.02);
+}
+
+.example-card h3 {
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.word-list {
+    display: none;
+    background-color: var(--white);
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
     margin-top: 1rem;
 }
 
-.glossary-card {
-    height: 200px;
-    perspective: 1000px;
-    cursor: pointer;
+.example-card.active .word-list {
+    display: block;
 }
 
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.glossary-card.flipped .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
+/* Story Output */
+.story-output {
+    background-color: var(--light-bg);
     padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 1.5rem;
+    display: none;
 }
 
-.card-front {
-    background-color: #2b4162;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.story-output.visible {
+    display: block;
 }
 
-.card-back {
-    background-color: white;
-    transform: rotateY(180deg);
-    overflow-y: auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.card-back p {
-    margin: 0.5rem 0;
-    color: #2b4162;
-}
-
-/* Responsive adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
+    .container {
+        padding: 0 0.5rem;
     }
     
     .story-grid {
         grid-template-columns: 1fr;
     }
     
-    .glossary-cards {
+    .example-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .nav-bar a {
+        display: block;
+        margin: 0.5rem 0;
     }
 }
