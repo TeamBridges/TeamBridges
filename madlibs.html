@@ -8,131 +8,111 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
+    <header>
         <h1>Lenape Mad Libs Generator</h1>
         <p>Create Fun Stories with Lenape Words!</p>
-    </div>
+    </header>
 
     <nav class="nav-bar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="madlibs.html" class="nav-link active">Mad Libs</a>
-        <a href="crosswords.html" class="nav-link">Crosswords</a>
-        <a href="cardflip.html" class="nav-link">Card Flip</a>
+        <a href="index.html">Home</a>
+        <a href="madlibs.html" class="active">Mad Libs</a>
+        <a href="crosswords.html">Crosswords</a>
+        <a href="cardflip.html">Card Flip</a>
     </nav>
 
-    <div class="container">
-        <div class="stories-section">
+    <main class="container">
+        <section class="story-selection">
             <h2>Choose Your Story</h2>
             <div class="story-grid">
-                <div class="story-choice" onclick="selectStory(1)">
+                <div class="story-card" data-story-id="1">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
                 </div>
 
-                <div class="story-choice" onclick="selectStory(2)">
+                <div class="story-card" data-story-id="2">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
                 </div>
 
-                <div class="story-choice" onclick="selectStory(3)">
+                <div class="story-card" data-story-id="3">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
                 </div>
 
-                <div class="story-choice" onclick="selectStory(4)">
+                <div class="story-card" data-story-id="4">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
                 </div>
 
-                <div class="story-choice" onclick="selectStory(5)">
+                <div class="story-card" data-story-id="5">
                     <h3>Playing Games</h3>
                     <p>Fun and games with Lenape words!</p>
                 </div>
 
-                <div class="story-choice" onclick="selectStory(6)">
+                <div class="story-card" data-story-id="6">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
                 </div>
             </div>
+        </section>
 
-            <div class="story-input-section">
-                <h3 id="selected-story-title">Select a Story</h3>
-                <div id="input-fields"></div>
-                <button id="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
-            </div>
+        <section class="story-creation" id="story-creation">
+            <h2 id="selected-story-title">Select a Story</h2>
+            <div id="input-container" class="input-container"></div>
+            <button id="generate-button" class="generate-button" style="display: none;">Generate Story</button>
+            <div id="story-output" class="story-output"></div>
+            <button id="reset-button" class="reset-button" style="display: none;">Create Another Story</button>
+        </section>
 
-            <div class="story-output-section">
-                <h3>Your Story</h3>
-                <div id="story-output"></div>
-                <button onclick="resetStory()" class="reset-button">Create Another Story</button>
-            </div>
-        </div>
-
-        <div class="glossary-section">
+        <section class="word-examples">
             <h2>Lenape Word Examples</h2>
-            <div class="glossary-cards">
-                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Body Parts</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Wikèhèn = Head</p>
-                            <p>Wikèhs = Mouth</p>
-                            <p>Wikuwàkane = Nose</p>
-                            <p>Wikuwe = Eyes</p>
-                            <p>Wikèk = Leg</p>
-                        </div>
+            <div class="example-grid">
+                <div class="example-card" id="body-parts">
+                    <h3>Body Parts</h3>
+                    <div class="word-list">
+                        <p>Wikèhèn = Head</p>
+                        <p>Wikèhs = Mouth</p>
+                        <p>Wikuwàkane = Nose</p>
+                        <p>Wikuwe = Eyes</p>
+                        <p>Wikèk = Leg</p>
                     </div>
                 </div>
 
-                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Colors</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Sàpe = Black</p>
-                            <p>Wapá = White</p>
-                            <p>Mòtànk = Red</p>
-                            <p>Wëski = Yellow</p>
-                            <p>Oxkàshe = Green</p>
-                        </div>
+                <div class="example-card" id="colors">
+                    <h3>Colors</h3>
+                    <div class="word-list">
+                        <p>Sàpe = Black</p>
+                        <p>Wapá = White</p>
+                        <p>Mòtànk = Red</p>
+                        <p>Wëski = Yellow</p>
+                        <p>Oxkàshe = Green</p>
                     </div>
                 </div>
 
-                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Numbers</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Lënuwe = One</p>
-                            <p>Nisha = Two</p>
-                            <p>Nash = Three</p>
-                            <p>Newa = Four</p>
-                            <p>Palenaxk = Five</p>
-                        </div>
+                <div class="example-card" id="numbers">
+                    <h3>Numbers</h3>
+                    <div class="word-list">
+                        <p>Lënuwe = One</p>
+                        <p>Nisha = Two</p>
+                        <p>Nash = Three</p>
+                        <p>Newa = Four</p>
+                        <p>Palenaxk = Five</p>
                     </div>
                 </div>
 
-                <div class="glossary-card" onclick="this.classList.toggle('flipped')">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Emotions</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Nulitùn = Happy</p>
-                            <p>Wsìkwàk = Angry</p>
-                            <p>Wichin = Sad</p>
-                            <p>Wètëlaohake = Excited</p>
-                            <p>Wjánte = Afraid</p>
-                        </div>
+                <div class="example-card" id="emotions">
+                    <h3>Emotions</h3>
+                    <div class="word-list">
+                        <p>Nulitùn = Happy</p>
+                        <p>Wsìkwàk = Angry</p>
+                        <p>Wichin = Sad</p>
+                        <p>Wètëlaohake = Excited</p>
+                        <p>Wjánte = Afraid</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
