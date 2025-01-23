@@ -14,6 +14,9 @@
 
         body {
             background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
@@ -51,6 +54,17 @@
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .instructions {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .puzzle-selection {
@@ -61,8 +75,9 @@
         }
 
         .puzzle-button {
-            background-color: white;
-            border: 1px solid #ddd;
+            background-color: #2b4162;
+            color: white;
+            border: none;
             padding: 1rem 2rem;
             border-radius: 5px;
             cursor: pointer;
@@ -71,26 +86,57 @@
         }
 
         .puzzle-button:hover {
-            background-color: #f0f0f0;
+            background-color: #1a2a3f;
         }
 
         .puzzle-button.active {
-            background-color: #2b4162;
-            color: white;
+            background-color: #1a2a3f;
+        }
+
+        .crossword-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            overflow: auto;
         }
 
         .crossword-frame {
             width: 100%;
-            height: 900px;
+            height: 700px;
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             display: none;
-            overflow: hidden;
         }
 
         .crossword-frame.active {
             display: block;
+        }
+
+        /* Custom scrollbar styling */
+        .crossword-container::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        .crossword-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .crossword-container::-webkit-scrollbar-thumb {
+            background: #2b4162;
+            border-radius: 10px;
+        }
+
+        .crossword-container::-webkit-scrollbar-thumb:hover {
+            background: #1a2a3f;
+        }
+
+        /* Footer space */
+        .footer-space {
+            height: 2rem;
         }
     </style>
 </head>
@@ -108,19 +154,26 @@
     </nav>
 
     <div class="container">
-        <div class="puzzle-selection">
-            <button class="puzzle-button active" onclick="showPuzzle('puzzle1')">Puzzle 1</button>
-            <button class="puzzle-button" onclick="showPuzzle('puzzle2')">Puzzle 2</button>
-            <button class="puzzle-button" onclick="showPuzzle('puzzle3')">Puzzle 3</button>
+        <div class="instructions">
+            <h2>How to Play:</h2>
+            <p>The clues will be in Lenape, and you'll need to enter the English translation as your answer.</p>
         </div>
 
-        <iframe id="puzzle1" src="https://crosswordlabs.com/embed/lenape-language-practice" class="crossword-frame active"></iframe>
-        <iframe id="puzzle2" src="https://crosswordlabs.com/embed/lenape-language-practice-2" class="crossword-frame"></iframe>
-        <iframe id="puzzle3" src="https://crosswordlabs.com/embed/lenape-language-practice-3" class="crossword-frame"></iframe>
+        <div class="puzzle-selection">
+            <button class="puzzle-button active" onclick="showPuzzle('singular')">Body Parts (Singular)</button>
+            <button class="puzzle-button" onclick="showPuzzle('plural')">Body Parts (Plural)</button>
+        </div>
+
+        <div class="crossword-container">
+            <iframe id="singular" src="https://crosswordlabs.com/embed/lenape-body-parts-singular" class="crossword-frame active"></iframe>
+            <iframe id="plural" src="https://crosswordlabs.com/embed/lenape-body-parts-plural" class="crossword-frame"></iframe>
+        </div>
+
+        <div class="footer-space"></div>
     </div>
 
     <script>
-        function showPuzzle(puzzleId) {
+        function showPuzzle(puzzleType) {
             // Hide all puzzles
             document.querySelectorAll('.crossword-frame').forEach(frame => {
                 frame.classList.remove('active');
@@ -132,7 +185,7 @@
             });
             
             // Show selected puzzle
-            document.getElementById(puzzleId).classList.add('active');
+            document.getElementById(puzzleType).classList.add('active');
             
             // Add active class to clicked button
             event.target.classList.add('active');
