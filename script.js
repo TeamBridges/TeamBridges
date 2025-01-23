@@ -1,178 +1,158 @@
-// Story Templates with all six stories
-const stories = {
+// Story templates and input requirements
+const storyTemplates = {
     1: {
         title: "The Bicycle Adventure",
-        description: "A thrilling tale about a bicycle ride!",
         inputs: [
-            { label: "Enter a body part:", id: "bodyPart1", placeholder: "e.g., Wikèhèn (head)" },
-            { label: "Enter another body part:", id: "bodyPart2", placeholder: "e.g., Wikèk (leg)" },
-            { label: "Enter a number:", id: "number1", placeholder: "e.g., Nisha (two)" },
-            { label: "Enter a color:", id: "color1", placeholder: "e.g., Mòtànk (red)" },
-            { label: "Enter an emotion:", id: "emotion1", placeholder: "e.g., Nulitùn (happy)" }
+            { label: "Enter a body part:", type: "bodyPart" },
+            { label: "Enter another body part:", type: "bodyPart" },
+            { label: "Enter a number:", type: "number" },
+            { label: "Enter a color:", type: "color" },
+            { label: "Enter an emotion:", type: "emotion" },
+            { label: "Enter a different number:", type: "number" }
         ],
-        template: "I was riding my bike when I hit my {bodyPart1} on a tree branch. I fell and hurt my {bodyPart2}. It took {number1} days to heal. My bruise turned {color1}. Now I feel {emotion1} when I ride my bike."
+        template: "I was riding my bike, but I crashed! I scraped my {0} and broke my {1}. I had to wear a cast for {2} weeks. The weirdest part was that my {0} turned {3}! I wasn't expecting that! It made me feel {4}. I probably won't be able to ride my bike again for {5} days."
     },
     2: {
         title: "Dancing with Friends",
-        description: "A fun story about dancing and friendship!",
         inputs: [
-            { label: "Enter a number:", id: "number1", placeholder: "e.g., Nash (three)" },
-            { label: "Enter a body part:", id: "bodyPart1", placeholder: "e.g., Wikèk (leg)" },
-            { label: "Enter another body part:", id: "bodyPart2", placeholder: "e.g., Wikèhèn (head)" },
-            { label: "Enter a color:", id: "color1", placeholder: "e.g., Wapá (white)" },
-            { label: "Enter an emotion:", id: "emotion1", placeholder: "e.g., Wètëlaohake (excited)" }
+            { label: "Enter a number:", type: "number" },
+            { label: "Enter a friend's name:", type: "text" },
+            { label: "Enter a body part:", type: "bodyPart" },
+            { label: "Enter another body part:", type: "bodyPart" },
+            { label: "Enter a color:", type: "color" }
         ],
-        template: "{number1} friends were dancing when I moved my {bodyPart1} too fast. I hit my {bodyPart2}! My {color1} outfit got wrinkled. I felt {emotion1}!"
-    },
-    3: {
-        title: "A Day at School",
-        description: "Learning and playing with friends!",
-        inputs: [
-            { label: "Enter a color:", id: "color1", placeholder: "e.g., Oxkàshe (green)" },
-            { label: "Enter a body part:", id: "bodyPart1", placeholder: "e.g., Wikuwe (eyes)" },
-            { label: "Enter a number:", id: "number1", placeholder: "e.g., Palenaxk (five)" },
-            { label: "Enter another body part:", id: "bodyPart2", placeholder: "e.g., Wikèhs (mouth)" },
-            { label: "Enter an emotion:", id: "emotion1", placeholder: "e.g., Wichin (sad)" }
-        ],
-        template: "I wore my {color1} shirt to school. My {bodyPart1} were tired after reading {number1} books. I used my {bodyPart2} to tell stories. I felt {emotion1} when school ended."
-    },
-    4: {
-        title: "The Weather Today",
-        description: "An adventure in different weather!",
-        inputs: [
-            { label: "Enter an emotion:", id: "emotion1", placeholder: "e.g., Wsìkwàk (angry)" },
-            { label: "Enter a color:", id: "color1", placeholder: "e.g., Sàpe (black)" },
-            { label: "Enter a body part:", id: "bodyPart1", placeholder: "e.g., Wikuwàkane (nose)" },
-            { label: "Enter a number:", id: "number1", placeholder: "e.g., Lënuwe (one)" }
-        ],
-        template: "I felt {emotion1} when I saw the {color1} clouds. The rain hit my {bodyPart1} as I counted {number1} thunder claps."
-    },
-    5: {
-        title: "Playing Games",
-        description: "Fun and games with Lenape words!",
-        inputs: [
-            { label: "Enter a number:", id: "number1", placeholder: "e.g., Newa (four)" },
-            { label: "Enter a body part:", id: "bodyPart1", placeholder: "e.g., Wikèk (leg)" },
-            { label: "Enter a color:", id: "color1", placeholder: "e.g., Wëski (yellow)" },
-            { label: "Enter an emotion:", id: "emotion1", placeholder: "e.g., Nulitùn (happy)" }
-        ],
-        template: "We played games for {number1} hours. My {bodyPart1} got tired from jumping. I won the {color1} prize and felt {emotion1}!"
-    },
-    6: {
-        title: "Getting Ready",
-        description: "Morning routine adventure!",
-        inputs: [
-            { label: "Enter a body part:", id: "bodyPart1", placeholder: "e.g., Wikèhèn (head)" },
-            { label: "Enter a color:", id: "color1", placeholder: "e.g., Mòtànk (red)" },
-            { label: "Enter another body part:", id: "bodyPart2", placeholder: "e.g., Wikèhs (mouth)" },
-            { label: "Enter an emotion:", id: "emotion1", placeholder: "e.g., Wètëlaohake (excited)" }
-        ],
-        template: "I brushed my {bodyPart1} in the morning. Put on my {color1} clothes. Used my {bodyPart2} to eat breakfast. I felt {emotion1} about the day ahead!"
+        template: "{1} weeks ago, I was dancing with my friend {2}. They stepped on my {3} and hurt my {4}. My {3} turned {5}! I guess you can say {2} has two left feet!"
     }
+    // Add more story templates here for stories 3-6
 };
 
-// Function to select and display story input fields
-function selectStory(storyId) {
-    const story = stories[storyId];
-    if (!story) return;
+// Current story selection
+let currentStory = null;
 
-    // Clear previous inputs
-    const inputContainer = document.getElementById('input-container');
-    inputContainer.innerHTML = '';
+// Initialize when document loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initializing Mad Libs Generator');
+    setupStoryChoices();
+    setupGlossaryCards();
+});
 
-    // Create form for selected story
-    const form = document.createElement('form');
-    form.id = 'story-form';
-
-    // Add title
-    const title = document.createElement('h3');
-    title.textContent = story.title;
-    form.appendChild(title);
-
-    // Create input fields
-    story.inputs.forEach(input => {
-        const div = document.createElement('div');
-        div.className = 'input-group';
-
-        const label = document.createElement('label');
-        label.textContent = input.label;
-        label.htmlFor = input.id;
-
-        const inputField = document.createElement('input');
-        inputField.type = 'text';
-        inputField.id = input.id;
-        inputField.placeholder = input.placeholder;
-        inputField.required = true;
-
-        div.appendChild(label);
-        div.appendChild(inputField);
-        form.appendChild(div);
+function setupStoryChoices() {
+    const storyChoices = document.querySelectorAll('.story-choice');
+    storyChoices.forEach(choice => {
+        choice.addEventListener('click', function() {
+            const storyId = this.getAttribute('onclick').match(/\d+/)[0];
+            selectStory(parseInt(storyId));
+        });
     });
-
-    // Add form to container
-    inputContainer.appendChild(form);
-
-    // Show generate button
-    const generateButton = document.getElementById('generate-button');
-    generateButton.style.display = 'block';
-
-    // Hide any previous story output
-    const storyOutput = document.getElementById('story-output');
-    storyOutput.classList.add('hidden');
 }
 
-// Function to generate the story
-function generateStory() {
-    const storyId = document.querySelector('.story-choice.active').dataset.storyId;
-    const story = stories[storyId];
-    if (!story) return;
-
-    const inputs = {};
-    let allFilled = true;
-
-    // Collect all input values
-    story.inputs.forEach(input => {
-        const value = document.getElementById(input.id)?.value.trim();
-        if (!value) {
-            allFilled = false;
-        }
-        inputs[input.id] = value;
+function selectStory(storyId) {
+    console.log(`Selecting story ${storyId}`);
+    currentStory = storyTemplates[storyId];
+    
+    // Update UI
+    document.querySelectorAll('.story-choice').forEach(choice => {
+        choice.classList.remove('active');
     });
+    document.querySelector(`[onclick="selectStory(${storyId})"]`).classList.add('active');
+    
+    // Show input fields
+    const inputFields = document.getElementById('input-fields');
+    inputFields.innerHTML = '';
+    
+    currentStory.inputs.forEach((input, index) => {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+        
+        const label = document.createElement('label');
+        label.textContent = input.label;
+        
+        const inputElement = document.createElement('input');
+        inputElement.type = 'text';
+        inputElement.id = `story-input-${index}`;
+        inputElement.required = true;
+        
+        inputGroup.appendChild(label);
+        inputGroup.appendChild(inputElement);
+        inputFields.appendChild(inputGroup);
+    });
+    
+    // Show generate button
+    document.getElementById('generate-button').style.display = 'block';
+    
+    // Update title
+    document.getElementById('selected-story-title').textContent = currentStory.title;
+}
 
-    if (!allFilled) {
+function generateStory() {
+    if (!currentStory) {
+        alert('Please select a story first!');
+        return;
+    }
+    
+    // Collect input values
+    const inputs = Array.from({ length: currentStory.inputs.length }, (_, i) => 
+        document.getElementById(`story-input-${i}`).value.trim()
+    );
+    
+    // Check if all inputs are filled
+    if (inputs.some(input => !input)) {
         alert('Please fill in all fields!');
         return;
     }
-
-    // Generate story text
-    let storyText = story.template;
-    Object.keys(inputs).forEach(key => {
-        storyText = storyText.replace(`{${key}}`, inputs[key]);
+    
+    // Generate story
+    let story = currentStory.template;
+    inputs.forEach((input, index) => {
+        story = story.replace(`{${index}}`, input);
     });
-
+    
     // Display story
-    const storyOutput = document.getElementById('story-output');
-    storyOutput.innerHTML = storyText;
-    storyOutput.classList.remove('hidden');
+    document.getElementById('story-output').innerHTML = story;
+    
+    // Show output section
+    document.querySelector('.story-output-section').style.display = 'block';
 }
 
-// Initialize when document is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Add click listeners to story choices
-    document.querySelectorAll('.story-choice').forEach(button => {
-        button.addEventListener('click', function() {
-            const storyId = this.dataset.storyId;
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.story-choice').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Generate input fields for selected story
-            selectStory(storyId);
+function resetStory() {
+    // Clear inputs
+    document.getElementById('input-fields').innerHTML = '';
+    
+    // Clear story output
+    document.getElementById('story-output').innerHTML = '';
+    
+    // Reset story selection
+    currentStory = null;
+    
+    // Reset UI
+    document.querySelectorAll('.story-choice').forEach(choice => {
+        choice.classList.remove('active');
+    });
+    
+    document.getElementById('selected-story-title').textContent = 'Select a Story';
+    document.getElementById('generate-button').style.display = 'none';
+    document.querySelector('.story-output-section').style.display = 'none';
+}
+
+// Glossary card functionality
+function setupGlossaryCards() {
+    const glossaryCards = document.querySelectorAll('.glossary-card');
+    glossaryCards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
         });
     });
-});
+}
+
+// Helper function to format story text
+function formatStoryText(text) {
+    return text.replace(/\n/g, '<br>');
+}
+
+// Error handling
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+    console.error('Error: ', msg, '\nURL: ', url, '\nLine: ', lineNo, '\nColumn: ', columnNo, '\nError object: ', error);
+    return false;
+};
+
+console.log('Mad Libs Generator script loaded successfully');
