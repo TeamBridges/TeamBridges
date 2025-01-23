@@ -8,74 +8,128 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
     <div class="header">
         <h1>Lenape Mad Libs Generator</h1>
         <p>Create Fun Stories with Lenape Words!</p>
     </div>
 
-    <!-- Navigation -->
-    
-<nav class="nav-bar">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="madlibs.html" class="nav-link active">Mad Libs</a>
-    <a href="crosswords.html" class="nav-link">Crosswords</a>
-    <a href="cardflip.html" class="nav-link">Card Flip</a>
-</nav>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="madlibs.html" class="nav-link active">Mad Libs</a>
+        <a href="crosswords.html" class="nav-link">Crosswords</a>
+        <a href="cardflip.html" class="nav-link">Card Flip</a>
+    </nav>
 
-</nav>
-
-
-    <!-- Main Container -->
     <div class="container">
-        <!-- Story Selection -->
-        <div class="story-selection">
-            <h3>Choose Your Story</h3>
-            <button class="story-choice" onclick="selectStory(1)">
-                <h4>The Bicycle Adventure</h4>
-                <p>A thrilling tale about a bicycle ride gone wrong!</p>
-            </button>
-            <button class="story-choice" onclick="selectStory(2)">
-                <h4>Dancing with Friends</h4>
-                <p>A fun story about dancing and friendship!</p>
-            </button>
+        <div class="story-container">
+            <!-- Story Selection Buttons -->
+            <div class="story-buttons">
+                <button class="story-choice" onclick="selectStory(1)">
+                    <h3>The Bicycle Adventure</h3>
+                    <p>A thrilling tale about a bicycle ride!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory(2)">
+                    <h3>Dancing with Friends</h3>
+                    <p>A fun story about dancing and friendship!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory(3)">
+                    <h3>A Day at School</h3>
+                    <p>Learning and playing with friends!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory(4)">
+                    <h3>The Weather Today</h3>
+                    <p>An adventure in different weather!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory(5)">
+                    <h3>Playing Games</h3>
+                    <p>Fun and games with Lenape words!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory(6)">
+                    <h3>Getting Ready</h3>
+                    <p>Morning routine adventure!</p>
+                </button>
+            </div>
+
+            <!-- Story Card -->
+            <div class="story-card">
+                <div class="story-card-inner">
+                    <div class="story-card-front">
+                        <h3 id="story-form-title">Select a Story</h3>
+                        <div id="story-inputs"></div>
+                        <button id="generate-button" onclick="generateStory()" style="display: none;">Generate Story</button>
+                    </div>
+                    <div class="story-card-back">
+                        <h3>Your Story</h3>
+                        <div id="story-output"></div>
+                        <button class="reset-button" onclick="resetCard()">Create Another Story</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Story Form -->
-        <div class="story-form">
-            <form id="madlib-form">
-                <div class="input-group">
-                    <label for="bodypart">Enter a body part:</label>
-                    <input type="text" id="bodypart" placeholder="e.g., Wikèhèn (head)">
-                </div>
-                <div class="input-group">
-                    <label for="bodypart2">Enter another body part:</label>
-                    <input type="text" id="bodypart2" placeholder="e.g., Wikèk (leg)">
-                </div>
-                <div class="input-group">
-                    <label for="number">Enter a number:</label>
-                    <input type="text" id="number" placeholder="e.g., Nisha (two)">
-                </div>
-                <div class="input-group">
-                    <label for="color">Enter a color:</label>
-                    <input type="text" id="color" placeholder="e.g., Mòtànk (red)">
-                </div>
-                <div class="input-group">
-                    <label for="emotion">Enter an emotion:</label>
-                    <input type="text" id="emotion" placeholder="e.g., Nulitùn (happy)">
-                </div>
-                <button type="button" class="generate-button" onclick="generateStory()">Generate Story</button>
-            </form>
-            <div id="story-output" class="story-output hidden"></div>
-        </div>
-
-        <!-- Word Examples -->
+        <!-- Lenape Word Examples -->
         <div class="word-examples">
-            <h3>Lenape Word Examples</h3>
-            <!-- Glossary cards will be generated by JavaScript -->
+            <h2>Lenape Word Examples</h2>
+            <div class="example-cards">
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Body Parts</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Wikèhèn (Head)</p>
+                            <p>Wikèhs (Mouth)</p>
+                            <p>Wikuwàkane (Nose)</p>
+                            <p>Wikuwe (Eyes)</p>
+                            <p>Wikèk (Leg)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Colors</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Sàpe (Black)</p>
+                            <p>Wapá (White)</p>
+                            <p>Mòtànk (Red)</p>
+                            <p>Wëski (Yellow)</p>
+                            <p>Oxkàshe (Green)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Numbers</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Lënuwe (One)</p>
+                            <p>Nisha (Two)</p>
+                            <p>Nash (Three)</p>
+                            <p>Newa (Four)</p>
+                            <p>Palenaxk (Five)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Emotions</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Nulitùn (Happy)</p>
+                            <p>Wsìkwàk (Angry)</p>
+                            <p>Wichin (Sad)</p>
+                            <p>Wètëlaohake (Excited)</p>
+                            <p>Wjánte (Afraid)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
