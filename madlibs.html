@@ -24,50 +24,45 @@
         <section class="story-selection">
             <h2>Choose Your Story</h2>
             <div class="story-grid">
-                <div class="story-card" data-story-id="1">
+                <div class="story-card" onclick="selectStory(1)">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
                 </div>
-
-                <div class="story-card" data-story-id="2">
+                <div class="story-card" onclick="selectStory(2)">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
                 </div>
-
-                <div class="story-card" data-story-id="3">
+                <div class="story-card" onclick="selectStory(3)">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
                 </div>
-
-                <div class="story-card" data-story-id="4">
+                <div class="story-card" onclick="selectStory(4)">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
                 </div>
-
-                <div class="story-card" data-story-id="5">
+                <div class="story-card" onclick="selectStory(5)">
                     <h3>Playing Games</h3>
                     <p>Fun and games with Lenape words!</p>
                 </div>
-
-                <div class="story-card" data-story-id="6">
+                <div class="story-card" onclick="selectStory(6)">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
                 </div>
             </div>
         </section>
 
-        <section class="story-creation" id="story-creation">
+        <section id="story-form" class="story-form">
             <h2 id="selected-story-title">Select a Story</h2>
             <div id="input-container" class="input-container"></div>
             <button id="generate-button" class="generate-button" style="display: none;">Generate Story</button>
             <div id="story-output" class="story-output"></div>
-            <button id="reset-button" class="reset-button" style="display: none;">Create Another Story</button>
+            <button id="reset-button" class="reset-button" onclick="resetStory()">Create Another Story</button>
         </section>
 
         <section class="word-examples">
             <h2>Lenape Word Examples</h2>
             <div class="example-grid">
-                <div class="example-card" id="body-parts">
+                <div class="example-card">
                     <h3>Body Parts</h3>
                     <div class="word-list">
                         <p>Wikèhèn = Head</p>
@@ -78,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="example-card" id="colors">
+                <div class="example-card">
                     <h3>Colors</h3>
                     <div class="word-list">
                         <p>Sàpe = Black</p>
@@ -89,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="example-card" id="numbers">
+                <div class="example-card">
                     <h3>Numbers</h3>
                     <div class="word-list">
                         <p>Lënuwe = One</p>
@@ -100,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="example-card" id="emotions">
+                <div class="example-card">
                     <h3>Emotions</h3>
                     <div class="word-list">
                         <p>Nulitùn = Happy</p>
