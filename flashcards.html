@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Games - Drag & Drop</title>
+    <title>Lenape Language Games - Flash Cards</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -18,18 +18,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-
-        .header {
-            background-color: #2b4162;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
         }
 
         .nav-bar {
@@ -58,6 +46,18 @@
         .nav-link.active {
             background-color: #2b4162;
             color: white;
+        }
+
+        .header {
+            background-color: #2b4162;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .container {
@@ -102,7 +102,7 @@
             overflow: hidden;
             aspect-ratio: 485/402;
             width: 100%;
-            max-width: 1455px; /* 3x original width */
+            max-width: 1455px;
             margin: 0 auto;
         }
 
@@ -134,30 +134,36 @@
             .game-display {
                 max-width: 100%;
             }
+
+            .nav-link {
+                padding: 0.5rem 1rem;
+                margin: 0 0.2rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="flashcards.html" class="nav-link">Flash Cards</a>
-        <a href="dragdrop.html" class="nav-link active">Drag & Drop</a>
+        <a href="flashcards.html" class="nav-link active">Flash Cards</a>
+        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
         <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="madlibs.html" class="nav-link">Mad Libs</a>
     </nav>
 
     <header class="header">
-        <h1>Lenape Drag & Drop Games</h1>
-        <p>Match Lenape words with their English translations!</p>
+        <h1>Lenape Flash Cards</h1>
+        <p>Learn Lenape words through interactive flash cards!</p>
     </header>
 
     <div class="container">
         <div class="game-buttons">
-            <button class="game-button active" onclick="showGame('lower')">Lower Body Words</button>
-            <button class="game-button" onclick="showGame('upper')">Upper Body Words</button>
-            <button class="game-button" onclick="showGame('face')">Face Words</button>
-            <button class="game-button" onclick="showGame('internal')">Internal Body Words</button>
-            <button class="game-button" onclick="showGame('hands')">Hand Words</button>
+            <button class="game-button active" onclick="showGame('lower')">Lower Body</button>
+            <button class="game-button" onclick="showGame('upper')">Upper Body</button>
+            <button class="game-button" onclick="showGame('face')">Face</button>
+            <button class="game-button" onclick="showGame('internal')">Internal Body</button>
+            <button class="game-button" onclick="showGame('hands')">Hands</button>
         </div>
 
         <div class="game-display">
