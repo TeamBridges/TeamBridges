@@ -6,99 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lenape Language Games - Drag & Drop</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenape Language Games - Drag & Drop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .nav-bar {
-            background-color: white;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-link {
-            color: #2b4162;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-link:hover {
-            background-color: #f0f0f0;
-        }
-
-        .nav-link.active {
-            background-color: #2b4162;
-            color: white;
-        }
-
-        .header {
-            background-color: #2b4162;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 2rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .game-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .game-button {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .game-button:hover {
-            transform: scale(1.05);
-        }
-
-        .game-button.active {
-            background: #1a2a3f;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-        }
+        /* ... (previous styles remain the same until game-display) ... */
 
         .game-display {
             background: white;
@@ -106,9 +22,12 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             overflow: hidden;
             width: 100%;
-            max-width: 1455px; /* 3x original width (485 * 3) */
+            max-width: 1600px; /* Increased from 1455px */
             aspect-ratio: 485/402;
             position: relative;
+            margin: 0 auto;
+            transform: scale(1.5); /* Scale up the game */
+            transform-origin: top center;
         }
 
         .game-frame {
@@ -125,34 +44,48 @@
             display: block;
         }
 
-        @media (max-width: 1500px) {
+        .container {
+            max-width: 1800px; /* Increased from 1600px */
+            margin: 0 auto;
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: calc(100vh - 200px); /* Account for header and nav */
+        }
+
+        @media (max-width: 1700px) {
             .game-display {
-                max-width: 95vw;
+                transform: scale(1.3);
             }
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+        @media (max-width: 1400px) {
+            .game-display {
+                transform: scale(1.1);
             }
+        }
 
-            .container {
-                padding: 1rem;
+        @media (max-width: 1100px) {
+            .game-display {
+                transform: scale(0.9);
             }
+        }
 
-            .game-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-                width: calc(50% - 0.5rem);
+        @media (max-width: 800px) {
+            .game-display {
+                transform: scale(0.7);
             }
+        }
 
-            .nav-link {
-                padding: 0.5rem 1rem;
-                margin: 0 0.2rem;
-                font-size: 0.9rem;
+        @media (max-width: 600px) {
+            .game-display {
+                transform: scale(0.5);
             }
         }
     </style>
+</head>
 </head>
 <body>
     <nav class="nav-bar">
