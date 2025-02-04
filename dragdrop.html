@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Lenape Language Games</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenape Language Games - Drag & Drop</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,18 +15,21 @@
 
         body {
             background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .hero {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        .header {
+            background-color: #2b4162;
             color: white;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 2rem;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .nav-bar {
@@ -41,7 +45,7 @@
         .nav-link {
             color: #2b4162;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             margin: 0 0.5rem;
             border-radius: 5px;
             transition: background-color 0.3s;
@@ -56,181 +60,134 @@
             color: white;
         }
 
-        .game-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-            max-width: 1400px;
+        .container {
+            max-width: 1600px;
             margin: 0 auto;
-        }
-
-        .game-card {
-            background: white;
-            border-radius: 15px;
             padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
+            flex-grow: 1;
         }
 
-        .game-card:hover {
-            transform: translateY(-10px);
+        .game-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .game-icon {
-            font-size: 2.5rem;
-            color: #2b4162;
-            margin-bottom: 1rem;
-        }
-
-        .game-card h2 {
-            color: #2b4162;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .game-features {
-            text-align: left;
-            margin: 1.5rem 0;
-        }
-
-        .game-features ul {
-            list-style-type: none;
-        }
-
-        .game-features li {
-            margin: 0.5rem 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .play-button {
+        .game-button {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1rem;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: transform 0.2s ease;
         }
 
-        .play-button:hover {
+        .game-button:hover {
             transform: scale(1.05);
         }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            background-color: white;
-            margin-top: 2rem;
+        .game-button.active {
+            background: #1a2a3f;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .game-display {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            aspect-ratio: 485/402;
+            width: 100%;
+            max-width: 1455px; /* 3x original width */
+            margin: 0 auto;
+        }
+
+        .game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+
+        .game-frame.active {
+            display: block;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
+            .header h1 {
                 font-size: 2rem;
             }
-            
-            .game-container {
-                grid-template-columns: 1fr;
+
+            .container {
                 padding: 1rem;
             }
-            
-            .nav-link {
-                padding: 0.4rem 0.8rem;
-                margin: 0 0.2rem;
-                font-size: 0.9rem;
+
+            .game-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .game-display {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Lenape Language Games</h1>
-            <p>Learn and practice Lenape language through fun interactive games!</p>
-        </div>
-    </div>
-
     <nav class="nav-bar">
-        <a href="index.html" class="nav-link active">Home</a>
+        <a href="index.html" class="nav-link">Home</a>
         <a href="flashcards.html" class="nav-link">Flash Cards</a>
-        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+        <a href="dragdrop.html" class="nav-link active">Drag & Drop</a>
         <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="madlibs.html" class="nav-link">Mad Libs</a>
     </nav>
 
-    <div class="game-container">
-        <div class="game-card" onclick="window.location.href='flashcards.html'">
-            <div class="game-icon">
-                <i class="fas fa-clone"></i>
-            </div>
-            <h2>Flash Cards</h2>
-            <p>Learn Lenape words with interactive flash cards!</p>
-            <div class="game-features">
-                <ul>
-                    <li>Memory training</li>
-                    <li>Word pairs</li>
-                    <li>Quick learning</li>
-                </ul>
-            </div>
-            <button class="play-button">Play Now</button>
+    <header class="header">
+        <h1>Lenape Drag & Drop Games</h1>
+        <p>Match Lenape words with their English translations!</p>
+    </header>
+
+    <div class="container">
+        <div class="game-buttons">
+            <button class="game-button active" onclick="showGame('game1')">Drag & Drop I</button>
+            <button class="game-button" onclick="showGame('game2')">Drag & Drop II</button>
         </div>
 
-        <div class="game-card" onclick="window.location.href='dragdrop.html'">
-            <div class="game-icon">
-                <i class="fas fa-arrows-alt"></i>
-            </div>
-            <h2>Drag & Drop</h2>
-            <p>Match Lenape words with their meanings!</p>
-            <div class="game-features">
-                <ul>
-                    <li>Interactive learning</li>
-                    <li>Word matching</li>
-                    <li>Visual practice</li>
-                </ul>
-            </div>
-            <button class="play-button">Play Now</button>
-        </div>
-
-        <div class="game-card" onclick="window.location.href='crossword.html'">
-            <div class="game-icon">
-                <i class="fas fa-th"></i>
-            </div>
-            <h2>Crossword Puzzles</h2>
-            <p>Test your Lenape knowledge with interactive crosswords!</p>
-            <div class="game-features">
-                <ul>
-                    <li>Vocabulary practice</li>
-                    <li>Word meanings</li>
-                    <li>Spelling practice</li>
-                </ul>
-            </div>
-            <button class="play-button">Play Now</button>
-        </div>
-
-        <div class="game-card" onclick="window.location.href='madlibs.html'">
-            <div class="game-icon">
-                <i class="fas fa-pencil-alt"></i>
-            </div>
-            <h2>Mad Libs</h2>
-            <p>Create funny stories while practicing Lenape vocabulary!</p>
-            <div class="game-features">
-                <ul>
-                    <li>Learn new words</li>
-                    <li>Practice grammar</li>
-                    <li>Create stories</li>
-                </ul>
-            </div>
-            <button class="play-button">Play Now</button>
+        <div class="game-display">
+            <iframe id="game1" class="game-frame active" 
+                src="https://scratch.mit.edu/projects/1121398388/embed" 
+                allowtransparency="true" 
+                scrolling="no" 
+                allowfullscreen>
+            </iframe>
+            <iframe id="game2" class="game-frame" 
+                src="https://scratch.mit.edu/projects/1122262027/embed" 
+                allowtransparency="true" 
+                scrolling="no" 
+                allowfullscreen>
+            </iframe>
         </div>
     </div>
 
-    <footer>
-        <p>© 2024 Lenape Language Games. All rights reserved.</p>
-    </footer>
+    <script>
+        function showGame(gameId) {
+            // Hide all games
+            document.querySelectorAll('.game-frame').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            // Show selected game
+            document.getElementById(gameId).classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.game-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
