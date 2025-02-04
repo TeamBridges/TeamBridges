@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Games - Drag & Drop</title>
+    <title>Lenape Language Games - Flash Cards</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -15,6 +16,21 @@
 
         body {
             background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #2b4162;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .nav-bar {
@@ -22,12 +38,15 @@
             padding: 1rem;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .nav-link {
             color: #2b4162;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.5rem;
             margin: 0 0.5rem;
             border-radius: 5px;
             transition: background-color 0.3s;
@@ -42,124 +61,130 @@
             color: white;
         }
 
-        .header {
-            background-color: #2b4162;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
         .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex-grow: 1;
         }
 
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(485px, 1fr));
-            gap: 2rem;
-            justify-items: center;
+        .game-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .game-card {
+        .game-button {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .game-button:hover {
+            transform: scale(1.05);
+        }
+
+        .game-button.active {
+            background: #1a2a3f;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .game-display {
             background: white;
             border-radius: 15px;
-            padding: 1.5rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 485px;
-            transition: transform 0.3s ease;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .game-card h2 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .game-container {
-            position: relative;
-            width: 100%;
-            height: 402px;
             overflow: hidden;
-            border-radius: 10px;
-            border: 2px solid #1e3c72;
+            aspect-ratio: 485/402;
+            width: 100%;
+            max-width: 1455px; /* 3x original width */
+            margin: 0 auto;
         }
 
-        iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .game-frame {
             width: 100%;
             height: 100%;
+            border: none;
+            display: none;
         }
 
-        @media (max-width: 500px) {
-            .game-card {
-                max-width: 100%;
-            }
-            
-            .game-container {
-                height: 300px;
-            }
+        .game-frame.active {
+            display: block;
+        }
 
+        @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .game-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .game-display {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-       <nav class="nav-bar">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="flashcards.html" class="nav-link">Flash Cards</a>
-    <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
-    <a href="crossword.html" class="nav-link">Crossword</a>
-    <a href="madlibs.html" class="nav-link">Mad Libs</a>
+    <div class="header">
+        <h1>Lenape Flash Cards</h1>
+        <p>Learn Lenape words through interactive flash cards!</p>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="flashcards.html" class="nav-link active">Flash Cards</a>
+        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+        <a href="crossword.html" class="nav-link">Crossword</a>
+        <a href="madlibs.html" class="nav-link">Mad Libs</a>
     </nav>
 
-    <header class="header">
-        <h1>Lenape Drag & Drop Games</h1>
-        <p>Practice matching Lenape words with their meanings!</p>
-    </header>
-
-    <main class="games-grid">
-        <div class="game-card">
-            <h2>Drag & Drop I</h2>
-            <div class="game-container">
-                <iframe 
-                    src="https://scratch.mit.edu/projects/1121398388/embed" 
-                    allowtransparency="true" 
-                    frameborder="0" 
-                    scrolling="no" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+    <div class="container">
+        <div class="game-buttons">
+            <button class="game-button active" onclick="showGame('lower')">Lower Body</button>
+            <button class="game-button" onclick="showGame('upper')">Upper Body</button>
+            <button class="game-button" onclick="showGame('face')">Face</button>
+            <button class="game-button" onclick="showGame('internal')">Internal Body</button>
+            <button class="game-button" onclick="showGame('hands')">Hands</button>
         </div>
 
-        <div class="game-card">
-            <h2>Drag & Drop II</h2>
-            <div class="game-container">
-                <iframe 
-                    src="https://scratch.mit.edu/projects/1122262027/embed" 
-                    allowtransparency="true" 
-                    frameborder="0" 
-                    scrolling="no" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+        <div class="game-display">
+            <iframe id="lower" class="game-frame active" src="https://scratch.mit.edu/projects/1120857841/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
+            <iframe id="upper" class="game-frame" src="https://scratch.mit.edu/projects/1088888174/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
+            <iframe id="face" class="game-frame" src="https://scratch.mit.edu/projects/1121753523/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
+            <iframe id="internal" class="game-frame" src="https://scratch.mit.edu/projects/1125866028/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
+            <iframe id="hands" class="game-frame" src="https://scratch.mit.edu/projects/1126350288/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
         </div>
-    </main>
+    </div>
+
+    <script>
+        function showGame(gameId) {
+            // Hide all games
+            document.querySelectorAll('.game-frame').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            // Show selected game
+            document.getElementById(gameId).classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.game-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
