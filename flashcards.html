@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenape Language Games - Flash Cards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(485px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            padding: 2rem;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 485px;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-card h2 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 402px;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 2px solid #1e3c72;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 500px) {
+            .game-card {
+                max-width: 100%;
+            }
+            
+            .game-container {
+                height: 300px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="madlibs.html" class="nav-link">Mad Libs</a>
+        <a href="crossword.html" class="nav-link">Crossword</a>
+        <a href="flashcards.html" class="nav-link active">Flash Cards</a>
+    </nav>
+
+    <header class="header">
+        <h1>Lenape Flash Cards</h1>
+        <p>Learn Lenape words for different parts of the body!</p>
+    </header>
+
+    <main class="games-grid">
+        <div class="game-card">
+            <h2>Lower Body Flash Cards</h2>
+            <div class="game-container">
+                <iframe 
+                    src="https://scratch.mit.edu/projects/1120857841/embed" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <h2>Upper Body Flash Cards</h2>
+            <div class="game-container">
+                <iframe 
+                    src="https://scratch.mit.edu/projects/1088888174/embed" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <h2>Face Flash Cards</h2>
+            <div class="game-container">
+                <iframe 
+                    src="https://scratch.mit.edu/projects/1121753523/embed" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <h2>Internal Body Flash Cards</h2>
+            <div class="game-container">
+                <iframe 
+                    src="https://scratch.mit.edu/projects/1125866028/embed" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <h2>Hands Flash Cards</h2>
+            <div class="game-container">
+                <iframe 
+                    src="https://scratch.mit.edu/projects/1126350288/embed" 
+                    allowtransparency="true" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
