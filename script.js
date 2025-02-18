@@ -171,21 +171,19 @@ function initializeMadLibs() {
     console.log('Initializing Mad Libs page');
     setupStorySelection();
     setupWordExamples();
+    // Hide the input section initially
+    document.querySelector('.story-workspace').style.display = 'none';
 }
 
 function setupStorySelection() {
-    const storyGrid = document.querySelector('.story-grid');
-    if (!storyGrid) return;
-
-    Object.entries(stories).forEach(([id, story]) => {
-        const storyCard = document.createElement('div');
-        storyCard.className = 'story-card';
-        storyCard.innerHTML = `
-            <h3>${story.title}</h3>
-            <p>${story.description}</p>
-        `;
-        storyCard.addEventListener('click', () => loadStory(id));
-        storyGrid.appendChild(storyCard);
+    const storyButtons = document.querySelectorAll('.story-choice');
+    storyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const storyId = this.getAttribute('data-story');
+            loadStory(storyId);
+            // Show the workspace when a story is selected
+            document.querySelector('.story-workspace').style.display = 'block';
+        });
     });
 }
 
@@ -196,24 +194,15 @@ function loadStory(storyId) {
         return;
     }
 
-    const mainContainer = document.querySelector('.container');
-    mainContainer.innerHTML = `
-        <div class="story-form">
-            <h2>${story.title}</h2>
-            <p>${story.description}</p>
-            <div class="input-form" id="story-inputs"></div>
-            <button class="generate-button" onclick="generateStory('${storyId}')">Generate Story!</button>
-            <div class="story-output hidden" id="story-output"></div>
-            <button class="reset-button hidden" onclick="resetStory()">Create Another Story</button>
-        </div>
-    `;
+    const inputsContainer = document.getElementById('word-inputs');
+    inputsContainer.innerHTML = '';
 
-    const inputsContainer = document.getElementById('story-inputs');
+    // Create input fields based on story requirements
     story.inputs.forEach((input, index) => {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
         inputGroup.innerHTML = `
-            <label for="input-${index}">${input.label}:</label>
+            <label for="input-${index}">${input.label}</label>
             <input type="text" 
                    id="input-${index}" 
                    placeholder="${input.placeholder || ''}"
@@ -221,6 +210,10 @@ function loadStory(storyId) {
         `;
         inputsContainer.appendChild(inputGroup);
     });
+
+    // Show generate button
+    const generateButton = document.querySelector('.generate-button');
+    generateButton.style.display = 'block';
 }
 
 function generateStory(storyId) {
@@ -230,14 +223,11 @@ function generateStory(storyId) {
 
     // Collect and validate inputs
     story.inputs.forEach((input, index) => {
-        const inputElement = document.getElementById(`input-${index}`);
-        const value = inputElement.value.trim();
-        
+        const value = document.getElementById(`input-${index}`).value.trim();
         if (!value) {
             isValid = false;
-            inputElement.classList.add('error');
+            document.getElementById(`input-${index}`).classList.add('error');
         } else {
-            inputElement.classList.remove('error');
             inputs[input.type] = value;
         }
     });
@@ -247,7 +237,7 @@ function generateStory(storyId) {
         return;
     }
 
-    // Generate the story by replacing placeholders
+    // Generate the story
     let generatedStory = story.template;
     Object.entries(inputs).forEach(([key, value]) => {
         const regex = new RegExp(`{${key}}`, 'g');
@@ -259,19 +249,24 @@ function generateStory(storyId) {
     outputDiv.textContent = generatedStory;
     outputDiv.classList.remove('hidden');
 
-    // Show reset button and hide generate button
-    document.querySelector('.generate-button').classList.add('hidden');
-    document.querySelector('.reset-button').classList.remove('hidden');
+    // Hide input section and show reset button
+    document.querySelector('.input-section').style.display = 'none';
+    document.querySelector('.reset-button').style.display = 'block';
 }
 
 function resetStory() {
-    // Return to story selection
-    const mainContainer = document.querySelector('.container');
-    mainContainer.innerHTML = `
-        <h2>Choose Your Story</h2>
-        <div class="story-grid"></div>
-    `;
-    setupStorySelection();
+    // Clear inputs and hide story output
+    document.querySelectorAll('.input-group input').forEach(input => {
+        input.value = '';
+        input.classList.remove('error');
+    });
+    
+    // Hide story output and reset button
+    document.getElementById('story-output').classList.add('hidden');
+    document.querySelector('.reset-button').style.display = 'none';
+    
+    // Show input section
+    document.querySelector('.input-section').style.display = 'block';
 }
 // Event Handlers and Page Initialization
 document.addEventListener('DOMContentLoaded', function() {
@@ -465,38 +460,43 @@ function setupCardGame(cards) {
     });
 }
 
-// dragdrop.js
+// Drag & Drop Page JavaScript
 function initializeDragDrop() {
-    console.log('Initializing drag and drop game');
-    const words = [
-        { lenape: "Wikèhèn", english: "Head" },
-        { lenape: "Sàpe", english: "Black" },
-        { lenape: "Nisha", english: "Two" }
-    ];
+    console.log('Initializing Drag & Drop page');
     
-    setupDragDropGame(words);
-}
-
-function setupDragDropGame(words) {
-    const gameContainer = document.getElementById('dragdrop-game');
-    const lenapeContainer = document.createElement('div');
-    const englishContainer = document.createElement('div');
-    
-    lenapeContainer.className = 'lenape-words';
-    englishContainer.className = 'english-words';
-    
-    words.forEach(word => {
-        const lenapeWord = createDraggable(word.lenape, word.english);
-        const englishWord = createDropZone(word.english);
-        
-        lenapeContainer.appendChild(lenapeWord);
-        englishContainer.appendChild(englishWord);
+    // Hide all games initially
+    document.querySelectorAll('.scratch-game').forEach(game => {
+        game.style.display = 'none';
     });
-    
-    gameContainer.appendChild(lenapeContainer);
-    gameContainer.appendChild(englishContainer);
+
+    // Setup game selection buttons
+    setupGameButtons();
 }
 
+function setupGameButtons() {
+    const gameButtons = document.querySelectorAll('.game-button');
+    gameButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            gameButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Hide all games
+            document.querySelectorAll('.scratch-game').forEach(game => {
+                game.style.display = 'none';
+            });
+            
+            // Show selected game
+            const gameId = this.getAttribute('data-game');
+            const selectedGame = document.getElementById(gameId);
+            if (selectedGame) {
+                selectedGame.style.display = 'block';
+            }
+        });
+    });
+}
 // grouppractice.js
 function initializeGroupPractice() {
     console.log('Initializing group practice');
