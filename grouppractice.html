@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,103 +46,15 @@
         <section id="activity-content" class="activity-content hidden">
             <!-- Content will be populated by JavaScript -->
         </section>
+
+        <section class="word-examples">
+            <h2>Lenape Word Examples</h2>
+            <div class="example-cards" id="example-section">
+                <!-- Word examples will be populated by JavaScript -->
+            </div>
+        </section>
     </main>
 
-    <script src="grouppractice.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-And here's the JavaScript (grouppractice.js):
-
-
-const activityContent = {
-    howmany: {
-        title: "How Many...?",
-        description: "The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.",
-        prompts: [
-            "How many hwikiyona (noses) are in this room?",
-            "How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?",
-            "How many tuna (mouths) are in this room?",
-            "How many naxka (hands) are in this room?",
-            "How many welencha (fingers)?",
-            "How many wsita (feet) are in this room?",
-            "How many kwetsita (toes)?",
-            "How many people in this room have long milaxk (hair)?",
-            "How many have short milaxk (hair)?",
-            "How many people in this room have brown milaxk (hair)?",
-            "How many have black milaxk (hair)?",
-            "How many have gray milaxk (hair)?",
-            "How many have red milaxk (hair)?",
-            "How many have blonde milaxk (hair)?",
-            "How many hwitaoka (ears) are in this room?",
-            "How many mutaya (stomachs) are in this room?",
-            "How many tuhwepia (bodies) are in this room?"
-        ]
-    },
-    simonsays: {
-        title: "Simon Says...",
-        description: "The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds. The leader can choose whether any incorrect responses constitute an 'out' or if everyone gets unlimited chances. This game is recommended for use in person.",
-        prompts: [
-            "Wave your right naxk (hand)",
-            "Tap your left wsit (foot)",
-            "Hold up nisha (two) welencha (fingers)",
-            "Wiggle your hwitaoka (ears)",
-            "Close your weshkinko (eyes)",
-            "Pat your right ketukw (knee)",
-            "Raise your left naolk (arm)",
-            "Touch your wikiyon (nose) naxen (three times)",
-            "Hold your right wiskon (elbow)",
-            "Tap your left hwikxkon (shin)",
-            "Hold up a tukwelench (fist)"
-        ]
-    },
-    creature: {
-        title: "Creature Feature",
-        description: "Invent a new creature by combining different parts of various animals. Give it a name, and make up an interesting fact about your creature. This should incorporate vocabulary words for animals and body parts, and it could also include numbers or colors as appropriate.",
-        example: "My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn, and if you see one, it means you will soon discover trash that is actually treasure."
-    },
-    conversation: {
-        title: "Conversation Prompts",
-        description: "Use the following prompts to start a conversation. Encourage learners to respond using words in Lenape as often as possible, especially focusing on Lenape body parts, colors, numbers, and animals.",
-        prompts: [
-            "What are your three favorite physical features about yourself, why?",
-            "Describe someone in this room based on their physical features.",
-            "Which body part do you think is the most/least useful, why?",
-            "Compare and contrast the physical appearances between a baby and an adult.",
-            "Describe a mystery body part for the other students to guess.",
-            "Describe your morning routine, using as many body parts as possible.",
-            "Pretend you're at the doctor's office and explain what's wrong and how you feel.",
-            "Describe your favorite animal based on their physical appearance."
-        ]
-    }
-};
-
-function showActivity(activityType) {
-    const content = activityContent[activityType];
-    const contentSection = document.getElementById('activity-content');
-    
-    let html = `
-        <h2>${content.title}</h2>
-        <p class="description">${content.description}</p>
-    `;
-
-    if (content.prompts) {
-        html += '<div class="prompts-list">';
-        content.prompts.forEach(prompt => {
-            html += `<div class="prompt-item">${prompt}</div>`;
-        });
-        html += '</div>';
-    }
-
-    if (content.example) {
-        html += `
-            <div class="example-box">
-                <h3>Example:</h3>
-                <p>${content.example}</p>
-            </div>
-        `;
-    }
-
-    contentSection.innerHTML = html;
-    contentSection.classList.remove('hidden');
-}
