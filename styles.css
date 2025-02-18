@@ -1,4 +1,3 @@
-
 /* Global Styles */
 * {
     margin: 0;
@@ -12,21 +11,20 @@ body {
 }
 
 /* Header Styles */
-.header {
+.hero {
     background: #2B4170;
     color: white;
     text-align: center;
     padding: 2rem;
-    margin-bottom: 0;
+    margin-bottom: 2rem;
 }
 
-.header h1 {
+.hero h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
-.header p {
+.hero p {
     font-size: 1.2rem;
     opacity: 0.9;
 }
@@ -58,308 +56,113 @@ body {
     color: white;
 }
 
-/* Main layout and containers */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f6f8;
-}
-
-.nav-bar {
-    background-color: white;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-}
-
-.nav-bar a {
-    text-decoration: none;
-    color: #333;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-}
-
-.nav-bar a.active {
-    background-color: #2b4162;
-    color: white;
-    border-radius: 5px;
-}
-
-.instructions-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.main-container {
+/* Game Container */
+.game-container {
     display: grid;
-    grid-template-columns: 300px minmax(400px, 600px) 300px;
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
-}
-
-/* Story Selection (Left Column) */
-.story-selection {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.story-choice {
-    width: 100%;
-    text-align: left;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.story-choice:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* Story Workspace (Middle Column) */
-.story-workspace {
-    background: white;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.generate-btn {
-    width: 100%;
-    padding: 1rem;
-    background: #2b4162;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-}
-
-/* Example Cards (Right Column) */
-.example-section {
+/* Game Cards */
+.game-card {
     background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.example-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.example-card {
-    perspective: 1000px;
-    min-height: 150px;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-}
-
-.example-card:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    padding: 1rem;
-    border-radius: 8px;
-}
-
-.card-front {
-    background: #2b4162;
-    color: white;
-}
-
-.card-back {
-    background: white;
-    border: 2px solid #2b4162;
-    transform: rotateY(180deg);
-    text-align: left;
-}
-
-/* Utility Classes */
-.hidden {
-    display: none;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .main-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    
-    .example-section {
-        margin-top: 2rem;
-    }
-}
-/* Drag & Drop Page Styles */
-.game-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 400px;
-    margin: 2rem auto;
-}
-
-.game-button {
-    background-color: #2b4162;
-    color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.game-button:hover {
-    background-color: #1a2a3f;
-    transform: translateY(-2px);
-}
-
-.game-button.active {
-    background-color: #1a2a3f;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.game-button h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
-}
-
-.game-button p {
-    margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-.scratch-game {
-    display: none;
-    width: 100%;
-    max-width: 800px;
-    margin: 2rem auto;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.scratch-game.active {
-    display: block;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .game-selection {
-        padding: 0 1rem;
-    }
-    
-    .game-button {
-        font-size: 1rem;
-    }
-}
-// Add this CSS
-
-.activity-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.activity-card {
-    height: auto; /* Allows card to expand based on content */
-    min-height: 500px; /* Minimum height for consistency */
-    perspective: 1000px;
-    width: 100%;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    cursor: pointer;
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    padding: 2rem;
     border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.card-front {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white;
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 }
 
-.card-back {
-    background: white;
-    transform: rotateY(180deg);
-    overflow-y: visible; /* Removes scrolling */
-    height: auto; /* Allows content to determine height */
+.game-card:hover {
+    transform: translateY(-5px);
 }
 
-.prompts-list {
+.game-icon {
+    font-size: 2.5rem;
+    color: #2B4170;
+    margin-bottom: 1rem;
+}
+
+.game-card h2 {
+    color: #2B4170;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.game-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.game-features {
     text-align: left;
+    margin: 1.5rem 0;
+}
+
+.game-features ul {
     list-style-type: none;
     padding: 0;
 }
 
-.prompts-list li {
-    margin-bottom: 1rem;
-    padding: 0.5rem;
-    border-bottom: 1px solid #eee;
+.game-features li {
+    margin: 0.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
 }
 
-/* Responsive design for smaller screens */
+/* Play Button */
+.play-button {
+    background: #2B4170;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.play-button:hover {
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    background-color: white;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
 @media (max-width: 1200px) {
-    .activity-cards {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    .game-container {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .activity-cards {
-        grid-template-columns: 1fr; /* 1 column on mobile */
+    .game-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-bar a {
+        padding: 0.6rem 1rem;
+        margin: 0 0.3rem;
+        font-size: 0.9rem;
     }
 }
