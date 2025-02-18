@@ -531,3 +531,31 @@ function setupGroupActivity(activity) {
         </div>
     `;
 }
+// Add this JavaScript to populate the cards
+function initializeGroupPractice() {
+    const container = document.querySelector('.activity-cards');
+    
+    Object.entries(activityContent).forEach(([key, activity]) => {
+        const card = document.createElement('div');
+        card.className = 'activity-card';
+        card.onclick = function() { this.classList.toggle('flipped'); };
+        
+        card.innerHTML = `
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>${activity.title}</h2>
+                    <p>Click to see prompts</p>
+                </div>
+                <div class="card-back">
+                    <h3>${activity.title}</h3>
+                    <p class="description">${activity.description}</p>
+                    <ul class="prompts-list">
+                        ${activity.prompts.map(prompt => `<li>${prompt}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+}
