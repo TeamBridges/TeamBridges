@@ -8,25 +8,7 @@
 
 body {
     background-color: #f5f7fa;
-}
-
-/* Header Styles */
-.hero {
-    background: #2B4170;
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    margin-bottom: 2rem;
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    min-height: 100vh;
 }
 
 /* Navigation Bar */
@@ -35,7 +17,9 @@ body {
     padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .nav-bar a {
@@ -45,6 +29,7 @@ body {
     margin: 0 0.5rem;
     border-radius: 5px;
     transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .nav-bar a:hover {
@@ -56,11 +41,27 @@ body {
     color: white;
 }
 
-/* Game Container */
-.game-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
+/* Page Headers */
+.title, .hero {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.title h1, .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.title h2, .hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Main Containers */
+.container, .game-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
@@ -74,6 +75,7 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -81,12 +83,6 @@ body {
 
 .game-card:hover {
     transform: translateY(-5px);
-}
-
-.game-icon {
-    font-size: 2.5rem;
-    color: #2B4170;
-    margin-bottom: 1rem;
 }
 
 .game-card h2 {
@@ -100,24 +96,44 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.game-features {
-    text-align: left;
-    margin: 1.5rem 0;
+/* Activity Cards (for Group Practice) */
+.activity-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-.game-features ul {
-    list-style-type: none;
-    padding: 0;
+.activity-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.game-features li {
-    margin: 0.5rem 0;
-    color: #666;
-    font-size: 0.9rem;
+/* Mad Libs Specific */
+.story-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
-/* Play Button */
-.play-button {
+.story-choice {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.story-choice:hover {
+    transform: translateY(-3px);
+}
+
+/* Buttons */
+.play-button, .generate-button {
     background: #2B4170;
     color: white;
     border: none;
@@ -126,21 +142,25 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: transform 0.2s ease;
-    width: fit-content;
-    margin: 0 auto;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.play-button:hover {
+.play-button:hover, .generate-button:hover {
     transform: scale(1.05);
 }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    background-color: white;
-    margin-top: 2rem;
+/* Drag & Drop Games */
+.game-selection {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.scratch-game {
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 2rem 0;
 }
 
 /* Responsive Design */
@@ -156,7 +176,7 @@ footer {
         padding: 1rem;
     }
     
-    .hero h1 {
+    .title h1, .hero h1 {
         font-size: 2rem;
     }
     
@@ -164,5 +184,9 @@ footer {
         padding: 0.6rem 1rem;
         margin: 0 0.3rem;
         font-size: 0.9rem;
+    }
+    
+    .game-selection {
+        flex-direction: column;
     }
 }
