@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +9,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header class="title">
         <h1>Lenape Mad Libs Generator</h1>
         <p>Create Fun Stories with Lenape Words!</p>
     </header>
 
+    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="index.html">Home</a>
+        <a href="home.html">Home</a>
         <a href="flashcards.html">Flash Cards</a>
         <a href="dragdrop.html">Drag & Drop</a>
         <a href="crossword.html">Crossword</a>
@@ -22,7 +25,8 @@
         <a href="grouppractice.html">Group Practice</a>
     </nav>
 
-    <div class="instructions-container">
+    <!-- Instructions -->
+    <div class="instructions">
         <h2>How to Play</h2>
         <ol>
             <li>Choose a story from the options on the left</li>
@@ -32,121 +36,109 @@
         </ol>
     </div>
 
+    <!-- Main Content -->
     <div class="main-container">
         <!-- Left Column - Story Selection -->
         <div class="story-selection">
             <h2>Choose Your Story</h2>
             <div class="story-buttons">
-                <button class="story-choice" onclick="selectStory(1)">
+                <button class="story-choice" onclick="selectStory('bicycle')">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(2)">
+                <button class="story-choice" onclick="selectStory('dancing')">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(3)">
+                <button class="story-choice" onclick="selectStory('school')">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(4)">
+                <button class="story-choice" onclick="selectStory('weather')">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(5)">
+                <button class="story-choice" onclick="selectStory('games')">
                     <h3>Playing Games</h3>
                     <p>Fun and games with Lenape words!</p>
                 </button>
-                <button class="story-choice" onclick="selectStory(6)">
+                <button class="story-choice" onclick="selectStory('ready')">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
                 </button>
             </div>
         </div>
 
-        <!-- Middle Column - Story Input/Output -->
-        <div class="story-workspace">
-            <div id="input-section">
-                <h2>Fill in the Blanks</h2>
-                <div id="word-inputs"></div>
-                <button id="generate-button" class="generate-btn hidden">Generate Story!</button>
-            </div>
-            <div id="story-output" class="hidden">
-                <h3>Your Story</h3>
-                <div id="story-text"></div>
-                <button onclick="resetStory()" class="reset-btn">Create Another Story</button>
-            </div>
+        <!-- Middle Column - Story Form -->
+        <div class="story-form">
+            <h2>Fill in the Blanks</h2>
+            <div id="word-inputs"></div>
+            <button id="generate-button" class="generate-btn">Generate Story!</button>
+            <div id="story-output" class="hidden"></div>
+            <button id="reset-button" class="reset-btn hidden">Create Another Story</button>
         </div>
 
         <!-- Right Column - Example Cards -->
         <div class="example-section">
             <h2>Lenape Word Examples</h2>
             <div class="example-cards">
+                <!-- Body Parts Card -->
                 <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Body Parts</h3>
-                            <p>Click to see examples</p>
-                        </div>
-                        <div class="card-back">
-                            <h3>Body Parts</h3>
-                            <p>Wixkwan = nose</p>
-                            <p>Witun = mouth</p>
-                            <p>Wihle = head</p>
-                            <p>Wiske = eyes</p>
-                            <p>Wikat = leg</p>
-                        </div>
+                    <h3>Body Parts</h3>
+                    <div class="word-list">
+                        <p>Wixkwan = nose</p>
+                        <p>Witun = mouth</p>
+                        <p>Wihle = head</p>
+                        <p>Wiske = eyes</p>
+                        <p>Wikat = leg</p>
+                        <p>Naxka = hands</p>
+                        <p>Welencha = fingers</p>
+                        <p>Wsita = feet</p>
+                        <p>Kwetsita = toes</p>
+                        <p>Hwitaoka = ears</p>
+                        <p>Mutaya = stomach</p>
                     </div>
                 </div>
 
+                <!-- Colors Card -->
                 <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Colors</h3>
-                            <p>Click to see examples</p>
-                        </div>
-                        <div class="card-back">
-                            <h3>Colors</h3>
-                            <p>Seke = black</p>
-                            <p>Ope = white</p>
-                            <p>Machke = red</p>
-                            <p>Wisawe = yellow</p>
-                            <p>Askaske = green</p>
-                        </div>
+                    <h3>Colors</h3>
+                    <div class="word-list">
+                        <p>Seke = black</p>
+                        <p>Ope = white</p>
+                        <p>Machke = red</p>
+                        <p>Wisawe = yellow</p>
+                        <p>Askaske = green</p>
+                        <p>Wape = grey</p>
                     </div>
                 </div>
 
+                <!-- Numbers Card -->
                 <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Numbers</h3>
-                            <p>Click to see examples</p>
-                        </div>
-                        <div class="card-back">
-                            <h3>Numbers</h3>
-                            <p>Kweti = one</p>
-                            <p>Nisha = two</p>
-                            <p>Naxa = three</p>
-                            <p>Newa = four</p>
-                            <p>Palenaxk = five</p>
-                        </div>
+                    <h3>Numbers</h3>
+                    <div class="word-list">
+                        <p>Kweti = one</p>
+                        <p>Nisha = two</p>
+                        <p>Naxa = three</p>
+                        <p>Newa = four</p>
+                        <p>Palenaxk = five</p>
+                        <p>Kwetash = six</p>
+                        <p>Nishash = seven</p>
+                        <p>Xash = eight</p>
+                        <p>Peshkunk = nine</p>
+                        <p>Telen = ten</p>
                     </div>
                 </div>
 
+                <!-- Emotions Card -->
                 <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Emotions</h3>
-                            <p>Click to see examples</p>
-                        </div>
-                        <div class="card-back">
-                            <h3>Emotions</h3>
-                            <p>Nulhatam = happy</p>
-                            <p>Kwitey = angry</p>
-                            <p>Wawitam = sad</p>
-                            <p>Wisachgihhele = excited</p>
-                            <p>Kwishele = afraid</p>
-                        </div>
+                    <h3>Emotions</h3>
+                    <div class="word-list">
+                        <p>Nulhatam = happy</p>
+                        <p>Kwitey = angry</p>
+                        <p>Wawitam = sad</p>
+                        <p>Wisachgihhele = excited</p>
+                        <p>Kwishele = afraid</p>
                     </div>
                 </div>
             </div>
