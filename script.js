@@ -1,207 +1,162 @@
-// Initialize when document loads
+// Main initialization
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
-    console.log('Current page:', currentPage);
     initializePage(currentPage);
 });
 
-// Page initialization router
+// Page router
 function initializePage(page) {
     switch(page) {
-        case 'flashcards':
-            initializeFlashcards();
+        case 'index':
+            initializeHome();
             break;
-        case 'dragdrop':
-            initializeDragDrop();
+        case 'cardflip':
+            initializeCardFlip();
             break;
-        case 'crossword':
-            initializeCrossword();
+        case 'crosswords':
+            initializeCrosswords();
             break;
         case 'madlibs':
             initializeMadLibs();
             break;
-        case 'grouppractice':
-            initializeGroupPractice();
+        case 'dragdrop':
+            initializeDragDrop();
             break;
-        default:
-            initializeHome();
     }
+    initializeNavigation();
 }
 
-// Group Practice Page Content
-const activityContent = {
-    howmany: {
-        title: "How Many...?",
-        description: "The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.",
-        prompts: [
-            "How many hwikiyona (noses) are in this room?",
-            "How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?",
-            "How many tuna (mouths) are in this room?",
-            "How many naxka (hands) are in this room?",
-            "How many welencha (fingers)?",
-            "How many wsita (feet) are in this room?",
-            "How many kwetsita (toes)?",
-            "How many people in this room have long milaxk (hair)?",
-            "How many have short milaxk (hair)?",
-            "How many people in this room have brown milaxk (hair)?",
-            "How many have black milaxk (hair)?",
-            "How many have red milaxk (hair)?",
-            "How many have blonde milaxk (hair)?",
-            "How many hwitaoka (ears) are in this room?",
-            "How many mutaya (stomachs) are in this room?",
-            "How many tuhwepia (bodies) are in this room?"
-        ]
-    },
-    simonsays: {
-        title: "Simon Says...",
-        description: "The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds. The leader can choose whether any incorrect responses constitute an 'out' or if everyone gets unlimited chances.",
-        prompts: [
-            "Wave your right naxk (hand)",
-            "Tap your left wsit (foot)",
-            "Hold up nisha (two) welencha (fingers)",
-            "Wiggle your hwitaoka (ears)",
-            "Close your weshkinko (eyes)",
-            "Touch your wikuwàkane (nose)",
-            "Pat your mutaya (stomach)",
-            "Shake your milaxk (hair)",
-            "Point to your tuna (mouth)",
-            "Touch your wsita (feet)"
-        ]
-    },
-    creature: {
-        title: "Creature Feature",
-        description: "Create imaginative creatures by combining different parts of various animals. Use Lenape words for body parts and colors to describe your creation.",
-        prompts: [
-            "Create a creature with three hwikiyona (noses)",
-            "Design an animal with extra welencha (fingers)",
-            "Imagine a being with unusual colored milaxk (hair)",
-            "Describe a creature with multiple hwitaoka (ears)",
-            "Make up an animal with special wsita (feet)"
-        ]
-    },
-    conversation: {
-        title: "Conversation Prompts",
-        description: "Use the following prompts to start a conversation. Encourage learners to respond using Lenape body parts, colors, numbers, and animals.",
-        prompts: [
-            "What are your three favorite animals and why?",
-            "Describe someone in this room based on their physical features.",
-            "Which body part do you think is the most/least useful, why?",
-            "Compare and contrast the physical appearances between a baby and an adult.",
-            "Describe a mythical body part for the other students to guess.",
-            "Describe your morning routine, using as many body parts as possible.",
-            "Pretend you're at the doctor's office and explain what's wrong with you.",
-            "Describe your favorite animal based on their physical appearance."
-        ]
-    }
-};
-
-// Group Practice Functions
-function initializeGroupPractice() {
-    console.log('Initializing Group Practice page');
-    showActivity('howmany');
-}
-
-function showActivity(activityType) {
-    console.log('Showing activity:', activityType);
-    const content = activityContent[activityType];
-    const contentSection = document.getElementById('activity-content');
-    
-    let html = `
-        <h2>${content.title}</h2>
-        <p class="description">${content.description}</p>
-    `;
-
-    if (content.prompts) {
-        html += '<div class="prompts-list">';
-        content.prompts.forEach(prompt => {
-            html += `<div class="prompt-item">${prompt}</div>`;
-        });
-        html += '</div>';
-    }
-
-    contentSection.innerHTML = html;
-    contentSection.classList.remove('hidden');
-    
-    // Update active states
-    document.querySelectorAll('.activity-card').forEach(card => {
-        card.classList.remove('active');
-        if(card.getAttribute('onclick').includes(activityType)) {
-            card.classList.add('active');
+// Navigation
+function initializeNavigation() {
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+    document.querySelectorAll('.nav-bar a').forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+            link.classList.add('active');
         }
     });
 }
 
-// Drag & Drop Functions
-function initializeDragDrop() {
-    console.log('Initializing Drag & Drop page');
-    showGame('game1');
+// Card Flip Page
+function initializeCardFlip() {
+    const cards = document.querySelectorAll('.flip-card');
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
 }
 
-function showGame(gameId) {
-    console.log('Showing game:', gameId);
-    document.querySelectorAll('.game').forEach(game => {
-        game.classList.remove('active');
+// Crosswords Page
+function initializeCrosswords() {
+    const frames = document.querySelectorAll('.crossword-frame');
+    const buttons = document.querySelectorAll('.puzzle-button');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const puzzleType = this.getAttribute('data-puzzle');
+            showPuzzle(puzzleType);
+        });
     });
+}
+
+function showPuzzle(type) {
+    document.querySelectorAll('.crossword-frame').forEach(frame => {
+        frame.style.display = 'none';
+    });
+    document.getElementById(type).style.display = 'block';
     
-    document.getElementById(gameId).classList.add('active');
-    
-    document.querySelectorAll('.game-choice').forEach(button => {
+    document.querySelectorAll('.puzzle-button').forEach(button => {
         button.classList.remove('active');
-        if(button.getAttribute('onclick').includes(gameId)) {
+        if(button.getAttribute('data-puzzle') === type) {
             button.classList.add('active');
         }
     });
 }
 
-// Crossword Functions
-function initializeCrossword() {
-    console.log('Initializing Crossword page');
-    showPuzzle('singular');
-}
-
-function showPuzzle(type) {
-    const frames = document.querySelectorAll('.crossword-frame');
-    const buttons = document.querySelectorAll('.puzzle-button');
-    
-    frames.forEach(frame => frame.classList.remove('active'));
-    buttons.forEach(button => button.classList.remove('active'));
-    
-    document.getElementById(type).classList.add('active');
-    event.target.classList.add('active');
-}
-
-// Mad Libs Functions
+// Mad Libs Page
 function initializeMadLibs() {
-    console.log('Initializing Mad Libs page');
-    // Add Mad Libs specific initialization
+    setupExampleCards();
+    setupStorySelection();
+    setupInputValidation();
 }
 
-// Flash Cards Functions
-function initializeFlashcards() {
-    console.log('Initializing Flash Cards page');
-    showFlashcardSet('lower');
-}
-
-function showFlashcardSet(setId) {
-    document.querySelectorAll('.game-frame').forEach(frame => {
-        frame.classList.remove('active');
+function setupExampleCards() {
+    document.querySelectorAll('.example-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
     });
+}
+
+function setupStorySelection() {
+    document.querySelectorAll('.story-choice').forEach(choice => {
+        choice.addEventListener('click', function() {
+            const storyId = this.getAttribute('data-story');
+            selectStory(storyId);
+        });
+    });
+}
+
+function setupInputValidation() {
+    document.querySelectorAll('.word-input').forEach(input => {
+        input.addEventListener('input', function() {
+            validateInput(this);
+        });
+    });
+}
+
+function validateInput(input) {
+    const value = input.value.trim();
+    const isValid = /^[A-Za-z\s]+$/.test(value);
+    input.classList.toggle('invalid', !isValid);
+}
+
+// Drag & Drop Page
+function initializeDragDrop() {
+    showGame('game1');
+    setupGameButtons();
+}
+
+function showGame(gameId) {
+    document.querySelectorAll('.game').forEach(game => {
+        game.style.display = 'none';
+    });
+    document.getElementById(gameId).style.display = 'block';
     
-    document.getElementById(setId).classList.add('active');
-    
-    document.querySelectorAll('.game-button').forEach(button => {
+    document.querySelectorAll('.game-choice').forEach(button => {
         button.classList.remove('active');
+        if(button.getAttribute('data-game') === gameId) {
+            button.classList.add('active');
+        }
     });
-    event.target.classList.add('active');
 }
 
-// Home Page Functions
+function setupGameButtons() {
+    document.querySelectorAll('.game-choice').forEach(button => {
+        button.addEventListener('click', function() {
+            const gameId = this.getAttribute('data-game');
+            showGame(gameId);
+        });
+    });
+}
+
+// Home Page
 function initializeHome() {
-    console.log('Initializing Home page');
-    // Add home page specific initialization
+    setupGameCards();
 }
 
-// Error handling
+function setupGameCards() {
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const gameUrl = this.getAttribute('data-url');
+            if (gameUrl) {
+                window.location.href = gameUrl;
+            }
+        });
+    });
+}
+
+// Error Handling
 window.onerror = function(msg, url, lineNo, columnNo, error) {
     console.error('Error: ', msg, '\nURL: ', url, '\nLine: ', lineNo, '\nColumn: ', columnNo, '\nError object: ', error);
     return false;
