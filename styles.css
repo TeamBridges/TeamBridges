@@ -124,6 +124,10 @@ body {
     border-radius: 5px;
 }
 
+.user-input {
+    font-weight: bold;
+    color: #1e3c72; /* This is the blue color used in your theme */
+}
 /* Word Examples Styles */
 .word-examples {
     background: white;
