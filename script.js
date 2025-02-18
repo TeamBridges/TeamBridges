@@ -216,38 +216,42 @@ function loadStory(storyId) {
     generateButton.style.display = 'block';
 }
 
-function generateStory(storyId) {
+function generateStory() {
+    const storyId = document.querySelector('.story-choice.active').dataset.storyId;
     const story = stories[storyId];
-    const inputs = {};
-    let isValid = true;
+    if (!story) return;
 
-    // Collect and validate inputs
-    story.inputs.forEach((input, index) => {
-        const value = document.getElementById(`input-${index}`).value.trim();
+    const inputs = {};
+    let allFilled = true;
+
+    // Collect all input values
+    story.inputs.forEach(input => {
+        const value = document.getElementById(input.id)?.value.trim();
         if (!value) {
-            isValid = false;
-            document.getElementById(`input-${index}`).classList.add('error');
-        } else {
-            inputs[input.type] = value;
+            allFilled = false;
         }
+        inputs[input.id] = value;
     });
 
-    if (!isValid) {
+    if (!allFilled) {
         alert('Please fill in all fields!');
         return;
     }
 
-    // Generate the story
-    let generatedStory = story.template;
+    // Generate story text with styled inputs
+    let storyText = story.template;
     Object.entries(inputs).forEach(([key, value]) => {
-        const regex = new RegExp(`{${key}}`, 'g');
-        generatedStory = generatedStory.replace(regex, value);
+        storyText = storyText.replace(
+            `{${key}}`, 
+            `<span class="user-input">${value}</span>`
+        );
     });
 
-    // Display the generated story
-    const outputDiv = document.getElementById('story-output');
-    outputDiv.textContent = generatedStory;
-    outputDiv.classList.remove('hidden');
+    // Display story
+    const storyOutput = document.getElementById('story-output');
+    storyOutput.innerHTML = storyText;
+    storyOutput.classList.remove('hidden');
+}
 
     // Hide input section and show reset button
     document.querySelector('.input-section').style.display = 'none';
