@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lenape Language - Group Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -8,9 +10,9 @@
 <body>
     <nav class="nav-bar">
         <a href="index.html">Home</a>
-        <a href="flashcards.html">Flashcards</a>
+        <a href="flashcards.html">Flash Cards</a>
         <a href="dragdrop.html">Drag & Drop</a>
-        <a href="crosswords.html">Crossword</a>
+        <a href="crossword.html">Crossword</a>
         <a href="madlibs.html">Mad Libs</a>
         <a href="grouppractice.html" class="active">Group Practice</a>
     </nav>
@@ -26,17 +28,14 @@
                 <h3>How Many...?</h3>
                 <p>Count and practice numbers with your group!</p>
             </div>
-
             <div class="activity-card" onclick="showActivity('simonsays')">
                 <h3>Simon Says...</h3>
                 <p>Learn body parts through movement and fun!</p>
             </div>
-
             <div class="activity-card" onclick="showActivity('creature')">
                 <h3>Creature Feature</h3>
                 <p>Create imaginative creatures using Lenape words!</p>
             </div>
-
             <div class="activity-card" onclick="showActivity('conversation')">
                 <h3>Conversation Prompts</h3>
                 <p>Practice speaking with guided conversation topics!</p>
@@ -45,13 +44,6 @@
 
         <section id="activity-content" class="activity-content hidden">
             <!-- Content will be populated by JavaScript -->
-        </section>
-
-        <section class="word-examples">
-            <h2>Lenape Word Examples</h2>
-            <div class="example-cards" id="example-section">
-                <!-- Word examples will be populated by JavaScript -->
-            </div>
         </section>
     </main>
 
