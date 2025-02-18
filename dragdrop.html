@@ -5,303 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lenape Language Learning - Drag and Drop</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-        }
-
-        header {
-            background-color: #2B3856;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-bar {
-            background-color: white;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .nav-bar a {
-            color: #2B3856;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-bar a.active {
-            background-color: #2B3856;
-            color: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .word-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .word-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .draggable {
-            background: #2B3856;
-            color: white;
-            padding: 1rem;
-            border-radius: 5px;
-            cursor: move;
-            text-align: center;
-            transition: transform 0.2s;
-        }
-
-        .draggable:hover {
-            transform: translateY(-2px);
-        }
-
-        .drop-zone {
-            background: #f5f7fa;
-            border: 2px dashed #2B3856;
-            border-radius: 5px;
-            min-height: 100px;
-            margin-top: 1rem;
-            padding: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .drop-zone.dragover {
-            background: rgba(43, 56, 86, 0.1);
-        }
-
-        .category-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-tab {
-            background: #2B3856;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .category-tab:hover {
-            background: #1a2a3f;
-        }
-
-        .category-tab.active {
-            background: #1a2a3f;
-        }
-
-        .score-container {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .score {
-            font-size: 1.5rem;
-            color: #2B3856;
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>Lenape Language Learning</h1>
-        <p>Practice Lenape Words with Drag and Drop</p>
+        <p>Practice Lenape Words with Drag and Drop Games</p>
     </header>
 
     <nav class="nav-bar">
-        <a href="index.html">Home</a>
-        <a href="madlibs.html">Mad Libs</a>
-        <a href="crossword.html">Crossword</a>
-        <a href="dragdrop.html" class="active">Drag & Drop</a>
-    </nav>
+    <a href="index.html">Home</a>
+    <a href="madlibs.html">Mad Libs</a>
+    <a href="crossword.html">Crossword</a>
+    <a href="flashcards.html">Flashcards</a>
+    <a href="dragdrop.html" class="active">Drag & Drop</a>
+</nav>
 
-    <div class="container">
-        <div class="word-container">
-            <div class="category-tabs">
-                <button class="category-tab active" data-category="bodyParts">Body Parts</button>
-                <button class="category-tab" data-category="colors">Colors</button>
-                <button class="category-tab" data-category="numbers">Numbers</button>
-                <button class="category-tab" data-category="emotions">Emotions</button>
-            </div>
-            <div class="word-list" id="wordList">
-                <!-- Words will be populated by JavaScript -->
-            </div>
-        </div>
-
-        <div class="word-container">
-            <h2>Drop Zone</h2>
-            <div class="drop-zone" id="dropZone"></div>
-            <div class="score-container">
-                <h3>Score</h3>
-                <div class="score" id="score">0</div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Word data
-        const words = {
-            bodyParts: [
-                { lenape: 'Wikèhèn', english: 'Head' },
-                { lenape: 'Wikèhs', english: 'Mouth' },
-                { lenape: 'Wikuwàkane', english: 'Nose' },
-                { lenape: 'Wikuwe', english: 'Eyes' },
-                { lenape: 'Wikèk', english: 'Leg' }
-            ],
-            colors: [
-                { lenape: 'Sàpe', english: 'Black' },
-                { lenape: 'Wapá', english: 'White' },
-                { lenape: 'Mòtànk', english: 'Red' },
-                { lenape: 'Wëski', english: 'Yellow' },
-                { lenape: 'Oxkàshe', english: 'Green' }
-            ],
-            numbers: [
-                { lenape: 'Lënuwe', english: 'One' },
-                { lenape: 'Nisha', english: 'Two' },
-                { lenape: 'Nash', english: 'Three' },
-                { lenape: 'Newa', english: 'Four' },
-                { lenape: 'Palenaxk', english: 'Five' }
-            ],
-            emotions: [
-                { lenape: 'Nulitùn', english: 'Happy' },
-                { lenape: 'Wsìkwàk', english: 'Angry' },
-                { lenape: 'Wichin', english: 'Sad' },
-                { lenape: 'Wètëlaohake', english: 'Excited' },
-                { lenape: 'Wjánte', english: 'Afraid' }
-            ]
-        };
-
-        let currentCategory = 'bodyParts';
-        let score = 0;
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            populateWords(currentCategory);
-            setupDragAndDrop();
-            setupCategoryTabs();
-        });
-
-        function populateWords(category) {
-            const wordList = document.getElementById('wordList');
-            wordList.innerHTML = '';
+    <main class="container">
+        <section class="game-section">
+            <h2>Choose Your Game</h2>
             
-            words[category].forEach(word => {
-                const wordElement = document.createElement('div');
-                wordElement.className = 'draggable';
-                wordElement.draggable = true;
-                wordElement.textContent = word.lenape;
-                wordElement.dataset.english = word.english;
-                wordList.appendChild(wordElement);
-            });
-        }
+            <div class="game-container">
+                <div class="game-card">
+                    <h3>Lenape Drag & Drop I</h3>
+                    <div class="game-frame">
+                        <iframe src="https://scratch.mit.edu/projects/1121398388/embed" 
+                                allowtransparency="true" 
+                                width="485" 
+                                height="402" 
+                                frameborder="0" 
+                                scrolling="no" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
 
-        function setupDragAndDrop() {
-            const draggables = document.querySelectorAll('.draggable');
-            const dropZone = document.getElementById('dropZone');
+                <div class="game-card">
+                    <h3>Lenape Drag & Drop II</h3>
+                    <div class="game-frame">
+                        <iframe src="https://scratch.mit.edu/projects/1122262027/embed" 
+                                allowtransparency="true" 
+                                width="485" 
+                                height="402" 
+                                frameborder="0" 
+                                scrolling="no" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            draggables.forEach(draggable => {
-                draggable.addEventListener('dragstart', e => {
-                    e.dataTransfer.setData('text/plain', e.target.textContent);
-                    e.target.classList.add('dragging');
-                });
+        <aside class="word-examples">
+            <h2>Lenape Word Examples</h2>
+            <div class="example-cards">
+                <div class="example-card" onclick="toggleWordList('bodyParts')">
+                    <h3>Body Parts</h3>
+                    <div class="word-list hidden">
+                        <p>Wikèhèn = Head</p>
+                        <p>Wikèhs = Mouth</p>
+                        <p>Wikuwàkane = Nose</p>
+                        <p>Wikuwe = Eyes</p>
+                        <p>Wikèk = Leg</p>
+                    </div>
+                </div>
 
-                draggable.addEventListener('dragend', e => {
-                    e.target.classList.remove('dragging');
-                });
-            });
+                <div class="example-card" onclick="toggleWordList('colors')">
+                    <h3>Colors</h3>
+                    <div class="word-list hidden">
+                        <p>Sàpe = Black</p>
+                        <p>Wapá = White</p>
+                        <p>Mòtànk = Red</p>
+                        <p>Wëski = Yellow</p>
+                        <p>Oxkàshe = Green</p>
+                    </div>
+                </div>
 
-            dropZone.addEventListener('dragover', e => {
-                e.preventDefault();
-                dropZone.classList.add('dragover');
-            });
+                <div class="example-card" onclick="toggleWordList('numbers')">
+                    <h3>Numbers</h3>
+                    <div class="word-list hidden">
+                        <p>Lënuwe = One</p>
+                        <p>Nisha = Two</p>
+                        <p>Nash = Three</p>
+                        <p>Newa = Four</p>
+                        <p>Palenaxk = Five</p>
+                    </div>
+                </div>
 
-            dropZone.addEventListener('dragleave', () => {
-                dropZone.classList.remove('dragover');
-            });
+                <div class="example-card" onclick="toggleWordList('emotions')">
+                    <h3>Emotions</h3>
+                    <div class="word-list hidden">
+                        <p>Nulitùn = Happy</p>
+                        <p>Wsìkwàk = Angry</p>
+                        <p>Wichin = Sad</p>
+                        <p>Wètëlaohake = Excited</p>
+                        <p>Wjánte = Afraid</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
 
-            dropZone.addEventListener('drop', e => {
-                e.preventDefault();
-                dropZone.classList.remove('dragover');
-                const word = e.dataTransfer.getData('text/plain');
-                const draggable = document.querySelector(`[draggable][data-english]`);
-                
-                if (draggable) {
-                    const clone = draggable.cloneNode(true);
-                    clone.draggable = false;
-                    dropZone.appendChild(clone);
-                    updateScore(1);
-                }
-            });
-        }
-
-        function setupCategoryTabs() {
-            const tabs = document.querySelectorAll('.category-tab');
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    currentCategory = tab.dataset.category;
-                    populateWords(currentCategory);
-                    setupDragAndDrop();
-                });
-            });
-        }
-
-        function updateScore(points) {
-            score += points;
-            document.getElementById('score').textContent = score;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
