@@ -3,106 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Games - Group Practice</title>
+    <title>Lenape Language Learning - Group Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="title">
+        <h1>Group Practice Activities</h1>
+        <p>Interactive Lenape language activities for groups and classes</p>
+    </header>
+
+    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="index.html">Home</a>
-        <a href="madlibs.html">Mad Libs</a>
-        <a href="crosswords.html">Crosswords</a>
-        <a href="flashcards.html">Flashcards</a>
+        <a href="home.html">Home</a>
+        <a href="flashcards.html">Flash Cards</a>
         <a href="dragdrop.html">Drag & Drop</a>
+        <a href="crossword.html">Crossword</a>
+        <a href="madlibs.html">Mad Libs</a>
         <a href="grouppractice.html" class="active">Group Practice</a>
     </nav>
 
-    <div class="header">
-        <h1>Group Practice Activities</h1>
-        <p>Interactive Lenape language activities for groups and classes</p>
-    </div>
-
-    <div class="container">
-        <div class="activity-cards">
-            <!-- How Many Card -->
-            <div class="activity-card" onclick="this.classList.toggle('flipped')">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <h2>How Many...?</h2>
-                        <p>Click to see counting activities</p>
-                    </div>
-                    <div class="card-back">
-                        <h3>How Many...?</h3>
-                        <p class="description">The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.</p>
-                        <ul class="prompts-list">
-                            <li>How many hwikiyona (noses) are in this room?</li>
-                            <li>How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?</li>
-                            <li>How many tuna (mouths) are in this room?</li>
-                            <li>How many naxka (hands) are in this room?</li>
-                            <li>How many welencha (fingers)?</li>
-                            <li>How many wsita (feet) are in this room?</li>
-                            <li>How many kwetsita (toes)?</li>
-                            <li>How many people in this room have long milaxk (hair)?</li>
-                            <li>How many have short milaxk (hair)?</li>
-                            <li>How many people in this room have brown milaxk (hair)?</li>
-                            <li>How many have black milaxk (hair)?</li>
-                            <li>How many have gray milaxk (hair)?</li>
-                            <li>How many have red milaxk (hair)?</li>
-                            <li>How many have blonde milaxk (hair)?</li>
-                            <li>How many hwitaoka (ears) are in this room?</li>
-                            <li>How many mutaya (stomachs) are in this room?</li>
-                            <li>How many tuhwepia (bodies) are in this room?</li>
-                        </ul>
-                    </div>
-                </div>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- How Many...? Section -->
+        <section class="activity-section">
+            <h2>How Many...?</h2>
+            <p>The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with your friends and family.</p>
+            
+            <div class="prompts">
+                <h3>Counting Activities</h3>
+                <ul>
+                    <li>How many hwikiyona (noses) are in this room?</li>
+                    <li>How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?</li>
+                    <li>How many tuna (mouths) are in this room?</li>
+                    <li>How many naxka (hands) are in this room?</li>
+                    <li>How many welencha (fingers)?</li>
+                    <li>How many wsita (feet) are in this room?</li>
+                    <li>How many kwetsita (toes)?</li>
+                    <li>How many people in this room have long milaxk (hair)?</li>
+                    <li>How many have short milaxk (hair)?</li>
+                    <li>How many people in this room have brown milaxk (hair)?</li>
+                    <li>How many have black milaxk (hair)?</li>
+                    <li>How many have gray milaxk (hair)?</li>
+                    <li>How many have red milaxk (hair)?</li>
+                    <li>How many have blonde milaxk (hair)?</li>
+                    <li>How many hwitaoka (ears) are in this room?</li>
+                    <li>How many mutaya (stomachs) are in this room?</li>
+                </ul>
             </div>
+        </section>
 
-            <!-- Simon Says Card -->
-            <div class="activity-card" onclick="this.classList.toggle('flipped')">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <h2>Simon Says...</h2>
-                        <p>Click to see movement activities</p>
-                    </div>
-                    <div class="card-back">
-                        <h3>Simon Says...</h3>
-                        <p class="description">The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds. The leader can choose whether any incorrect responses constitute an "out" or if everyone gets unlimited chances.</p>
-                        <ul class="prompts-list">
-                            <li>Wave your right naxk (hand)</li>
-                            <li>Tap your left wsit (foot)</li>
-                            <li>Hold up nisha (two) welencha (fingers)</li>
-                            <li>Wiggle your hwitaoka (ears)</li>
-                            <li>Close your weshkinko (eyes)</li>
-                            <li>Pat your right ketukw (knee)</li>
-                            <li>Raise your left naolk (arm)</li>
-                            <li>Touch your wikiyon (nose) naxen (three times)</li>
-                            <li>Hold your right wiskon (elbow)</li>
-                            <li>Tap your left hwikxkon (shin)</li>
-                            <li>Hold up a tukwelench (fist)</li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Simon Says Section -->
+        <section class="activity-section">
+            <h2>Simon Says...</h2>
+            <p>The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds.</p>
+            
+            <div class="prompts">
+                <h3>Movement Commands</h3>
+                <ul>
+                    <li>Wave your right naxk (hand)</li>
+                    <li>Tap your left wsit (foot)</li>
+                    <li>Hold up nisha (two) welencha (fingers)</li>
+                    <li>Wiggle your hwitaoka (ears)</li>
+                    <li>Close your weshkinko (eyes)</li>
+                    <li>Pat your right ketukw (knee)</li>
+                    <li>Raise your left naolk (arm)</li>
+                    <li>Touch your wikiyon (nose) naxen (three times)</li>
+                    <li>Hold your right wiskon (elbow)</li>
+                    <li>Tap your left hwikxkon (shin)</li>
+                    <li>Hold up a tukwelench (fist)</li>
+                </ul>
             </div>
+        </section>
 
-            <!-- Creature Feature Card -->
-            <div class="activity-card" onclick="this.classList.toggle('flipped')">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <h2>Creature Feature</h2>
-                        <p>Click to see creative activities</p>
-                    </div>
-                    <div class="card-back">
-                        <h3>Creature Feature</h3>
-                        <p class="description">Invent a new creature by combining different parts of various animals. Give it a name, and make up an interesting fact about your creature. This should incorporate vocabulary words for animals and body parts, and it could also include numbers or colors as appropriate.</p>
-                        <div class="example">
-                            <h4>Example:</h4>
-                            <p>My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn, and if you see one, it means you will soon discover trash that is actually treasure.</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Creature Feature Section -->
+        <section class="activity-section">
+            <h2>Creature Feature</h2>
+            <p>Invent a new creature by combining different parts of various animals. Give it a name, and make up an interesting fact about your creature. This should incorporate vocabulary words for animals and body parts, and it could also include numbers or colors as appropriate.</p>
+            
+            <div class="example">
+                <h3>Example:</h3>
+                <p>My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn, and if you see one, it means you will soon discover trash that is actually treasure.</p>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <!-- Conversation Prompts Section -->
+        <section class="activity-section">
+            <h2>Conversation Prompts</h2>
+            <p>Use the following prompts to start a conversation. Encourage learners to respond using words in Lenape as often as possible, especially focusing on Lenape body parts, colors, numbers, and animals.</p>
+            
+            <div class="prompts">
+                <ul>
+                    <li>What are your three favorite physical features about yourself, why?</li>
+                    <li>Describe someone in this room based on their physical features.</li>
+                    <li>Which body part do you think is the most/least useful, why?</li>
+                    <li>Compare and contrast the physical appearances between a baby and an adult.</li>
+                    <li>Describe a mystery body part for the other students to guess.</li>
+                    <li>Describe your morning routine, using as many body parts as possible.</li>
+                    <li>Pretend you're at the doctor's office and explain what's wrong and how you feel.</li>
+                    <li>Describe your favorite animal based on their physical appearance.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
