@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Games - Group Practice</title>
+    <title>Lenape Language Learning - Drag & Drop</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -20,9 +20,16 @@
             flex-direction: column;
         }
 
+        .title {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
         .nav-bar {
-            background-color: white;
-            padding: 1rem;
+            background: white;
+            padding: 15px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: sticky;
@@ -48,23 +55,10 @@
             color: white;
         }
 
-        .header {
-            background-color: #2b4162;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
         .container {
-            max-width: 1600px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
-            flex-grow: 1;
         }
 
         .instructions {
@@ -105,13 +99,12 @@
             font-size: 1.1rem;
             cursor: pointer;
             transition: transform 0.2s ease;
-            min-width: 200px;
+            min-width: 300px;
             text-align: center;
         }
 
         .game-button h3 {
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
         }
 
         .game-button p {
@@ -128,13 +121,13 @@
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        .game-display {
+        .game-container {
             background: white;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             overflow: hidden;
             width: 100%;
-            max-width: 1455px;
+            aspect-ratio: 485/402;
             margin: 0 auto;
         }
 
@@ -150,7 +143,7 @@
         }
 
         @media (max-width: 768px) {
-            .header h1 {
+            .title h1 {
                 font-size: 2rem;
             }
 
@@ -171,18 +164,18 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Group Practice Activities</h1>
-        <p>Interactive Lenape language activities for groups and classes</p>
+    <div class="title">
+        <h1>Lenape Language Learning</h1>
+        <p>Practice Lenape Words with Drag and Drop Games</p>
     </div>
 
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="flashcards.html" class="nav-link">Flash Cards</a>
-        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+        <a href="dragdrop.html" class="nav-link active">Drag & Drop</a>
         <a href="crossword.html" class="nav-link">Crossword</a>
         <a href="madlibs.html" class="nav-link">Mad Libs</a>
-        <a href="grouppractice.html" class="nav-link active">Group Practice</a>
+        <a href="grouppractice.html" class="nav-link">Group Practice</a>
     </nav>
 
     <div class="container">
@@ -207,7 +200,7 @@
             </button>
         </div>
 
-        <div class="game-display">
+        <div class="game-container">
             <iframe id="game1" class="game-frame active" src="https://scratch.mit.edu/projects/1121398388/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
             <iframe id="game2" class="game-frame" src="https://scratch.mit.edu/projects/1122262027/embed" allowtransparency="true" scrolling="no" allowfullscreen></iframe>
         </div>
