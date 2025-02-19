@@ -1,102 +1,243 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Learning</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Lenape Language Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-bar {
+            background-color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-link {
+            color: #2b4162;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.active {
+            background-color: #2b4162;
+            color: white;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .game-icon {
+            font-size: 2.5rem;
+            color: #2b4162;
+            margin-bottom: 1rem;
+        }
+
+        .game-card h2 {
+            color: #2b4162;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .game-features {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .game-features ul {
+            list-style-type: none;
+        }
+
+        .game-features li {
+            margin: 0.5rem 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .play-button {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            background-color: white;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .game-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                margin: 0 0.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="title">
-        <h1>Lenape Language Learning</h1>
-        <p>Learn and practice Lenape language through fun interactive games!</p>
-    </header>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Lenape Language Games</h1>
+            <p>Learn and practice Lenape language through fun interactive games!</p>
+        </div>
+    </div>
 
-    <!-- Navigation -->
     <nav class="nav-bar">
-        <a href="index.html" class="active">Home</a>
-        <a href="flashcards.html">Flash Cards</a>
-        <a href="dragdrop.html">Drag & Drop</a>
-        <a href="crossword.html">Crosswords</a>
-        <a href="madlibs.html">Mad Libs</a>
-        <a href="grouppractice.html">Group Practice</a>
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="flashcards.html" class="nav-link">Flash Cards</a>
+        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+        <a href="crossword.html" class="nav-link">Crossword</a>
+        <a href="madlibs.html" class="nav-link">Mad Libs</a>
+        <a href="grouppractice.html" class="nav-link">Group Practice</a>
     </nav>
 
-    <!-- Main Content -->
-    <main class="container">
-        <div class="game-container">
-            <!-- Flash Cards Card -->
-            <div class="game-card">
-                <h2>Flash Cards</h2>
-                <p>Learn Lenape words with interactive flash cards!</p>
-                <div class="game-features">
-                    <ul>
-                        <li>Memory training</li>
-                        <li>Word pairs</li>
-                        <li>Quick learning</li>
-                    </ul>
-                </div>
-                <a href="flashcards.html" class="play-button">Play Now</a>
+    <div class="game-container">
+        <div class="game-card" onclick="window.location.href='flashcards.html'">
+           
+            <h2>Flash Cards</h2>
+            <p>Learn Lenape words with interactive flash cards!</p>
+            <div class="game-features">
+                <ul>
+                    <li>Memory training</li>
+                    <li>Word pairs</li>
+                    <li>Quick learning</li>
+                </ul>
             </div>
-
-            <!-- Drag & Drop Card -->
-            <div class="game-card">
-                <h2>Drag & Drop</h2>
-                <p>Match Lenape words with their meanings!</p>
-                <div class="game-features">
-                    <ul>
-                        <li>Interactive learning</li>
-                        <li>Word matching</li>
-                        <li>Visual practice</li>
-                    </ul>
-                </div>
-                <a href="dragdrop.html" class="play-button">Play Now</a>
-            </div>
-
-            <!-- Crossword Card -->
-            <div class="game-card">
-                <h2>Crossword Puzzles</h2>
-                <p>Test your Lenape knowledge with interactive crosswords!</p>
-                <div class="game-features">
-                    <ul>
-                        <li>Vocabulary practice</li>
-                        <li>Word meanings</li>
-                        <li>Spelling practice</li>
-                    </ul>
-                </div>
-                <a href="crossword.html" class="play-button">Play Now</a>
-            </div>
-
-            <!-- Mad Libs Card -->
-            <div class="game-card">
-                <h2>Mad Libs</h2>
-                <p>Create funny stories while practicing Lenape vocabulary!</p>
-                <div class="game-features">
-                    <ul>
-                        <li>Learn new words</li>
-                        <li>Practice grammar</li>
-                        <li>Create stories</li>
-                    </ul>
-                </div>
-                <a href="madlibs.html" class="play-button">Play Now</a>
-            </div>
+            <button class="play-button">Play Now</button>
         </div>
 
-        <!-- Group Practice Section -->
-        <div class="group-practice-section">
+        <div class="game-card" onclick="window.location.href='dragdrop.html'">
+           
+            <h2>Drag & Drop</h2>
+            <p>Match Lenape words with their meanings!</p>
+            <div class="game-features">
+                <ul>
+                    <li>Interactive learning</li>
+                    <li>Word matching</li>
+                    <li>Visual practice</li>
+                </ul>
+            </div>
+            <button class="play-button">Play Now</button>
+        </div>
+
+        <div class="game-card" onclick="window.location.href='crossword.html'">
+            
+            <h2>Crossword Puzzles</h2>
+            <p>Test your Lenape knowledge with interactive crosswords!</p>
+            <div class="game-features">
+                <ul>
+                    <li>Vocabulary practice</li>
+                    <li>Word meanings</li>
+                    <li>Spelling practice</li>
+                </ul>
+            </div>
+            <button class="play-button">Play Now</button>
+        </div>
+
+        <div class="game-card" onclick="window.location.href='madlibs.html'">
+                      <h2>Mad Libs</h2>
+            <p>Create funny stories while practicing Lenape vocabulary!</p>
+            <div class="game-features">
+                <ul>
+                    <li>Learn new words</li>
+                    <li>Practice grammar</li>
+                    <li>Create stories</li>
+                </ul>
+            </div>
+            <button class="play-button">Play Now</button>
+        </div>
+<div class="game-card" onclick="window.location.href='grouppractice.html'">
+            
             <h2>Group Practice</h2>
-            <p>Interactive activities for practicing Lenape words in groups:</p>
-            <ul>
-                <li>How Many...? - Counting activities</li>
-                <li>Simon Says - Movement commands</li>
-                <li>Creature Feature - Creative word combinations</li>
-            </ul>
-            <a href="grouppractice.html" class="play-button">Play Now</a>
+            <p>Exercises to practice with friends!</p>
+            <div class="game-features">
+                <ul>
+                    <li>Practice using words in context</li>
+                    <li>Hear your pronounciation</li>
+                    <li>Create and respond to sentences</li>
+                </ul>
+            </div>
+            <button class="play-button">Play Now</button>
         </div>
-    </main>
 
-    <script src="script.js"></script>
+    </div>
+
+    <footer>
+        <p>© 2024 Team BRIDGES. All rights reserved.</p>
+    </footer>
 </body>
 </html>
