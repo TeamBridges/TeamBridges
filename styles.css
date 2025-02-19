@@ -9,30 +9,29 @@
 body {
     background-color: #f5f7fa;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Header & Navigation */
-.header {
-    background: #2B4170;
+.title {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
     text-align: center;
     padding: 40px 20px;
+    margin-bottom: 30px;
 }
 
-.header h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
+.title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.header p {
-    font-size: 18px;
+.title h2 {
+    font-size: 1.2rem;
     opacity: 0.9;
 }
 
 .nav-bar {
-    background-color: white;
+    background: white;
     padding: 15px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -55,218 +54,35 @@ body {
 }
 
 .nav-bar a.active {
-    background-color: #2B4170;
+    background-color: #1e3c72;
     color: white;
 }
 
-/* Main Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Instructions Section */
-.instructions {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    max-width: 800px;
-    margin: 0 auto 30px;
-}
-
-.instructions h2 {
-    color: #2B4170;
-    margin-bottom: 15px;
-}
-
-.instructions ol, .instructions ul {
-    list-style-type: none;
-    padding-left: 20px;
-}
-
-.instructions li {
-    margin: 10px 0;
-    position: relative;
-}
-
-.instructions li:before {
-    content: "•";
-    color: #2B4170;
-    position: absolute;
-    left: -20px;
-}
-
-/* Game Selection */
-.game-selection {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-    justify-content: center;
-}
-
-.game-button {
-    background: white;
-    border: none;
-    padding: 15px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-
-.game-button h3 {
-    color: #2B4170;
-    margin-bottom: 5px;
-    font-size: 18px;
-}
-
-.game-button p {
-    color: #666;
-    font-size: 14px;
-    margin: 0;
-}
-
-.game-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.game-button.active {
-    background: #2B4170;
-}
-
-.game-button.active h3,
-.game-button.active p {
-    color: white;
-}
-
-/* Game Display */
-.game-display {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    aspect-ratio: 485/402;
-    width: 100%;
-    max-width: 1455px;
-    margin: 0 auto;
-}
-
-.game-frame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: none;
-}
-
-.game-frame.active {
-    display: block;
-}
-
-/* Activity Cards */
-.activity-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 20px;
-}
-
-.activity-card {
-    background: white;
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.activity-card h2 {
-    color: #2B4170;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.activity-card p {
-    color: #666;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.activity-list {
-    list-style: none;
-    padding: 0;
-}
-
-.activity-list li {
-    padding: 12px;
-    margin-bottom: 8px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    color: #333;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .activity-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 32px;
-    }
-    
-    .nav-bar a {
-        padding: 8px 15px;
-        margin: 0 5px;
-        font-size: 14px;
-    }
-    
-    .game-selection {
-        flex-direction: column;
-    }
-    
-    .activity-cards {
-        grid-template-columns: 1fr;
-    }
-    
-    .container {
-        padding: 15px;
-    }
-}
-
-/* Mad Libs Page Specific Styles */
+/* Main Container Layout */
 .container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
+    gap: 30px;
+    padding: 20px;
+    margin: 0 20px;
+    max-width: 100%;
 }
 
-/* Story Selection (Left Column) */
+/* Left Column - Story Selection */
 .story-selection {
     background: white;
-    padding: 1.5rem;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.story-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
 .story-choice {
-    background: #2B4170;
-    color: white;
-    border: none;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 1.5rem;
     text-align: left;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -277,136 +93,122 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.story-choice h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+.story-choice.active {
+    border-color: #1e3c72;
+    background: #f8f9fa;
 }
 
-.story-choice p {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-/* Story Form (Middle Column) */
-.story-form {
+/* Middle Column - Story Workspace */
+.story-workspace {
     background: white;
-    padding: 2rem;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#input-container {
-    margin: 2rem 0;
-}
-
 .input-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 15px;
 }
 
 .input-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    color: #2B4170;
+    margin-bottom: 5px;
+    color: #1e3c72;
 }
 
 .input-group input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
     border-radius: 5px;
 }
 
-/* Word Examples (Right Column) */
-.word-examples {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.example-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.example-card {
-    height: 300px; /* Increased height */
-    perspective: 1000px;
-    cursor: pointer;
-}
-
-.card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.example-card:hover .card-inner {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    padding: 2rem;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.card-front {
-    background: #2B4170;
+.generate-button {
+    background: #1e3c72;
     color: white;
-}
-
-.card-back {
-    background: white;
-    border: 2px solid #2B4170;
-    transform: rotateY(180deg);
-}
-
-.card-back p {
-    margin: 1rem 0;
-    font-size: 1.1rem;
-    color: #2B4170;
-}
-
-/* Buttons */
-#generate-button, #reset-button {
-    background: #2B4170;
-    color: white;
+    padding: 12px 25px;
     border: none;
-    padding: 1rem 2rem;
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 20px;
 }
 
-#generate-button:hover, #reset-button:hover {
-    background: #3B5998;
+.generate-button:hover {
+    background: #2a5298;
+    transform: translateY(-2px);
 }
 
-.hidden {
+/* Right Column - Word Examples */
+.word-examples {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.example-card {
+    background: #1e3c72;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.example-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Story Output */
+.story-output {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
     display: none;
+}
+
+.story-output.visible {
+    display: block;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
     .container {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 20px;
     }
     
-    .example-card {
-        height: 250px;
+    .word-examples {
+        order: -1;
     }
+}
+
+@media (max-width: 768px) {
+    .title h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-bar a {
+        padding: 8px 15px;
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
 }
