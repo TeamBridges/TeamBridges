@@ -3,114 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Learning - Mad Libs</title>
+    <title>Lenape Language Games - Mad Libs</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="title">
+    <div class="header">
         <h1>Lenape Mad Libs Generator</h1>
         <p>Create Fun Stories with Lenape Words!</p>
     </div>
 
     <nav class="nav-bar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="flashcards.html" class="nav-link">Flash Cards</a>
-        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
-        <a href="crossword.html" class="nav-link">Crossword</a>
-        <a href="madlibs.html" class="nav-link active">Mad Libs</a>
-        <a href="grouppractice.html" class="nav-link">Group Practice</a>
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="flashcards.html" class="nav-link">Flash Cards</a>
+    <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+    <a href="crossword.html" class="nav-link">Crossword</a>
+    <a href="madlibs.html" class="nav-link">Mad Libs</a>
+    <a href="grouppractice.html" class="nav-link">Group Practice</a>
     </nav>
 
     <div class="container">
-        <div class="instructions">
-            <h2>How to Play</h2>
-            <ul>
-                <li>Choose a story from the options on the left</li>
-                <li>Fill in the blanks with Lenape words (use the example cards on the right for help)</li>
-                <li>Click "Generate Story!" to see your creation</li>
-                <li>Click "Create Another Story" to start over</li>
-            </ul>
+        <!-- Story Selection on the Left -->
+        <div class="story-selection">
+            <h2>Choose Your Story</h2>
+            <div class="story-buttons">
+                <button class="story-choice" onclick="selectStory('bicycle')">
+                    <h3>The Bicycle Adventure</h3>
+                    <p>A thrilling tale about a bicycle ride!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory('dancing')">
+                    <h3>Dancing with Friends</h3>
+                    <p>A fun story about dancing and friendship!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory('school')">
+                    <h3>A Day at School</h3>
+                    <p>Learning and playing with friends!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory('weather')">
+                    <h3>The Weather Today</h3>
+                    <p>An adventure in different weather!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory('games')">
+                    <h3>Playing Games</h3>
+                    <p>Fun and games with Lenape words!</p>
+                </button>
+                <button class="story-choice" onclick="selectStory('ready')">
+                    <h3>Getting Ready</h3>
+                    <p>Morning routine adventure!</p>
+                </button>
+            </div>
         </div>
 
-        <div class="madlibs-content">
-            <!-- Left Column - Story Selection -->
-            <div class="story-selection">
-                <h2>Choose Your Story</h2>
-                <div class="story-buttons">
-                    <button class="story-button active">
-                        <h3>The Bicycle Adventure</h3>
-                        <p>A thrilling tale about a bicycle ride!</p>
-                    </button>
-                    <button class="story-button">
-                        <h3>Dancing with Friends</h3>
-                        <p>A fun story about dancing and friendship!</p>
-                    </button>
-                    <button class="story-button">
-                        <h3>A Day at School</h3>
-                        <p>Learning and playing with friends!</p>
-                    </button>
-                    <button class="story-button">
-                        <h3>The Weather Today</h3>
-                        <p>An adventure in different weather!</p>
-                    </button>
-                    <button class="story-button">
-                        <h3>Playing Games</h3>
-                        <p>Fun and games with Lenape words!</p>
-                    </button>
-                    <button class="story-button">
-                        <h3>Getting Ready</h3>
-                        <p>Morning routine adventure!</p>
-                    </button>
-                </div>
-            </div>
+        <!-- Input Form in the Middle -->
+        <div class="story-form">
+            <h2 id="selected-story-title">Select a Story</h2>
+            <div id="input-container"></div>
+            <button id="generate-button" class="hidden">Generate Story</button>
+            <div id="story-output" class="hidden"></div>
+            <button id="reset-button" class="hidden">Create Another Story</button>
+        </div>
 
-            <!-- Middle Column - Input Form -->
-            <div class="input-section">
-                <h2>Fill in the Blanks</h2>
-                <form id="madlibs-form">
-                    <div class="input-group">
-                        <label for="bodyPart1">Enter a body part:</label>
-                        <input type="text" id="bodyPart1" placeholder="e.g., Wihle (head)">
+        <!-- Word Examples on the Right -->
+        <div class="word-examples">
+            <h2>Lenape Word Examples</h2>
+            <div class="example-cards">
+                <div class="example-card" data-category="bodyParts">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Body Parts</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Wikèhèn = Head</p>
+                            <p>Wikèhs = Mouth</p>
+                            <p>Wikuwàkane = Nose</p>
+                            <p>Wikuwe = Eyes</p>
+                            <p>Wikèk = Leg</p>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="bodyPart2">Enter another body part:</label>
-                        <input type="text" id="bodyPart2" placeholder="e.g., Wikat (leg)">
-                    </div>
-                    <div class="input-group">
-                        <label for="number">Enter a number:</label>
-                        <input type="text" id="number" placeholder="e.g., Nisha (two)">
-                    </div>
-                    <div class="input-group">
-                        <label for="color">Enter a color:</label>
-                        <input type="text" id="color" placeholder="e.g., Machke (red)">
-                    </div>
-                    <div class="input-group">
-                        <label for="emotion">Enter an emotion:</label>
-                        <input type="text" id="emotion" placeholder="e.g., Nulhatam (happy)">
-                    </div>
-                    <button type="submit" class="generate-button">Generate Story!</button>
-                </form>
-            </div>
-
-            <!-- Right Column - Word Examples -->
-            <div class="word-examples">
-                <h2>Lenape Word Examples</h2>
-                <div class="example-card">
-                    <h3>Body Parts</h3>
-                    <p>Click to see examples</p>
                 </div>
-                <div class="example-card">
-                    <h3>Colors</h3>
-                    <p>Click to see examples</p>
+                <div class="example-card" data-category="colors">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Colors</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Sàpe = Black</p>
+                            <p>Wapá = White</p>
+                            <p>Mòtànk = Red</p>
+                            <p>Wëski = Yellow</p>
+                            <p>Oxkàshe = Green</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="example-card">
-                    <h3>Numbers</h3>
-                    <p>Click to see examples</p>
+                <div class="example-card" data-category="numbers">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Numbers</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Lënuwe = One</p>
+                            <p>Nisha = Two</p>
+                            <p>Nash = Three</p>
+                            <p>Newa = Four</p>
+                            <p>Palenaxk = Five</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="example-card">
-                    <h3>Emotions</h3>
-                    <p>Click to see examples</p>
+                <div class="example-card" data-category="emotions">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Emotions</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Nulitùn = Happy</p>
+                            <p>Wsìkwàk = Angry</p>
+                            <p>Wichin = Sad</p>
+                            <p>Wètëlaohake = Excited</p>
+                            <p>Wjánte = Afraid</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
