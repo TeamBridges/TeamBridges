@@ -220,3 +220,124 @@ body {
 .visible {
     display: block;
 }
+/* Drag & Drop Game Container */
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.game-selection {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    justify-content: flex-start;
+}
+
+.game-button {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    min-width: 250px;
+}
+
+.game-button h3 {
+    color: #1e3c72;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.game-button p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.game-button.active {
+    background: #1e3c72;
+}
+
+.game-button.active h3,
+.game-button.active p {
+    color: white;
+}
+
+/* Game Display */
+.game-display {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.game-frame {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+/* How to Play Section */
+.how-to-play {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.how-to-play h2 {
+    color: #1e3c72;
+    margin-bottom: 15px;
+}
+
+.how-to-play ol {
+    padding-left: 20px;
+}
+
+.how-to-play li {
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Scratch Game Container */
+.scratch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.scratch-game {
+    max-width: 485px;
+    width: 100%;
+    aspect-ratio: 485/402;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .game-selection {
+        flex-direction: column;
+    }
+    
+    .game-button {
+        width: 100%;
+    }
+    
+    .scratch-game {
+        width: 100%;
+        height: auto;
+    }
+}
