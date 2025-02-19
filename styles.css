@@ -444,3 +444,160 @@ body {
         padding: 1rem;
     }
 }
+/* Mad Libs Page Specific Styles */
+.madlibs-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Story Selection Styles */
+.story-selection {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-choice {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    background: #2b4162;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.story-choice h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.story-choice p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Input Section Styles */
+.input-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2b4162;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.input-group input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Example Cards Styles */
+.word-examples {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.example-card {
+    background: #2b4162;
+    color: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.example-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.example-card h3 {
+    margin: 0;
+    text-align: center;
+}
+
+/* Button Styles */
+.generate-button {
+    width: 100%;
+    padding: 1rem;
+    background: #2b4162;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.generate-button:hover {
+    background: #1e3c72;
+}
+
+.reset-button {
+    width: 100%;
+    padding: 1rem;
+    background: #f0f4f8;
+    color: #2b4162;
+    border: 1px solid #2b4162;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+    background: #e1e7ef;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .madlibs-container {
+        grid-template-columns: 1fr 2fr;
+    }
+    .word-examples {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .madlibs-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
