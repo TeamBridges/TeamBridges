@@ -628,3 +628,100 @@ function updateButtonStates(activeButton) {
 document.addEventListener('DOMContentLoaded', function() {
     initializeGroupPractice();
 });
+
+function generateInputFields(storyId) {
+    const inputContainer = document.querySelector('.input-section');
+    inputContainer.innerHTML = ''; // Clear existing inputs
+    
+    const story = stories[storyId];
+    if (!story) return;
+
+    const form = document.createElement('form');
+    form.id = 'madlibs-form';
+    form.innerHTML = `<h2>Fill in the Blanks</h2>`;
+
+    // Create input fields based on the selected story
+    story.inputs.forEach(input => {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+        inputGroup.innerHTML = `
+            <label for="${input.id}">${input.label}</label>
+            <input type="text" 
+                   id="${input.id}" 
+                   placeholder="${input.placeholder}"
+                   required>
+        `;
+        form.appendChild(inputGroup);
+    });
+
+    // Add generate button
+    const generateButton = document.createElement('button');
+    generateButton.type = 'submit';
+    generateButton.className = 'generate-button';
+    generateButton.textContent = 'Generate Story!';
+    form.appendChild(generateButton);
+
+    inputContainer.appendChild(form);
+
+    // Add form submission handler
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        generateStory(storyId);
+    });
+}
+
+// Add event listeners to story choices
+document.addEventListener('DOMContentLoaded', function() {
+    const storyButtons = document.querySelectorAll('.story-choice');
+    storyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            storyButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            // Generate input fields for selected story
+            const storyId = this.dataset.storyId;
+            generateInputFields(storyId);
+        });
+    });
+
+    // Initialize with first story
+    generateInputFields('1');
+});
+
+// Function to generate the story
+function generateStory(storyId) {
+    const story = stories[storyId];
+    if (!story) return;
+
+    const inputs = {};
+    story.inputs.forEach(input => {
+        inputs[input.id] = document.getElementById(input.id).value;
+    });
+
+    let storyText = story.template;
+    Object.keys(inputs).forEach(key => {
+        storyText = storyText.replace(`{${key}}`, inputs[key]);
+    });
+
+    // Display the generated story
+    const storyOutput = document.createElement('div');
+    storyOutput.className = 'story-output';
+    storyOutput.innerHTML = storyText;
+
+    const inputSection = document.querySelector('.input-section');
+    // Remove any existing story output
+    const existingOutput = inputSection.querySelector('.story-output');
+    if (existingOutput) {
+        existingOutput.remove();
+    }
+    inputSection.appendChild(storyOutput);
+
+    // Add reset button
+    const resetButton = document.createElement('button');
+    resetButton.className = 'reset-button';
+    resetButton.textContent = 'Create Another Story';
+    resetButton.onclick = () => {
+        generateInputFields(storyId);
+    };
+    inputSection.appendChild(resetButton);
