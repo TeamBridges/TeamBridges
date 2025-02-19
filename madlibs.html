@@ -1,44 +1,29 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Mad Libs Generator</title>
+    <title>Lenape Language Games - Mad Libs</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="title">
+    <div class="header">
         <h1>Lenape Mad Libs Generator</h1>
         <p>Create Fun Stories with Lenape Words!</p>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="nav-bar">
-        <a href="index.html">Home</a>
-        <a href="flashcards.html">Flash Cards</a>
-        <a href="dragdrop.html">Drag & Drop</a>
-        <a href="crossword.html">Crossword</a>
-        <a href="madlibs.html" class="active">Mad Libs</a>
-        <a href="grouppractice.html">Group Practice</a>
-    </nav>
-
-    <!-- Instructions -->
-    <div class="instructions">
-        <h2>How to Play</h2>
-        <ol>
-            <li>Choose a story from the options on the left</li>
-            <li>Fill in the blanks with Lenape words (use the example cards on the right for help)</li>
-            <li>Click "Generate Story!" to see your creation</li>
-            <li>Click "Create Another Story" to start over</li>
-        </ol>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Left Column - Story Selection -->
+    <nav class="nav-bar">
+    <a href="index.html" class="nav-link active">Home</a>
+    <a href="flashcards.html" class="nav-link">Flash Cards</a>
+    <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+    <a href="crossword.html" class="nav-link">Crossword</a>
+    <a href="madlibs.html" class="nav-link">Mad Libs</a>
+    <a href="grouppractice.html" class="nav-link">Group Practice</a>
+    </nav>
+
+    <div class="container">
+        <!-- Story Selection on the Left -->
         <div class="story-selection">
             <h2>Choose Your Story</h2>
             <div class="story-buttons">
@@ -69,76 +54,73 @@
             </div>
         </div>
 
-        <!-- Middle Column - Story Form -->
+        <!-- Input Form in the Middle -->
         <div class="story-form">
-            <h2>Fill in the Blanks</h2>
-            <div id="word-inputs"></div>
-            <button id="generate-button" class="generate-btn">Generate Story!</button>
+            <h2 id="selected-story-title">Select a Story</h2>
+            <div id="input-container"></div>
+            <button id="generate-button" class="hidden">Generate Story</button>
             <div id="story-output" class="hidden"></div>
-            <button id="reset-button" class="reset-btn hidden">Create Another Story</button>
+            <button id="reset-button" class="hidden">Create Another Story</button>
         </div>
 
-        <!-- Right Column - Example Cards -->
-        <div class="example-section">
+        <!-- Word Examples on the Right -->
+        <div class="word-examples">
             <h2>Lenape Word Examples</h2>
             <div class="example-cards">
-                <!-- Body Parts Card -->
-                <div class="example-card">
-                    <h3>Body Parts</h3>
-                    <div class="word-list">
-                        <p>Wixkwan = nose</p>
-                        <p>Witun = mouth</p>
-                        <p>Wihle = head</p>
-                        <p>Wiske = eyes</p>
-                        <p>Wikat = leg</p>
-                        <p>Naxka = hands</p>
-                        <p>Welencha = fingers</p>
-                        <p>Wsita = feet</p>
-                        <p>Kwetsita = toes</p>
-                        <p>Hwitaoka = ears</p>
-                        <p>Mutaya = stomach</p>
+                <div class="example-card" data-category="bodyParts">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Body Parts</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Wikèhèn = Head</p>
+                            <p>Wikèhs = Mouth</p>
+                            <p>Wikuwàkane = Nose</p>
+                            <p>Wikuwe = Eyes</p>
+                            <p>Wikèk = Leg</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Colors Card -->
-                <div class="example-card">
-                    <h3>Colors</h3>
-                    <div class="word-list">
-                        <p>Seke = black</p>
-                        <p>Ope = white</p>
-                        <p>Machke = red</p>
-                        <p>Wisawe = yellow</p>
-                        <p>Askaske = green</p>
-                        <p>Wape = grey</p>
+                <div class="example-card" data-category="colors">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Colors</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Sàpe = Black</p>
+                            <p>Wapá = White</p>
+                            <p>Mòtànk = Red</p>
+                            <p>Wëski = Yellow</p>
+                            <p>Oxkàshe = Green</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Numbers Card -->
-                <div class="example-card">
-                    <h3>Numbers</h3>
-                    <div class="word-list">
-                        <p>Kweti = one</p>
-                        <p>Nisha = two</p>
-                        <p>Naxa = three</p>
-                        <p>Newa = four</p>
-                        <p>Palenaxk = five</p>
-                        <p>Kwetash = six</p>
-                        <p>Nishash = seven</p>
-                        <p>Xash = eight</p>
-                        <p>Peshkunk = nine</p>
-                        <p>Telen = ten</p>
+                <div class="example-card" data-category="numbers">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Numbers</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Lënuwe = One</p>
+                            <p>Nisha = Two</p>
+                            <p>Nash = Three</p>
+                            <p>Newa = Four</p>
+                            <p>Palenaxk = Five</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Emotions Card -->
-                <div class="example-card">
-                    <h3>Emotions</h3>
-                    <div class="word-list">
-                        <p>Nulhatam = happy</p>
-                        <p>Kwitey = angry</p>
-                        <p>Wawitam = sad</p>
-                        <p>Wisachgihhele = excited</p>
-                        <p>Kwishele = afraid</p>
+                <div class="example-card" data-category="emotions">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Emotions</h3>
+                        </div>
+                        <div class="card-back">
+                            <p>Nulitùn = Happy</p>
+                            <p>Wsìkwàk = Angry</p>
+                            <p>Wichin = Sad</p>
+                            <p>Wètëlaohake = Excited</p>
+                            <p>Wjánte = Afraid</p>
+                        </div>
                     </div>
                 </div>
             </div>
