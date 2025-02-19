@@ -122,7 +122,15 @@ body {
     border: 1px solid #e0e0e0;
     border-radius: 5px;
 }
+.user-input {
+    color: #1e3c72;
+    font-weight: bold;
+}
 
+.story-choice.active {
+    background: #1e3c72;
+    color: white;
+}
 .generate-button {
     background: #1e3c72;
     color: white;
