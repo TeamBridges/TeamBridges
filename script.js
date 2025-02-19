@@ -726,57 +726,50 @@ function generateStory(storyId) {
     };
     inputSection.appendChild(resetButton);
     // Function to handle puzzle switching
-function showPuzzle(puzzleType) {
-    // Get all puzzle iframes
-    const singularPuzzle = document.getElementById('singular-puzzle');
-    const pluralPuzzle = document.getElementById('plural-puzzle');
-    
-    // Get all buttons
-    const buttons = document.querySelectorAll('.puzzle-button');
-    
-    // Remove active class from all buttons
-    buttons.forEach(button => {
-        button.classList.remove('active');
-    });
-    
-    // Hide all puzzles first
-    singularPuzzle.style.display = 'none';
-    pluralPuzzle.style.display = 'none';
-    
-    // Show selected puzzle and activate corresponding button
-    if (puzzleType === 'singular') {
-        singularPuzzle.style.display = 'block';
-        document.querySelector('button[onclick="showPuzzle(\'singular\')"]').classList.add('active');
-    } else if (puzzleType === 'plural') {
-        pluralPuzzle.style.display = 'block';
-        document.querySelector('button[onclick="showPuzzle(\'plural\')"]').classList.add('active');
-    }
-}
-
-// Initialize the page with the singular puzzle shown
 document.addEventListener('DOMContentLoaded', function() {
-    showPuzzle('singular');
-    
-    // Add event listeners to buttons if you prefer not using onclick in HTML
-    /*
-    document.querySelectorAll('.puzzle-button').forEach(button => {
-        button.addEventListener('click', function() {
-            showPuzzle(this.getAttribute('data-puzzle'));
-        });
-    });
-    */
+    initializeCrossword();
 });
 
-// Optional: Add loading state handling
-function handlePuzzleLoad() {
-    const puzzles = document.querySelectorAll('.crossword-frame');
-    puzzles.forEach(puzzle => {
-        puzzle.addEventListener('load', function() {
-            console.log('Puzzle loaded successfully');
-        });
-        
-        puzzle.addEventListener('error', function() {
-            console.error('Error loading puzzle');
+function initializeCrossword() {
+    const puzzleButtons = document.querySelectorAll('.puzzle-button');
+    const puzzleFrames = document.querySelectorAll('.crossword-frame');
+
+    // Hide all puzzles initially except the first one
+    puzzleFrames.forEach((frame, index) => {
+        if (index === 0) {
+            frame.style.display = 'block';
+            puzzleButtons[0].classList.add('active');
+        } else {
+            frame.style.display = 'none';
+        }
+    });
+
+    // Add click event listeners to buttons
+    puzzleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const puzzleId = button.getAttribute('data-puzzle');
+            switchPuzzle(puzzleId, puzzleButtons, puzzleFrames);
         });
     });
+}
+
+function switchPuzzle(puzzleId, buttons, frames) {
+    // Remove active class from all buttons
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    // Hide all puzzle frames
+    frames.forEach(frame => {
+        frame.style.display = 'none';
+    });
+
+    // Show selected puzzle and activate button
+    const selectedPuzzle = document.getElementById(puzzleId);
+    const selectedButton = document.querySelector(`[data-puzzle="${puzzleId}"]`);
+
+    if (selectedPuzzle && selectedButton) {
+        selectedPuzzle.style.display = 'block';
+        selectedButton.classList.add('active');
+    }
 }
