@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>Lenape Language Crosswords</h1>
-        <p>Test your knowledge of Lenape words!</p>
+        <h1>Lenape Language Learning</h1>
+        <p>Practice Lenape Words with Crossword Puzzles</p>
     </div>
 
     <nav class="nav-bar">
@@ -23,23 +23,28 @@
     </nav>
 
     <div class="container">
-        <div class="instructions">
+        <div class="how-to-play">
             <h2>How to Play</h2>
-            <ul>
-                <li>The clues are given in Lenape</li>
-                <li>Enter the English translations as your answers</li>
-                <li>All answers should be in lowercase letters</li>
-                <li>Use TAB to move between clues</li>
-                <li>Press ENTER to switch between across and down clues</li>
-            </ul>
+            <ol>
+                <li>Choose which crossword you'd like to play from the options below</li>
+                <li>Click the green flag to start the game</li>
+                <li>Fill in the crossword with the English translations of Lenape words</li>
+                <li>Try to complete the entire puzzle!</li>
+            </ol>
         </div>
 
-        <div class="puzzle-selection">
-            <button class="puzzle-button active" onclick="showPuzzle('singular')">Body Parts (Singular)</button>
-            <button class="puzzle-button" onclick="showPuzzle('plural')">Body Parts (Plural)</button>
+        <div class="game-selection">
+            <button class="game-button active" onclick="showPuzzle('singular')">
+                Lenape Body Parts I
+                <p>Practice body parts and colors!</p>
+            </button>
+            <button class="game-button" onclick="showPuzzle('plural')">
+                Lenape Body Parts II
+                <p>Practice numbers and emotions!</p>
+            </button>
         </div>
 
-        <div class="puzzle-container">
+        <div class="game-container">
             <iframe id="singular-puzzle" 
                     width="500" 
                     height="500" 
@@ -51,7 +56,7 @@
             <iframe id="plural-puzzle" 
                     width="500" 
                     height="500" 
-                    style="border:3px solid black; margin:auto; display:block; display:none" 
+                    style="border:3px solid black; margin:auto; display:none" 
                     frameborder="0" 
                     src="https://crosswordlabs.com/embed/lenape-body-parts-plural">
             </iframe>
