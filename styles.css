@@ -1,3 +1,4 @@
+
 /* Global Styles */
 * {
     margin: 0;
@@ -68,55 +69,155 @@ body {
     max-width: 100%;
 }
 
-/* Crossword Specific Styles */
-.crossword-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.puzzle-selection {
+/* Game Selection Styles */
+.game-selection {
     display: flex;
     gap: 20px;
-    justify-content: center;
     margin-bottom: 30px;
+    justify-content: center;
 }
 
-.puzzle-button {
-    background: #1e3c72;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
+.game-button {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 15px 25px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-align: left;
+    min-width: 250px;
+}
+
+.game-button h3 {
+    color: #1e3c72;
+    margin-bottom: 5px;
     font-size: 16px;
 }
 
-.puzzle-button:hover {
+.game-button p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.game-button.active {
+    background: #1e3c72;
+}
+
+.game-button.active h3,
+.game-button.active p {
+    color: white;
+}
+
+/* Story Selection Styles */
+.story-selection {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-choice {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.story-choice.active {
+    background: #1e3c72;
+    color: white;
+}
+
+/* Input Section Styles */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #1e3c72;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+/* Word Examples Section */
+.word-examples {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.example-card {
+    background: #1e3c72;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.example-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Button Styles */
+.generate-button {
+    background: #1e3c72;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.generate-button:hover {
     background: #2a5298;
     transform: translateY(-2px);
 }
 
-.puzzle-button.active {
-    background: #2a5298;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+/* Game Display */
+.game-display {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-top: 20px;
 }
 
-.puzzle-frame {
+.game-frame {
     width: 100%;
-    max-width: 500px;
-    height: 500px;
-    margin: 0 auto;
-    border: 3px solid black;
-    display: none;
+    height: 600px;
+    border: none;
 }
 
-.puzzle-frame.active {
-    display: block;
-}
-
-/* Group Practice Specific Styles */
+/* Group Practice Styles */
 .activity-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -134,16 +235,60 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Add your existing activity card styles here */
-
-/* Drag & Drop Specific Styles */
-[Your existing drag & drop styles remain the same]
-
-/* Mad Libs Specific Styles */
-[Your existing mad libs styles remain the same]
-
-/* Responsive Design */
-[Your existing responsive design styles remain the same]
+.activity-card:hover {
+    transform: translateY(-5px);
+}
 
 /* Utility Classes */
-[Your existing utility classes remain the same]
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .word-examples {
+        order: -1;
+    }
+    
+    .activity-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .title h1 {
+        font-size: 2rem;
+    }
+    
+    .nav-bar a {
+        padding: 8px 15px;
+        margin: 0 5px;
+        font-size: 14px;
+    }
+    
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+    
+    .activity-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-selection {
+        flex-direction: column;
+    }
+    
+    .game-button {
+        width: 100%;
+    }
+}
