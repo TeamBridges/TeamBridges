@@ -364,16 +364,57 @@ function selectStory(storyId) {
     currentStory = stories[storyId];
     if (!currentStory) return;
 
-    document.getElementById('story-form-title').textContent = currentStory.title;
-    const inputsContainer = document.getElementById('story-inputs');
+    // Show the input section
+    const inputSection = document.querySelector('.story-workspace');
+    if (inputSection) {
+        inputSection.style.display = 'block';
+    }
+
+    // Clear and update the input container
+    const inputsContainer = document.getElementById('input-container');
+    if (!inputsContainer) return;
+    
     inputsContainer.innerHTML = '';
 
-    currentStory.inputs.forEach(input => {
-        const inputGroup = createInputGroup(input);
+    // Create input fields for the selected story
+    currentStory.inputs.forEach((input, index) => {
+        const inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+        
+        const label = document.createElement('label');
+        label.textContent = input.label;
+        label.htmlFor = `input-${index}`;
+        
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.id = `input-${index}`;
+        inputField.className = 'word-input';
+        inputField.placeholder = input.placeholder;
+        
+        inputGroup.appendChild(label);
+        inputGroup.appendChild(inputField);
         inputsContainer.appendChild(inputGroup);
     });
 
-    document.getElementById('generate-button').style.display = 'block';
+    // Show generate button
+    const generateButton = document.getElementById('generate-button');
+    if (generateButton) {
+        generateButton.style.display = 'block';
+    }
+
+    // Hide story output if visible
+    const storyOutput = document.getElementById('story-output');
+    if (storyOutput) {
+        storyOutput.classList.add('hidden');
+    }
+
+    // Update active story selection
+    document.querySelectorAll('.story-choice').forEach(choice => {
+        choice.classList.remove('active');
+        if (choice.getAttribute('data-story-id') === storyId) {
+            choice.classList.add('active');
+        }
+    });
 }
 
 function createInputGroup(input) {
