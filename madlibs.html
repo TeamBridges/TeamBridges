@@ -3,184 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Mad Libs Generator</title>
+    <title>Lenape Language Learning - Mad Libs</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            min-height: 100vh;
-        }
-
-        .title {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .nav-bar {
-            background: white;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .nav-link {
-            color: #2b4162;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-link:hover {
-            background-color: #f0f0f0;
-        }
-
-        .nav-link.active {
-            background-color: #2b4162;
-            color: white;
-        }
-
-        .instructions-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .instructions-container h2 {
-            color: #2b4162;
-            margin-bottom: 15px;
-        }
-
-        .instructions-container ol {
-            padding-left: 20px;
-        }
-
-        .instructions-container li {
-            margin: 10px 0;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .story-selection {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .story-choice {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            background: white;
-            border: 2px solid #2b4162;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .story-choice:hover {
-            background: #f0f4f8;
-        }
-
-        .story-choice.active {
-            background: #2b4162;
-            color: white;
-        }
-
-        .story-workspace {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .input-group {
-            margin: 15px 0;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #2b4162;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .generate-btn {
-            width: 100%;
-            padding: 10px;
-            background: #2b4162;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 20px 0;
-        }
-
-        .reset-btn {
-            width: 100%;
-            padding: 10px;
-            background: #f0f4f8;
-            color: #2b4162;
-            border: 1px solid #2b4162;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-
-        .word-examples {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .example-card {
-            background: #2b4162;
-            color: white;
-            padding: 20px;
-            margin: 10px 0;
-            border-radius: 10px;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="title">
@@ -197,155 +22,100 @@
         <a href="grouppractice.html" class="nav-link">Group Practice</a>
     </nav>
 
-    <div class="instructions-container">
-        <h2>How to Play</h2>
-        <ol>
-            <li>Choose a story from the options on the left</li>
-            <li>Fill in the blanks with Lenape words (use the example cards on the right for help)</li>
-            <li>Click "Generate Story!" to see your creation</li>
-            <li>Click "Create Another Story" to start over</li>
-        </ol>
-    </div>
-
     <div class="container">
-        <!-- Left Column - Story Selection -->
-        <div class="story-selection">
-            <h2>Choose Your Story</h2>
-            <div class="story-buttons">
-                <button class="story-choice" data-story-id="1">
-                    <h3>The Bicycle Adventure</h3>
-                    <p>A thrilling tale about a bicycle ride!</p>
-                </button>
-                <button class="story-choice" data-story-id="2">
-                    <h3>Dancing with Friends</h3>
-                    <p>A fun story about dancing and friendship!</p>
-                </button>
-                <button class="story-choice" data-story-id="3">
-                    <h3>A Day at School</h3>
-                    <p>Learning and playing with friends!</p>
-                </button>
-                <button class="story-choice" data-story-id="4">
-                    <h3>The Weather Today</h3>
-                    <p>An adventure in different weather!</p>
-                </button>
-                <button class="story-choice" data-story-id="5">
-                    <h3>Playing Games</h3>
-                    <p>Fun and games with Lenape words!</p>
-                </button>
-                <button class="story-choice" data-story-id="6">
-                    <h3>Getting Ready</h3>
-                    <p>Morning routine adventure!</p>
-                </button>
-            </div>
+        <div class="instructions">
+            <h2>How to Play</h2>
+            <ul>
+                <li>Choose a story from the options on the left</li>
+                <li>Fill in the blanks with Lenape words (use the example cards on the right for help)</li>
+                <li>Click "Generate Story!" to see your creation</li>
+                <li>Click "Create Another Story" to start over</li>
+            </ul>
         </div>
 
-        <!-- Middle Column - Story Input/Output -->
-        <div class="story-workspace">
-            <h2>Fill in the Blanks</h2>
-            <div id="input-container"></div>
-            <button onclick="generateStory()" id="generate-button" class="generate-btn hidden">Generate Story!</button>
-            <div id="story-output" class="hidden">
-                <h3>Your Story</h3>
-                <div id="story-text"></div>
-                <button onclick="resetStory()" class="reset-btn">Create Another Story</button>
+        <div class="madlibs-content">
+            <!-- Left Column - Story Selection -->
+            <div class="story-selection">
+                <h2>Choose Your Story</h2>
+                <div class="story-buttons">
+                    <button class="story-button active">
+                        <h3>The Bicycle Adventure</h3>
+                        <p>A thrilling tale about a bicycle ride!</p>
+                    </button>
+                    <button class="story-button">
+                        <h3>Dancing with Friends</h3>
+                        <p>A fun story about dancing and friendship!</p>
+                    </button>
+                    <button class="story-button">
+                        <h3>A Day at School</h3>
+                        <p>Learning and playing with friends!</p>
+                    </button>
+                    <button class="story-button">
+                        <h3>The Weather Today</h3>
+                        <p>An adventure in different weather!</p>
+                    </button>
+                    <button class="story-button">
+                        <h3>Playing Games</h3>
+                        <p>Fun and games with Lenape words!</p>
+                    </button>
+                    <button class="story-button">
+                        <h3>Getting Ready</h3>
+                        <p>Morning routine adventure!</p>
+                    </button>
+                </div>
             </div>
-        </div>
 
-        <!-- Right Column - Word Examples -->
-        <div class="word-examples">
-            <h2>Lenape Word Examples</h2>
-            <div class="example-cards">
-                <div class="example-card" onclick="toggleExample('bodyParts')">
+            <!-- Middle Column - Input Form -->
+            <div class="input-section">
+                <h2>Fill in the Blanks</h2>
+                <form id="madlibs-form">
+                    <div class="input-group">
+                        <label for="bodyPart1">Enter a body part:</label>
+                        <input type="text" id="bodyPart1" placeholder="e.g., Wihle (head)">
+                    </div>
+                    <div class="input-group">
+                        <label for="bodyPart2">Enter another body part:</label>
+                        <input type="text" id="bodyPart2" placeholder="e.g., Wikat (leg)">
+                    </div>
+                    <div class="input-group">
+                        <label for="number">Enter a number:</label>
+                        <input type="text" id="number" placeholder="e.g., Nisha (two)">
+                    </div>
+                    <div class="input-group">
+                        <label for="color">Enter a color:</label>
+                        <input type="text" id="color" placeholder="e.g., Machke (red)">
+                    </div>
+                    <div class="input-group">
+                        <label for="emotion">Enter an emotion:</label>
+                        <input type="text" id="emotion" placeholder="e.g., Nulhatam (happy)">
+                    </div>
+                    <button type="submit" class="generate-button">Generate Story!</button>
+                </form>
+            </div>
+
+            <!-- Right Column - Word Examples -->
+            <div class="word-examples">
+                <h2>Lenape Word Examples</h2>
+                <div class="example-card">
                     <h3>Body Parts</h3>
-                    <div id="bodyParts-examples" class="hidden">
-                        <p>Wixkwan = nose</p>
-                        <p>Witun = mouth</p>
-                        <p>Wihle = head</p>
-                        <p>Wiske = eyes</p>
-                        <p>Wikat = leg</p>
-                    </div>
+                    <p>Click to see examples</p>
                 </div>
-
-                <div class="example-card" onclick="toggleExample('colors')">
+                <div class="example-card">
                     <h3>Colors</h3>
-                    <div id="colors-examples" class="hidden">
-                        <p>Seke = black</p>
-                        <p>Ope = white</p>
-                        <p>Machke = red</p>
-                        <p>Wisawe = yellow</p>
-                        <p>Askaske = green</p>
-                    </div>
+                    <p>Click to see examples</p>
                 </div>
-
-                <div class="example-card" onclick="toggleExample('numbers')">
+                <div class="example-card">
                     <h3>Numbers</h3>
-                    <div id="numbers-examples" class="hidden">
-                        <p>Kweti = one</p>
-                        <p>Nisha = two</p>
-                        <p>Naxa = three</p>
-                        <p>Newa = four</p>
-                        <p>Palenaxk = five</p>
-                    </div>
+                    <p>Click to see examples</p>
                 </div>
-
-                <div class="example-card" onclick="toggleExample('emotions')">
+                <div class="example-card">
                     <h3>Emotions</h3>
-                    <div id="emotions-examples" class="hidden">
-                        <p>Nulhatam = happy</p>
-                        <p>Kwitey = angry</p>
-                        <p>Wawitam = sad</p>
-                        <p>Wisachgihhele = excited</p>
-                        <p>Kwishele = afraid</p>
-                    </div>
+                    <p>Click to see examples</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function toggleExample(category) {
-            const examples = document.getElementById(`${category}-examples`);
-            examples.classList.toggle('hidden');
-        }
-
-        function generateStory() {
-            const storyOutput = document.getElementById('story-output');
-            const inputs = document.querySelectorAll('.input-group input');
-            let allFilled = true;
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    allFilled = false;
-                }
-            });
-
-            if (!allFilled) {
-                alert('Please fill in all fields!');
-                return;
-            }
-
-            storyOutput.classList.remove('hidden');
-            // Story generation logic here
-        }
-
-        function resetStory() {
-            document.getElementById('input-container').innerHTML = '';
-            document.getElementById('story-output').classList.add('hidden');
-            document.getElementById('generate-button').classList.add('hidden');
-            document.querySelectorAll('.story-choice').forEach(btn => {
-                btn.classList.remove('active');
-            });
-        }
-
-        document.querySelectorAll('.story-choice').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.story-choice').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
-                document.getElementById('generate-button').classList.remove('hidden');
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
