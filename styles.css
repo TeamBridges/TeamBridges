@@ -236,3 +236,177 @@ body {
         padding: 15px;
     }
 }
+
+/* Mad Libs Page Specific Styles */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Story Selection (Left Column) */
+.story-selection {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.story-choice {
+    background: #2B4170;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-choice:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.story-choice h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.story-choice p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Story Form (Middle Column) */
+.story-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#input-container {
+    margin: 2rem 0;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2B4170;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Word Examples (Right Column) */
+.word-examples {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.example-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.example-card {
+    height: 300px; /* Increased height */
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.example-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-front {
+    background: #2B4170;
+    color: white;
+}
+
+.card-back {
+    background: white;
+    border: 2px solid #2B4170;
+    transform: rotateY(180deg);
+}
+
+.card-back p {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    color: #2B4170;
+}
+
+/* Buttons */
+#generate-button, #reset-button {
+    background: #2B4170;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#generate-button:hover, #reset-button:hover {
+    background: #3B5998;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .example-card {
+        height: 250px;
+    }
+}
