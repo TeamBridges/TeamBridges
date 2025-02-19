@@ -68,280 +68,55 @@ body {
     max-width: 100%;
 }
 
-/* Left Column - Story Selection */
-.story-selection {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.story-choice {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 15px;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.story-choice:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.story-choice.active {
-    border-color: #1e3c72;
-    background: #f8f9fa;
-}
-
-/* Middle Column - Story Workspace */
-.story-workspace {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #1e3c72;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-}
-.user-input {
-    color: #1e3c72;
-    font-weight: bold;
-}
-
-.story-choice.active {
-    background: #1e3c72;
-    color: white;
-}
-.generate-button {
-    background: #1e3c72;
-    color: white;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.generate-button:hover {
-    background: #2a5298;
-    transform: translateY(-2px);
-}
-
-/* Right Column - Word Examples */
-.word-examples {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.example-card {
-    background: #1e3c72;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.example-card:hover {
-    transform: translateY(-2px);
-}
-
-/* Story Output */
-.story-output {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    display: none;
-}
-
-.story-output.visible {
-    display: block;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .word-examples {
-        order: -1;
-    }
-}
-
-@media (max-width: 768px) {
-    .title h1 {
-        font-size: 2rem;
-    }
-    
-    .nav-bar a {
-        padding: 8px 15px;
-        margin: 0 5px;
-        font-size: 14px;
-    }
-    
-    .container {
-        margin: 10px;
-        padding: 10px;
-    }
-}
-
-/* Utility Classes */
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-}
-/* Drag & Drop Game Container */
-.game-container {
-    max-width: 1200px;
+/* Crossword Specific Styles */
+.crossword-container {
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.game-selection {
+.puzzle-selection {
     display: flex;
     gap: 20px;
+    justify-content: center;
     margin-bottom: 30px;
-    justify-content: flex-start;
 }
 
-.game-button {
-    background: white;
-    border: 1px solid #e0e0e0;
-    padding: 15px 25px;
-    border-radius: 10px;
+.puzzle-button {
+    background: #1e3c72;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-align: left;
-    min-width: 250px;
-}
-
-.game-button h3 {
-    color: #1e3c72;
-    margin-bottom: 5px;
     font-size: 16px;
 }
 
-.game-button p {
-    color: #666;
-    font-size: 14px;
-    margin: 0;
-}
-
-.game-button:hover {
+.puzzle-button:hover {
+    background: #2a5298;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.game-button.active {
-    background: #1e3c72;
+.puzzle-button.active {
+    background: #2a5298;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-.game-button.active h3,
-.game-button.active p {
-    color: white;
-}
-
-/* Game Display */
-.game-display {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.game-frame {
+.puzzle-frame {
     width: 100%;
-    height: 600px;
-    border: none;
+    max-width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    border: 3px solid black;
+    display: none;
 }
 
-/* How to Play Section */
-.how-to-play {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
+.puzzle-frame.active {
+    display: block;
 }
 
-.how-to-play h2 {
-    color: #1e3c72;
-    margin-bottom: 15px;
-}
-
-.how-to-play ol {
-    padding-left: 20px;
-}
-
-.how-to-play li {
-    margin: 10px 0;
-    color: #333;
-}
-
-/* Scratch Game Container */
-.scratch-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.scratch-game {
-    max-width: 485px;
-    width: 100%;
-    aspect-ratio: 485/402;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .game-selection {
-        flex-direction: column;
-    }
-    
-    .game-button {
-        width: 100%;
-    }
-    
-    .scratch-game {
-        width: 100%;
-        height: auto;
-    }
-}
-/* Group Practice Page Specific Styles */
+/* Group Practice Specific Styles */
 .activity-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -359,245 +134,16 @@ body {
     transition: transform 0.3s ease;
 }
 
-.activity-card:hover {
-    transform: translateY(-5px);
-}
+/* Add your existing activity card styles here */
 
-.activity-card h2 {
-    color: #2b4162;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
+/* Drag & Drop Specific Styles */
+[Your existing drag & drop styles remain the same]
 
-.activity-card p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.activity-content {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 10px;
-}
-
-.activity-content h3 {
-    color: #2b4162;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-}
-
-.activity-content ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.activity-content li {
-    margin-bottom: 0.8rem;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.activity-content li:before {
-    content: "•";
-    color: #2b4162;
-    position: absolute;
-    left: 0;
-}
-
-.example-section {
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #eee;
-}
-
-.example-section h3 {
-    color: #2b4162;
-    margin-bottom: 1rem;
-}
-
-.example-section p {
-    color: #666;
-    line-height: 1.6;
-}
+/* Mad Libs Specific Styles */
+[Your existing mad libs styles remain the same]
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    .activity-section {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+[Your existing responsive design styles remain the same]
 
-@media (max-width: 768px) {
-    .activity-section {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-
-    .activity-card {
-        padding: 1.5rem;
-    }
-
-    .activity-content {
-        padding: 1rem;
-    }
-}
-/* Mad Libs Page Specific Styles */
-.madlibs-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* Story Selection Styles */
-.story-selection {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.story-choice {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    text-align: left;
-    background: #2b4162;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.story-choice:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.story-choice h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.2rem;
-}
-
-.story-choice p {
-    margin: 0;
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-/* Input Section Styles */
-.input-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.input-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2b4162;
-    font-weight: 500;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.input-group input::placeholder {
-    color: #999;
-    font-style: italic;
-}
-
-/* Example Cards Styles */
-.word-examples {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.example-card {
-    background: #2b4162;
-    color: white;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.example-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.example-card h3 {
-    margin: 0;
-    text-align: center;
-}
-
-/* Button Styles */
-.generate-button {
-    width: 100%;
-    padding: 1rem;
-    background: #2b4162;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.generate-button:hover {
-    background: #1e3c72;
-}
-
-.reset-button {
-    width: 100%;
-    padding: 1rem;
-    background: #f0f4f8;
-    color: #2b4162;
-    border: 1px solid #2b4162;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 1rem;
-    transition: all 0.3s ease;
-}
-
-.reset-button:hover {
-    background: #e1e7ef;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .madlibs-container {
-        grid-template-columns: 1fr 2fr;
-    }
-    .word-examples {
-        grid-column: 1 / -1;
-    }
-}
-
-@media (max-width: 768px) {
-    .madlibs-container {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-}
+/* Utility Classes */
+[Your existing utility classes remain the same]
