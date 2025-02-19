@@ -1,5 +1,4 @@
-// script.js - Core Initialization
-
+// script.js - Core Initialization and Navigation
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
     console.log('Initializing:', currentPage);
@@ -57,16 +56,22 @@ function initializeHome() {
 }
 // Flash Cards functionality
 function initializeFlashCards() {
-    console.log('Initializing Flash Cards');
+    console.log('Initializing Flash Cards page');
     setupGameSelection();
+    setupCardFlips();
 }
 
-let currentGame = 'game1';
-
+// Game selection functionality
 function setupGameSelection() {
     const gameButtons = document.querySelectorAll('.game-choice');
     const gameContainers = document.querySelectorAll('.game-container');
 
+    // Hide all games initially
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+
+    // Add click event listeners to buttons
     gameButtons.forEach(button => {
         button.addEventListener('click', () => {
             const gameId = button.getAttribute('data-game');
@@ -76,9 +81,10 @@ function setupGameSelection() {
     });
 
     // Show first game by default
-    showGame('game1');
+    showGame('flashcards1');
 }
 
+// Show selected game
 function showGame(gameId) {
     const gameContainers = document.querySelectorAll('.game-container');
     gameContainers.forEach(container => {
@@ -89,10 +95,9 @@ function showGame(gameId) {
     if (selectedGame) {
         selectedGame.style.display = 'block';
     }
-    
-    currentGame = gameId;
 }
 
+// Update active button states
 function updateButtonStates(activeButton) {
     const buttons = document.querySelectorAll('.game-choice');
     buttons.forEach(button => {
@@ -100,13 +105,45 @@ function updateButtonStates(activeButton) {
     });
     activeButton.classList.add('active');
 }
+
+// Setup card flip functionality for any non-embedded cards
+function setupCardFlips() {
+    const cards = document.querySelectorAll('.flash-card');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
+        });
+    });
+}
+
+// Handle game completion
+function handleGameCompletion(gameId, score) {
+    console.log(`Game ${gameId} completed with score: ${score}`);
+    // Add any completion handling logic here
+}
+
+// Handle game reset
+function resetGame(gameId) {
+    const game = document.getElementById(gameId);
+    if (game) {
+        // Reset game state
+        game.contentWindow.postMessage({ action: 'reset' }, '*');
+    }
+}
+
+// Listen for messages from embedded games
+window.addEventListener('message', function(event) {
+    // Verify the origin of the message for security
+    // Handle any messages from the embedded games
+    if (event.data.type === 'gameComplete') {
+        handleGameCompletion(event.data.gameId, event.data.score);
+    }
+});
 // Drag & Drop functionality
 function initializeDragDrop() {
     console.log('Initializing Drag & Drop Games');
     setupGameSelection();
 }
-
-let currentGame = 'game1';
 
 function setupGameSelection() {
     const gameButtons = document.querySelectorAll('.game-button');
@@ -140,8 +177,6 @@ function showGame(gameId) {
     if (selectedGame) {
         selectedGame.style.display = 'block';
     }
-    
-    currentGame = gameId;
 }
 
 function updateButtonStates(activeButton) {
@@ -151,13 +186,12 @@ function updateButtonStates(activeButton) {
     });
     activeButton.classList.add('active');
 }
-// Crossword Game functionality
+
+// Crossword functionality
 function initializeCrossword() {
     console.log('Initializing Crossword Games');
     setupCrosswordSelection();
 }
-
-let currentCrossword = 'crossword1';
 
 function setupCrosswordSelection() {
     const gameButtons = document.querySelectorAll('.crossword-button');
@@ -191,8 +225,6 @@ function showCrossword(gameId) {
     if (selectedGame) {
         selectedGame.style.display = 'block';
     }
-    
-    currentCrossword = gameId;
 }
 
 function updateButtonStates(activeButton) {
@@ -202,58 +234,14 @@ function updateButtonStates(activeButton) {
     });
     activeButton.classList.add('active');
 }
-// Crossword Game functionality
-function initializeCrossword() {
-    console.log('Initializing Crossword Games');
-    setupCrosswordSelection();
+// Mad Libs functionality
+function initializeMadLibs() {
+    console.log('Initializing Mad Libs');
+    setupExampleCards();
+    setupStoryButtons();
 }
 
-let currentCrossword = 'crossword1';
-
-function setupCrosswordSelection() {
-    const gameButtons = document.querySelectorAll('.crossword-button');
-    const gameContainers = document.querySelectorAll('.crossword-container');
-
-    // Hide all games initially
-    gameContainers.forEach(container => {
-        container.style.display = 'none';
-    });
-
-    // Add click event listeners to buttons
-    gameButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const gameId = button.getAttribute('data-game');
-            showCrossword(gameId);
-            updateButtonStates(button);
-        });
-    });
-
-    // Show first crossword by default
-    showCrossword('crossword1');
-}
-
-function showCrossword(gameId) {
-    const gameContainers = document.querySelectorAll('.crossword-container');
-    gameContainers.forEach(container => {
-        container.style.display = 'none';
-    });
-    
-    const selectedGame = document.getElementById(gameId);
-    if (selectedGame) {
-        selectedGame.style.display = 'block';
-    }
-    
-    currentCrossword = gameId;
-}
-
-function updateButtonStates(activeButton) {
-    const buttons = document.querySelectorAll('.crossword-button');
-    buttons.forEach(button => {
-        button.classList.remove('active');
-    });
-    activeButton.classList.add('active');
-}
-// Mad Libs Stories Data
+// Story Data
 const stories = {
     1: {
         title: "The Bicycle Adventure",
@@ -321,13 +309,46 @@ const stories = {
     }
 };
 
-let currentStory = null;
+// Example Cards Data
+const exampleWords = {
+    bodyParts: [
+        { lenape: "Wixkwan", english: "nose" },
+        { lenape: "Witun", english: "mouth" },
+        { lenape: "Wihle", english: "head" },
+        { lenape: "Wiske", english: "eyes" },
+        { lenape: "Wikat", english: "leg" },
+        { lenape: "Naxka", english: "hands" },
+        { lenape: "Welencha", english: "fingers" },
+        { lenape: "Wsita", english: "feet" },
+        { lenape: "Kwetsita", english: "toes" },
+        { lenape: "Hwitaoka", english: "ears" },
+        { lenape: "Mutaya", english: "stomach" }
+    ],
+    colors: [
+        { lenape: "Seke", english: "black" },
+        { lenape: "Ope", english: "white" },
+        { lenape: "Machke", english: "red" },
+        { lenape: "Wisawe", english: "yellow" },
+        { lenape: "Askaske", english: "green" },
+        { lenape: "Wape", english: "grey" }
+    ],
+    numbers: [
+        { lenape: "Kweti", english: "one" },
+        { lenape: "Nisha", english: "two" },
+        { lenape: "Naxa", english: "three" },
+        { lenape: "Newa", english: "four" },
+        { lenape: "Palenaxk", english: "five" }
+    ],
+    emotions: [
+        { lenape: "Nulhatam", english: "happy" },
+        { lenape: "Kwitey", english: "angry" },
+        { lenape: "Wawitam", english: "sad" },
+        { lenape: "Wisachgihhele", english: "excited" },
+        { lenape: "Kwishele", english: "afraid" }
+    ]
+};
 
-// Initialize when document is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    setupExampleCards();
-    setupStoryButtons();
-});
+let currentStory = null;
 
 function setupStoryButtons() {
     const storyButtons = document.querySelectorAll('.story-choice');
@@ -343,7 +364,6 @@ function selectStory(storyId) {
     currentStory = stories[storyId];
     if (!currentStory) return;
 
-    // Update story form
     document.getElementById('story-form-title').textContent = currentStory.title;
     const inputsContainer = document.getElementById('story-inputs');
     inputsContainer.innerHTML = '';
@@ -353,7 +373,6 @@ function selectStory(storyId) {
         inputsContainer.appendChild(inputGroup);
     });
 
-    // Show generate button
     document.getElementById('generate-button').style.display = 'block';
 }
 
@@ -411,55 +430,11 @@ function resetCard() {
     currentStory = null;
 }
 
-// Example Cards Data
-const exampleCards = {
-    bodyParts: [
-        { lenape: "Wixkwan", english: "nose" },
-        { lenape: "Witun", english: "mouth" },
-        { lenape: "Wihle", english: "head" },
-        { lenape: "Wiske", english: "eyes" },
-        { lenape: "Wikat", english: "leg" },
-        { lenape: "Naxka", english: "hands" },
-        { lenape: "Welencha", english: "fingers" },
-        { lenape: "Wsita", english: "feet" },
-        { lenape: "Kwetsita", english: "toes" },
-        { lenape: "Hwitaoka", english: "ears" },
-        { lenape: "Mutaya", english: "stomach" }
-    ],
-    colors: [
-        { lenape: "Seke", english: "black" },
-        { lenape: "Ope", english: "white" },
-        { lenape: "Machke", english: "red" },
-        { lenape: "Wisawe", english: "yellow" },
-        { lenape: "Askaske", english: "green" },
-        { lenape: "Wape", english: "grey" }
-    ],
-    numbers: [
-        { lenape: "Kweti", english: "one" },
-        { lenape: "Nisha", english: "two" },
-        { lenape: "Naxa", english: "three" },
-        { lenape: "Newa", english: "four" },
-        { lenape: "Palenaxk", english: "five" },
-        { lenape: "Kwetash", english: "six" },
-        { lenape: "Nishash", english: "seven" },
-        { lenape: "Xash", english: "eight" },
-        { lenape: "Peshkunk", english: "nine" },
-        { lenape: "Telen", english: "ten" }
-    ],
-    emotions: [
-        { lenape: "Nulhatam", english: "happy" },
-        { lenape: "Kwitey", english: "angry" },
-        { lenape: "Wawitam", english: "sad" },
-        { lenape: "Wisachgihhele", english: "excited" },
-        { lenape: "Kwishele", english: "afraid" }
-    ]
-};
-
 function setupExampleCards() {
     const container = document.querySelector('.example-cards');
     if (!container) return;
 
-    Object.entries(exampleCards).forEach(([category, words]) => {
+    Object.entries(exampleWords).forEach(([category, words]) => {
         const card = createExampleCard(category, words);
         container.appendChild(card);
     });
@@ -482,14 +457,21 @@ function createExampleCard(category, words) {
     card.addEventListener('click', () => card.classList.toggle('flipped'));
     return card;
 }
+
+// Initialize when document loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeMadLibs();
+});
 // Group Practice functionality
 function initializeGroupPractice() {
     console.log('Initializing Group Practice page');
-    setupActivityCards();
+    setupActivitySelection();
+    loadActivityContent();
 }
 
+// Activity Data
 const groupActivities = {
-    howMany: {
+    howmany: {
         title: "How Many...?",
         description: "The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.",
         prompts: [
@@ -512,7 +494,7 @@ const groupActivities = {
             "How many tuhwepia (bodies) are in this room?"
         ]
     },
-    simonSays: {
+    simonsays: {
         title: "Simon Says...",
         description: "The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds. The leader can choose whether any incorrect responses constitute an 'out' or if everyone gets unlimited chances.",
         prompts: [
@@ -523,6 +505,9 @@ const groupActivities = {
             "Close your weshkinko (eyes)",
             "Touch your wikuwàkane (nose)",
             "Pat your mutaya (stomach)",
+            "Shake your milaxk (hair)",
+            "Point to your tuna (mouth)",
+            "Touch your wsita (feet)",
             "Pat your right ketukw (knee)",
             "Raise your left naolk (arm)",
             "Touch your wikiyon (nose) naxen (three times)",
@@ -531,160 +516,73 @@ const groupActivities = {
             "Hold up a tukwelench (fist)"
         ]
     },
-    creatureFeature: {
+    creature: {
         title: "Creature Feature",
         description: "Invent a new creature by combining different parts of various animals. Give it a name, and make up an interesting fact about your creature. This should incorporate vocabulary words for animals and body parts, and it could also include numbers or colors as appropriate.",
+        example: "My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn, and if you see one, it means you will soon discover trash that is actually treasure.",
         prompts: [
             "Create a creature with three hwikiyona (noses)",
             "Design an animal with extra welencha (fingers)",
             "Imagine a being with unusual colored milaxk (hair)",
             "Describe a creature with multiple hwitaoka (ears)",
-            "Make up an animal with special wsita (feet)",
-            "Example: My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn!"
-        ]
-    },
-    conversation: {
-        title: "Conversation Prompts",
-        description: "Use the following prompts to start a conversation. Encourage learners to respond using words in Lenape as often as possible, especially focusing on Lenape body parts, colors, numbers, and animals.",
-        prompts: [
-            "What are your three favorite physical features about yourself, why?",
-            "Describe someone in this room based on their physical features.",
-            "Which body part do you think is the most/least useful, why?",
-            "Compare and contrast the physical appearances between a baby and an adult.",
-            "Describe a mystery body part for the other students to guess.",
-            "Describe your morning routine, using as many body parts as possible.",
-            "Pretend you're at the doctor's office and explain what's wrong and how you feel.",
-            "Describe your favorite animal based on their physical appearance."
+            "Make up an animal with special wsita (feet)"
         ]
     }
 };
 
-function setupActivityCards() {
-    const container = document.getElementById('activity-container');
-    if (!container) return;
-
-    Object.entries(groupActivities).forEach(([key, activity]) => {
-        const card = createActivityCard(key, activity);
-        container.appendChild(card);
+function setupActivitySelection() {
+    const activityButtons = document.querySelectorAll('.activity-button');
+    activityButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const activityId = button.getAttribute('data-activity');
+            showActivity(activityId);
+            updateButtonStates(button);
+        });
     });
+
+    // Show first activity by default
+    showActivity('howmany');
 }
 
-function createActivityCard(key, activity) {
-    const card = document.createElement('div');
-    card.className = 'activity-card';
-    card.setAttribute('data-activity', key);
-    
-    card.innerHTML = `
-        <h2>${activity.title}</h2>
-        <p class="description">${activity.description}</p>
-        <button class="view-prompts-btn" onclick="showActivity('${key}')">View Prompts</button>
-    `;
-    
-    return card;
-}
-
-function showActivity(activityKey) {
-    const activity = groupActivities[activityKey];
+function showActivity(activityId) {
+    const activity = groupActivities[activityId];
     if (!activity) return;
 
-    const contentArea = document.getElementById('activity-content');
-    if (!contentArea) return;
-
+    const contentSection = document.getElementById('activity-content');
     let html = `
-        <h2>${activity.title}</h2>
-        <p class="description">${activity.description}</p>
-        <div class="prompts-list">
+        <div class="activity-container">
+            <h2>${activity.title}</h2>
+            <p class="description">${activity.description}</p>
+            <div class="prompts-list">
     `;
 
+    if (activityId === 'creature' && activity.example) {
+        html += `
+            <div class="example-box">
+                <h3>Example:</h3>
+                <p>${activity.example}</p>
+            </div>
+        `;
+    }
+
+    html += `<ul>`;
     activity.prompts.forEach(prompt => {
-        html += `<div class="prompt-item">${prompt}</div>`;
+        html += `<li>${prompt}</li>`;
     });
+    html += `</ul></div></div>`;
 
-    html += '</div>';
-    contentArea.innerHTML = html;
+    contentSection.innerHTML = html;
+}
 
-    // Update active states
-    document.querySelectorAll('.activity-card').forEach(card => {
-        card.classList.remove('active');
-        if (card.getAttribute('data-activity') === activityKey) {
-            card.classList.add('active');
-        }
+function updateButtonStates(activeButton) {
+    const buttons = document.querySelectorAll('.activity-button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
     });
-
-    // Show the content area if it was hidden
-    contentArea.classList.remove('hidden');
+    activeButton.classList.add('active');
 }
 
 // Initialize when document loads
 document.addEventListener('DOMContentLoaded', function() {
-    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
-    if (currentPage === 'grouppractice') {
-        initializeGroupPractice();
-    }
+    initializeGroupPractice();
 });
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all activity cards
-    const cards = document.querySelectorAll('.activity-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Remove active class from all cards
-            cards.forEach(c => c.classList.remove('active'));
-            // Add active class to clicked card
-            this.classList.add('active');
-            
-            // Get activity content
-            const activityId = this.getAttribute('data-activity');
-            const contentArea = document.getElementById('activity-content');
-            
-            if (contentArea) {
-                // Show loading state if needed
-                contentArea.innerHTML = '<div class="loading">Loading activity...</div>';
-                
-                // Simulate content load (remove in production)
-                setTimeout(() => {
-                    displayActivityContent(activityId);
-                }, 300);
-            }
-        });
-    });
-});
-
-// Function to handle back to activities list
-function backToActivities() {
-    const contentArea = document.getElementById('activity-content');
-    const activityCards = document.querySelector('.activity-cards');
-    
-    if (contentArea && activityCards) {
-        contentArea.classList.add('hidden');
-        activityCards.classList.remove('hidden');
-    }
-}
-
-// Function to handle card flips
-function flipCard(cardElement) {
-    cardElement.classList.toggle('flipped');
-}
-
-// Function to reset all cards
-function resetCards() {
-    const cards = document.querySelectorAll('.activity-card');
-    cards.forEach(card => {
-        card.classList.remove('flipped');
-        card.classList.remove('active');
-    });
-}
-
-// Function to handle print activity
-function printActivity() {
-    window.print();
-}
-
-// Add keyboard accessibility
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        resetCards();
-    }
-});
-</script>
