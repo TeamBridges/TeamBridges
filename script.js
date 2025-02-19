@@ -242,70 +242,76 @@ function initializeMadLibs() {
 }
 
 // Story Data
+// Story templates with their inputs and templates
 const stories = {
     1: {
         title: "The Bicycle Adventure",
         description: "A thrilling tale about a bicycle ride!",
         inputs: [
-            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wihle (head)" },
-            { label: "Enter another body part:", id: "bodyPart2", type: "text", placeholder: "e.g., Wikat (leg)" },
-            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Nisha (two)" },
-            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Machke (red)" },
-            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
+            { label: "Enter a body part", id: "bodyPart1", type: "text", placeholder: "e.g., Wihle (head)" },
+            { label: "Enter another body part", id: "bodyPart2", type: "text", placeholder: "e.g., Wikat (leg)" },
+            { label: "Enter a number", id: "number1", type: "text", placeholder: "e.g., Nisha (two)" },
+            { label: "Enter a color", id: "color1", type: "text", placeholder: "e.g., Machke (red)" },
+            { label: "Enter an emotion", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
         ],
-        template: "I was riding my bike when I hit my {bodyPart1} on a tree branch. I fell and hurt my {bodyPart2}. It took {number1} days to heal. My bruise turned {color1}. Now I feel {emotion1} when I ride my bike."
+        template: "One day, I was riding my bicycle when I hit my <span class='user-input'>{bodyPart1}</span> on a tree branch. I fell and hurt my <span class='user-input'>{bodyPart2}</span>. It took <span class='user-input'>{number1}</span> days to heal. My bruise turned <span class='user-input'>{color1}</span>. Now I feel <span class='user-input'>{emotion1}</span> when I ride my bike."
     },
     2: {
         title: "Dancing with Friends",
         description: "A fun story about dancing and friendship!",
         inputs: [
-            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Naxa (three)" },
-            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wikat (leg)" },
-            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Ope (white)" },
-            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Wisachgihhele (excited)" }
+            { label: "Enter a number", id: "number1", type: "text", placeholder: "e.g., Naxa (three)" },
+            { label: "Enter a body part", id: "bodyPart1", type: "text", placeholder: "e.g., Wikat (leg)" },
+            { label: "Enter another body part", id: "bodyPart2", type: "text", placeholder: "e.g., Wihle (head)" },
+            { label: "Enter a color", id: "color1", type: "text", placeholder: "e.g., Wapa (white)" },
+            { label: "Enter an emotion", id: "emotion1", type: "text", placeholder: "e.g., Wisachgihhele (excited)" }
         ],
-        template: "{number1} friends were dancing when I moved my {bodyPart1} too fast. We wore {color1} shoes and felt {emotion1}!"
+        template: "<span class='user-input'>{number1}</span> friends were dancing when I moved my <span class='user-input'>{bodyPart1}</span> too fast. I hit my <span class='user-input'>{bodyPart2}</span>! My <span class='user-input'>{color1}</span> outfit got wrinkled. I felt <span class='user-input'>{emotion1}</span>."
     },
     3: {
         title: "A Day at School",
         description: "Learning and playing with friends!",
         inputs: [
-            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wiske (eyes)" },
-            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Askaske (green)" },
-            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Newa (four)" },
-            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
+            { label: "Enter a color", id: "color1", type: "text", placeholder: "e.g., Askaske (green)" },
+            { label: "Enter a body part", id: "bodyPart1", type: "text", placeholder: "e.g., Wiske (eyes)" },
+            { label: "Enter a number", id: "number1", type: "text", placeholder: "e.g., Palenaxk (five)" },
+            { label: "Enter another body part", id: "bodyPart2", type: "text", placeholder: "e.g., Witun (mouth)" },
+            { label: "Enter an emotion", id: "emotion1", type: "text", placeholder: "e.g., Wawitam (sad)" }
         ],
-        template: "In class today, my {bodyPart1} saw something {color1}. {number1} of my friends noticed it too. We all felt {emotion1}!"
+        template: "I wore my <span class='user-input'>{color1}</span> shirt to school. My <span class='user-input'>{bodyPart1}</span> were tired after reading <span class='user-input'>{number1}</span> books. I used my <span class='user-input'>{bodyPart2}</span> to tell stories. I felt <span class='user-input'>{emotion1}</span> when school ended."
     },
     4: {
         title: "The Weather Today",
         description: "An adventure in different weather!",
         inputs: [
-            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Seke (black)" },
-            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Naxka (hands)" },
-            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Kwishele (afraid)" }
+            { label: "Enter an emotion", id: "emotion1", type: "text", placeholder: "e.g., Kwitey (angry)" },
+            { label: "Enter a color", id: "color1", type: "text", placeholder: "e.g., Seke (black)" },
+            { label: "Enter a body part", id: "bodyPart1", type: "text", placeholder: "e.g., Wixkwan (nose)" },
+            { label: "Enter a number", id: "number1", type: "text", placeholder: "e.g., Kweti (one)" }
         ],
-        template: "The {color1} clouds made my {bodyPart1} feel cold. The storm made me feel {emotion1}!"
+        template: "I felt <span class='user-input'>{emotion1}</span> when I saw the <span class='user-input'>{color1}</span> clouds. The rain hit my <span class='user-input'>{bodyPart1}</span> as I counted <span class='user-input'>{number1}</span> thunder claps."
     },
     5: {
         title: "Playing Games",
         description: "Fun and games with Lenape words!",
         inputs: [
-            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Palenaxk (five)" },
-            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wsita (feet)" },
-            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
+            { label: "Enter a number", id: "number1", type: "text", placeholder: "e.g., Newa (four)" },
+            { label: "Enter a body part", id: "bodyPart1", type: "text", placeholder: "e.g., Wikat (leg)" },
+            { label: "Enter a color", id: "color1", type: "text", placeholder: "e.g., Wisawe (yellow)" },
+            { label: "Enter an emotion", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
         ],
-        template: "{number1} friends played together. We used our {bodyPart1} to play hopscotch. Everyone felt {emotion1}!"
+        template: "We played games for <span class='user-input'>{number1}</span> hours. My <span class='user-input'>{bodyPart1}</span> got tired from jumping. I won the <span class='user-input'>{color1}</span> prize and felt <span class='user-input'>{emotion1}</span>!"
     },
     6: {
         title: "Getting Ready",
         description: "Morning routine adventure!",
         inputs: [
-            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Milaxk (hair)" },
-            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Wisawe (yellow)" },
-            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Wisachgihhele (excited)" }
+            { label: "Enter a body part", id: "bodyPart1", type: "text", placeholder: "e.g., Wihle (head)" },
+            { label: "Enter a color", id: "color1", type: "text", placeholder: "e.g., Machke (red)" },
+            { label: "Enter another body part", id: "bodyPart2", type: "text", placeholder: "e.g., Witun (mouth)" },
+            { label: "Enter an emotion", id: "emotion1", type: "text", placeholder: "e.g., Wisachgihhele (excited)" }
         ],
-        template: "This morning I brushed my {bodyPart1} and put on my {color1} shirt. I felt {emotion1} about the day!"
+        template: "I brushed my <span class='user-input'>{bodyPart1}</span> in the morning. Put on my <span class='user-input'>{color1}</span> clothes. Used my <span class='user-input'>{bodyPart2}</span> to eat breakfast. I felt <span class='user-input'>{emotion1}</span> about the day ahead!"
     }
 };
 
@@ -348,6 +354,8 @@ const exampleWords = {
     ]
 };
 
+
+
 let currentStory = null;
 
 function setupStoryButtons() {
@@ -364,57 +372,33 @@ function selectStory(storyId) {
     currentStory = stories[storyId];
     if (!currentStory) return;
 
-    // Show the input section
-    const inputSection = document.querySelector('.story-workspace');
-    if (inputSection) {
-        inputSection.style.display = 'block';
-    }
+    // Update active story selection
+    document.querySelectorAll('.story-choice').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-story-id="${storyId}"]`).classList.add('active');
 
     // Clear and update the input container
-    const inputsContainer = document.getElementById('input-container');
-    if (!inputsContainer) return;
-    
-    inputsContainer.innerHTML = '';
+    const inputContainer = document.getElementById('input-container');
+    if (!inputContainer) return;
+    inputContainer.innerHTML = '';
 
     // Create input fields for the selected story
-    currentStory.inputs.forEach((input, index) => {
-        const inputGroup = document.createElement('div');
-        inputGroup.className = 'input-group';
-        
-        const label = document.createElement('label');
-        label.textContent = input.label;
-        label.htmlFor = `input-${index}`;
-        
-        const inputField = document.createElement('input');
-        inputField.type = 'text';
-        inputField.id = `input-${index}`;
-        inputField.className = 'word-input';
-        inputField.placeholder = input.placeholder;
-        
-        inputGroup.appendChild(label);
-        inputGroup.appendChild(inputField);
-        inputsContainer.appendChild(inputGroup);
+    currentStory.inputs.forEach(input => {
+        const inputGroup = createInputGroup(input);
+        inputContainer.appendChild(inputGroup);
     });
 
-    // Show generate button
+    // Show generate button and hide story output
     const generateButton = document.getElementById('generate-button');
     if (generateButton) {
-        generateButton.style.display = 'block';
+        generateButton.classList.remove('hidden');
     }
 
-    // Hide story output if visible
     const storyOutput = document.getElementById('story-output');
     if (storyOutput) {
         storyOutput.classList.add('hidden');
     }
-
-    // Update active story selection
-    document.querySelectorAll('.story-choice').forEach(choice => {
-        choice.classList.remove('active');
-        if (choice.getAttribute('data-story-id') === storyId) {
-            choice.classList.add('active');
-        }
-    });
 }
 
 function createInputGroup(input) {
@@ -429,6 +413,7 @@ function createInputGroup(input) {
     inputElement.type = input.type;
     inputElement.id = input.id;
     inputElement.placeholder = input.placeholder;
+    inputElement.className = 'input-field';
 
     div.appendChild(label);
     div.appendChild(inputElement);
@@ -456,18 +441,33 @@ function generateStory() {
 
     let storyText = currentStory.template;
     Object.keys(inputs).forEach(key => {
-        storyText = storyText.replace(`{${key}}`, inputs[key]);
+        const value = `<span class="user-input">${inputs[key]}</span>`;
+        storyText = storyText.replace(`{${key}}`, value);
     });
 
-    document.getElementById('story-output').innerHTML = storyText;
-    document.querySelector('.story-card-inner').classList.add('flipped');
+    const storyOutput = document.getElementById('story-output');
+    if (storyOutput) {
+        storyOutput.classList.remove('hidden');
+        storyOutput.innerHTML = storyText;
+    }
 }
 
-function resetCard() {
-    document.querySelector('.story-card-inner').classList.remove('flipped');
-    document.getElementById('story-inputs').innerHTML = '';
-    document.getElementById('story-output').innerHTML = '';
-    document.getElementById('generate-button').style.display = 'none';
+function resetStory() {
+    const inputContainer = document.getElementById('input-container');
+    const storyOutput = document.getElementById('story-output');
+    const generateButton = document.getElementById('generate-button');
+
+    if (inputContainer) inputContainer.innerHTML = '';
+    if (storyOutput) {
+        storyOutput.classList.add('hidden');
+        storyOutput.innerHTML = '';
+    }
+    if (generateButton) generateButton.classList.add('hidden');
+
+    document.querySelectorAll('.story-choice').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
     currentStory = null;
 }
 
@@ -501,7 +501,8 @@ function createExampleCard(category, words) {
 
 // Initialize when document loads
 document.addEventListener('DOMContentLoaded', function() {
-    initializeMadLibs();
+    setupStoryButtons();
+    setupExampleCards();
 });
 // Group Practice functionality
 function initializeGroupPractice() {
