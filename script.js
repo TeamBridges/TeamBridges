@@ -1,14 +1,18 @@
+// script.js - Core Initialization
 
-// Initialize when document loads
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
-    console.log('Current page:', currentPage);
+    console.log('Initializing:', currentPage);
     initializePage(currentPage);
+    initializeNavigation();
 });
 
-// Page initialization router
+// Page router
 function initializePage(page) {
     switch(page) {
+        case 'index':
+            initializeHome();
+            break;
         case 'flashcards':
             initializeFlashCards();
             break;
@@ -24,208 +28,360 @@ function initializePage(page) {
         case 'grouppractice':
             initializeGroupPractice();
             break;
-        default:
-            initializeHome();
     }
 }
 
+// Navigation initialization
+function initializeNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
 
+// Home page initialization
+function initializeHome() {
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const gamePage = this.getAttribute('data-game');
+            if (gamePage) {
+                window.location.href = `${gamePage}.html`;
+            }
+        });
+    });
+}
+// Flash Cards functionality
+function initializeFlashCards() {
+    console.log('Initializing Flash Cards');
+    setupGameSelection();
+}
+
+let currentGame = 'game1';
+
+function setupGameSelection() {
+    const gameButtons = document.querySelectorAll('.game-choice');
+    const gameContainers = document.querySelectorAll('.game-container');
+
+    gameButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const gameId = button.getAttribute('data-game');
+            showGame(gameId);
+            updateButtonStates(button);
+        });
+    });
+
+    // Show first game by default
+    showGame('game1');
+}
+
+function showGame(gameId) {
+    const gameContainers = document.querySelectorAll('.game-container');
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+    
+    const selectedGame = document.getElementById(gameId);
+    if (selectedGame) {
+        selectedGame.style.display = 'block';
+    }
+    
+    currentGame = gameId;
+}
+
+function updateButtonStates(activeButton) {
+    const buttons = document.querySelectorAll('.game-choice');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    activeButton.classList.add('active');
+}
+// Drag & Drop functionality
+function initializeDragDrop() {
+    console.log('Initializing Drag & Drop Games');
+    setupGameSelection();
+}
+
+let currentGame = 'game1';
+
+function setupGameSelection() {
+    const gameButtons = document.querySelectorAll('.game-button');
+    const gameContainers = document.querySelectorAll('.game-container');
+
+    // Hide all games initially
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+
+    // Add click event listeners to buttons
+    gameButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const gameId = button.getAttribute('data-game');
+            showGame(gameId);
+            updateButtonStates(button);
+        });
+    });
+
+    // Show first game by default
+    showGame('dragdrop1');
+}
+
+function showGame(gameId) {
+    const gameContainers = document.querySelectorAll('.game-container');
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+    
+    const selectedGame = document.getElementById(gameId);
+    if (selectedGame) {
+        selectedGame.style.display = 'block';
+    }
+    
+    currentGame = gameId;
+}
+
+function updateButtonStates(activeButton) {
+    const buttons = document.querySelectorAll('.game-button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    activeButton.classList.add('active');
+}
+// Crossword Game functionality
+function initializeCrossword() {
+    console.log('Initializing Crossword Games');
+    setupCrosswordSelection();
+}
+
+let currentCrossword = 'crossword1';
+
+function setupCrosswordSelection() {
+    const gameButtons = document.querySelectorAll('.crossword-button');
+    const gameContainers = document.querySelectorAll('.crossword-container');
+
+    // Hide all games initially
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+
+    // Add click event listeners to buttons
+    gameButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const gameId = button.getAttribute('data-game');
+            showCrossword(gameId);
+            updateButtonStates(button);
+        });
+    });
+
+    // Show first crossword by default
+    showCrossword('crossword1');
+}
+
+function showCrossword(gameId) {
+    const gameContainers = document.querySelectorAll('.crossword-container');
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+    
+    const selectedGame = document.getElementById(gameId);
+    if (selectedGame) {
+        selectedGame.style.display = 'block';
+    }
+    
+    currentCrossword = gameId;
+}
+
+function updateButtonStates(activeButton) {
+    const buttons = document.querySelectorAll('.crossword-button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    activeButton.classList.add('active');
+}
+// Crossword Game functionality
+function initializeCrossword() {
+    console.log('Initializing Crossword Games');
+    setupCrosswordSelection();
+}
+
+let currentCrossword = 'crossword1';
+
+function setupCrosswordSelection() {
+    const gameButtons = document.querySelectorAll('.crossword-button');
+    const gameContainers = document.querySelectorAll('.crossword-container');
+
+    // Hide all games initially
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+
+    // Add click event listeners to buttons
+    gameButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const gameId = button.getAttribute('data-game');
+            showCrossword(gameId);
+            updateButtonStates(button);
+        });
+    });
+
+    // Show first crossword by default
+    showCrossword('crossword1');
+}
+
+function showCrossword(gameId) {
+    const gameContainers = document.querySelectorAll('.crossword-container');
+    gameContainers.forEach(container => {
+        container.style.display = 'none';
+    });
+    
+    const selectedGame = document.getElementById(gameId);
+    if (selectedGame) {
+        selectedGame.style.display = 'block';
+    }
+    
+    currentCrossword = gameId;
+}
+
+function updateButtonStates(activeButton) {
+    const buttons = document.querySelectorAll('.crossword-button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    activeButton.classList.add('active');
+}
 // Mad Libs Stories Data
 const stories = {
     1: {
         title: "The Bicycle Adventure",
         description: "A thrilling tale about a bicycle ride!",
         inputs: [
-            { label: "Enter a body part", placeholder: "e.g., Wikèhèn (head)", type: "bodypart" },
-            { label: "Enter another body part", placeholder: "e.g., Wikèk (leg)", type: "bodypart2" },
-            { label: "Enter a number", placeholder: "e.g., Nisha (two)", type: "number" },
-            { label: "Enter a color", placeholder: "e.g., Mòtànk (red)", type: "color" },
-            { label: "Enter an emotion", placeholder: "e.g., Nulitùn (happy)", type: "emotion" }
+            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wihle (head)" },
+            { label: "Enter another body part:", id: "bodyPart2", type: "text", placeholder: "e.g., Wikat (leg)" },
+            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Nisha (two)" },
+            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Machke (red)" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
         ],
-        template: "I was riding my bicycle when I hit my {bodypart} on a tree branch. I fell and hurt my {bodypart2}. It took {number} days to heal. My bruise turned {color}. Now I feel {emotion} when I ride my bike."
+        template: "I was riding my bike when I hit my {bodyPart1} on a tree branch. I fell and hurt my {bodyPart2}. It took {number1} days to heal. My bruise turned {color1}. Now I feel {emotion1} when I ride my bike."
     },
     2: {
         title: "Dancing with Friends",
         description: "A fun story about dancing and friendship!",
         inputs: [
-            { label: "Enter a number", placeholder: "e.g., Nash (three)", type: "number" },
-            { label: "Enter a friend's name", type: "name" },
-            { label: "Enter a body part", placeholder: "e.g., Wsita (feet)", type: "bodypart" },
-            { label: "Enter a color", placeholder: "e.g., Wëski (yellow)", type: "color" }
+            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Naxa (three)" },
+            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wikat (leg)" },
+            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Ope (white)" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Wisachgihhele (excited)" }
         ],
-        template: "Last {number} days ago, I went dancing with {name}. They stepped on my {bodypart} and it turned {color}! Maybe we need more dance practice."
+        template: "{number1} friends were dancing when I moved my {bodyPart1} too fast. We wore {color1} shoes and felt {emotion1}!"
     },
     3: {
         title: "A Day at School",
         description: "Learning and playing with friends!",
         inputs: [
-            { label: "Enter a color", placeholder: "e.g., Oxkàshe (green)", type: "color" },
-            { label: "Enter a body part", placeholder: "e.g., Wikuwe (eyes)", type: "bodypart" },
-            { label: "Enter a number", placeholder: "e.g., Palenaxk (five)", type: "number" },
-            { label: "Enter an emotion", placeholder: "e.g., Wichin (sad)", type: "emotion" }
+            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wiske (eyes)" },
+            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Askaske (green)" },
+            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Newa (four)" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
         ],
-        template: "I wore my {color} shirt to school today. During gym class, I hurt my {bodypart}. The teacher made me do {number} exercises. I felt {emotion} after that."
+        template: "In class today, my {bodyPart1} saw something {color1}. {number1} of my friends noticed it too. We all felt {emotion1}!"
     },
     4: {
         title: "The Weather Today",
         description: "An adventure in different weather!",
         inputs: [
-            { label: "Enter a color", placeholder: "e.g., Sàpe (black)", type: "color" },
-            { label: "Enter a body part", placeholder: "e.g., Wikuwàkane (nose)", type: "bodypart" },
-            { label: "Enter a number", placeholder: "e.g., Lënuwe (one)", type: "number" },
-            { label: "Enter an emotion", placeholder: "e.g., Wètëlaohake (excited)", type: "emotion" }
+            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Seke (black)" },
+            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Naxka (hands)" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Kwishele (afraid)" }
         ],
-        template: "The sky was {color} today. {number} raindrops fell on my {bodypart}. The weather made me feel {emotion}!"
+        template: "The {color1} clouds made my {bodyPart1} feel cold. The storm made me feel {emotion1}!"
     },
     5: {
         title: "Playing Games",
         description: "Fun and games with Lenape words!",
         inputs: [
-            { label: "Enter a body part", placeholder: "e.g., Naxka (hands)", type: "bodypart" },
-            { label: "Enter a color", placeholder: "e.g., Wapá (white)", type: "color" },
-            { label: "Enter a number", placeholder: "e.g., Newa (four)", type: "number" },
-            { label: "Enter an emotion", placeholder: "e.g., Wsìkwàk (angry)", type: "emotion" }
+            { label: "Enter a number:", id: "number1", type: "text", placeholder: "e.g., Palenaxk (five)" },
+            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Wsita (feet)" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Nulhatam (happy)" }
         ],
-        template: "I used my {bodypart} to catch the ball. Our team wore {color} shirts. We scored {number} points! I felt {emotion} when we won!"
+        template: "{number1} friends played together. We used our {bodyPart1} to play hopscotch. Everyone felt {emotion1}!"
     },
     6: {
         title: "Getting Ready",
         description: "Morning routine adventure!",
         inputs: [
-            { label: "Enter a body part", placeholder: "e.g., Milaxk (hair)", type: "bodypart" },
-            { label: "Enter a color", placeholder: "e.g., Mòtànk (red)", type: "color" },
-            { label: "Enter a number", placeholder: "e.g., Nash (three)", type: "number" },
-            { label: "Enter an emotion", placeholder: "e.g., Nulitùn (happy)", type: "emotion" }
+            { label: "Enter a body part:", id: "bodyPart1", type: "text", placeholder: "e.g., Milaxk (hair)" },
+            { label: "Enter a color:", id: "color1", type: "text", placeholder: "e.g., Wisawe (yellow)" },
+            { label: "Enter an emotion:", id: "emotion1", type: "text", placeholder: "e.g., Wisachgihhele (excited)" }
         ],
-        template: "This morning, I brushed my {bodypart}. I put on my favorite {color} shirt. It took me {number} minutes to get ready. I felt {emotion} about how I looked!"
+        template: "This morning I brushed my {bodyPart1} and put on my {color1} shirt. I felt {emotion1} about the day!"
     }
 };
-// Lenape Word Examples Data
-const wordExamples = {
-    bodyParts: [
-        { lenape: "Wikèhèn", english: "Head", pronunciation: "wee-keh-hen" },
-        { lenape: "Wikèhs", english: "Mouth", pronunciation: "wee-kehs" },
-        { lenape: "Wikuwàkane", english: "Nose", pronunciation: "wee-koo-wah-kah-neh" },
-        { lenape: "Wikuwe", english: "Eyes", pronunciation: "wee-koo-weh" },
-        { lenape: "Wikèk", english: "Leg", pronunciation: "wee-kek" },
-        { lenape: "Naxka", english: "Hands", pronunciation: "nax-ka" },
-        { lenape: "Wsita", english: "Feet", pronunciation: "w-see-ta" },
-        { lenape: "Milaxk", english: "Hair", pronunciation: "mee-laxk" },
-        { lenape: "Hwitaoka", english: "Ears", pronunciation: "hwee-tao-ka" },
-        { lenape: "Mutaya", english: "Stomach", pronunciation: "moo-tay-a" },
-        { lenape: "Welencha", english: "Fingers", pronunciation: "wel-en-cha" },
-        { lenape: "Kwetsita", english: "Toes", pronunciation: "kwet-see-ta" },
-        { lenape: "Tuhwepia", english: "Body", pronunciation: "tuh-wep-ia" }
-    ],
-    colors: [
-        { lenape: "Sàpe", english: "Black", pronunciation: "sah-peh" },
-        { lenape: "Wapá", english: "White", pronunciation: "wah-pah" },
-        { lenape: "Mòtànk", english: "Red", pronunciation: "moh-tank" },
-        { lenape: "Wëski", english: "Yellow", pronunciation: "wes-kee" },
-        { lenape: "Oxkàshe", english: "Green", pronunciation: "ox-kah-sheh" }
-    ],
-    numbers: [
-        { lenape: "Lënuwe", english: "One", pronunciation: "leh-noo-weh" },
-        { lenape: "Nisha", english: "Two", pronunciation: "nee-shah" },
-        { lenape: "Nash", english: "Three", pronunciation: "nahsh" },
-        { lenape: "Newa", english: "Four", pronunciation: "neh-wah" },
-        { lenape: "Palenaxk", english: "Five", pronunciation: "pah-leh-naxk" }
-    ],
-    emotions: [
-        { lenape: "Nulitùn", english: "Happy", pronunciation: "noo-lee-tun" },
-        { lenape: "Wichin", english: "Sad", pronunciation: "wee-chin" },
-        { lenape: "Wètëlaohake", english: "Excited", pronunciation: "wet-el-ao-ha-ke" },
-        { lenape: "Wsìkwàk", english: "Angry", pronunciation: "w-sik-wak" }
-    ]
-};
 
-// Word Examples Display Functions
-function displayWordExamples() {
-    const exampleSection = document.getElementById('example-section');
-    if (!exampleSection) return;
+let currentStory = null;
 
-    Object.entries(wordExamples).forEach(([category, words]) => {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'word-category';
-        
-        const categoryTitle = category.replace(/([A-Z])/g, ' $1').trim();
-        categoryDiv.innerHTML = `
-            <h3>${categoryTitle}</h3>
-            <div class="word-grid">
-                ${words.map(word => `
-                    <div class="word-card">
-                        <div class="word-card-inner">
-                            <div class="lenape">${word.lenape}</div>
-                            <div class="english">${word.english}</div>
-                            <div class="pronunciation">${word.pronunciation}</div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        exampleSection.appendChild(categoryDiv);
-    });
-}
-// Mad Libs Core Functions
-function initializeMadLibs() {
-    console.log('Initializing Mad Libs page');
-    setupStorySelection();
-    setupWordExamples();
-    // Hide the input section initially
-    document.querySelector('.story-workspace').style.display = 'none';
-}
+// Initialize when document is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    setupExampleCards();
+    setupStoryButtons();
+});
 
-function setupStorySelection() {
+function setupStoryButtons() {
     const storyButtons = document.querySelectorAll('.story-choice');
     storyButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const storyId = this.getAttribute('data-story');
-            loadStory(storyId);
-            // Show the workspace when a story is selected
-            document.querySelector('.story-workspace').style.display = 'block';
+            const storyId = this.getAttribute('data-story-id');
+            selectStory(storyId);
         });
     });
 }
 
-function loadStory(storyId) {
-    const story = stories[storyId];
-    if (!story) {
-        console.error('Story not found:', storyId);
-        return;
-    }
+function selectStory(storyId) {
+    currentStory = stories[storyId];
+    if (!currentStory) return;
 
-    const inputsContainer = document.getElementById('word-inputs');
+    // Update story form
+    document.getElementById('story-form-title').textContent = currentStory.title;
+    const inputsContainer = document.getElementById('story-inputs');
     inputsContainer.innerHTML = '';
 
-    // Create input fields based on story requirements
-    story.inputs.forEach((input, index) => {
-        const inputGroup = document.createElement('div');
-        inputGroup.className = 'input-group';
-        inputGroup.innerHTML = `
-            <label for="input-${index}">${input.label}</label>
-            <input type="text" 
-                   id="input-${index}" 
-                   placeholder="${input.placeholder || ''}"
-                   data-type="${input.type}">
-        `;
+    currentStory.inputs.forEach(input => {
+        const inputGroup = createInputGroup(input);
         inputsContainer.appendChild(inputGroup);
     });
 
     // Show generate button
-    const generateButton = document.querySelector('.generate-button');
-    generateButton.style.display = 'block';
+    document.getElementById('generate-button').style.display = 'block';
+}
+
+function createInputGroup(input) {
+    const div = document.createElement('div');
+    div.className = 'input-group';
+
+    const label = document.createElement('label');
+    label.textContent = input.label;
+    label.htmlFor = input.id;
+
+    const inputElement = document.createElement('input');
+    inputElement.type = input.type;
+    inputElement.id = input.id;
+    inputElement.placeholder = input.placeholder;
+
+    div.appendChild(label);
+    div.appendChild(inputElement);
+    return div;
 }
 
 function generateStory() {
-    const storyId = document.querySelector('.story-choice.active').dataset.storyId;
-    const story = stories[storyId];
-    if (!story) return;
+    if (!currentStory) return;
 
     const inputs = {};
     let allFilled = true;
 
-    // Collect all input values
-    story.inputs.forEach(input => {
+    currentStory.inputs.forEach(input => {
         const value = document.getElementById(input.id)?.value.trim();
         if (!value) {
             allFilled = false;
@@ -238,324 +394,297 @@ function generateStory() {
         return;
     }
 
-    // Generate story text with styled inputs
-    let storyText = story.template;
-    Object.entries(inputs).forEach(([key, value]) => {
-        storyText = storyText.replace(
-            `{${key}}`, 
-            `<span class="user-input">${value}</span>`
-        );
+    let storyText = currentStory.template;
+    Object.keys(inputs).forEach(key => {
+        storyText = storyText.replace(`{${key}}`, inputs[key]);
     });
 
-    // Display story
-    const storyOutput = document.getElementById('story-output');
-    storyOutput.innerHTML = storyText;
-    storyOutput.classList.remove('hidden');
+    document.getElementById('story-output').innerHTML = storyText;
+    document.querySelector('.story-card-inner').classList.add('flipped');
 }
 
-    // Hide input section and show reset button
-    document.querySelector('.input-section').style.display = 'none';
-    document.querySelector('.reset-button').style.display = 'block';
+function resetCard() {
+    document.querySelector('.story-card-inner').classList.remove('flipped');
+    document.getElementById('story-inputs').innerHTML = '';
+    document.getElementById('story-output').innerHTML = '';
+    document.getElementById('generate-button').style.display = 'none';
+    currentStory = null;
 }
 
-function resetStory() {
-    // Clear inputs and hide story output
-    document.querySelectorAll('.input-group input').forEach(input => {
-        input.value = '';
-        input.classList.remove('error');
-    });
-    
-    // Hide story output and reset button
-    document.getElementById('story-output').classList.add('hidden');
-    document.querySelector('.reset-button').style.display = 'none';
-    
-    // Show input section
-    document.querySelector('.input-section').style.display = 'block';
-}
-// Event Handlers and Page Initialization
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Mad Libs page
-    if (document.querySelector('.madlibs-container')) {
-        initializeMadLibs();
-    }
-});
+// Example Cards Data
+const exampleCards = {
+    bodyParts: [
+        { lenape: "Wixkwan", english: "nose" },
+        { lenape: "Witun", english: "mouth" },
+        { lenape: "Wihle", english: "head" },
+        { lenape: "Wiske", english: "eyes" },
+        { lenape: "Wikat", english: "leg" },
+        { lenape: "Naxka", english: "hands" },
+        { lenape: "Welencha", english: "fingers" },
+        { lenape: "Wsita", english: "feet" },
+        { lenape: "Kwetsita", english: "toes" },
+        { lenape: "Hwitaoka", english: "ears" },
+        { lenape: "Mutaya", english: "stomach" }
+    ],
+    colors: [
+        { lenape: "Seke", english: "black" },
+        { lenape: "Ope", english: "white" },
+        { lenape: "Machke", english: "red" },
+        { lenape: "Wisawe", english: "yellow" },
+        { lenape: "Askaske", english: "green" },
+        { lenape: "Wape", english: "grey" }
+    ],
+    numbers: [
+        { lenape: "Kweti", english: "one" },
+        { lenape: "Nisha", english: "two" },
+        { lenape: "Naxa", english: "three" },
+        { lenape: "Newa", english: "four" },
+        { lenape: "Palenaxk", english: "five" },
+        { lenape: "Kwetash", english: "six" },
+        { lenape: "Nishash", english: "seven" },
+        { lenape: "Xash", english: "eight" },
+        { lenape: "Peshkunk", english: "nine" },
+        { lenape: "Telen", english: "ten" }
+    ],
+    emotions: [
+        { lenape: "Nulhatam", english: "happy" },
+        { lenape: "Kwitey", english: "angry" },
+        { lenape: "Wawitam", english: "sad" },
+        { lenape: "Wisachgihhele", english: "excited" },
+        { lenape: "Kwishele", english: "afraid" }
+    ]
+};
 
-// Story Selection and Display Functions
-function loadStory(storyId) {
-    const story = stories[storyId];
-    if (!story) {
-        console.error('Story not found:', storyId);
-        return;
-    }
+function setupExampleCards() {
+    const container = document.querySelector('.example-cards');
+    if (!container) return;
 
-    // Update story workspace
-    const workspace = document.querySelector('.story-workspace');
-    workspace.innerHTML = `
-        <div class="input-section">
-            <h3>${story.title}</h3>
-            <p>${story.description}</p>
-            <div id="word-inputs" class="word-inputs"></div>
-            <button onclick="generateStory('${storyId}')" class="generate-button">Generate Story!</button>
-        </div>
-        <div id="story-output" class="story-output hidden">
-            <h3>Your Story</h3>
-            <div id="story-text"></div>
-            <button onclick="resetStory()" class="reset-button">Create Another Story</button>
-        </div>
-    `;
-
-    // Generate input fields
-    const inputsContainer = document.getElementById('word-inputs');
-    story.inputs.forEach((input, index) => {
-        const inputGroup = document.createElement('div');
-        inputGroup.className = 'input-group';
-        inputGroup.innerHTML = `
-            <label for="input-${index}">${input.label}</label>
-            <input 
-                type="text" 
-                id="input-${index}" 
-                placeholder="${input.placeholder || ''}"
-                data-type="${input.type}"
-                required
-            >
-        `;
-        inputsContainer.appendChild(inputGroup);
-    });
-
-    // Update active story selection
-    document.querySelectorAll('.story-choice').forEach(choice => {
-        choice.classList.remove('active');
-        if (choice.getAttribute('data-story-id') === storyId) {
-            choice.classList.add('active');
-        }
-    });
-}
-
-// Error Handling Functions
-function showError(message) {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    
-    const workspace = document.querySelector('.story-workspace');
-    workspace.insertBefore(errorDiv, workspace.firstChild);
-    
-    setTimeout(() => {
-        errorDiv.remove();
-    }, 3000);
-}
-
-// Input Validation
-function validateInputs(inputs) {
-    let isValid = true;
-    let errorMessages = [];
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            input.classList.add('error');
-            errorMessages.push(`Please fill in the ${input.getAttribute('data-type')} field`);
-        } else {
-            input.classList.remove('error');
-        }
-    });
-
-    if (!isValid) {
-        showError(errorMessages.join('\n'));
-    }
-
-    return isValid;
-}
-
-// Add event listeners for input fields
-function setupInputListeners() {
-    document.querySelectorAll('.input-group input').forEach(input => {
-        input.addEventListener('input', function() {
-            this.classList.remove('error');
-        });
-    });
-}
-
-// index.js
-function initializeHome() {
-    console.log('Initializing home page');
-    setupGameCards();
-}
-
-function setupGameCards() {
-    const gameCards = document.querySelectorAll('.game-card');
-    gameCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const gamePage = this.getAttribute('data-game');
-            window.location.href = `${gamePage}.html`;
-        });
-    });
-}
-
-// crossword.js
-function initializeCrossword() {
-    console.log('Initializing crossword page');
-    const crosswordData = {
-        grid: [
-            ['W', 'I', 'K', 'E', 'H', 'E', 'N'],
-            ['I', '', '', '', '', '', ''],
-            ['K', '', '', '', '', '', ''],
-            ['E', '', '', '', '', '', ''],
-            ['H', '', '', '', '', '', ''],
-            ['S', '', '', '', '', '', '']
-        ],
-        clues: {
-            across: [
-                { number: 1, clue: "Lenape word for 'head'", answer: "WIKEHEN" }
-            ],
-            down: [
-                { number: 1, clue: "Lenape word for 'mouth'", answer: "WIKEHS" }
-            ]
-        }
-    };
-    
-    setupCrosswordGrid(crosswordData);
-}
-
-function setupCrosswordGrid(data) {
-    const gridContainer = document.getElementById('crossword-grid');
-    data.grid.forEach((row, rowIndex) => {
-        row.forEach((cell, colIndex) => {
-            const cellElement = document.createElement('div');
-            cellElement.className = 'crossword-cell';
-            if (cell !== '') {
-                cellElement.innerHTML = `
-                    <input type="text" maxlength="1" class="cell-input" 
-                           data-row="${rowIndex}" data-col="${colIndex}">
-                `;
-            }
-            gridContainer.appendChild(cellElement);
-        });
-    });
-}
-
-// cardflip.js
-function initializeCardFlip() {
-    console.log('Initializing card flip game');
-    const cardData = [
-        { lenape: "Wikèhèn", english: "Head" },
-        { lenape: "Wikèhs", english: "Mouth" },
-        { lenape: "Wikuwàkane", english: "Nose" },
-        { lenape: "Wikuwe", english: "Eyes" }
-    ];
-    
-    setupCardGame(cardData);
-}
-
-function setupCardGame(cards) {
-    const gameContainer = document.getElementById('card-game');
-    const shuffledCards = [...cards, ...cards].sort(() => Math.random() - 0.5);
-    
-    shuffledCards.forEach(card => {
-        const cardElement = document.createElement('div');
-        cardElement.className = 'memory-card';
-        cardElement.innerHTML = `
-            <div class="card-inner">
-                <div class="card-front"></div>
-                <div class="card-back">${card.lenape}</div>
-            </div>
-        `;
-        gameContainer.appendChild(cardElement);
-    });
-}
-
-// Drag & Drop Page JavaScript
-function initializeDragDrop() {
-    console.log('Initializing Drag & Drop page');
-    
-    // Hide all games initially
-    document.querySelectorAll('.scratch-game').forEach(game => {
-        game.style.display = 'none';
-    });
-
-    // Setup game selection buttons
-    setupGameButtons();
-}
-
-function setupGameButtons() {
-    const gameButtons = document.querySelectorAll('.game-button');
-    gameButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            gameButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Hide all games
-            document.querySelectorAll('.scratch-game').forEach(game => {
-                game.style.display = 'none';
-            });
-            
-            // Show selected game
-            const gameId = this.getAttribute('data-game');
-            const selectedGame = document.getElementById(gameId);
-            if (selectedGame) {
-                selectedGame.style.display = 'block';
-            }
-        });
-    });
-}
-// grouppractice.js
-function initializeGroupPractice() {
-    console.log('Initializing group practice');
-    const activities = [
-        {
-            title: "Body Parts Practice",
-            instructions: "Follow the leader and practice these movements:",
-            prompts: [
-                "Touch your wikèhèn (head)",
-                "Point to your wikèhs (mouth)",
-                "Cover your wikuwe (eyes)"
-            ]
-        }
-    ];
-    
-    setupGroupActivity(activities[0]);
-}
-
-function setupGroupActivity(activity) {
-    const activityContainer = document.getElementById('activity-container');
-    activityContainer.innerHTML = `
-        <h2>${activity.title}</h2>
-        <p>${activity.instructions}</p>
-        <div id="prompt-display"></div>
-        <div class="controls">
-            <button onclick="previousPrompt()">Previous</button>
-            <button onclick="nextPrompt()">Next</button>
-        </div>
-    `;
-}
-// Add this JavaScript to populate the cards
-function initializeGroupPractice() {
-    const container = document.querySelector('.activity-cards');
-    
-    Object.entries(activityContent).forEach(([key, activity]) => {
-        const card = document.createElement('div');
-        card.className = 'activity-card';
-        card.onclick = function() { this.classList.toggle('flipped'); };
-        
-        card.innerHTML = `
-            <div class="card-inner">
-                <div class="card-front">
-                    <h2>${activity.title}</h2>
-                    <p>Click to see prompts</p>
-                </div>
-                <div class="card-back">
-                    <h3>${activity.title}</h3>
-                    <p class="description">${activity.description}</p>
-                    <ul class="prompts-list">
-                        ${activity.prompts.map(prompt => `<li>${prompt}</li>`).join('')}
-                    </ul>
-                </div>
-            </div>
-        `;
-        
+    Object.entries(exampleCards).forEach(([category, words]) => {
+        const card = createExampleCard(category, words);
         container.appendChild(card);
     });
 }
+
+function createExampleCard(category, words) {
+    const card = document.createElement('div');
+    card.className = 'example-card';
+    card.innerHTML = `
+        <div class="card-inner">
+            <div class="card-front">
+                <h3>${category.charAt(0).toUpperCase() + category.slice(1)}</h3>
+                <p>Click to see examples</p>
+            </div>
+            <div class="card-back">
+                ${words.map(word => `<p>${word.lenape} = ${word.english}</p>`).join('')}
+            </div>
+        </div>
+    `;
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    return card;
+}
+// Group Practice functionality
+function initializeGroupPractice() {
+    console.log('Initializing Group Practice page');
+    setupActivityCards();
+}
+
+const groupActivities = {
+    howMany: {
+        title: "How Many...?",
+        description: "The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.",
+        prompts: [
+            "How many hwikiyona (noses) are in this room?",
+            "How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?",
+            "How many tuna (mouths) are in this room?",
+            "How many naxka (hands) are in this room?",
+            "How many welencha (fingers)?",
+            "How many wsita (feet) are in this room?",
+            "How many kwetsita (toes)?",
+            "How many people in this room have long milaxk (hair)?",
+            "How many have short milaxk (hair)?",
+            "How many people in this room have brown milaxk (hair)?",
+            "How many have black milaxk (hair)?",
+            "How many have gray milaxk (hair)?",
+            "How many have red milaxk (hair)?",
+            "How many have blonde milaxk (hair)?",
+            "How many hwitaoka (ears) are in this room?",
+            "How many mutaya (stomachs) are in this room?",
+            "How many tuhwepia (bodies) are in this room?"
+        ]
+    },
+    simonSays: {
+        title: "Simon Says...",
+        description: "The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds. The leader can choose whether any incorrect responses constitute an 'out' or if everyone gets unlimited chances.",
+        prompts: [
+            "Wave your right naxk (hand)",
+            "Tap your left wsit (foot)",
+            "Hold up nisha (two) welencha (fingers)",
+            "Wiggle your hwitaoka (ears)",
+            "Close your weshkinko (eyes)",
+            "Touch your wikuwàkane (nose)",
+            "Pat your mutaya (stomach)",
+            "Pat your right ketukw (knee)",
+            "Raise your left naolk (arm)",
+            "Touch your wikiyon (nose) naxen (three times)",
+            "Hold your right wiskon (elbow)",
+            "Tap your left hwikxkon (shin)",
+            "Hold up a tukwelench (fist)"
+        ]
+    },
+    creatureFeature: {
+        title: "Creature Feature",
+        description: "Invent a new creature by combining different parts of various animals. Give it a name, and make up an interesting fact about your creature. This should incorporate vocabulary words for animals and body parts, and it could also include numbers or colors as appropriate.",
+        prompts: [
+            "Create a creature with three hwikiyona (noses)",
+            "Design an animal with extra welencha (fingers)",
+            "Imagine a being with unusual colored milaxk (hair)",
+            "Describe a creature with multiple hwitaoka (ears)",
+            "Make up an animal with special wsita (feet)",
+            "Example: My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn!"
+        ]
+    },
+    conversation: {
+        title: "Conversation Prompts",
+        description: "Use the following prompts to start a conversation. Encourage learners to respond using words in Lenape as often as possible, especially focusing on Lenape body parts, colors, numbers, and animals.",
+        prompts: [
+            "What are your three favorite physical features about yourself, why?",
+            "Describe someone in this room based on their physical features.",
+            "Which body part do you think is the most/least useful, why?",
+            "Compare and contrast the physical appearances between a baby and an adult.",
+            "Describe a mystery body part for the other students to guess.",
+            "Describe your morning routine, using as many body parts as possible.",
+            "Pretend you're at the doctor's office and explain what's wrong and how you feel.",
+            "Describe your favorite animal based on their physical appearance."
+        ]
+    }
+};
+
+function setupActivityCards() {
+    const container = document.getElementById('activity-container');
+    if (!container) return;
+
+    Object.entries(groupActivities).forEach(([key, activity]) => {
+        const card = createActivityCard(key, activity);
+        container.appendChild(card);
+    });
+}
+
+function createActivityCard(key, activity) {
+    const card = document.createElement('div');
+    card.className = 'activity-card';
+    card.setAttribute('data-activity', key);
+    
+    card.innerHTML = `
+        <h2>${activity.title}</h2>
+        <p class="description">${activity.description}</p>
+        <button class="view-prompts-btn" onclick="showActivity('${key}')">View Prompts</button>
+    `;
+    
+    return card;
+}
+
+function showActivity(activityKey) {
+    const activity = groupActivities[activityKey];
+    if (!activity) return;
+
+    const contentArea = document.getElementById('activity-content');
+    if (!contentArea) return;
+
+    let html = `
+        <h2>${activity.title}</h2>
+        <p class="description">${activity.description}</p>
+        <div class="prompts-list">
+    `;
+
+    activity.prompts.forEach(prompt => {
+        html += `<div class="prompt-item">${prompt}</div>`;
+    });
+
+    html += '</div>';
+    contentArea.innerHTML = html;
+
+    // Update active states
+    document.querySelectorAll('.activity-card').forEach(card => {
+        card.classList.remove('active');
+        if (card.getAttribute('data-activity') === activityKey) {
+            card.classList.add('active');
+        }
+    });
+
+    // Show the content area if it was hidden
+    contentArea.classList.remove('hidden');
+}
+
+// Initialize when document loads
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+    if (currentPage === 'grouppractice') {
+        initializeGroupPractice();
+    }
+});
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all activity cards
+    const cards = document.querySelectorAll('.activity-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Remove active class from all cards
+            cards.forEach(c => c.classList.remove('active'));
+            // Add active class to clicked card
+            this.classList.add('active');
+            
+            // Get activity content
+            const activityId = this.getAttribute('data-activity');
+            const contentArea = document.getElementById('activity-content');
+            
+            if (contentArea) {
+                // Show loading state if needed
+                contentArea.innerHTML = '<div class="loading">Loading activity...</div>';
+                
+                // Simulate content load (remove in production)
+                setTimeout(() => {
+                    displayActivityContent(activityId);
+                }, 300);
+            }
+        });
+    });
+});
+
+// Function to handle back to activities list
+function backToActivities() {
+    const contentArea = document.getElementById('activity-content');
+    const activityCards = document.querySelector('.activity-cards');
+    
+    if (contentArea && activityCards) {
+        contentArea.classList.add('hidden');
+        activityCards.classList.remove('hidden');
+    }
+}
+
+// Function to handle card flips
+function flipCard(cardElement) {
+    cardElement.classList.toggle('flipped');
+}
+
+// Function to reset all cards
+function resetCards() {
+    const cards = document.querySelectorAll('.activity-card');
+    cards.forEach(card => {
+        card.classList.remove('flipped');
+        card.classList.remove('active');
+    });
+}
+
+// Function to handle print activity
+function printActivity() {
+    window.print();
+}
+
+// Add keyboard accessibility
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        resetCards();
+    }
+});
+</script>
