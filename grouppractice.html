@@ -18,13 +18,25 @@
         <a href="grouppractice.html" class="nav-link active">Group Practice</a>
     </nav>
 
-    <header class="title">
+    <div class="header">
         <h1>Lenape Group Practice Activities</h1>
-        <h2>Practice Lenape Language Together!</h2>
-    </header>
+        <p>Practice Lenape Language Together!</p>
+    </div>
 
-    <main class="container">
-        <section class="activity-cards">
+    <div class="instructions">
+        <h2>How to Play:</h2>
+        <ul>
+            <li>Choose an activity from the options below</li>
+            <li>Follow the activity instructions that appear</li>
+            <li>Practice with your group or class</li>
+            <li>Use as many Lenape words as possible in your responses</li>
+            <li>Have fun learning together!</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <!-- Activity Selection Column -->
+        <div class="activity-selection">
             <div class="activity-card" onclick="showActivity('howmany')">
                 <h3>How Many...?</h3>
                 <p>Count and practice numbers with your group!</p>
@@ -37,83 +49,23 @@
 
             <div class="activity-card" onclick="showActivity('creature')">
                 <h3>Creature Feature</h3>
-                <p>Create and describe imaginary creatures using body part vocabulary!</p>
+                <p>Create and describe imaginary creatures!</p>
             </div>
-        </section>
 
-        <section id="activity-content" class="activity-content hidden">
-            <!-- Content will be dynamically loaded here -->
-        </section>
-    </main>
+            <div class="activity-card" onclick="showActivity('conversation')">
+                <h3>Conversation Prompts</h3>
+                <p>Practice speaking with guided conversation topics!</p>
+            </div>
+        </div>
 
-    <script>
-        const activityContent = {
-            howmany: {
-                title: "How Many...?",
-                description: "This activity can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.",
-                prompts: [
-                    "How many hwikiyona (noses) are in this room?",
-                    "How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?",
-                    "How many tuna (mouths) are in this room?",
-                    "How many naxka (hands) are in this room?",
-                    "How many welencha (fingers)?",
-                    "How many wsita (feet) are in this room?",
-                    "How many kwetsita (toes)?",
-                    "How many people in this room have long milaxk (hair)?",
-                    "How many have short milaxk (hair)?",
-                    "How many people in this room have brown milaxk (hair)?",
-                    "How many have black milaxk (hair)?",
-                    "How many have gray milaxk (hair)?",
-                    "How many have red milaxk (hair)?",
-                    "How many have blonde milaxk (hair)?"
-                ]
-            },
-            simonsays: {
-                title: "Simon Says...",
-                description: "Practice body parts and commands in Lenape through this classic game!",
-                example: "Simon says touch your wikèhèn (head)!"
-            },
-            creature: {
-                title: "Creature Feature",
-                description: "Create and describe imaginary creatures using Lenape body part vocabulary.",
-                prompts: [
-                    "Draw a creature with three wikuwàkane (noses)",
-                    "Create a monster with five wikuwe (eyes)",
-                    "Design an animal with two wikèhèn (heads)",
-                    "Describe your favorite animal based on their physical appearance"
-                ]
-            }
-        };
+        <!-- Activity Content Column -->
+        <div class="activity-content">
+            <h2 id="activity-title">Select an Activity</h2>
+            <div id="activity-description"></div>
+            <div id="activity-prompts"></div>
+        </div>
+    </div>
 
-        function showActivity(activityType) {
-            const content = activityContent[activityType];
-            const contentSection = document.getElementById('activity-content');
-            
-            let html = `
-                <h2>${content.title}</h2>
-                <p class="description">${content.description}</p>
-            `;
-
-            if (content.prompts) {
-                html += '<div class="prompts-list">';
-                content.prompts.forEach(prompt => {
-                    html += `<div class="prompt-item">${prompt}</div>`;
-                });
-                html += '</div>';
-            }
-
-            if (content.example) {
-                html += `
-                    <div class="example-box">
-                        <h3>Example:</h3>
-                        <p>${content.example}</p>
-                    </div>
-                `;
-            }
-
-            contentSection.innerHTML = html;
-            contentSection.classList.remove('hidden');
-        }
-    </script>
+    <script src="js/grouppractice.js"></script>
 </body>
 </html>
