@@ -1,1 +1,77 @@
+/* dragdrop.css */
 
+/* Header Styles */
+.title {
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.title h1 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+}
+
+.title h2 {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Game Selection Styles */
+.game-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.game-choice {
+    background: white;
+    border: none;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.game-choice:hover {
+    transform: translateY(-5px);
+    background-color: #f8f9fa;
+}
+
+.game-choice h3 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.game-choice p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-selection {
+        grid-template-columns: 1fr;
+    }
+    
+    .title h1 {
+        font-size: 1.8rem;
+    }
+    
+    .title h2 {
+        font-size: 1rem;
+    }
+}
