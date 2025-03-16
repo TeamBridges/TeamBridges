@@ -26,50 +26,73 @@
     <div class="instructions">
         <h2>How to Play Lenape Mad Libs</h2>
         <ul>
-            <li>Choose a story template from the options on the left</li>
-            <li>Fill in the blanks with the requested Lenape words</li>
-            <li>Use the word examples on the right for help with vocabulary</li>
-            <li>Click "Generate Story" to see your completed story</li>
-            <li>Words in parentheses (like this) show the English translation</li>
-            <li>Click "Create Another Story" to start over with a new story</li>
-            <li>Try different combinations of words to create unique stories!</li>
+            <li>Choose a story from the options below</li>
+            <li>Green cards are beginner-friendly stories</li>
+            <li>Yellow cards are intermediate difficulty</li>
+            <li>Red cards are advanced stories</li>
+            <li>Fill in the Lenape words when prompted</li>
+            <li>Use the word bank on the right for help</li>
+            <li>Click "Generate Story" to see your creation!</li>
         </ul>
     </div>
 
     <div class="container">
+        <!-- Story Selection -->
         <div class="story-selection">
             <h2>Choose Your Story</h2>
-            <div class="story-buttons">
-                <button class="story-choice" onclick="selectStory('bicycle')">
+            <div class="story-list">
+                <!-- Beginner Stories (Green) -->
+                <div class="story-card easy" onclick="selectStory('bicycle')">
                     <h3>The Bicycle Adventure</h3>
                     <p>A thrilling tale about a bicycle ride!</p>
-                </button>
-                <button class="story-choice" onclick="selectStory('dancing')">
+                </div>
+                <div class="story-card easy" onclick="selectStory('dancing')">
                     <h3>Dancing with Friends</h3>
                     <p>A fun story about dancing and friendship!</p>
-                </button>
-                <button class="story-choice" onclick="selectStory('school')">
+                </div>
+                <div class="story-card easy" onclick="selectStory('school')">
                     <h3>A Day at School</h3>
                     <p>Learning and playing with friends!</p>
-                </button>
-                <button class="story-choice" onclick="selectStory('weather')">
+                </div>
+
+                <!-- Intermediate Stories (Yellow) -->
+                <div class="story-card medium" onclick="selectStory('weather')">
                     <h3>The Weather Today</h3>
                     <p>An adventure in different weather!</p>
-                </button>
-                <button class="story-choice" onclick="selectStory('ready')">
+                </div>
+                <div class="story-card medium" onclick="selectStory('ready')">
                     <h3>Getting Ready</h3>
                     <p>Morning routine adventure!</p>
-                </button>
+                </div>
+                <div class="story-card medium" onclick="selectStory('family')">
+                    <h3>Family Dinner</h3>
+                    <p>A special meal with family!</p>
+                </div>
+
+                <!-- Advanced Stories (Red) -->
+                <div class="story-card hard" onclick="selectStory('nature')">
+                    <h3>Nature Walk</h3>
+                    <p>Exploring the natural world!</p>
+                </div>
+                <div class="story-card hard" onclick="selectStory('celebration')">
+                    <h3>Community Celebration</h3>
+                    <p>A traditional gathering!</p>
+                </div>
             </div>
         </div>
 
+        <!-- Story Form -->
         <div class="story-form">
+            <h2 id="selected-story-title">Select a Story</h2>
+            <div id="input-container"></div>
+            <button id="generate-button" class="hidden">Generate Story</button>
             <div id="story-output" class="hidden"></div>
             <button id="reset-button" class="hidden">Create Another Story</button>
         </div>
 
-        <div class="word-examples">
-            <h2>Lenape Word Examples</h2>
+        <!-- Word Bank -->
+        <div class="word-bank">
+            <h2>Lenape Word Bank</h2>
             <div class="example-cards">
                 <div class="example-card">
                     <div class="card-inner">
@@ -91,11 +114,11 @@
                             <h3>Colors</h3>
                         </div>
                         <div class="card-back">
-                            <p>Sàpe = Black</p>
-                            <p>Wapá = White</p>
-                            <p>Mòtànk = Red</p>
-                            <p>Wëski = Yellow</p>
-                            <p>Oxkàshe = Green</p>
+                            <p>Sùkw = Black</p>
+                            <p>Wapelechen = White</p>
+                            <p>Machkeu = Red</p>
+                            <p>Wisaweu = Yellow</p>
+                            <p>Askaskwi = Green</p>
                         </div>
                     </div>
                 </div>
