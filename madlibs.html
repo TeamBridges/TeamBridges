@@ -19,48 +19,121 @@
     </nav>
 
     <div class="header">
-        <h1>Choose Your Story</h1>
+        <h1>Lenape Mad Libs Generator</h1>
+        <p>Create fun stories using Lenape words!</p>
+    </div>
+
+    <div class="instructions">
+        <h2>How to Play:</h2>
+        <ul>
+            <li>Choose a story based on difficulty level:</li>
+            <li><span class="easy-mode">Green Cards</span> - Easy Mode (Basic vocabulary)</li>
+            <li><span class="medium-mode">Yellow Cards</span> - Medium Mode (Mixed vocabulary)</li>
+            <li><span class="hard-mode">Red Cards</span> - Hard Mode (Coming soon!)</li>
+            <li>Fill in the blanks with Lenape words</li>
+            <li>Use the word bank on the right for help</li>
+            <li>Click "Generate Story" to see your creation!</li>
+        </ul>
     </div>
 
     <div class="container">
+        <!-- Story Selection Panel -->
         <div class="story-selection">
-            <div class="story-card" onclick="selectStory('bicycle')">
-                <h3>The Bicycle Adventure</h3>
-                <p>A thrilling tale about a bicycle ride!</p>
-            </div>
+            <h2>Choose Your Story</h2>
+            <div class="story-buttons">
+                <!-- Easy Mode Stories -->
+                <button class="story-choice easy" onclick="selectStory('bicycle')">
+                    <h3>The Bicycle Adventure</h3>
+                    <p>A thrilling tale about a bicycle ride!</p>
+                </button>
+                <button class="story-choice easy" onclick="selectStory('dancing')">
+                    <h3>Dancing with Friends</h3>
+                    <p>A fun story about dancing and friendship!</p>
+                </button>
 
-            <div class="story-card" onclick="selectStory('dancing')">
-                <h3>Dancing with Friends</h3>
-                <p>A fun story about dancing and friendship!</p>
-            </div>
-
-            <div class="story-card" onclick="selectStory('school')">
-                <h3>A Day at School</h3>
-                <p>Learning and playing with friends!</p>
-            </div>
-
-            <div class="story-card" onclick="selectStory('weather')">
-                <h3>The Weather Today</h3>
-                <p>An adventure in different weather!</p>
-            </div>
-
-            <div class="story-card" onclick="selectStory('doctor')">
-                <h3>Going to the Doctor</h3>
-                <p>A visit to the doctor's office!</p>
-            </div>
-
-            <div class="story-card" onclick="selectStory('zoo')">
-                <h3>A Day at the Zoo</h3>
-                <p>Meeting amazing animals!</p>
+                <!-- Medium Mode Stories -->
+                <button class="story-choice medium" onclick="selectStory('doctor')">
+                    <h3>Going to the Doctor</h3>
+                    <p>A visit to the doctor's office!</p>
+                </button>
+                <button class="story-choice medium" onclick="selectStory('zoo')">
+                    <h3>A Day at the Zoo</h3>
+                    <p>Meeting amazing animals!</p>
+                </button>
+                <button class="story-choice medium" onclick="selectStory('river')">
+                    <h3>A Day at the River</h3>
+                    <p>Exploring nature by the water!</p>
+                </button>
             </div>
         </div>
 
-        <div id="story-form" class="story-form hidden">
+        <!-- Story Form -->
+        <div class="story-form">
             <h2 id="selected-story-title">Select a Story</h2>
             <div id="input-container"></div>
             <button id="generate-button" class="hidden">Generate Story</button>
             <div id="story-output" class="hidden"></div>
             <button id="reset-button" class="hidden">Create Another Story</button>
+        </div>
+
+        <!-- Word Bank -->
+        <div class="word-bank">
+            <h2>Lenape Word Bank</h2>
+            <div class="example-cards">
+                <div class="example-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Body Parts</h3>
+                            <p>Click to see translations</p>
+                        </div>
+                        <div class="card-back">
+                            <ul>
+                                <li>Wikèhèn - Head</li>
+                                <li>Wikèhs - Mouth</li>
+                                <li>Wikuwàkane - Nose</li>
+                                <li>Wikuwe - Eyes</li>
+                                <li>Wikèk - Leg</li>
+                                <li>Wiske - Hand</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Colors</h3>
+                            <p>Click to see translations</p>
+                        </div>
+                        <div class="card-back">
+                            <ul>
+                                <li>Sùkw - Black</li>
+                                <li>Wapelechen - White</li>
+                                <li>Machkeu - Red</li>
+                                <li>Wisaweu - Yellow</li>
+                                <li>Askaskwi - Green</li>
+                                <li>Wèskëk - Blue</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <h3>Emotions</h3>
+                            <p>Click to see translations</p>
+                        </div>
+                        <div class="card-back">
+                            <ul>
+                                <li>Nulitùn - Happy</li>
+                                <li>Wsìkwàk - Angry</li>
+                                <li>Wichin - Sad</li>
+                                <li>Wètëlaohake - Excited</li>
+                                <li>Wjánte - Afraid</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
