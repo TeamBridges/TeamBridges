@@ -142,6 +142,31 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Add these styles here */
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    min-width: 100px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.input-example {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
 /* Word Bank */
 .word-bank {
     background: white;
