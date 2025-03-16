@@ -1,5 +1,3 @@
-// dragdrop.js
-
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize variables
     let currentGame = 'game1';
@@ -15,22 +13,46 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(gameId).classList.add('active');
         
         // Update button states
-        document.querySelectorAll('.game-choice').forEach(button => {
+        document.querySelectorAll('.game-button').forEach(button => {
             button.classList.remove('active');
         });
-        
-        // Update current game
-        currentGame = gameId;
         
         // Find and activate the clicked button
         const clickedButton = document.querySelector(`[onclick="showGame('${gameId}')"]`);
         if (clickedButton) {
             clickedButton.classList.add('active');
         }
+
+        // Update current game
+        currentGame = gameId;
     }
 
     // Make showGame function globally available
     window.showGame = showGame;
+
+    // Handle iframe loading
+    document.querySelectorAll('iframe').forEach(frame => {
+        frame.addEventListener('load', () => {
+            frame.style.opacity = '1';
+        });
+
+        // Add error handling
+        frame.addEventListener('error', () => {
+            handleIframeError(frame.id);
+        });
+    });
+
+    // Error handling function
+    function handleIframeError(frameId) {
+        const frame = document.getElementById(frameId);
+        if (frame) {
+            frame.style.display = 'none';
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'Sorry, the game could not be loaded. Please try again later.';
+            frame.parentNode.insertBefore(errorMessage, frame);
+        }
+    }
 
     // Show initial game
     showGame('game1');
