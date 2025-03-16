@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,52 +24,49 @@
         <p>Match Lenape words with their meanings!</p>
     </div>
 
-    <main class="container">
-        <div class="instructions">
-            <h2>How to Play:</h2>
-            <ul>
-                <li>Click on a Lenape word and drag it to its matching body part</li>
-                <li>Click again to check your answer</li>
-                <li>Easy Mode: Check each word as you go</li>
-                <li>Challenge Mode: Match all the words, then check your answers when you're done</li>
-            </ul>
-        </div>
+    <div class="instructions">
+        <h2>How to Play:</h2>
+        <ul>
+            <li>Click on a Lenape word and drag it to its matching body part</li>
+            <li>Click again to check your answer</li>
+            <li>Easy Mode: Check each word as you go</li>
+            <li>Challenge Mode: Match all the words, then check your answers when you're done</li>
+        </ul>
+    </div>
 
-        <div class="game-selection">
-            <button class="game-choice active" onclick="showGame('game1')">
-                <h3>Lenape Drag & Drop I</h3>
-                <p>Practice body parts and colors!</p>
-            </button>
+    <div class="game-selection">
+        <button class="game-button active" onclick="showGame('game1')">
+            <h3>Lenape Drag & Drop I</h3>
+            <p>Practice body parts and colors!</p>
+        </button>
+        <button class="game-button" onclick="showGame('game2')">
+            <h3>Lenape Drag & Drop II</h3>
+            <p>Practice numbers and emotions!</p>
+        </button>
+    </div>
 
-            <button class="game-choice" onclick="showGame('game2')">
-                <h3>Lenape Drag & Drop II</h3>
-                <p>Practice numbers and emotions!</p>
-            </button>
+    <div class="game-container">
+        <div id="game1" class="game active">
+            <iframe src="https://scratch.mit.edu/projects/1121398388/embed" 
+                    allowtransparency="true" 
+                    width="485" 
+                    height="402" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+            </iframe>
         </div>
-
-        <div class="game-container">
-            <div id="game1" class="game active">
-                <iframe src="https://scratch.mit.edu/projects/1121398388/embed" 
-                        allowtransparency="true" 
-                        width="485" 
-                        height="402" 
-                        frameborder="0" 
-                        scrolling="no" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            <div id="game2" class="game">
-                <iframe src="https://scratch.mit.edu/projects/1122262027/embed" 
-                        allowtransparency="true" 
-                        width="485" 
-                        height="402" 
-                        frameborder="0" 
-                        scrolling="no" 
-                        allowfullscreen>
-                </iframe>
-            </div>
+        <div id="game2" class="game">
+            <iframe src="https://scratch.mit.edu/projects/1122262027/embed" 
+                    allowtransparency="true" 
+                    width="485" 
+                    height="402" 
+                    frameborder="0" 
+                    scrolling="no" 
+                    allowfullscreen>
+            </iframe>
         </div>
-    </main>
+    </div>
 
     <script>
         function showGame(gameId) {
@@ -80,11 +78,141 @@
             document.getElementById(gameId).classList.add('active');
             
             // Update button states
-            document.querySelectorAll('.game-choice').forEach(button => {
+            document.querySelectorAll('.game-button').forEach(button => {
                 button.classList.remove('active');
             });
-            event.target.closest('.game-choice').classList.add('active');
+            event.target.closest('.game-button').classList.add('active');
         }
     </script>
 </body>
 </html>
+
+And here's the CSS to match the styling:
+
+
+/* Header Styles */
+.header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.2rem;
+}
+
+/* Instructions */
+.instructions {
+    background: white;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.instructions h2 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+}
+
+.instructions ul {
+    list-style-type: none;
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.instructions li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #1e3c72;
+}
+
+/* Game Selection */
+.game-selection {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+.game-button {
+    background: white;
+    border: 2px solid #1e3c72;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.game-button h3 {
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+}
+
+.game-button p {
+    color: #666;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.game-button.active {
+    background: #1e3c72;
+    color: white;
+}
+
+.game-button.active h3,
+.game-button.active p {
+    color: white;
+}
+
+/* Game Container */
+.game-container {
+    max-width: 485px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.game {
+    display: none;
+}
+
+.game.active {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-selection {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .game-button {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+}
