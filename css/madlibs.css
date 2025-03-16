@@ -30,16 +30,14 @@ body {
     padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    margin-bottom: 2rem;
 }
 
 .nav-link {
     color: #333;
     text-decoration: none;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 0 5px;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -53,12 +51,12 @@ body {
     color: white;
 }
 
-/* Instructions Section */
+/* Instructions */
 .instructions {
-    background-color: white;
-    padding: 2rem;
-    margin: 2rem auto;
     max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
+    background: white;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -70,7 +68,7 @@ body {
 
 .instructions ul {
     list-style-type: none;
-    margin-left: 1rem;
+    padding-left: 1rem;
 }
 
 .instructions li {
@@ -79,123 +77,76 @@ body {
     padding-left: 1.5rem;
 }
 
-.instructions li:before {
+.instructions li::before {
     content: "•";
     position: absolute;
     left: 0;
     color: #1e3c72;
 }
 
-/* Difficulty Level Indicators */
-.easy-mode {
-    color: #4CAF50;
-    font-weight: 600;
-}
-
-.medium-mode {
-    color: #FFC107;
-    font-weight: 600;
-}
-
-.hard-mode {
-    color: #F44336;
-    font-weight: 600;
-}
-
 /* Main Container */
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
 }
 
-/* Story Selection Panel */
+/* Story Selection */
 .story-selection {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.story-buttons {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.story-choice {
+.story-card {
     background: white;
-    border: none;
+    border-radius: 10px;
     padding: 1.5rem;
-    border-radius: 8px;
     cursor: pointer;
-    text-align: left;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.story-choice.easy {
-    border-left: 5px solid #4CAF50;
-}
-
-.story-choice.medium {
-    border-left: 5px solid #FFC107;
-}
-
-.story-choice.hard {
-    border-left: 5px solid #F44336;
-}
-
-.story-choice:hover {
-    transform: translateY(-2px);
+.story-card:hover {
+    transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.story-choice h3 {
+.story-card h3 {
     color: #1e3c72;
     margin-bottom: 0.5rem;
 }
 
-.story-choice p {
+.story-card p {
     color: #666;
     font-size: 0.9rem;
+}
+
+/* Difficulty Colors */
+.story-card.easy {
+    border-left: 5px solid #4CAF50;
+}
+
+.story-card.medium {
+    border-left: 5px solid #FFC107;
 }
 
 /* Story Form */
 .story-form {
     background: white;
-    padding: 2rem;
     border-radius: 10px;
+    padding: 2rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.input-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 500;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-/* Word Examples Panel */
-.word-examples {
+/* Word Bank */
+.word-bank {
     background: white;
-    padding: 1.5rem;
     border-radius: 10px;
+    padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -208,6 +159,7 @@ body {
 .example-card {
     perspective: 1000px;
     height: 200px;
+    margin-bottom: 1rem;
 }
 
 .card-inner {
@@ -217,7 +169,6 @@ body {
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-    cursor: pointer;
 }
 
 .example-card:hover .card-inner {
@@ -238,29 +189,26 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .card-back {
     background: white;
     transform: rotateY(180deg);
-    border: 2px solid #1e3c72;
+    overflow-y: auto;
+    border: 1px solid #ddd;
 }
 
-.card-back ul {
-    list-style: none;
-    text-align: left;
-}
-
-.card-back li {
+.card-back p {
     margin-bottom: 0.5rem;
     color: #333;
+    text-align: left;
 }
 
 /* Buttons */
 #generate-button, #reset-button {
-    padding: 1rem 2rem;
+    padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -270,7 +218,7 @@ body {
 }
 
 #generate-button {
-    background-color: #1e3c72;
+    background-color: #4CAF50;
     color: white;
 }
 
@@ -279,41 +227,35 @@ body {
     color: white;
 }
 
+/* Utility Classes */
 .hidden {
     display: none;
 }
 
-/* Story Output */
-#story-output {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 5px;
-    line-height: 1.6;
-}
-
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
     .container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
-    .word-examples {
-        grid-column: span 2;
+
+    .story-selection, .word-bank {
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
-    .word-examples {
-        grid-column: span 1;
-    }
     .header h1 {
         font-size: 2rem;
     }
+    
     .nav-link {
         padding: 8px 15px;
         margin: 0 5px;
+    }
+    
+    .container {
+        padding: 0.5rem;
     }
 }
