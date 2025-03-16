@@ -23,8 +23,20 @@
         <p>Create Fun Stories with Lenape Words!</p>
     </div>
 
+    <div class="instructions">
+        <h2>How to Play Lenape Mad Libs</h2>
+        <ul>
+            <li>Choose a story template from the options on the left</li>
+            <li>Fill in the blanks with the requested Lenape words</li>
+            <li>Use the word examples on the right for help with vocabulary</li>
+            <li>Click "Generate Story" to see your completed story</li>
+            <li>Words in parentheses (like this) show the English translation</li>
+            <li>Click "Create Another Story" to start over with a new story</li>
+            <li>Try different combinations of words to create unique stories!</li>
+        </ul>
+    </div>
+
     <div class="container">
-        <!-- Story Selection -->
         <div class="story-selection">
             <h2>Choose Your Story</h2>
             <div class="story-buttons">
@@ -51,104 +63,11 @@
             </div>
         </div>
 
-        <!-- Story Form -->
         <div class="story-form">
-            <div id="bicycle-story" class="story hidden">
-                <h2>The Bicycle Adventure</h2>
-                <form id="bicycle-form">
-                    <div class="input-group">
-                        <label>Body Part (Wikèk - Leg):</label>
-                        <input type="text" name="bodyPart1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Color (Wisukw - Yellow):</label>
-                        <input type="text" name="color1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Emotion (Nulitùn - Happy):</label>
-                        <input type="text" name="emotion1" required>
-                    </div>
-                    <button type="submit">Generate Story</button>
-                </form>
-            </div>
-
-            <div id="dancing-story" class="story hidden">
-                <h2>Dancing with Friends</h2>
-                <form id="dancing-form">
-                    <div class="input-group">
-                        <label>Body Part (Wikuwe - Eyes):</label>
-                        <input type="text" name="bodyPart1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Emotion (Wètëlaohake - Excited):</label>
-                        <input type="text" name="emotion1" required>
-                    </div>
-                    <button type="submit">Generate Story</button>
-                </form>
-            </div>
-
-            <div id="school-story" class="story hidden">
-                <h2>A Day at School</h2>
-                <form id="school-form">
-                    <div class="input-group">
-                        <label>Body Part (Wikèhèn - Head):</label>
-                        <input type="text" name="bodyPart1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Color (Machkeu - Red):</label>
-                        <input type="text" name="color1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Emotion (Wsìkwàk - Angry):</label>
-                        <input type="text" name="emotion1" required>
-                    </div>
-                    <button type="submit">Generate Story</button>
-                </form>
-            </div>
-
-            <div id="weather-story" class="story hidden">
-                <h2>The Weather Today</h2>
-                <form id="weather-form">
-                    <div class="input-group">
-                        <label>Body Part (Wikuwàkane - Nose):</label>
-                        <input type="text" name="bodyPart1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Color (Wapelechen - White):</label>
-                        <input type="text" name="color1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Emotion (Wjánte - Afraid):</label>
-                        <input type="text" name="emotion1" required>
-                    </div>
-                    <button type="submit">Generate Story</button>
-                </form>
-            </div>
-
-            <div id="ready-story" class="story hidden">
-                <h2>Getting Ready</h2>
-                <form id="ready-form">
-                    <div class="input-group">
-                        <label>Body Part (Wikèhs - Mouth):</label>
-                        <input type="text" name="bodyPart1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Color (Sùkw - Black):</label>
-                        <input type="text" name="color1" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Emotion (Wichin - Sad):</label>
-                        <input type="text" name="emotion1" required>
-                    </div>
-                    <button type="submit">Generate Story</button>
-                </form>
-            </div>
-
             <div id="story-output" class="hidden"></div>
             <button id="reset-button" class="hidden">Create Another Story</button>
         </div>
 
-        <!-- Word Examples -->
         <div class="word-examples">
             <h2>Lenape Word Examples</h2>
             <div class="example-cards">
@@ -172,10 +91,11 @@
                             <h3>Colors</h3>
                         </div>
                         <div class="card-back">
-                            <p>Wisukw = Yellow</p>
-                            <p>Machkeu = Red</p>
-                            <p>Wapelechen = White</p>
-                            <p>Sùkw = Black</p>
+                            <p>Sàpe = Black</p>
+                            <p>Wapá = White</p>
+                            <p>Mòtànk = Red</p>
+                            <p>Wëski = Yellow</p>
+                            <p>Oxkàshe = Green</p>
                         </div>
                     </div>
                 </div>
