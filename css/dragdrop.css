@@ -1,22 +1,53 @@
-/* dragdrop.css */
+/* madlibs.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
 
 /* Header Styles */
-.title {
+.header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
     text-align: center;
     padding: 2rem;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Navigation Bar */
+.nav-bar {
     background-color: white;
-    margin-bottom: 2rem;
+    padding: 1rem;
+    text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.title h1 {
-    color: #1e3c72;
-    margin-bottom: 1rem;
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-.title h2 {
-    color: #666;
-    font-size: 1.2rem;
+.nav-link:hover {
+    background-color: #f0f0f0;
+}
+
+.nav-link.active {
+    background-color: #1e3c72;
+    color: white;
 }
 
 /* Container */
@@ -26,52 +57,123 @@
     padding: 2rem;
 }
 
-/* Game Selection Styles */
-.game-selection {
+/* Story Selection */
+.story-selection {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
 }
 
-.game-choice {
+.story-card {
     background: white;
-    border: none;
     border-radius: 10px;
     padding: 2rem;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.game-choice:hover {
+.story-card:hover {
     transform: translateY(-5px);
-    background-color: #f8f9fa;
 }
 
-.game-choice h3 {
+.story-card h3 {
     color: #1e3c72;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
-.game-choice p {
+.story-card p {
     color: #666;
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+
+/* Story Form */
+.story-form {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.story-form.hidden {
+    display: none;
+}
+
+/* Instructions */
+.instructions {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.instructions h2 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.instructions ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.instructions li {
+    margin-bottom: 0.8rem;
+    color: #444;
+}
+
+/* Buttons */
+button {
+    background: #1e3c72;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #2a5298;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .game-selection {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .nav-link {
+        padding: 8px 15px;
+        margin: 0 5px;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .story-selection {
         grid-template-columns: 1fr;
     }
-    
-    .title h1 {
-        font-size: 1.8rem;
+
+    .instructions {
+        padding: 1.5rem;
     }
-    
-    .title h2 {
+
+    .instructions h2 {
+        font-size: 1.5rem;
+    }
+
+    .instructions ul {
         font-size: 1rem;
     }
 }
