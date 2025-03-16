@@ -94,6 +94,7 @@ const stories = {
 // Initialize variables
 let currentStory = null;
 
+
 // Function to select a story
 function selectStory(storyId) {
     // Reset any previous story
@@ -105,28 +106,42 @@ function selectStory(storyId) {
     // Update story title
     document.getElementById('selected-story-title').textContent = currentStory.title;
     
-    // Create input fields
+    // Create input fields with modified layout
     const inputContainer = document.getElementById('input-container');
     currentStory.inputs.forEach(input => {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
         
-        const label = document.createElement('label');
-        label.textContent = input.label;
+        // Create label with just the main word type
+        const labelMain = document.createElement('label');
+        const labelText = input.label.split('(')[0].trim(); // Get text before parentheses
+        labelMain.textContent = labelText;
         
+        // Create input field
         const inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.id = input.id;
         inputField.required = true;
         
-        inputGroup.appendChild(label);
+        // Create example text
+        const example = document.createElement('span');
+        example.className = 'input-example';
+        const exampleText = input.label.match(/\((.*?)\)/); // Get text in parentheses
+        if (exampleText) {
+            example.textContent = `(Ex. ${exampleText[1]})`;
+        }
+        
+        // Append elements in desired order
+        inputGroup.appendChild(labelMain);
         inputGroup.appendChild(inputField);
+        inputGroup.appendChild(example);
         inputContainer.appendChild(inputGroup);
     });
     
     // Show generate button
     document.getElementById('generate-button').classList.remove('hidden');
 }
+
 
 // Function to generate story
 function generateStory() {
