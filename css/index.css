@@ -1,71 +1,62 @@
-/* index.css */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenape Language Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Lenape Language Games</h1>
+            <p>Learn and practice Lenape language through fun interactive games!</p>
+        </div>
+    </div>
 
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+    <nav class="nav-bar">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="flashcards.html" class="nav-link">Flash Cards</a>
+        <a href="dragdrop.html" class="nav-link">Drag & Drop</a>
+        <a href="crossword.html" class="nav-link">Crossword</a>
+        <a href="madlibs.html" class="nav-link">Mad Libs</a>
+        <a href="grouppractice.html" class="nav-link">Group Practice</a>
+    </nav>
 
-body {
-    background-color: #f5f7fa;
-}
-
-/* Navigation Bar */
-.nav-bar {
-    background-color: white;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.nav-link {
-    color: #2b4162;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.nav-link:hover {
-    background-color: #f0f0f0;
-}
-
-.nav-link.active {
-    background-color: #2b4162;
-    color: white;
-}
-
-/* Hero Section */
-.hero {
-    /* You'll need to add styles for the hero section */
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-/* Game Grid */
-.game-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-link {
-        padding: 0.5rem 1rem;
-        margin: 0 0.2rem;
-        font-size: 0.9rem;
-    }
-}
+    <main class="game-container">
+        <!-- Game cards will be added here -->
+        <div class="game-card">
+            <h2>Flash Cards</h2>
+            <p>Practice Lenape vocabulary with interactive flashcards</p>
+            <a href="flashcards.html" class="game-link">Start Learning</a>
+        </div>
+        
+        <div class="game-card">
+            <h2>Drag & Drop</h2>
+            <p>Match Lenape words with their meanings</p>
+            <a href="dragdrop.html" class="game-link">Play Now</a>
+        </div>
+        
+        <div class="game-card">
+            <h2>Crossword</h2>
+            <p>Test your knowledge with Lenape crossword puzzles</p>
+            <a href="crossword.html" class="game-link">Solve Puzzles</a>
+        </div>
+        
+        <div class="game-card">
+            <h2>Mad Libs</h2>
+            <p>Create fun stories using Lenape words</p>
+            <a href="madlibs.html" class="game-link">Create Stories</a>
+        </div>
+        
+        <div class="game-card">
+            <h2>Group Practice</h2>
+            <p>Learn together with group activities</p>
+            <a href="grouppractice.html" class="game-link">Practice Together</a>
+        </div>
+    </main>
+</body>
+</html>
