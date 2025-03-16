@@ -19,116 +19,48 @@
     </nav>
 
     <div class="header">
-        <h1>Lenape Mad Libs Generator</h1>
-        <p>Create Fun Stories with Lenape Words!</p>
-    </div>
-
-    <div class="instructions">
-        <h2>How to Play:</h2>
-        <ul>
-            <li>Choose a story from the options below</li>
-            <li>Green cards are beginner-friendly stories</li>
-            <li>Yellow cards are intermediate difficulty</li>
-            <li>Red cards are advanced stories</li>
-            <li>Fill in the Lenape words when prompted</li>
-            <li>Use the word bank on the right for help</li>
-            <li>Click "Generate Story" to see your creation!</li>
-        </ul>
+        <h1>Choose Your Story</h1>
     </div>
 
     <div class="container">
-        <!-- Story Selection -->
         <div class="story-selection">
-            <h2>Choose Your Story</h2>
-            <div class="story-list">
-                <!-- Beginner Stories (Green) -->
-                <div class="story-card easy" onclick="selectStory('bicycle')">
-                    <h3>The Bicycle Adventure</h3>
-                    <p>A thrilling tale about a bicycle ride!</p>
-                </div>
-                <div class="story-card easy" onclick="selectStory('dancing')">
-                    <h3>Dancing with Friends</h3>
-                    <p>A fun story about dancing and friendship!</p>
-                </div>
-                <div class="story-card easy" onclick="selectStory('school')">
-                    <h3>A Day at School</h3>
-                    <p>Learning and playing with friends!</p>
-                </div>
+            <div class="story-card" onclick="selectStory('bicycle')">
+                <h3>The Bicycle Adventure</h3>
+                <p>A thrilling tale about a bicycle ride!</p>
+            </div>
 
-                <!-- Intermediate Stories (Yellow) -->
-                <div class="story-card medium" onclick="selectStory('weather')">
-                    <h3>The Weather Today</h3>
-                    <p>An adventure in different weather!</p>
-                </div>
-                <div class="story-card medium" onclick="selectStory('ready')">
-                    <h3>Getting Ready</h3>
-                    <p>Morning routine adventure!</p>
-                </div>
+            <div class="story-card" onclick="selectStory('dancing')">
+                <h3>Dancing with Friends</h3>
+                <p>A fun story about dancing and friendship!</p>
+            </div>
 
-                <!-- Advanced Stories (Red) -->
-                <div class="story-card hard" onclick="selectStory('zoo')">
-                    <h3>A Day at the Zoo</h3>
-                    <p>Meeting amazing animals!</p>
-                </div>
+            <div class="story-card" onclick="selectStory('school')">
+                <h3>A Day at School</h3>
+                <p>Learning and playing with friends!</p>
+            </div>
+
+            <div class="story-card" onclick="selectStory('weather')">
+                <h3>The Weather Today</h3>
+                <p>An adventure in different weather!</p>
+            </div>
+
+            <div class="story-card" onclick="selectStory('doctor')">
+                <h3>Going to the Doctor</h3>
+                <p>A visit to the doctor's office!</p>
+            </div>
+
+            <div class="story-card" onclick="selectStory('zoo')">
+                <h3>A Day at the Zoo</h3>
+                <p>Meeting amazing animals!</p>
             </div>
         </div>
 
-        <!-- Story Form -->
-        <div class="story-form">
+        <div id="story-form" class="story-form hidden">
             <h2 id="selected-story-title">Select a Story</h2>
             <div id="input-container"></div>
             <button id="generate-button" class="hidden">Generate Story</button>
             <div id="story-output" class="hidden"></div>
             <button id="reset-button" class="hidden">Create Another Story</button>
-        </div>
-
-        <!-- Word Bank -->
-        <div class="word-bank">
-            <h2>Lenape Word Bank</h2>
-            <div class="example-cards">
-                <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Body Parts</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Wikèhèn = Head</p>
-                            <p>Wikèhs = Mouth</p>
-                            <p>Wikuwàkane = Nose</p>
-                            <p>Wikuwe = Eyes</p>
-                            <p>Wikèk = Leg</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Colors</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Sùkw = Black</p>
-                            <p>Wapelechen = White</p>
-                            <p>Machkeu = Red</p>
-                            <p>Wisaweu = Yellow</p>
-                            <p>Askaskwi = Green</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <h3>Emotions</h3>
-                        </div>
-                        <div class="card-back">
-                            <p>Nulitùn = Happy</p>
-                            <p>Wsìkwàk = Angry</p>
-                            <p>Wichin = Sad</p>
-                            <p>Wètëlaohake = Excited</p>
-                            <p>Wjánte = Afraid</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
