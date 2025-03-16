@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Learning - Crosswords</title>
+    <title>Lenape Language Games - Crossword</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/crossword.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Lenape Language Learning</h1>
-        <p>Practice Lenape Words with Crossword Puzzles</p>
-    </div>
-
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="flashcards.html" class="nav-link">Flash Cards</a>
@@ -22,47 +18,50 @@
         <a href="grouppractice.html" class="nav-link">Group Practice</a>
     </nav>
 
-    <div class="container">
-        <div class="how-to-play">
-            <h2>How to Play</h2>
-            <ol>
-                <li>Choose which crossword you'd like to play from the options below</li>
-                <li>Click the green flag to start the game</li>
-                <li>Fill in the crossword with the English translations of Lenape words</li>
-                <li>Try to complete the entire puzzle!</li>
-            </ol>
+    <header class="header">
+        <h1>Lenape Crossword Puzzles</h1>
+        <p>Test your Lenape language knowledge!</p>
+    </header>
+
+    <main class="container">
+        <div class="instructions">
+            <h2>How to Play:</h2>
+            <ul>
+                <li>The clues are given in Lenape</li>
+                <li>Enter the English translations as your answers</li>
+                <li>All answers should be in lowercase letters</li>
+                <li>Use TAB to move between clues</li>
+                <li>Press ENTER to switch between across and down clues</li>
+                <li>Correct answers will light up in GREEN, incorrect answers will light up in RED</li>
+            </ul>
         </div>
 
-        <div class="game-selection">
-            <button class="game-button active" onclick="showPuzzle('singular')">
-                Lenape Body Parts I
-                <p>Practice body parts and colors!</p>
-            </button>
-            <button class="game-button" onclick="showPuzzle('plural')">
-                Lenape Body Parts II
-                <p>Practice numbers and emotions!</p>
-            </button>
+        <div class="puzzle-selection">
+            <button class="puzzle-button active" onclick="showPuzzle('singular')">Body Parts (Singular)</button>
+            <button class="puzzle-button" onclick="showPuzzle('plural')">Body Parts (Plural)</button>
         </div>
 
-        <div class="game-container">
-            <iframe id="singular-puzzle" 
-                    width="500" 
-                    height="500" 
-                    style="border:3px solid black; margin:auto; display:block" 
-                    frameborder="0" 
-                    src="https://crosswordlabs.com/embed/lenape-body-parts-singular">
-            </iframe>
-
-            <iframe id="plural-puzzle" 
-                    width="500" 
-                    height="500" 
-                    style="border:3px solid black; margin:auto; display:none" 
-                    frameborder="0" 
-                    src="https://crosswordlabs.com/embed/lenape-body-parts-plural">
-            </iframe>
+        <div class="puzzle-container">
+            <iframe id="singular" class="crossword-frame active" src="https://crosswordlabs.com/embed/lenape-body-parts-singular" frameborder="0"></iframe>
+            <iframe id="plural" class="crossword-frame" src="https://crosswordlabs.com/embed/lenape-body-parts-plural" frameborder="0"></iframe>
         </div>
-    </div>
+    </main>
 
-    <script src="script.js"></script>
+    <script>
+        function showPuzzle(puzzleId) {
+            // Hide all puzzles
+            document.querySelectorAll('.crossword-frame').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            // Show selected puzzle
+            document.getElementById(puzzleId).classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.puzzle-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
