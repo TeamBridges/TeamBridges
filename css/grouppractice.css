@@ -1,12 +1,24 @@
 /* grouppractice.css */
 
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
 /* Header Styles */
 .header {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     color: white;
     text-align: center;
     padding: 2rem;
-    margin-bottom: 2rem;
 }
 
 .header h1 {
@@ -18,48 +30,85 @@
     font-size: 1.2rem;
 }
 
-/* Activity Selection Grid */
-.activity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+/* Instructions Section */
+.instructions {
+    background-color: white;
     padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem auto;
     max-width: 1200px;
-    margin: 0 auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.instructions h2 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+}
+
+.instructions ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+    line-height: 1.6;
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+/* Container Layout */
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Activity Selection Styles */
+.activity-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .activity-card {
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .activity-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.activity-card.active {
+    border-left: 4px solid #1e3c72;
+    background-color: #f8f9fa;
 }
 
 .activity-card h3 {
     color: #1e3c72;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .activity-card p {
     color: #666;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 
-/* Activity Content Section */
+/* Activity Content Styles */
 .activity-content {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
     background: white;
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 500px;
 }
 
 .activity-content h2 {
@@ -67,55 +116,43 @@
     margin-bottom: 1.5rem;
 }
 
-.activity-content .description {
+#activity-description {
     color: #444;
-    font-size: 1.2rem;
     margin-bottom: 2rem;
+    line-height: 1.6;
 }
 
-/* Prompts List */
-.prompts-list {
-    display: grid;
+#activity-prompts {
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
 }
 
 .prompt-item {
-    background: #f5f7fa;
+    background: #f8f9fa;
     padding: 1.5rem;
     border-radius: 8px;
-    font-size: 1.1rem;
     color: #333;
-}
-
-/* Example Box */
-.example-box {
-    background: #f0f4f8;
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin-top: 2rem;
-}
-
-.example-box h3 {
-    color: #1e3c72;
-    margin-bottom: 1rem;
-}
-
-/* Hidden Class */
-.hidden {
-    display: none;
+    line-height: 1.5;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
+    .container {
+        grid-template-columns: 1fr;
     }
-    
+
+    .activity-selection {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+
     .activity-card {
-        padding: 1.5rem;
+        min-width: 250px;
     }
-    
-    .activity-content {
+
+    .instructions {
         margin: 1rem;
         padding: 1.5rem;
     }
