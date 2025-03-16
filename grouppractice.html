@@ -3,139 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenape Language Learning - Group Practice</title>
+    <title>Lenape Language Games - Group Practice</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            min-height: 100vh;
-        }
-
-        .title {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-bottom: 30px;
-        }
-
-        .nav-bar {
-            background: white;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .nav-link {
-            color: #2b4162;
-            text-decoration: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .nav-link:hover {
-            background-color: #f0f0f0;
-        }
-
-        .nav-link.active {
-            background-color: #2b4162;
-            color: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .activity-section {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .activity-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .activity-card h2 {
-            color: #2b4162;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .activity-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .activity-content {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-
-        .activity-content h3 {
-            color: #2b4162;
-            margin-bottom: 1rem;
-        }
-
-        .activity-content ul {
-            list-style-type: none;
-            padding-left: 1rem;
-        }
-
-        .activity-content li {
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .activity-content li:before {
-            content: "•";
-            color: #2b4162;
-            position: absolute;
-            left: 0;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .activity-card {
-                padding: 1.5rem;
-            }
-            
-            .nav-link {
-                padding: 0.5rem 1rem;
-                margin: 0 0.2rem;
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/grouppractice.css">
 </head>
 <body>
-    <div class="title">
-        <h1>Group Practice Activities</h1>
-        <p>Interactive Lenape language activities for groups and classes</p>
-    </div>
-
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">Home</a>
         <a href="flashcards.html" class="nav-link">Flash Cards</a>
@@ -145,67 +18,102 @@
         <a href="grouppractice.html" class="nav-link active">Group Practice</a>
     </nav>
 
+    <header class="title">
+        <h1>Lenape Group Practice Activities</h1>
+        <h2>Practice Lenape Language Together!</h2>
+    </header>
+
     <main class="container">
-        <div class="activity-section">
-            <!-- How Many Card -->
-            <div class="activity-card">
-                <h2>How Many...?</h2>
-                <p>The prompts below are recommended for class or group discussions. They can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with your friends and family.</p>
-                <div class="activity-content">
-                    <h3>Counting Activities</h3>
-                    <ul>
-                        <li>How many hwikiyona (noses) are in this room?</li>
-                        <li>How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?</li>
-                        <li>How many tuna (mouths) are in this room?</li>
-                        <li>How many naxka (hands) are in this room?</li>
-                        <li>How many welencha (fingers)?</li>
-                        <li>How many wsita (feet) are in this room?</li>
-                        <li>How many kwetsita (toes)?</li>
-                        <li>How many people in this room have long milaxk (hair)?</li>
-                        <li>How many have short milaxk (hair)?</li>
-                        <li>How many people in this room have brown milaxk (hair)?</li>
-                        <li>How many have black milaxk (hair)?</li>
-                        <li>How many have gray milaxk (hair)?</li>
-                        <li>How many have red milaxk (hair)?</li>
-                        <li>How many have blonde milaxk (hair)?</li>
-                        <li>How many hwitaoka (ears) are in this room?</li>
-                        <li>How many mutaya (stomachs) are in this room?</li>
-                    </ul>
-                </div>
+        <section class="activity-cards">
+            <div class="activity-card" onclick="showActivity('howmany')">
+                <h3>How Many...?</h3>
+                <p>Count and practice numbers with your group!</p>
             </div>
 
-            <!-- Simon Says Card -->
-            <div class="activity-card">
-                <h2>Simon Says...</h2>
-                <p>The directions below can be used as a Simon Says game in a group setting, either in class or informally. One person (the leader or instructor) gives the direction, and the group responds.</p>
-                <div class="activity-content">
-                    <h3>Movement Commands</h3>
-                    <ul>
-                        <li>Wave your right naxk (hand)</li>
-                        <li>Tap your left wsit (foot)</li>
-                        <li>Hold up nisha (two) welencha (fingers)</li>
-                        <li>Wiggle your hwitaoka (ears)</li>
-                        <li>Close your weshkinko (eyes)</li>
-                        <li>Pat your right ketukw (knee)</li>
-                        <li>Raise your left naolk (arm)</li>
-                        <li>Touch your wikiyon (nose) naxen (three times)</li>
-                        <li>Hold your right wiskon (elbow)</li>
-                        <li>Tap your left hwikxkon (shin)</li>
-                        <li>Hold up a tukwelench (fist)</li>
-                    </ul>
-                </div>
+            <div class="activity-card" onclick="showActivity('simonsays')">
+                <h3>Simon Says...</h3>
+                <p>Learn body parts through movement and fun!</p>
             </div>
 
-            <!-- Creature Feature Card -->
-            <div class="activity-card">
-                <h2>Creature Feature</h2>
-                <p>Invent a new creature by combining different parts of various animals. Give it a name, and make up an interesting fact about your creature. This should incorporate vocabulary words for animals and body parts, and it could also include numbers or colors as appropriate.</p>
-                <div class="activity-content">
-                    <h3>Example:</h3>
-                    <p>My creature has the naxka (hands) and weshkinkw (face) of a nahenem (raccoon), the tuhwepi (body) of an askaskontpat (duck), and the shemu (horn) of a unicorn. Its name is the Waddling Raccoon-icorn, and if you see one, it means you will soon discover trash that is actually treasure.</p>
-                </div>
+            <div class="activity-card" onclick="showActivity('creature')">
+                <h3>Creature Feature</h3>
+                <p>Create and describe imaginary creatures using body part vocabulary!</p>
             </div>
-        </div>
+        </section>
+
+        <section id="activity-content" class="activity-content hidden">
+            <!-- Content will be dynamically loaded here -->
+        </section>
     </main>
+
+    <script>
+        const activityContent = {
+            howmany: {
+                title: "How Many...?",
+                description: "This activity can be used as part of a Lenape language class (either in person or through a virtual meeting), or you can try them out with a group of your friends and family.",
+                prompts: [
+                    "How many hwikiyona (noses) are in this room?",
+                    "How many weshkinko (eyes) are in this room? How many blue eyes? Green eyes? Brown eyes?",
+                    "How many tuna (mouths) are in this room?",
+                    "How many naxka (hands) are in this room?",
+                    "How many welencha (fingers)?",
+                    "How many wsita (feet) are in this room?",
+                    "How many kwetsita (toes)?",
+                    "How many people in this room have long milaxk (hair)?",
+                    "How many have short milaxk (hair)?",
+                    "How many people in this room have brown milaxk (hair)?",
+                    "How many have black milaxk (hair)?",
+                    "How many have gray milaxk (hair)?",
+                    "How many have red milaxk (hair)?",
+                    "How many have blonde milaxk (hair)?"
+                ]
+            },
+            simonsays: {
+                title: "Simon Says...",
+                description: "Practice body parts and commands in Lenape through this classic game!",
+                example: "Simon says touch your wikèhèn (head)!"
+            },
+            creature: {
+                title: "Creature Feature",
+                description: "Create and describe imaginary creatures using Lenape body part vocabulary.",
+                prompts: [
+                    "Draw a creature with three wikuwàkane (noses)",
+                    "Create a monster with five wikuwe (eyes)",
+                    "Design an animal with two wikèhèn (heads)",
+                    "Describe your favorite animal based on their physical appearance"
+                ]
+            }
+        };
+
+        function showActivity(activityType) {
+            const content = activityContent[activityType];
+            const contentSection = document.getElementById('activity-content');
+            
+            let html = `
+                <h2>${content.title}</h2>
+                <p class="description">${content.description}</p>
+            `;
+
+            if (content.prompts) {
+                html += '<div class="prompts-list">';
+                content.prompts.forEach(prompt => {
+                    html += `<div class="prompt-item">${prompt}</div>`;
+                });
+                html += '</div>';
+            }
+
+            if (content.example) {
+                html += `
+                    <div class="example-box">
+                        <h3>Example:</h3>
+                        <p>${content.example}</p>
+                    </div>
+                `;
+            }
+
+            contentSection.innerHTML = html;
+            contentSection.classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
