@@ -1,5 +1,13 @@
 /* madlibs.css */
 
+/* Main Layout */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+}
+
 /* Header Styles */
 .header {
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -16,6 +24,7 @@
 
 .header p {
     font-size: 1.2rem;
+    opacity: 0.9;
 }
 
 /* Instructions Styles */
@@ -101,7 +110,12 @@
     margin-bottom: 0.5rem;
 }
 
-/* Form Styles */
+.story-card p {
+    color: #666;
+    margin: 0;
+}
+
+/* Story Form Styles */
 .story-form {
     background: white;
     padding: 2rem;
@@ -117,6 +131,7 @@
     display: block;
     margin-bottom: 0.5rem;
     color: #1e3c72;
+    font-weight: 500;
 }
 
 .input-group input {
@@ -124,6 +139,7 @@
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 1rem;
 }
 
 /* Word Bank Styles */
@@ -136,7 +152,7 @@
 
 .example-cards {
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .example-card {
@@ -168,12 +184,19 @@
 
 .card-front {
     background: #f5f7fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-back {
     background: #1e3c72;
     color: white;
     transform: rotateY(180deg);
+}
+
+.card-back p {
+    margin: 0.5rem 0;
 }
 
 /* Button Styles */
@@ -185,10 +208,29 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 button:hover {
     background: #2a5298;
+}
+
+#reset-button {
+    background: #666;
+}
+
+#reset-button:hover {
+    background: #888;
+}
+
+/* Story Output Styles */
+#story-output {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f5f7fa;
+    border-radius: 8px;
+    line-height: 1.6;
 }
 
 /* Utility Classes */
