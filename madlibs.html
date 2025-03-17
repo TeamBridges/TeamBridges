@@ -37,51 +37,42 @@
     </div>
 
     <div class="container">
-       <!-- Story Selection -->
-<div class="story-selection">
-    <h2>Choose Your Story</h2>
-    <div class="story-card easy" data-story="bicycle" onclick="selectStory('bicycle')">
-        <h3>The Bicycle Adventure</h3>
-        <p>A thrilling tale about a bicycle ride!</p>
-    </div>
-    
-    <div class="story-card easy" data-story="dancing" onclick="selectStory('dancing')">
-        <h3>Dancing with Friends</h3>
-        <p>A fun story about dancing and friendship!</p>
-    </div>
-    
-    <div class="story-card easy" data-story="school" onclick="selectStory('school')">
-        <h3>A Day at School</h3>
-        <p>Learning and playing with friends!</p>
-    </div>
-    
-    <div class="story-card easy" data-story="surprise" onclick="selectStory('surprise')">
-        <h3>A Surprise in my Shoe</h3>
-        <p>What could be hiding there?</p>
-    </div>
-    
-    <div class="story-card medium" data-story="weather" onclick="selectStory('weather')">
-        <h3>The Weather Today</h3>
-        <p>An adventure in different weather!</p>
-    </div>
-    
-    <div class="story-card medium" data-story="doctor" onclick="selectStory('doctor')">
-        <h3>Going to the Doctor</h3>
-        <p>A visit to the doctor's office!</p>
-    </div>
-    
-    <div class="story-card medium" data-story="zoo" onclick="selectStory('zoo')">
-        <h3>A Day at the Zoo</h3>
-        <p>Meeting amazing animals!</p>
-    </div>
-    
-    <div class="story-card medium" data-story="river" onclick="selectStory('river')">
-        <h3>A Day at the River</h3>
-        <p>Exploring nature by the water!</p>
-    </div>
-</div>
+        <div class="story-selection">
+            <h2>Choose Your Story</h2>
+            <div class="story-card easy" data-story="bicycle" onclick="selectStory('bicycle')">
+                <h3>The Bicycle Adventure</h3>
+                <p>A thrilling tale about a bicycle ride!</p>
+            </div>
+            <div class="story-card easy" data-story="dancing" onclick="selectStory('dancing')">
+                <h3>Dancing with Friends</h3>
+                <p>A fun story about dancing and friendship!</p>
+            </div>
+            <div class="story-card easy" data-story="school" onclick="selectStory('school')">
+                <h3>A Day at School</h3>
+                <p>Learning and playing with friends!</p>
+            </div>
+            <div class="story-card medium" data-story="weather" onclick="selectStory('weather')">
+                <h3>The Weather Today</h3>
+                <p>An adventure in different weather!</p>
+            </div>
+            <div class="story-card medium" data-story="doctor" onclick="selectStory('doctor')">
+                <h3>Going to the Doctor</h3>
+                <p>A visit to the doctor's office!</p>
+            </div>
+            <div class="story-card medium" data-story="zoo" onclick="selectStory('zoo')">
+                <h3>A Day at the Zoo</h3>
+                <p>Meeting amazing animals!</p>
+            </div>
+            <div class="story-card medium" data-story="river" onclick="selectStory('river')">
+                <h3>A Day at the River</h3>
+                <p>Exploring nature by the water!</p>
+            </div>
+            <div class="story-card medium" data-story="surprise" onclick="selectStory('surprise')">
+                <h3>A Surprise in my Shoe</h3>
+                <p>What could be hiding there?</p>
+            </div>
+        </div>
 
-        <!-- Story Form -->
         <div class="story-form">
             <h2 id="selected-story-title">Select a Story</h2>
             <div id="input-container"></div>
@@ -90,107 +81,52 @@
             <button id="reset-button" class="hidden">Create Another Story</button>
         </div>
 
-        <!-- Word Bank -->
         <div class="word-bank">
-    <h2>Lenape Word Bank</h2>
-    <div class="example-cards">
-        <div class="example-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <h3>Body Parts</h3>
-                    <p>Click to see translations</p>
-                </div>
-                <div class="card-back">
-                    <p>Wikèhèn = Head</p>
-                    <p>Wikèhs = Mouth</p>
-                    <p>Wikuwàkane = Nose</p>
-                    <p>Wikuwe = Eyes</p>
-                    <p>Wikèk = Leg</p>
-                    <p>Wiske = Hand</p>
-                    <p>Ketukw = Knee</p>
-                    <p>Naolk = Arm</p>
-                    <p>Wiskon = Elbow</p>
-                    <p>Hwikxkon = Shin</p>
-                    <p>Hwitaoka = Ears</p>
-                    <p>Welencha = Fingers</p>
-                    <p>Wsita = Feet</p>
-                    <p>Kwetsit = Toes</p>
-                    <p>Milaxk = Hair</p>
-                    <p>Tuhwepi = Body</p>
-                    <p>Tukwelench = Fist</p>
-                </div>
-            </div>
-        </div>
+            <h2>Lenape Word Bank</h2>
+            <div class="word-list">
+                <h3>Body Parts</h3>
+                <p>Wikèhèn = Head</p>
+                <p>Wikèhs = Mouth</p>
+                <p>Wikuwàkane = Nose</p>
+                <p>Wikuwe = Eyes</p>
+                <p>Wikèk = Leg</p>
+                <p>Wiske = Hand</p>
+                <p>Ketukw = Knee</p>
+                <p>Naolk = Arm</p>
+                <p>Wiskon = Elbow</p>
+                <p>Hwikxkon = Shin</p>
+                <p>Hwitaoka = Ears</p>
+                <p>Welencha = Fingers</p>
+                <p>Wsita = Feet</p>
+                <p>Kwetsit = Toes</p>
+                <p>Milaxk = Hair</p>
+                <p>Tuhwepi = Body</p>
+                <p>Tukwelench = Fist</p>
 
-        <div class="example-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <h3>Colors</h3>
-                    <p>Click to see translations</p>
-                </div>
-                <div class="card-back">
-                    <p>Sùkw = Black</p>
-                    <p>Wapelechen = White</p>
-                    <p>Machkeu = Red</p>
-                    <p>Wisaweu = Yellow</p>
-                    <p>Askaskwi = Green</p>
-                    <p>Wéskëk = Blue</p>
-                    <p>Wipunkwsu = Gray</p>
-                </div>
-            </div>
-        </div>
+                <h3>Colors</h3>
+                <p>Sùkw = Black</p>
+                <p>Wapelechen = White</p>
+                <p>Machkeu = Red</p>
+                <p>Wisaweu = Yellow</p>
+                <p>Askaskwi = Green</p>
+                <p>Wéskëk = Blue</p>
+                <p>Wipunkwsu = Gray</p>
 
-        <div class="example-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <h3>Numbers</h3>
-                    <p>Click to see translations</p>
-                </div>
-                <div class="card-back">
-                    <p>Lënuwe = One</p>
-                    <p>Nisha = Two</p>
-                    <p>Nash = Three</p>
-                    <p>Newa = Four</p>
-                    <p>Palenaxk = Five</p>
-                    <p>Naxen = Three times</p>
-                </div>
-            </div>
-        </div>
+                <h3>Numbers</h3>
+                <p>Lënuwe = One</p>
+                <p>Nisha = Two</p>
+                <p>Nash = Three</p>
+                <p>Newa = Four</p>
+                <p>Palenaxk = Five</p>
 
-        <div class="example-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <h3>Emotions</h3>
-                    <p>Click to see translations</p>
-                </div>
-                <div class="card-back">
-                    <p>Nulitùn = Happy</p>
-                    <p>Wsìkwàk = Angry</p>
-                    <p>Wichin = Sad</p>
-                    <p>Wètëlaohake = Excited</p>
-                    <p>Wjánte = Afraid</p>
-                </div>
+                <h3>Emotions</h3>
+                <p>Nulitùn = Happy</p>
+                <p>Wsìkwàk = Angry</p>
+                <p>Wichin = Sad</p>
+                <p>Wètëlaohake = Excited</p>
+                <p>Wjánte = Afraid</p>
             </div>
         </div>
-
-        <div class="example-card">
-            <div class="card-inner">
-                <div class="card-front">
-                    <h3>Animals</h3>
-                    <p>Click to see translations</p>
-                </div>
-                <div class="card-back">
-                    <p>Nahenem = Raccoon</p>
-                    <p>Askaskontpat = Duck</p>
-                    <p>Shemu = Horn</p>
-                    <p>Teme = Wolf</p>
-                    <p>Mahwem = Bear</p>
-                    <p>Kàkow = Fish</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     </div>
 
     <script src="js/madlibs.js"></script>
