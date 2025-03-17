@@ -246,51 +246,67 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('generate-button').addEventListener('click', generateStory);
     document.getElementById('reset-button').addEventListener('click', resetStory);
 
-    // Initialize example cards
+    // Initialize story cards with click handlers
+    const storyCards = document.querySelectorAll('.story-card');
+    storyCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const storyId = card.getAttribute('data-story');
+            selectStory(storyId);
+        });
+    });
+
+    // Initialize word bank cards
+    const wordBankSections = document.querySelectorAll('.word-bank-section');
+    wordBankSections.forEach(section => {
+        const header = section.querySelector('h3');
+        const content = section.querySelector('.content');
+        
+        // Initially hide content
+        content.style.display = 'none';
+        
+        header.addEventListener('click', () => {
+            // Toggle content visibility
+            const isHidden = content.style.display === 'none';
+            content.style.display = isHidden ? 'block' : 'none';
+            header.classList.toggle('active');
+        });
+    });
+
+    // Initialize example cards with flip functionality
     const exampleCards = document.querySelectorAll('.example-card');
-    
     exampleCards.forEach(card => {
-        // Add click listener for mobile devices
-        card.addEventListener('click', function() {
-            const cardInner = this.querySelector('.card-inner');
-            cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' 
-                ? 'rotateY(0deg)' 
-                : 'rotateY(180deg)';
+        const cardInner = card.querySelector('.card-inner');
+        
+        // Handle click for mobile and desktop
+        card.addEventListener('click', () => {
+            cardInner.style.transform = 
+                cardInner.style.transform === 'rotateY(180deg)' 
+                    ? 'rotateY(0deg)' 
+                    : 'rotateY(180deg)';
         });
 
-        // Reset card on mouse leave for desktop
-        card.addEventListener('mouseleave', function() {
-            const cardInner = this.querySelector('.card-inner');
+        // Handle hover for desktop
+        card.addEventListener('mouseenter', () => {
+            cardInner.style.transform = 'rotateY(180deg)';
+        });
+
+        card.addEventListener('mouseleave', () => {
             cardInner.style.transform = 'rotateY(0deg)';
         });
     });
 
-    // Add hover effects for story cards
-    const storyCards = document.querySelectorAll('.story-card');
-    storyCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-        });
-    });
-
-    // Initialize word bank tooltips
-    const wordItems = document.querySelectorAll('.word-list p');
+    // Add tooltip functionality for word bank items
+    const wordItems = document.querySelectorAll('.word-bank p');
     wordItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', () => {
             // Copy text to clipboard
-            const text = this.textContent;
+            const text = item.textContent;
             navigator.clipboard.writeText(text).then(() => {
                 // Show temporary tooltip
                 const tooltip = document.createElement('span');
                 tooltip.className = 'tooltip';
                 tooltip.textContent = 'Copied!';
-                this.appendChild(tooltip);
+                item.appendChild(tooltip);
                 setTimeout(() => tooltip.remove(), 1000);
             });
         });
