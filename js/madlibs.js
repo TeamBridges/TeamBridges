@@ -239,24 +239,60 @@ function resetStory() {
     currentStory = null;
 }
 
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     // Add click handlers for buttons
     document.getElementById('generate-button').addEventListener('click', generateStory);
     document.getElementById('reset-button').addEventListener('click', resetStory);
+
+    // Initialize example cards
+    const exampleCards = document.querySelectorAll('.example-card');
     
-    // Add click handlers for story cards
-    document.querySelectorAll('.story-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            const storyId = e.currentTarget.getAttribute('data-story');
-            selectStory(storyId);
+    exampleCards.forEach(card => {
+        // Add click listener for mobile devices
+        card.addEventListener('click', function() {
+            const cardInner = this.querySelector('.card-inner');
+            cardInner.style.transform = cardInner.style.transform === 'rotateY(180deg)' 
+                ? 'rotateY(0deg)' 
+                : 'rotateY(180deg)';
+        });
+
+        // Reset card on mouse leave for desktop
+        card.addEventListener('mouseleave', function() {
+            const cardInner = this.querySelector('.card-inner');
+            cardInner.style.transform = 'rotateY(0deg)';
         });
     });
 
-    // Initialize card flip functionality
-    document.querySelectorAll('.example-card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.querySelector('.card-inner').classList.toggle('flipped');
+    // Add hover effects for story cards
+    const storyCards = document.querySelectorAll('.story-card');
+    storyCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+        });
+    });
+
+    // Initialize word bank tooltips
+    const wordItems = document.querySelectorAll('.word-list p');
+    wordItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Copy text to clipboard
+            const text = this.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                // Show temporary tooltip
+                const tooltip = document.createElement('span');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = 'Copied!';
+                this.appendChild(tooltip);
+                setTimeout(() => tooltip.remove(), 1000);
+            });
         });
     });
 });
