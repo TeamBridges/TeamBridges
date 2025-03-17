@@ -13,7 +13,7 @@ const stories = {
             { id: "number2", label: "Number (Nàxa - Three)" }
         ]
     },
-
+    
     dancing: {
         title: "Dancing with Friends",
         difficulty: "easy",
@@ -61,13 +61,12 @@ const stories = {
     doctor: {
         title: "Going to the Doctor",
         difficulty: "medium",
-        template: "Today, I went to the doctor because my {bodyPart1} was hurting. The doctor asked me how long I had been feeling this way, and I told him it started hurting {number1} days ago and was turning {color1} and {color2} after a {animal1} bit it. He immediately told me to stick out my {bodyPart2} and close my {bodyPart3}. The doctor looked at my {bodyPart1} and said it looked a little {color3}. I was worried, so he said we needed to do a few tests. First, he took {number2} x-rays of my {bodyPart1}. Then he measured the size of my {bodyPart4} with a {color4} measuring tape and it was {number3} inches long. 'Don't worry,' he said, 'you just need to rest for {number4} days and wear a {color5} brace on your {bodyPart5}'. I felt better after hearing that, but when I left the office, I couldn't help but notice that the waiting room was filled with people holding their {bodyPartPlural1}. It made me glad I was only dealing with a injured {bodyPart1}.",
+        template: "Today, I went to the doctor because my {bodyPart1} was hurting. The doctor asked me how long I had been feeling this way, and I told him it started hurting {number1} days ago and was turning {color1} and {color2}. He immediately told me to stick out my {bodyPart2} and close my {bodyPart3}. The doctor looked at my {bodyPart1} and said it looked a little {color3}. I was worried, so he said we needed to do a few tests. First, he took {number2} x-rays of my {bodyPart4}. Then he measured the size of my {bodyPart5} with a {color4} measuring tape and it was {number3} inches long. 'Don't worry,' he said, 'you just need to rest for {number4} days and wear a {color5} brace on your {bodyPart6}'.",
         inputs: [
             { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
             { id: "number1", label: "Number (Nisha - Two)" },
             { id: "color1", label: "Color #1 (Machkeu - Red)" },
             { id: "color2", label: "Color #2 (Wéskëk - Blue)" },
-            { id: "animal1", label: "Animal" },
             { id: "bodyPart2", label: "Body Part #2 (Wikèhs - Mouth)" },
             { id: "bodyPart3", label: "Body Part #3 (Wikuwe - Eyes)" },
             { id: "color3", label: "Color #3 (Wisaweu - Yellow)" },
@@ -78,14 +77,14 @@ const stories = {
             { id: "number4", label: "Number (Newa - Four)" },
             { id: "color5", label: "Color #5 (Wapelechen - White)" },
             { id: "bodyPart5", label: "Body Part #5 (Naxka - Hand)" },
-            { id: "bodyPartPlural1", label: "Body Parts (Plural)" }
+            { id: "bodyPart6", label: "Body Part #6 (Wikèk - Leg)" }
         ]
     },
 
     zoo: {
         title: "A Day at the Zoo",
         difficulty: "medium",
-        template: "Yesterday, I went to the zoo to see all the amazing animals. The first animal I saw was a {animal1}. It had a huge {bodyPart1} and bright {color1} fur. It had a really long {bodyPart2} with pointy {bodyPartPlural1}. Next, I visited the {animal2} enclosure. It was sitting in the shade, licking its {bodyPart3} with its long {color2} tongue. There were {number1} of them in the cage, all staring at me with their big, round {bodyPart4}. After that, I went to see the {animal3}. It was so funny because it had {number2} {bodyPart5} on each side! I couldn't stop laughing. The {animal3} had {color3} spots all over its {bodyPart6}, and when it walked, it moved its {bodyPart7} in such a funny way. Finally, I ended my visit at the {animal4} exhibit. It was a very quiet animal, but it had an enormous {bodyPart8}. I spent {number3} minutes watching it before I decided to leave. It was a fantastic day at the zoo!",
+        template: "Yesterday, I went to the zoo to see all the amazing animals. The first animal I saw was a {animal1}. It had a huge {bodyPart1} and bright {color1} fur. It had a really long {bodyPart2} with pointy {bodyPartPlural1}. Next, I visited the {animal2} enclosure. It was sitting in the shade, licking its {bodyPart3} with its long {color2} tongue. There were {number1} of them in the cage, all staring at me with their big, round {bodyPart4}. After that, I went to see the {animal3}. It was so funny because it had {number2} {bodyPart5} on each side! I couldn't stop laughing. The {animal3} had {color3} spots all over its {bodyPart6}. Finally, I ended my visit at the {animal4} exhibit. It was a very quiet animal, but it had an enormous {bodyPart7}. I spent {number3} minutes watching it before I decided to leave. It was a fantastic day at the zoo!",
         inputs: [
             { id: "animal1", label: "Animal #1" },
             { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
@@ -102,26 +101,9 @@ const stories = {
             { id: "bodyPart5", label: "Body Part #5 (Naxka - Hand)" },
             { id: "color3", label: "Color #3 (Wisaweu - Yellow)" },
             { id: "bodyPart6", label: "Body Part #6 (Wikèk - Leg)" },
-            { id: "bodyPart7", label: "Body Part #7 (Wikèhèn - Head)" },
             { id: "animal4", label: "Animal #4" },
-            { id: "bodyPart8", label: "Body Part #8 (Wikèhs - Mouth)" },
+            { id: "bodyPart7", label: "Body Part #7 (Wikèhs - Mouth)" },
             { id: "number3", label: "Number (Nàxa - Three)" }
-        ]
-    },
-
-    surprise: {
-        title: "A Surprise in my Shoe",
-        difficulty: "medium",
-        template: "I was putting my {color1} shoes on my {bodyPart1} when I saw a {animal1}! It had beaty {color2} {bodyPart2} and a scary looking {bodyPart3}. I screamed and jumped {number1} times on my {bodyPart4}!",
-        inputs: [
-            { id: "color1", label: "Color #1 (Machkeu - Red)" },
-            { id: "bodyPart1", label: "Body Part #1 (Wikèk - Leg)" },
-            { id: "animal1", label: "Animal" },
-            { id: "color2", label: "Color #2 (Wéskëk - Blue)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikuwe - Eyes)" },
-            { id: "bodyPart3", label: "Body Part #3 (Wikèhs - Mouth)" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "bodyPart4", label: "Body Part #4 (Wikèhèn - Head)" }
         ]
     },
 
@@ -143,10 +125,7 @@ const stories = {
         ]
     }
 };
-// Initialize variables
-let currentStory = null;
-
-// Function to select a story
+// Function to select story
 function selectStory(storyId) {
     // Reset any previous story
     resetStory();
@@ -163,31 +142,18 @@ function selectStory(storyId) {
         const inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
         
-        // Create label with main word type
-        const labelMain = document.createElement('label');
-        const labelText = input.label.split('(')[0].trim(); // Get text before parentheses
-        labelMain.textContent = labelText;
+        const label = document.createElement('label');
+        label.textContent = input.label;
+        label.setAttribute('for', input.id);
         
-        // Create input field
         const inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.id = input.id;
         inputField.required = true;
+        inputField.placeholder = 'Enter ' + input.label.split('(')[0].trim();
         
-        // Create example text if available
-        const example = document.createElement('span');
-        example.className = 'input-example';
-        const exampleText = input.label.match(/\((.*?)\)/); // Get text in parentheses
-        if (exampleText) {
-            example.textContent = `(Ex. ${exampleText[1]})`;
-        }
-        
-        // Append elements
-        inputGroup.appendChild(labelMain);
+        inputGroup.appendChild(label);
         inputGroup.appendChild(inputField);
-        if (exampleText) {
-            inputGroup.appendChild(example);
-        }
         inputContainer.appendChild(inputGroup);
     });
     
@@ -215,7 +181,7 @@ function generateStory() {
     });
     
     if (!allFilled) {
-        alert('Please fill in all the blanks!');
+        alert('Please fill in all fields!');
         return;
     }
     
@@ -224,7 +190,7 @@ function generateStory() {
     storyOutput.textContent = storyText;
     storyOutput.classList.remove('hidden');
     
-    // Show reset button and hide generate button
+    // Show reset button, hide generate button
     document.getElementById('reset-button').classList.remove('hidden');
     document.getElementById('generate-button').classList.add('hidden');
 }
@@ -239,79 +205,17 @@ function resetStory() {
     currentStory = null;
 }
 
-
-// Event Listeners
+// Add event listeners when the page loads
 document.addEventListener('DOMContentLoaded', () => {
-    // Add click handlers for buttons
-    document.getElementById('generate-button').addEventListener('click', generateStory);
-    document.getElementById('reset-button').addEventListener('click', resetStory);
-
-    // Initialize story cards with click handlers
-    const storyCards = document.querySelectorAll('.story-card');
-    storyCards.forEach(card => {
+    // Add click handlers for story cards
+    document.querySelectorAll('.story-card').forEach(card => {
         card.addEventListener('click', () => {
             const storyId = card.getAttribute('data-story');
             selectStory(storyId);
         });
     });
-
-    // Initialize word bank cards
-    const wordBankSections = document.querySelectorAll('.word-bank-section');
-    wordBankSections.forEach(section => {
-        const header = section.querySelector('h3');
-        const content = section.querySelector('.content');
-        
-        // Initially hide content
-        content.style.display = 'none';
-        
-        header.addEventListener('click', () => {
-            // Toggle content visibility
-            const isHidden = content.style.display === 'none';
-            content.style.display = isHidden ? 'block' : 'none';
-            header.classList.toggle('active');
-        });
-    });
-
-    // Initialize example cards with flip functionality
-   const exampleCards = document.querySelectorAll('.example-card');
-exampleCards.forEach(card => {
-    card.addEventListener('click', () => {
-        card.querySelector('.card-inner').classList.toggle('flipped');
-    });
-});
-        
-        // Handle click for mobile and desktop
-        card.addEventListener('click', () => {
-            cardInner.style.transform = 
-                cardInner.style.transform === 'rotateY(180deg)' 
-                    ? 'rotateY(0deg)' 
-                    : 'rotateY(180deg)';
-        });
-
-        // Handle hover for desktop
-        card.addEventListener('mouseenter', () => {
-            cardInner.style.transform = 'rotateY(180deg)';
-        });
-
-        card.addEventListener('mouseleave', () => {
-            cardInner.style.transform = 'rotateY(0deg)';
-        });
-    });
-
-    // Add tooltip functionality for word bank items
-    const wordItems = document.querySelectorAll('.word-bank p');
-    wordItems.forEach(item => {
-        item.addEventListener('click', () => {
-            // Copy text to clipboard
-            const text = item.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                // Show temporary tooltip
-                const tooltip = document.createElement('span');
-                tooltip.className = 'tooltip';
-                tooltip.textContent = 'Copied!';
-                item.appendChild(tooltip);
-                setTimeout(() => tooltip.remove(), 1000);
-            });
-        });
-    });
+    
+    // Add click handlers for buttons
+    document.getElementById('generate-button').addEventListener('click', generateStory);
+    document.getElementById('reset-button').addEventListener('click', resetStory);
 });
