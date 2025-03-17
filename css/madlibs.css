@@ -86,71 +86,7 @@ body {
     color: #1e3c72;
 }
 
-/* Difficulty Level Indicators */
-.easy-mode {
-    color: #4CAF50;
-    font-weight: 600;
-}
-
-.medium-mode {
-    color: #FFC107;
-    font-weight: 600;
-}
-
-.hard-mode {
-    color: #F44336;
-    font-weight: 600;
-}
-
-/* Main Container */
-.container {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Story Selection Panel */
-.story-selection {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.story-card {
-    background: white;
-    border: 1px solid #eee;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.story-card.easy {
-    border-left: 5px solid #4CAF50;
-}
-
-.story-card.medium {
-    border-left: 5px solid #FFC107;
-}
-
-.story-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* Word Bank */
-.word-bank {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
+/* Example Cards */
 .example-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -181,7 +117,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 10px;
     padding: 1.5rem;
@@ -194,6 +130,20 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.card-front h3 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.card-front p {
+    color: white;
+    font-size: 1rem;
+    opacity: 0.9;
+    text-align: center;
 }
 
 .card-back {
@@ -209,9 +159,12 @@ body {
     text-align: left;
 }
 
-/* Regular Word Bank Lists */
-.word-bank-lists {
-    margin-top: 2rem;
+/* Word Bank */
+.word-bank {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .word-bank h2 {
@@ -235,33 +188,6 @@ body {
 .word-bank p:hover {
     color: #1e3c72;
     transform: translateX(5px);
-}
-
-/* Story Form */
-.story-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.input-group {
-    margin-bottom: 1.5rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 500;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
 }
 
 /* Buttons */
@@ -306,6 +232,9 @@ body {
     .word-bank {
         grid-column: span 2;
     }
+    .example-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -321,5 +250,8 @@ body {
     .nav-link {
         padding: 8px 15px;
         margin: 0 5px;
+    }
+    .example-cards {
+        grid-template-columns: 1fr;
     }
 }
