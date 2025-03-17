@@ -24,10 +24,6 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.header p {
-    font-size: 1.2rem;
-}
-
 /* Navigation Bar */
 .nav-bar {
     background-color: white;
@@ -57,20 +53,19 @@ body {
     color: white;
 }
 
-/* Instructions */
+/* Instructions Section */
 .instructions {
-    background: white;
+    background-color: white;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin: 2rem auto;
     max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .instructions h2 {
     color: #1e3c72;
     margin-bottom: 1rem;
-    font-size: 1.8rem;
 }
 
 .instructions ul {
@@ -79,10 +74,9 @@ body {
 }
 
 .instructions li {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
-    color: #333;
 }
 
 .instructions li:before {
@@ -92,49 +86,50 @@ body {
     color: #1e3c72;
 }
 
+/* Difficulty Level Indicators */
+.easy-mode {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.medium-mode {
+    color: #FFC107;
+    font-weight: 600;
+}
+
+.hard-mode {
+    color: #F44336;
+    font-weight: 600;
+}
+
 /* Main Container */
 .container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-/* Story Selection */
+/* Story Selection Panel */
 .story-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-/* Story Cards */
-.story-card {
     background: white;
-    border-radius: 10px;
     padding: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.story-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+.story-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.story-card h3 {
-    color: #1e3c72;
-    margin-bottom: 0.5rem;
-}
-
-.story-card p {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* Difficulty Colors */
 .story-card.easy {
     border-left: 5px solid #4CAF50;
 }
@@ -143,32 +138,28 @@ body {
     border-left: 5px solid #FFC107;
 }
 
-.story-card.hard {
-    border-left: 5px solid #f44336;
+.story-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* Story Form */
 .story-form {
     background: white;
-    border-radius: 10px;
     padding: 2rem;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.story-form h2 {
-    color: #1e3c72;
-    margin-bottom: 1.5rem;
-}
-
-/* Input Fields */
 .input-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: #333;
+    font-weight: 500;
 }
 
 .input-group input {
@@ -179,9 +170,38 @@ body {
     font-size: 1rem;
 }
 
+/* Word Bank */
+.word-bank {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.word-bank h2 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+}
+
+.word-bank h3 {
+    color: #1e3c72;
+    margin: 1rem 0 0.5rem;
+}
+
+.word-bank p {
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.word-bank p:hover {
+    color: #1e3c72;
+    transform: translateX(5px);
+}
+
 /* Buttons */
 #generate-button, #reset-button {
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -191,14 +211,17 @@ body {
 }
 
 #generate-button {
-    background-color: #4CAF50;
+    background-color: #1e3c72;
     color: white;
 }
 
 #reset-button {
     background-color: #f44336;
     color: white;
-    margin-left: 1rem;
+}
+
+.hidden {
+    display: none;
 }
 
 /* Story Output */
@@ -210,39 +233,28 @@ body {
     line-height: 1.6;
 }
 
-/* Utility Classes */
-.hidden {
-    display: none;
-}
-
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
     }
-
-    .story-selection {
-        max-width: 600px;
-        margin: 0 auto;
+    .word-bank {
+        grid-column: span 2;
     }
 }
 
 @media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .word-bank {
+        grid-column: span 1;
+    }
     .header h1 {
         font-size: 2rem;
     }
-    
     .nav-link {
         padding: 8px 15px;
         margin: 0 5px;
-    }
-    
-    .container {
-        padding: 0.5rem;
-    }
-
-    .instructions {
-        padding: 1.5rem;
     }
 }
