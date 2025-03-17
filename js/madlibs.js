@@ -273,9 +273,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize example cards with flip functionality
-    const exampleCards = document.querySelectorAll('.example-card');
-    exampleCards.forEach(card => {
-        const cardInner = card.querySelector('.card-inner');
+   const exampleCards = document.querySelectorAll('.example-card');
+exampleCards.forEach(card => {
+    card.addEventListener('click', () => {
+        card.querySelector('.card-inner').classList.toggle('flipped');
+    });
+});
         
         // Handle click for mobile and desktop
         card.addEventListener('click', () => {
