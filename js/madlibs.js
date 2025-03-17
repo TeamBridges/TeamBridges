@@ -184,8 +184,9 @@ function selectStory(storyId) {
 }
 
 // Function to generate story
+
 function generateStory() {
-     if (!currentStory) return;
+    if (!currentStory) return;
     
     let storyText = currentStory.template;
     const inputs = document.querySelectorAll('#input-container input');
@@ -199,7 +200,9 @@ function generateStory() {
             input.classList.add('error');
         } else {
             input.classList.remove('error');
-            storyText = storyText.replace(`{${input.id}}`, value);
+            // Use global replace to catch all instances of the placeholder
+            const regex = new RegExp(`{${input.id}}`, 'g');
+            storyText = storyText.replace(regex, value);
         }
     });
     
@@ -255,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Initialize difficulty indicators
+     // Initialize difficulty indicators
     document.querySelectorAll('.story-card').forEach(card => {
         const storyId = card.getAttribute('data-story');
         if (stories[storyId]) {
