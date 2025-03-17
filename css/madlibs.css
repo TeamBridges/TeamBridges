@@ -87,18 +87,97 @@ body {
     color: #1e3c72;
 }
 
+/* Container Layout */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Story Selection */
+.story-selection {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.story-card.easy {
+    border-left: 5px solid #4CAF50;
+}
+
+.story-card.medium {
+    border-left: 5px solid #FFC107;
+}
+
+.story-card h3 {
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+}
+
+.story-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Story Form */
+.story-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
 /* Example Cards */
 .example-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .example-card {
     perspective: 1000px;
     height: 200px;
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .card-inner {
@@ -125,25 +204,25 @@ body {
 }
 
 .card-front {
-    background: #1e3c72;
-    color: white;
+    background: white;
+    color: #1e3c72;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 2px solid #1e3c72;
 }
 
 .card-front h3 {
-    color: white;
+    color: #1e3c72;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .card-front p {
-    color: white;
+    color: #666;
     font-size: 1rem;
-    opacity: 0.9;
     text-align: center;
 }
 
@@ -160,37 +239,6 @@ body {
     text-align: left;
 }
 
-/* Word Bank */
-.word-bank {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.word-bank h2 {
-    color: #1e3c72;
-    margin-bottom: 1rem;
-}
-
-.word-bank h3 {
-    color: #1e3c72;
-    margin: 1.5rem 0 0.5rem;
-    font-size: 1.2rem;
-}
-
-.word-bank p {
-    margin-bottom: 0.5rem;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.word-bank p:hover {
-    color: #1e3c72;
-    transform: translateX(5px);
-}
-
 /* Buttons */
 #generate-button, #reset-button {
     padding: 1rem 2rem;
@@ -203,26 +251,19 @@ body {
 }
 
 #generate-button {
-    background-color: #1e3c72;
+    background-color: #4CAF50;
     color: white;
 }
 
 #reset-button {
     background-color: #f44336;
     color: white;
+    margin-left: 1rem;
 }
 
+/* Utility Classes */
 .hidden {
     display: none;
-}
-
-/* Story Output */
-#story-output {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 5px;
-    line-height: 1.6;
 }
 
 /* Responsive Design */
@@ -233,14 +274,12 @@ body {
     .word-bank {
         grid-column: span 2;
     }
-    .example-cards {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
 }
 
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
     .word-bank {
         grid-column: span 1;
@@ -252,72 +291,7 @@ body {
         padding: 8px 15px;
         margin: 0 5px;
     }
-    .example-cards {
-        grid-template-columns: 1fr;
-    }
 }
-
-This CSS includes all the necessary styling for:
-
-    Example cards with proper 3D flip animation
-    Improved visibility for card text
-    Proper spacing and layout
-    Responsive design
-    Consistent styling across all elements
-
-Would you like me to explain any specific part of the CSS?
-RoleBot Coding Helper
-
-2 minutes ago
-Natalie Pierson
-@role-codinghelper
-
-Can we change the color of the front side of the card back to white?
-
-Yes, we can change the front side of the card to white and adjust the text color to maintain visibility. Here's the modified CSS for the card front:
-
-
-.card-front {
-    background: white;
-    color: #1e3c72;  /* Changed text color to match theme blue */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-front h3 {
-    color: #1e3c72;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.card-front p {
-    color: #666;  /* Slightly muted text color for subtitle */
-    font-size: 1rem;
-    text-align: center;
-}
-
-This will:
-
-    Change the background color to white
-    Set the heading color to the theme blue (#1e3c72)
-    Set the subtitle text to a muted gray (#666)
-    Maintain the same layout and spacing
-
-Would you like me to show you the complete CSS file with this change integrated?
-RoleBot Coding Helper
-
-1 minute ago
-Natalie Pierson
-@role-codinghelper
-
-Give me the full css that includes this correction
-
-I'll provide the complete CSS file with the corrected example cards styling:
-
-
 /* General Styles */
 * {
     margin: 0;
@@ -406,18 +380,97 @@ body {
     color: #1e3c72;
 }
 
+/* Container Layout */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Story Selection */
+.story-selection {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.story-card.easy {
+    border-left: 5px solid #4CAF50;
+}
+
+.story-card.medium {
+    border-left: 5px solid #FFC107;
+}
+
+.story-card h3 {
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+}
+
+.story-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Story Form */
+.story-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
 /* Example Cards */
 .example-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .example-card {
     perspective: 1000px;
     height: 200px;
     cursor: pointer;
+    margin-bottom: 1rem;
 }
 
 .card-inner {
@@ -450,6 +503,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border: 2px solid #1e3c72;
 }
 
 .card-front h3 {
@@ -478,37 +532,6 @@ body {
     text-align: left;
 }
 
-/* Word Bank */
-.word-bank {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.word-bank h2 {
-    color: #1e3c72;
-    margin-bottom: 1rem;
-}
-
-.word-bank h3 {
-    color: #1e3c72;
-    margin: 1.5rem 0 0.5rem;
-    font-size: 1.2rem;
-}
-
-.word-bank p {
-    margin-bottom: 0.5rem;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.word-bank p:hover {
-    color: #1e3c72;
-    transform: translateX(5px);
-}
-
 /* Buttons */
 #generate-button, #reset-button {
     padding: 1rem 2rem;
@@ -521,26 +544,19 @@ body {
 }
 
 #generate-button {
-    background-color: #1e3c72;
+    background-color: #4CAF50;
     color: white;
 }
 
 #reset-button {
     background-color: #f44336;
     color: white;
+    margin-left: 1rem;
 }
 
+/* Utility Classes */
 .hidden {
     display: none;
-}
-
-/* Story Output */
-#story-output {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 5px;
-    line-height: 1.6;
 }
 
 /* Responsive Design */
@@ -551,14 +567,12 @@ body {
     .word-bank {
         grid-column: span 2;
     }
-    .example-cards {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
 }
 
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
     .word-bank {
         grid-column: span 1;
@@ -569,8 +583,5 @@ body {
     .nav-link {
         padding: 8px 15px;
         margin: 0 5px;
-    }
-    .example-cards {
-        grid-template-columns: 1fr;
     }
 }
