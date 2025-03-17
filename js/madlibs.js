@@ -5,127 +5,131 @@ const stories = {
         difficulty: "easy",
         template: "I was riding my bike, but I crashed! I scraped my {bodyPart1} and broke my {bodyPart2}. I had to wear a cast on my {bodyPart2} for {number1} weeks. The weirdest part was that my {bodyPart1} turned {color1}. I wasn't expecting that! It made me feel {emotion1}. I probably won't ride my bike again for {number2} days.",
         inputs: [
-            { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikèk - Leg)" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "color1", label: "Color (Machkeu - Red)" },
-            { id: "emotion1", label: "Emotion (Wichin - Sad)" },
-            { id: "number2", label: "Number (Nàxa - Three)" }
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèk" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "color1", label: "Color", placeholder: "Ex. Machkeu" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Wichin" },
+            { id: "number2", label: "Number", placeholder: "Ex. Nàxa" }
         ]
     },
-    
     dancing: {
         title: "Dancing with Friends",
         difficulty: "easy",
         template: "Yesterday, I went dancing with my friends! I moved my {bodyPart1} and shook my {bodyPart2}. We danced for {number1} hours! My friend wore a {color1} shirt and {color2} pants. The music made me feel {emotion1}. We're going to dance again in {number2} days!",
         inputs: [
-            { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikèk - Leg)" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "color1", label: "Color #1 (Machkeu - Red)" },
-            { id: "color2", label: "Color #2 (Wéskëk - Blue)" },
-            { id: "emotion1", label: "Emotion (Nulitùn - Happy)" },
-            { id: "number2", label: "Number (Nàxa - Three)" }
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèk" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wéskëk" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Nulitùn" },
+            { id: "number2", label: "Number", placeholder: "Ex. Nàxa" }
         ]
     },
-
     school: {
         title: "A Day at School",
         difficulty: "easy",
-        template: "Today at school, I learned {number1} new Lenape words! My teacher wore a {color1} shirt. During recess, I hurt my {bodyPart1} while playing. My friend gave me a {color2} bandage, which made me feel {emotion1}. After school, we practiced counting to {number2}.",
+        template: "At school today, I learned {number1} new words! My teacher wore a {color1} shirt that made my {bodyPart1} smile. During lunch, I used my {bodyPart2} to eat. Later, my {bodyPart3} got tired from writing, but I felt {emotion1} when I got everything right!",
         inputs: [
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "color1", label: "Color #1 (Machkeu - Red)" },
-            { id: "bodyPart1", label: "Body Part (Wikèk - Leg)" },
-            { id: "color2", label: "Color #2 (Wéskëk - Blue)" },
-            { id: "emotion1", label: "Emotion (Nulitùn - Happy)" },
-            { id: "number2", label: "Number (Nàxa - Three)" }
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "color1", label: "Color", placeholder: "Ex. Machkeu" },
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhs" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wiske" },
+            { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Naolk" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Nulitùn" }
         ]
     },
-
+     surprise: {
+        title: "A Surprise in my Shoe",
+        difficulty: "easy",
+        template: "This morning, I found something in my shoe! When I put my {bodyPart1} inside, I felt something {color1}. I used my {bodyPart2} to look closer. There were {number1} small objects inside! My {bodyPart3} started to feel {emotion1} when I realized what it was. I used my {bodyPart4} to take out the {color2} surprise!",
+        inputs: [
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wsit" },
+            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikuwe" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikèhèn" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Wjánte" },
+            { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wiske" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" }
+        ]
+    },
     weather: {
         title: "The Weather Today",
         difficulty: "medium",
         template: "The weather was strange today! The sky turned {color1}, and it rained for {number1} hours. My {bodyPart1} got wet, and my {bodyPart2} was cold. The wind made me feel {emotion1}. The forecast says it will be {color2} skies for the next {number2} days.",
         inputs: [
-            { id: "color1", label: "Color #1 (Wéskëk - Blue)" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikèk - Leg)" },
-            { id: "emotion1", label: "Emotion (Wjánte - Afraid)" },
-            { id: "color2", label: "Color #2 (Wisaweu - Yellow)" },
-            { id: "number2", label: "Number (Nàxa - Three)" }
+            { id: "color1", label: "Color #1", placeholder: "Ex. Wéskëk" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèk" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Wjánte" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" },
+            { id: "number2", label: "Number", placeholder: "Ex. Nàxa" }
         ]
     },
-
     doctor: {
         title: "Going to the Doctor",
         difficulty: "medium",
         template: "Today, I went to the doctor because my {bodyPart1} was hurting. The doctor asked me how long I had been feeling this way, and I told him it started hurting {number1} days ago and was turning {color1} and {color2}. He immediately told me to stick out my {bodyPart2} and close my {bodyPart3}. The doctor looked at my {bodyPart1} and said it looked a little {color3}. I was worried, so he said we needed to do a few tests. First, he took {number2} x-rays of my {bodyPart4}. Then he measured the size of my {bodyPart5} with a {color4} measuring tape and it was {number3} inches long. 'Don't worry,' he said, 'you just need to rest for {number4} days and wear a {color5} brace on your {bodyPart6}'.",
         inputs: [
-            { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "color1", label: "Color #1 (Machkeu - Red)" },
-            { id: "color2", label: "Color #2 (Wéskëk - Blue)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikèhs - Mouth)" },
-            { id: "bodyPart3", label: "Body Part #3 (Wikuwe - Eyes)" },
-            { id: "color3", label: "Color #3 (Wisaweu - Yellow)" },
-            { id: "number2", label: "Number (Nash - Three)" },
-            { id: "bodyPart4", label: "Body Part #4 (Wikèk - Leg)" },
-            { id: "color4", label: "Color #4 (Sùkw - Black)" },
-            { id: "number3", label: "Number (Nàxa - Three)" },
-            { id: "number4", label: "Number (Newa - Four)" },
-            { id: "color5", label: "Color #5 (Wapelechen - White)" },
-            { id: "bodyPart5", label: "Body Part #5 (Naxka - Hand)" },
-            { id: "bodyPart6", label: "Body Part #6 (Wikèk - Leg)" }
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wéskëk" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèhs" },
+            { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikuwe" },
+            { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
+            { id: "number2", label: "Number", placeholder: "Ex. Nash" },
+            { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wikèk" },
+            { id: "bodyPart5", label: "Body Part #5", placeholder: "Ex. Wiske" },
+            { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
+            { id: "number3", label: "Number", placeholder: "Ex. Nàxa" },
+            { id: "number4", label: "Number", placeholder: "Ex. Newa" },
+            { id: "color5", label: "Color #5", placeholder: "Ex. Wapelechen" },
+            { id: "bodyPart6", label: "Body Part #6", placeholder: "Ex. Naxka" }
         ]
     },
-
     zoo: {
         title: "A Day at the Zoo",
         difficulty: "medium",
-        template: "Yesterday, I went to the zoo to see all the amazing animals. The first animal I saw was a {animal1}. It had a huge {bodyPart1} and bright {color1} fur. It had a really long {bodyPart2} with pointy {bodyPartPlural1}. Next, I visited the {animal2} enclosure. It was sitting in the shade, licking its {bodyPart3} with its long {color2} tongue. There were {number1} of them in the cage, all staring at me with their big, round {bodyPart4}. After that, I went to see the {animal3}. It was so funny because it had {number2} {bodyPart5} on each side! I couldn't stop laughing. The {animal3} had {color3} spots all over its {bodyPart6}. Finally, I ended my visit at the {animal4} exhibit. It was a very quiet animal, but it had an enormous {bodyPart7}. I spent {number3} minutes watching it before I decided to leave. It was a fantastic day at the zoo!",
+        template: "Today I went to the zoo! My {bodyPart1} was tired from walking. I saw an animal with a {color1} {bodyPart2}. It made me feel {emotion1}! We stayed for {number1} hours until my {bodyPart3} got sore. The best part was when my {bodyPart4} saw a {color2} bird fly by!",
         inputs: [
-            { id: "animal1", label: "Animal #1" },
-            { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
-            { id: "color1", label: "Color #1 (Machkeu - Red)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikèk - Leg)" },
-            { id: "bodyPartPlural1", label: "Body Parts (Plural)" },
-            { id: "animal2", label: "Animal #2" },
-            { id: "bodyPart3", label: "Body Part #3 (Wikèhs - Mouth)" },
-            { id: "color2", label: "Color #2 (Wéskëk - Blue)" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "bodyPart4", label: "Body Part #4 (Wikuwe - Eyes)" },
-            { id: "animal3", label: "Animal #3" },
-            { id: "number2", label: "Number (Nash - Three)" },
-            { id: "bodyPart5", label: "Body Part #5 (Naxka - Hand)" },
-            { id: "color3", label: "Color #3 (Wisaweu - Yellow)" },
-            { id: "bodyPart6", label: "Body Part #6 (Wikèk - Leg)" },
-            { id: "animal4", label: "Animal #4" },
-            { id: "bodyPart7", label: "Body Part #7 (Wikèhs - Mouth)" },
-            { id: "number3", label: "Number (Nàxa - Three)" }
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèk" },
+            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèhèn" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Nulitùn" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wsit" },
+            { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wikuwe" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" }
         ]
     },
 
     river: {
         title: "A Day at the River",
         difficulty: "medium",
-        template: "While playing in the {color1} river, I looked down at my {bodyPart1} and saw a {animal1} swimming by! It had {number1} {bodyPartPlural1}. I reached down with my {bodyPart2} to touch it, but it swam away quickly. My {bodyPart3} got wet, and I felt {emotion1}. Next time I'll bring my {color2} boots to keep my {bodyPart4} dry.",
+        template: "We went to the river today! I dipped my {bodyPart1} in the {color1} water. My friend splashed {number1} times, and got my {bodyPart2} all wet! I felt {emotion1} when I saw a fish swim by my {bodyPart3}. The sky was {color2} and beautiful.",
         inputs: [
-            { id: "color1", label: "Color #1 (Wéskëk - Blue)" },
-            { id: "bodyPart1", label: "Body Part #1 (Wikèk - Leg)" },
-            { id: "animal1", label: "Animal" },
-            { id: "number1", label: "Number (Nisha - Two)" },
-            { id: "bodyPartPlural1", label: "Body Parts (Plural)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wiske - Hand)" },
-            { id: "bodyPart3", label: "Body Part #3 (Wikèhèn - Head)" },
-            { id: "emotion1", label: "Emotion (Nulitùn - Happy)" },
-            { id: "color2", label: "Color #2 (Sùkw - Black)" },
-            { id: "bodyPart4", label: "Body Part #4 (Wikèk - Leg)" }
+            { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wsit" },
+            { id: "color1", label: "Color #1", placeholder: "Ex. Wéskëk" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nàxa" },
+            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèhèn" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Wètëlaohake" },
+            { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikèk" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" }
         ]
-    }
+    } 
 };
-// Function to select story
+function validateInput(value, placeholder) {
+    return value && value.trim() && value !== placeholder;
+}
+
+// Initialize variables
+let currentStory = null;
+
+// Function to select a story
 function selectStory(storyId) {
     // Reset any previous story
     resetStory();
@@ -144,26 +148,44 @@ function selectStory(storyId) {
         
         const label = document.createElement('label');
         label.textContent = input.label;
-        label.setAttribute('for', input.id);
         
         const inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.id = input.id;
         inputField.required = true;
-        inputField.placeholder = 'Enter ' + input.label.split('(')[0].trim();
+        inputField.placeholder = input.placeholder || '';
+        
+        // Add placeholder behavior
+        inputField.addEventListener('focus', function() {
+            if (this.value === this.placeholder) {
+                this.value = '';
+            }
+        });
+        
+        inputField.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.value = this.placeholder;
+            }
+        });
         
         inputGroup.appendChild(label);
         inputGroup.appendChild(inputField);
         inputContainer.appendChild(inputGroup);
     });
+    // Add this story form check
+    const storyForm = document.getElementById('story-form');
+    if (storyForm) {
+        storyForm.classList.remove('hidden');
+    }
     
-    // Show generate button
+    // Show generate button and story form
     document.getElementById('generate-button').classList.remove('hidden');
+    document.getElementById('story-form').classList.remove('hidden');
 }
 
 // Function to generate story
 function generateStory() {
-    if (!currentStory) return;
+     if (!currentStory) return;
     
     let storyText = currentStory.template;
     const inputs = document.querySelectorAll('#input-container input');
@@ -171,7 +193,8 @@ function generateStory() {
     
     inputs.forEach(input => {
         const value = input.value.trim();
-        if (!value) {
+        // Use the new validation function here
+        if (!validateInput(value, input.placeholder)) {
             allFilled = false;
             input.classList.add('error');
         } else {
@@ -181,20 +204,17 @@ function generateStory() {
     });
     
     if (!allFilled) {
-        alert('Please fill in all fields!');
+        alert('Please fill in all the blanks with Lenape words!');
         return;
     }
     
-    // Show the story
     const storyOutput = document.getElementById('story-output');
     storyOutput.textContent = storyText;
     storyOutput.classList.remove('hidden');
     
-    // Show reset button, hide generate button
     document.getElementById('reset-button').classList.remove('hidden');
     document.getElementById('generate-button').classList.add('hidden');
 }
-
 // Function to reset story
 function resetStory() {
     document.getElementById('input-container').innerHTML = '';
@@ -205,8 +225,20 @@ function resetStory() {
     currentStory = null;
 }
 
-// Add event listeners when the page loads
+// Word Bank Toggle Functions
+function toggleWordBank(category) {
+    const wordList = document.querySelector(`.word-bank-${category}`);
+    if (wordList) {
+        wordList.classList.toggle('hidden');
+    }
+}
+
+// Initialize Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Add click handlers for buttons
+    document.getElementById('generate-button').addEventListener('click', generateStory);
+    document.getElementById('reset-button').addEventListener('click', resetStory);
+    
     // Add click handlers for story cards
     document.querySelectorAll('.story-card').forEach(card => {
         card.addEventListener('click', () => {
@@ -215,7 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Add click handlers for buttons
-    document.getElementById('generate-button').addEventListener('click', generateStory);
-    document.getElementById('reset-button').addEventListener('click', resetStory);
+    // Add click handlers for word bank categories
+    document.querySelectorAll('.word-bank-category').forEach(category => {
+        category.addEventListener('click', () => {
+            const categoryId = category.getAttribute('data-category');
+            toggleWordBank(categoryId);
+        });
+    });
+
+    // Initialize difficulty indicators
+    document.querySelectorAll('.story-card').forEach(card => {
+        const storyId = card.getAttribute('data-story');
+        if (stories[storyId]) {
+            card.classList.add(stories[storyId].difficulty);
+        }
+    });
 });
+   
