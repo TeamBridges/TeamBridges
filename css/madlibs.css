@@ -143,6 +143,37 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* Word Bank */
+.word-bank {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.word-bank h2 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
+}
+
+.word-bank h3 {
+    color: #1e3c72;
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+.word-bank p {
+    margin-bottom: 0.5rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.word-bank p:hover {
+    color: #1e3c72;
+    transform: translateX(5px);
+}
+
 /* Story Form */
 .story-form {
     background: white;
@@ -168,35 +199,6 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-}
-
-/* Word Bank */
-.word-bank {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.word-bank h2 {
-    color: #1e3c72;
-    margin-bottom: 1rem;
-}
-
-.word-bank h3 {
-    color: #1e3c72;
-    margin: 1rem 0 0.5rem;
-}
-
-.word-bank p {
-    margin-bottom: 0.3rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.word-bank p:hover {
-    color: #1e3c72;
-    transform: translateX(5px);
 }
 
 /* Buttons */
