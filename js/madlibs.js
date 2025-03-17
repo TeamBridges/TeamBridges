@@ -39,7 +39,23 @@ const stories = {
             { id: "emotion1", label: "Emotion (Nulitùn - Happy)" },
             { id: "number2", label: "Number (Nàxa - Three)" }
         ]
-    },
+    },   
+    surprise: {
+        title: "A Surprise in my Shoe",
+        difficulty: "easy",
+        template: "I was putting my {color1} shoes on my {bodyPart1} when I saw a {animal1}! It had beaty {color2} {bodyPart2} and a scary looking {bodyPart3}. I screamed and jumped {number1} times on my {bodyPart4}!",
+        inputs: [
+            { id: "color1", label: "Color #1" },
+            { id: "bodyPart1", label: "Body Part #1" },
+            { id: "animal1", label: "Animal" },
+            { id: "color2", label: "Color #2" },
+            { id: "bodyPart2", label: "Body Part #2" },
+            { id: "bodyPart3", label: "Body Part #3" },
+            { id: "number1", label: "Number" },
+            { id: "bodyPart4", label: "Body Part #4" }
+        ]
+    }
+},
     weather: {
         title: "The Weather Today",
         difficulty: "medium",
@@ -57,21 +73,53 @@ const stories = {
         doctor: {
         title: "Going to the Doctor",
         difficulty: "medium",
-        template: "Today, I went to the doctor because my {bodyPart1} was hurting. The doctor asked me how long I had been feeling this way, and I told him it started hurting {number1} days ago and was turning {color1} and {color2}. He immediately told me to stick out my {bodyPart2} and close my {bodyPart3}. The doctor looked at my {bodyPart1} and said it looked a little {color3}. I was worried, so he said we needed to do a few tests. First, he took {number2} x-rays of my {bodyPart4}. Then he measured the size of my {bodyPart5} with a {color4} measuring tape.",
+        template: "Today, I went to the doctor because my {bodyPart1} was hurting. The doctor asked me how long I had been feeling this way, and I told him it started hurting {number1} days ago and was turning {color1} and {color2} after a {animal1} bit it. He immediately told me to stick out my {bodyPart2} and close my {bodyPart3}. The doctor looked at my {bodyPart1} and said it looked a little {color3}. I was worried, so he said we needed to do a few tests. First, he took {number2} x-rays of my {bodyPart1}. Then he measured the size of my {bodyPart4} with a {color4} measuring tape and it was {number3} inches long. 'Don't worry,' he said, 'you just need to rest for {number4} days and wear a {color5} brace on your {bodyPart5}'. I felt better after hearing that, but when I left the office, I couldn't help but notice that the waiting room was filled with people holding their {bodyPartPlural1}. It made me glad I was only dealing with a injured {bodyPart1}.",
         inputs: [
-            { id: "bodyPart1", label: "Body Part #1 (Wikèhèn - Head)" },
+            { id: "bodyPart1", label: "Body Part #1" },
             { id: "number1", label: "Number (Days)" },
-            { id: "color1", label: "Color #1 (Machkeu - Red)" },
-            { id: "color2", label: "Color #2 (Sùkw - Black)" },
-            { id: "bodyPart2", label: "Body Part #2 (Wikèhs - Mouth)" },
-            { id: "bodyPart3", label: "Body Part #3 (Wikuwe - Eyes)" },
-            { id: "color3", label: "Color #3 (Wisaweu - Yellow)" },
+            { id: "color1", label: "Color #1" },
+            { id: "color2", label: "Color #2" },
+            { id: "animal1", label: "Animal" },
+            { id: "bodyPart2", label: "Body Part #2" },
+            { id: "bodyPart3", label: "Body Part #3" },
+            { id: "color3", label: "Color #3" },
             { id: "number2", label: "Number (X-rays)" },
-            { id: "bodyPart4", label: "Body Part #4 (Wikèk - Leg)" },
-            { id: "bodyPart5", label: "Body Part #5 (Wiske - Hand)" },
-            { id: "color4", label: "Color #4 (Wéskëk - Blue)" }
+            { id: "bodyPart4", label: "Body Part #4" },
+            { id: "color4", label: "Color #4" },
+            { id: "number3", label: "Number (Inches)" },
+            { id: "number4", label: "Number (Days of Rest)" },
+            { id: "color5", label: "Color #5" },
+            { id: "bodyPart5", label: "Body Part #5" },
+            { id: "bodyPartPlural1", label: "Body Parts (Plural)" }
         ]
     },
+    zoo: {
+        title: "A Day at the Zoo",
+        difficulty: "medium",
+        template: "Yesterday, I went to the zoo to see all the amazing animals. The first animal I saw was a {animal1}. It had a huge {bodyPart1} and bright {color1} fur. It had a really long {bodyPart2} with pointy {bodyPartPlural1}. Next, I visited the {animal2} enclosure. It was sitting in the shade, licking its {bodyPart3} with its long {color2} tongue. There were {number1} of them in the cage, all staring at me with their big, round {bodyPart4}. After that, I went to see the {animal3}. It was so funny because it had {number2} {bodyPart5} on each side! I couldn't stop laughing. The {animal3} had {color3} spots all over its {bodyPart6}, and when it walked, it moved its {bodyPart7} in such a funny way. Finally, I ended my visit at the {animal4} exhibit. It was a very quiet animal, but it had an enormous {bodyPart8}. I spent {number3} minutes watching it before I decided to leave. It was a fantastic day at the zoo!",
+        inputs: [
+            { id: "animal1", label: "Animal #1" },
+            { id: "bodyPart1", label: "Body Part #1" },
+            { id: "color1", label: "Color #1" },
+            { id: "bodyPart2", label: "Body Part #2" },
+            { id: "bodyPartPlural1", label: "Body Parts (Plural)" },
+            { id: "animal2", label: "Animal #2" },
+            { id: "bodyPart3", label: "Body Part #3" },
+            { id: "color2", label: "Color #2" },
+            { id: "number1", label: "Number" },
+            { id: "bodyPart4", label: "Body Part #4" },
+            { id: "animal3", label: "Animal #3" },
+            { id: "number2", label: "Number" },
+            { id: "bodyPart5", label: "Body Part #5" },
+            { id: "color3", label: "Color #3" },
+            { id: "bodyPart6", label: "Body Part #6" },
+            { id: "bodyPart7", label: "Body Part #7" },
+            { id: "animal4", label: "Animal #4" },
+            { id: "bodyPart8", label: "Body Part #8" },
+            { id: "number3", label: "Number (Minutes)" }
+        ]
+    },
+
     river: {
         title: "A Day at the River",
         difficulty: "medium",
