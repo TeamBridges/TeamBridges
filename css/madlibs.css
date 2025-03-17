@@ -30,7 +30,6 @@ body {
     padding: 1rem;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
 }
 
 .nav-link {
@@ -54,7 +53,7 @@ body {
 /* Instructions */
 .instructions {
     max-width: 1200px;
-    margin: 0 auto 2rem;
+    margin: 2rem auto;
     padding: 1.5rem;
     background: white;
     border-radius: 10px;
@@ -72,7 +71,7 @@ body {
 }
 
 .instructions li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     position: relative;
     padding-left: 1.5rem;
 }
@@ -83,6 +82,10 @@ body {
     left: 0;
     color: #1e3c72;
 }
+
+.easy-mode { color: #4CAF50; }
+.medium-mode { color: #FFC107; }
+.hard-mode { color: #F44336; }
 
 /* Main Container */
 .container {
@@ -96,15 +99,22 @@ body {
 
 /* Story Selection */
 .story-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.story-selection h2 {
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
 }
 
 .story-card {
     background: white;
     border-radius: 10px;
     padding: 1.5rem;
+    margin-bottom: 1rem;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -115,23 +125,16 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.story-card h3 {
-    color: #1e3c72;
-    margin-bottom: 0.5rem;
-}
-
-.story-card p {
-    color: #666;
-    font-size: 0.9rem;
-}
-
-/* Difficulty Colors */
 .story-card.easy {
     border-left: 5px solid #4CAF50;
 }
 
 .story-card.medium {
     border-left: 5px solid #FFC107;
+}
+
+.story-card.hard {
+    border-left: 5px solid #F44336;
 }
 
 /* Story Form */
@@ -142,29 +145,9 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Add these styles here */
-.input-group {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.input-group label {
-    min-width: 100px;
-}
-
-.input-group input {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.input-example {
-    color: #666;
-    font-size: 0.9rem;
-    font-style: italic;
+.story-form h2 {
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
 }
 
 /* Word Bank */
@@ -173,6 +156,11 @@ body {
     border-radius: 10px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.word-bank h2 {
+    color: #1e3c72;
+    margin-bottom: 1.5rem;
 }
 
 .example-cards {
@@ -184,7 +172,6 @@ body {
 .example-card {
     perspective: 1000px;
     height: 200px;
-    margin-bottom: 1rem;
 }
 
 .card-inner {
@@ -214,21 +201,19 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .card-back {
     background: white;
     transform: rotateY(180deg);
-    overflow-y: auto;
     border: 1px solid #ddd;
 }
 
 .card-back p {
     margin-bottom: 0.5rem;
     color: #333;
-    text-align: left;
 }
 
 /* Buttons */
@@ -252,7 +237,6 @@ body {
     color: white;
 }
 
-/* Utility Classes */
 .hidden {
     display: none;
 }
@@ -262,25 +246,5 @@ body {
     .container {
         grid-template-columns: 1fr;
         gap: 1rem;
-    }
-
-    .story-selection, .word-bank {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
-    }
-    
-    .nav-link {
-        padding: 8px 15px;
-        margin: 0 5px;
-    }
-    
-    .container {
-        padding: 0.5rem;
     }
 }
