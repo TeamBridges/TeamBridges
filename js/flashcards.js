@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentGame = gameId;
         
         // Find and activate the clicked button
-        const clickedButton = document.querySelector(`[onclick="showGame('${gameId}')"]`);
+        const clickedButton = document.querySelector(`.game-button[onclick*="'${gameId}'"]`);
         if (clickedButton) {
             clickedButton.classList.add('active');
         }
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add keyboard navigation
     document.addEventListener('keydown', (event) => {
-        const games = ['body', 'body2'. 'face', 'internal', 'hands'];
+        const games = ['body', 'body2', 'face', 'internal', 'hands'];
         const currentIndex = games.indexOf(currentGame);
 
         switch(event.key) {
