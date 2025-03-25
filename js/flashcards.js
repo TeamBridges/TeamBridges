@@ -2,32 +2,41 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize variables
-    let currentGame = 'body';
+let currentGame = 'body';
 
-    // Function to show selected game
-    function showGame(gameId) {
-        // Hide all games
-        document.querySelectorAll('.game-frame').forEach(frame => {
-            frame.classList.remove('active');
-        });
-        
-        // Show selected game
-        document.getElementById(gameId).classList.add('active');
-        
-        // Update button states
-        document.querySelectorAll('.game-button').forEach(button => {
-            button.classList.remove('active');
-        });
-        
-        // Update current game
-        currentGame = gameId;
-        
-        // Find and activate the clicked button
-        const clickedButton = document.querySelector(`.game-button[onclick*="'${gameId}'"]`);
-        if (clickedButton) {
-            clickedButton.classList.add('active');
-        }
+// Function to show selected game
+function showGame(gameId) {
+    // Hide all games
+    document.querySelectorAll('.game-frame').forEach(frame => {
+        frame.classList.remove('active');
+    });
+    
+    // Show selected game
+    document.getElementById(gameId).classList.add('active');
+    
+    // Update button states
+    document.querySelectorAll('.game-button').forEach(button => {
+        button.classList.remove('active');
+    });
+    
+    // Find and activate the clicked button
+    const clickedButton = document.querySelector(`.game-button[onclick*="'${gameId}'"]`);
+    if (clickedButton) {
+        clickedButton.classList.add('active');
     }
+    
+    // Update current game
+    currentGame = gameId;
+}
+
+// Make showGame function globally available
+window.showGame = showGame;
+
+// Initialize the page when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Show initial game (body parts)
+    showGame('body');
+});
 
     // Make showGame function globally available
     window.showGame = showGame;
