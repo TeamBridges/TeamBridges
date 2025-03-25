@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add keyboard navigation
     document.addEventListener('keydown', (event) => {
-        const games = ['body', 'face', 'internal', 'hands'];
+        const games = ['body', 'body2'. 'face', 'internal', 'hands'];
         const currentIndex = games.indexOf(currentGame);
 
         switch(event.key) {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function handleSwipe() {
-        const games = ['body', 'face', 'internal', 'hands'];
+        const games = ['body', 'body2', 'face', 'internal', 'hands'];
         const currentIndex = games.indexOf(currentGame);
         const swipeThreshold = 50;
 
