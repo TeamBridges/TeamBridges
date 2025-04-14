@@ -62,8 +62,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Social engagement',
                 'Team activities'
             ]
-        }
-    ];
+        },
+    
+        {
+            title: 'Glossary',
+            description: 'A Quick & Easy Reference',
+            link: 'glossary.html',
+            icon: 'fas fa-pencil-alt',
+            objectives: [
+                'Find the word you need',
+                'Check your spelling',
+                
+            ]
+        };
 
     // Create game cards dynamically
     const gameContainer = document.querySelector('.game-container');
