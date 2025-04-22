@@ -145,6 +145,31 @@ const stories = {
         { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" }
     ]
 },
+    skyFix: {
+    title: "The Sky Fixing Adventure",
+    difficulty: "hard",
+    template: "\"To fix the sky,\" it said, \"you must gather the tears of {number3} mystical {pluralAnimal1} who cry only when they see a {color3} {animal2} tap-dancing on one {bodyPart3} while balancing a watermelon on its {bodyPart2}.\" The mission was clear. The two friends journeyed across {number4} rivers, each guarded by a grumpy {animal2} with glowing {color4} {pluralBodyPart4}. They had to tickle each guard's {bodyPart3} to pass. Eventually, they reached the sacred waterfall, where the mystical {pluralAnimal2} were waiting, each with extra-long {pluralBodyPart3} and glittery {color1} eyebrows. They performed the dance, flailed their {pluralBodyPart2}, wiggled their {bodyPart4}, and—miraculously—collected exactly {number2} magical tears. Racing back, they poured the tears onto the wise one's {bodyPart1}. The sky let out a huge {bodyPart2}-shaped puff and turned back to its usual {color4}. The jungle cheered! Every {animal2} clapped their {pluralBodyPart1}, the trees changed to {color2}, and the ground shook like a wiggling {bodyPart2}.",
+    inputs: [
+        { id: "number3", label: "Number", placeholder: "Ex. Nash" },
+        { id: "pluralAnimal1", label: "Plural Animal #1", placeholder: "Ex. Monkeys" },
+        { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
+        { id: "animal2", label: "Animal #2", placeholder: "Ex. Horse" },
+        { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikiyon" },
+        { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Tun" },
+        { id: "number4", label: "Number", placeholder: "Ex. Newo" },
+        { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
+        { id: "pluralBodyPart4", label: "Plural Body Part #4", placeholder: "Ex. Wila" },
+        { id: "pluralAnimal2", label: "Plural Animal #2", placeholder: "Ex. Horses" },
+        { id: "pluralBodyPart3", label: "Plural Body Part #3", placeholder: "Ex. Wikiyona" },
+        { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+        { id: "pluralBodyPart2", label: "Plural Body Part #2", placeholder: "Ex. Tuna" },
+        { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wil" },
+        { id: "number2", label: "Number", placeholder: "Ex. Nisha" },
+        { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Weshkinkw" },
+        { id: "color2", label: "Color #2", placeholder: "Ex. Achgwàn" },
+        { id: "pluralBodyPart1", label: "Plural Body Part #1", placeholder: "Ex. Naolka" }
+    ]
+}
     
 };
 function validateInput(value, placeholder) {
