@@ -120,7 +120,32 @@ const stories = {
             { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikèk" },
             { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" }
         ]
-    } 
+    },
+    colorfulCreature: {
+    title: "The Colorful Creature Catastrophe",
+    difficulty: "hard",
+    template: "It thought for {number3} seconds, then tapped its {bodyPart4} thoughtfully. \"You must complete the Trial of {color3} Animals to be forgiven.\" I was whisked away to a jungle filled with {number3} screeching {pluralAnimal1} swinging from tree to tree with their {pluralBodyPart1}s. I dodged a flying {animal4} that tried to peck my {bodyPart1}, slid down the back of a sleeping {animal3}, and climbed over a mountain made of {color4} bones shaped like {pluralBodyPart2}s. At the summit, I was met by a wise old {animal3} with a cane made from {color3} {pluralBodyPart2}. \"To pass,\" it said, \"you must guess how many {pluralAnimal3} can stand on one {bodyPart1}.\" I took a deep breath, scratched my {bodyPart3}, and said, \"Exactly {number2}!\" The animals all gasped and clapped their {pluralBodyPart3} together. \"Correct!\" the wise one shouted. My {bodyPart2} grew back instantly, and the {animal3} king gave me a crown shaped like a giant {bodyPart4}, encrusted with {color3} jewels. I rode home on the back of a dancing {animal2} with {color1} spots and {number2} toes on each {bodyPart3}, waving to everyone with my sparkly new {bodyPart2}. To celebrate, they all did the hokey pokey using only their {pluralBodyPart3} while riding around on {pluralAnimal3} painted {color1}.",
+    inputs: [
+        { id: "number3", label: "Number", placeholder: "Ex. Nash" },
+        { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wil" },
+        { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
+        { id: "pluralAnimal1", label: "Plural Animal #1", placeholder: "Ex. Monkeys" },
+        { id: "pluralBodyPart1", label: "Plural Body Part #1", placeholder: "Ex. Naolka" },
+        { id: "animal4", label: "Animal #4", placeholder: "Ex. Bird" },
+        { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Weshkinkw" },
+        { id: "animal3", label: "Animal #3", placeholder: "Ex. Bear" },
+        { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
+        { id: "pluralBodyPart2", label: "Plural Body Part #2", placeholder: "Ex. Hwikata" },
+        { id: "pluralAnimal3", label: "Plural Animal #3", placeholder: "Ex. Bears" },
+        { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikiyon" },
+        { id: "number2", label: "Number", placeholder: "Ex. Nisha" },
+        { id: "pluralBodyPart3", label: "Plural Body Part #3", placeholder: "Ex. Wikiyona" },
+        { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Tun" },
+        { id: "animal2", label: "Animal #2", placeholder: "Ex. Horse" },
+        { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" }
+    ]
+},
+    
 };
 function validateInput(value, placeholder) {
     return value && value.trim() && value !== placeholder;
