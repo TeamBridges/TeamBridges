@@ -124,25 +124,29 @@ const stories = {
     colorfulCreature: {
     title: "The Colorful Creature Catastrophe",
     difficulty: "hard",
-    template: "It thought for {number3} seconds, then tapped its {bodyPart4} thoughtfully. \"You must complete the Trial of {color3} Animals to be forgiven.\" I was whisked away to a jungle filled with {number3} screeching {pluralAnimal1} swinging from tree to tree with their {pluralBodyPart1}s. I dodged a flying {animal4} that tried to peck my {bodyPart1}, slid down the back of a sleeping {animal3}, and climbed over a mountain made of {color4} bones shaped like {pluralBodyPart2}s. At the summit, I was met by a wise old {animal3} with a cane made from {color3} {pluralBodyPart2}. \"To pass,\" it said, \"you must guess how many {pluralAnimal3} can stand on one {bodyPart1}.\" I took a deep breath, scratched my {bodyPart3}, and said, \"Exactly {number2}!\" The animals all gasped and clapped their {pluralBodyPart3} together. \"Correct!\" the wise one shouted. My {bodyPart2} grew back instantly, and the {animal3} king gave me a crown shaped like a giant {bodyPart4}, encrusted with {color3} jewels. I rode home on the back of a dancing {animal2} with {color1} spots and {number2} toes on each {bodyPart3}, waving to everyone with my sparkly new {bodyPart2}. To celebrate, they all did the hokey pokey using only their {pluralBodyPart3} while riding around on {pluralAnimal3} painted {color1}.",
+    template: "It thought for {number3} seconds, then tapped its {bodyPart4} thoughtfully. \"You must complete the Trial of {color2} Animals to be forgiven.\" I was whisked away to a jungle filled with {number3} screeching {pluralAnimal1} swinging from tree to tree with their {pluralBodyPart1}. I dodged a flying {animal4} that tried to peck my {bodyPart1}, slid down the back of a sleeping {animal3}, and climbed over a mountain made of {color3} bones shaped like {pluralBodyPart2}. At the summit, I was met by a wise old {animal3} with a cane made from {color3} {pluralBodyPart2}. \"To pass,\" it said, \"you must guess how many {pluralAnimal3} can stand on one {bodyPart1}.\" I took a deep breath, scratched my {bodyPart3}, and said, \"Exactly {number2}!\" The animals all gasped and clapped their {pluralBodyPart3} together. \"Correct!\" the wise one shouted. My {bodyPart2} grew back instantly, and the {animal3} king gave me a crown shaped like a giant {bodyPart4}, encrusted with {color3} jewels. I rode home on the back of a dancing {animal2} with {color1} spots and {number2} toes on each {bodyPart3}, waving to everyone with my sparkly new {bodyPart2}. To celebrate, they all did the hokey pokey using only their {pluralBodyPart3} while riding around on {pluralAnimal3} painted {color1}.",
     inputs: [
+        { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+        { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" },
+        { id: "color3", label: "Color #3", placeholder: "Ex. Sùkw" },
         { id: "number3", label: "Number", placeholder: "Ex. Nash" },
-        { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wil" },
-        { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
-        { id: "pluralAnimal1", label: "Plural Animal #1", placeholder: "Ex. Monkeys" },
-        { id: "pluralBodyPart1", label: "Plural Body Part #1", placeholder: "Ex. Naolka" },
-        { id: "animal4", label: "Animal #4", placeholder: "Ex. Bird" },
-        { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Weshkinkw" },
-        { id: "animal3", label: "Animal #3", placeholder: "Ex. Bear" },
-        { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
-        { id: "pluralBodyPart2", label: "Plural Body Part #2", placeholder: "Ex. Hwikata" },
-        { id: "pluralAnimal3", label: "Plural Animal #3", placeholder: "Ex. Bears" },
-        { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikiyon" },
         { id: "number2", label: "Number", placeholder: "Ex. Nisha" },
-        { id: "pluralBodyPart3", label: "Plural Body Part #3", placeholder: "Ex. Wikiyona" },
-        { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Tun" },
+        { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wil" },
+        { id: "pluralAnimal1", label: "Plural Animal #1", placeholder: "Ex. Monkeys" },
+        { id: "pluralAnimal3", label: "Plural Animal #3", placeholder: "Ex. Bears" },
         { id: "animal2", label: "Animal #2", placeholder: "Ex. Horse" },
-        { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" }
+        { id: "animal3", label: "Animal #3", placeholder: "Ex. Bear" },
+        { id: "animal4", label: "Animal #4", placeholder: "Ex. Bird" },
+        { id: "pluralBodyPart1", label: "Plural Body Part #1", placeholder: "Ex. Naolka" },       
+        { id: "pluralBodyPart3", label: "Plural Body Part #3", placeholder: "Ex. Wikiyona" },   
+        { id: "pluralBodyPart2", label: "Plural Body Part #2", placeholder: "Ex. Hwikata" },
+        { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Weshkinkw" },  
+        { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Tun" },
+        { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikiyon" },        
+       
+     
+       
+        
     ]
 },
     skyFix: {
@@ -150,24 +154,34 @@ const stories = {
     difficulty: "hard",
     template: "\"To fix the sky,\" it said, \"you must gather the tears of {number3} mystical {pluralAnimal1} who cry only when they see a {color3} {animal2} tap-dancing on one {bodyPart3} while balancing a watermelon on its {bodyPart2}.\" The mission was clear. The two friends journeyed across {number4} rivers, each guarded by a grumpy {animal2} with glowing {color4} {pluralBodyPart4}. They had to tickle each guard's {bodyPart3} to pass. Eventually, they reached the sacred waterfall, where the mystical {pluralAnimal2} were waiting, each with extra-long {pluralBodyPart3} and glittery {color1} eyebrows. They performed the dance, flailed their {pluralBodyPart2}, wiggled their {bodyPart4}, and—miraculously—collected exactly {number2} magical tears. Racing back, they poured the tears onto the wise one's {bodyPart1}. The sky let out a huge {bodyPart2}-shaped puff and turned back to its usual {color4}. The jungle cheered! Every {animal2} clapped their {pluralBodyPart1}, the trees changed to {color2}, and the ground shook like a wiggling {bodyPart2}.",
     inputs: [
-        { id: "number3", label: "Number", placeholder: "Ex. Nash" },
-        { id: "pluralAnimal1", label: "Plural Animal #1", placeholder: "Ex. Monkeys" },
-        { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
-        { id: "animal2", label: "Animal #2", placeholder: "Ex. Horse" },
-        { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikiyon" },
-        { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Tun" },
-        { id: "number4", label: "Number", placeholder: "Ex. Newo" },
-        { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
-        { id: "pluralBodyPart4", label: "Plural Body Part #4", placeholder: "Ex. Wila" },
-        { id: "pluralAnimal2", label: "Plural Animal #2", placeholder: "Ex. Horses" },
-        { id: "pluralBodyPart3", label: "Plural Body Part #3", placeholder: "Ex. Wikiyona" },
         { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
-        { id: "pluralBodyPart2", label: "Plural Body Part #2", placeholder: "Ex. Tuna" },
-        { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wil" },
-        { id: "number2", label: "Number", placeholder: "Ex. Nisha" },
-        { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Weshkinkw" },
         { id: "color2", label: "Color #2", placeholder: "Ex. Achgwàn" },
-        { id: "pluralBodyPart1", label: "Plural Body Part #1", placeholder: "Ex. Naolka" }
+        { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
+        { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
+        { id: "number2", label: "Number", placeholder: "Ex. Nisha" },
+        { id: "number3", label: "Number", placeholder: "Ex. Nash" },
+        { id: "number4", label: "Number", placeholder: "Ex. Newo" },
+        { id: "pluralAnimal1", label: "Plural Animal #1", placeholder: "Ex. Monkeys" },
+        { id: "pluralAnimal2", label: "Plural Animal #2", placeholder: "Ex. Horses" },
+        
+        { id: "animal2", label: "Animal #2", placeholder: "Ex. Horse" },
+        { id: "pluralBodyPart1", label: "Plural Body Part #1", placeholder: "Ex. Naolka" },
+        { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Weshkinkw" },
+        { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Tun" },
+        { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikiyon" },
+        { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wil" },
+        { id: "pluralBodyPart2", label: "Plural Body Part #2", placeholder: "Ex. Tuna" },
+        { id: "pluralBodyPart3", label: "Plural Body Part #3", placeholder: "Ex. Wikiyona" },
+        { id: "pluralBodyPart4", label: "Plural Body Part #4", placeholder: "Ex. Wila" },
+        
+       
+        
+      
+       
+        
+       
+        
+        
     ]
 }
     
