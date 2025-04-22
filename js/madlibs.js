@@ -20,11 +20,11 @@ const stories = {
         inputs: [
             { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
             { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèk" },
-            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "number1", label: "Number #1", placeholder: "Ex. Nisha" },
             { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
             { id: "color2", label: "Color #2", placeholder: "Ex. Wéskëk" },
             { id: "emotion1", label: "Emotion", placeholder: "Ex. Nulitùn" },
-            { id: "number2", label: "Number", placeholder: "Ex. Nàxa" }
+            { id: "number2", label: "Number #2", placeholder: "Ex. Nàxa" }
         ]
     },
     school: {
@@ -46,13 +46,15 @@ const stories = {
         template: "This morning, I found something in my shoe! When I put my {bodyPart1} inside, I felt something {color1}. I used my {bodyPart2} to look closer. There were {number1} small objects inside! My {bodyPart3} started to feel {emotion1} when I realized what it was. I used my {bodyPart4} to take out the {color2} surprise!",
         inputs: [
             { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wsit" },
+             { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikuwe" },
+                { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikèhèn" },
+             { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wiske" },
             { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
-            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikuwe" },
-            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
-            { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikèhèn" },
-            { id: "emotion1", label: "Emotion", placeholder: "Ex. Wjánte" },
-            { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wiske" },
-            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" }
+           { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },        
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Wjánte" }
+           
+            
         ]
     },
     weather: {
@@ -61,12 +63,13 @@ const stories = {
         template: "The weather was strange today! The sky turned {color1}, and it rained for {number1} hours. My {bodyPart1} got wet, and my {bodyPart2} was cold. The wind made me feel {emotion1}. The forecast says it will be {color2} skies for the next {number2} days.",
         inputs: [
             { id: "color1", label: "Color #1", placeholder: "Ex. Wéskëk" },
-            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" },
+            
             { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
             { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèk" },
             { id: "emotion1", label: "Emotion", placeholder: "Ex. Wjánte" },
-            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" },
-            { id: "number2", label: "Number", placeholder: "Ex. Nàxa" }
+            { id: "number1", label: "Number #1", placeholder: "Ex. Nisha" },
+            { id: "number2", label: "Number #2", placeholder: "Ex. Nàxa" }
         ]
     },
     doctor: {
@@ -75,20 +78,23 @@ const stories = {
         template: "Today, I went to the doctor because my {bodyPart1} was hurting. The doctor asked me how long I had been feeling this way, and I told him it started hurting {number1} days ago and was turning {color1} and {color2}. He immediately told me to stick out my {bodyPart2} and close my {bodyPart3}. The doctor looked at my {bodyPart1} and said it looked a little {color3}. I was worried, so he said we needed to do a few tests. First, he took {number2} x-rays of my {bodyPart4}. Then he measured the size of my {bodyPart5} with a {color4} measuring tape and it was {number3} inches long. 'Don't worry,' he said, 'you just need to rest for {number4} days and wear a {color5} brace on your {bodyPart6}'.",
         inputs: [
             { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèhèn" },
-            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
-            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
-            { id: "color2", label: "Color #2", placeholder: "Ex. Wéskëk" },
-            { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèhs" },
+              { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèhs" },
             { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wikuwe" },
-            { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },
-            { id: "number2", label: "Number", placeholder: "Ex. Nash" },
             { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wikèk" },
             { id: "bodyPart5", label: "Body Part #5", placeholder: "Ex. Wiske" },
+             { id: "bodyPart6", label: "Body Part #6", placeholder: "Ex. Naxka" },
+            { id: "number1", label: "Number #1", placeholder: "Ex. Nisha" },
+            { id: "number2", label: "Number #2", placeholder: "Ex. Nash" },
+             { id: "number3", label: "Number #3", placeholder: "Ex. Nàxa" },
+            { id: "number4", label: "Number #3", placeholder: "Ex. Newa" },
+            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wéskëk" },
+            { id: "color3", label: "Color #3", placeholder: "Ex. Wisaweu" },     
+            
             { id: "color4", label: "Color #4", placeholder: "Ex. Sùkw" },
-            { id: "number3", label: "Number", placeholder: "Ex. Nàxa" },
-            { id: "number4", label: "Number", placeholder: "Ex. Newa" },
-            { id: "color5", label: "Color #5", placeholder: "Ex. Wapelechen" },
-            { id: "bodyPart6", label: "Body Part #6", placeholder: "Ex. Naxka" }
+           
+            { id: "color5", label: "Color #5", placeholder: "Ex. Wapelechen" }
+           
         ]
     },
     zoo: {
@@ -97,13 +103,15 @@ const stories = {
         template: "Today I went to the zoo! My {bodyPart1} was tired from walking. I saw an animal with a {color1} {bodyPart2}. It made me feel {emotion1}! We stayed for {number1} hours until my {bodyPart3} got sore. The best part was when my {bodyPart4} saw a {color2} bird fly by!",
         inputs: [
             { id: "bodyPart1", label: "Body Part #1", placeholder: "Ex. Wikèk" },
-            { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
             { id: "bodyPart2", label: "Body Part #2", placeholder: "Ex. Wikèhèn" },
-            { id: "emotion1", label: "Emotion", placeholder: "Ex. Nulitùn" },
-            { id: "number1", label: "Number", placeholder: "Ex. Nisha" },
             { id: "bodyPart3", label: "Body Part #3", placeholder: "Ex. Wsit" },
             { id: "bodyPart4", label: "Body Part #4", placeholder: "Ex. Wikuwe" },
-            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" }
+                        { id: "color1", label: "Color #1", placeholder: "Ex. Machkeu" },
+            { id: "color2", label: "Color #2", placeholder: "Ex. Wisaweu" },
+            { id: "emotion1", label: "Emotion", placeholder: "Ex. Nulitùn" },
+            { id: "number1", label: "Number", placeholder: "Ex. Nisha" }
+            
+            
         ]
     },
 
